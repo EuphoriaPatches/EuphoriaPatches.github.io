@@ -903,6 +903,7 @@ html, body {
 ================================================== */
 .hero { 
     background: url(../img/Screenshots/mainBackground.webp) no-repeat top / cover;
+    background-position: center -300px;
     height: 100%;
     width: 100%;
     display: table;
@@ -1135,7 +1136,6 @@ html, body {
 
 .download-hero {
     background: url(../img/Screenshots/downloadBackground.webp) no-repeat center / cover;
-    background-position: center -300px;
 }
 
 .contact-hero {
