@@ -1422,13 +1422,13 @@ table, th, td {
 .tilted-box-container {
     float: right;
     position: relative;
-    transform: scale(1.2);
-    left: 80px;
+    transform: scale(0.9);
+    left: -40px;
     top: 50px;
 }
 
 .tilted-box {
-    border: transparent;
+    border: 5px solid #ffffff48;
     border-radius: 25px;
     background-color: transparent;
     transform: rotate(1deg);
