@@ -1135,6 +1135,7 @@ html, body {
 
 .download-hero {
     background: url(../img/Screenshots/downloadBackground.webp) no-repeat center / cover;
+    background-position: center -100px; /* Moves the image 50px up */
 }
 
 .contact-hero {
@@ -1384,7 +1385,7 @@ table, th, td {
     width: 45%;
     float: left;
     min-width: fit-content;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
@@ -1402,7 +1403,7 @@ table, th, td {
     float: right;
     position: relative;
     min-width: fit-content;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
