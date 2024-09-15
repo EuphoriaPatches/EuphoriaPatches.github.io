@@ -1422,16 +1422,16 @@ table, th, td {
 .tilted-box-container {
     float: right;
     position: relative;
-    transform: scale(0.5);
-    left: 20px;
-    top: -20px;
+    transform: scale(1.2);
+    left: 80px;
+    top: 50px;
 }
 
 .tilted-box {
-    border: 5px solid #000;
+    border: transparent;
     border-radius: 25px;
     background-color: transparent;
-    transform: rotate(3deg);
+    transform: rotate(1deg);
     transition: border-color 0.3s ease;
     overflow: hidden;
     display: flex; /* Use flexbox to center the image */
