@@ -1450,12 +1450,14 @@ table, th, td {
 /*Download Image Click*/
 
 .tilted-box-container {
-    float: right;
     position: relative;
     cursor: pointer;
-    transform: scale(1.0);
-    left: -110px;
-    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 90vw;
+    margin: 20px;
 }
 
 .tilted-box {
@@ -1463,20 +1465,24 @@ table, th, td {
     border-radius: 25px;
     background-color: transparent;
     transform: rotate(0.5deg);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease;
     overflow: hidden;
-    display: flex; /* Use flexbox to center the image */
+    display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
+    max-height: 80vh;
 }
 
 .tilted-box:hover {
     border-color: var(--ThemeColor);
+    transform: rotate(0.5deg) scale(1.05);
 }
 
 .tilted-box img {
-    max-width: 100%; /* Ensure image doesn't overflow the box */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .popup-container {
@@ -1492,11 +1498,44 @@ table, th, td {
     transition: opacity 0.3s ease, bottom 0.3s ease;
     pointer-events: none;
     white-space: nowrap;
+    text-align: center;
+    width: max-content;
+    max-width: 90vw;
 }
 
 .tilted-box-container:hover .popup-container {
     opacity: 1;
     bottom: -60px;
+}
+
+@media (max-width: 768px) {
+    .tilted-box-container {
+        max-width: 95vw;
+    }
+
+    .tilted-box {
+        max-height: 70vh;
+    }
+
+    .popup-container {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tilted-box-container {
+        max-width: 98vw;
+    }
+
+    .tilted-box {
+        max-height: 60vh;
+    }
+
+    .popup-container {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
 }
 
 /* Section: Services */
