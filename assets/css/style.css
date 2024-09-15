@@ -1390,6 +1390,7 @@ table, th, td {
     margin-right: -20px;
     padding: 0px 15px;
     text-align: center;
+    cursor: pointer;
 
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
@@ -1454,7 +1455,7 @@ table, th, td {
     cursor: pointer;
     transform: scale(1.0);
     left: -110px;
-    top: 10px;
+    top: 0px;
 }
 
 .tilted-box {
