@@ -1451,6 +1451,7 @@ table, th, td {
 .tilted-box-container {
     float: right;
     position: relative;
+    cursor: pointer;
     transform: scale(1.0);
     left: -110px;
     top: 30px;
