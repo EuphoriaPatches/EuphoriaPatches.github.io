@@ -1381,6 +1381,29 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
+.section-what-is-EP {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 15px;
+    text-align: center;
+}
+
+.section-what-is-EP-desc p {
+    float: right;
+    position: relative;
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--VeryLightGray);;
+    max-width: 55%;
+    min-width: 340px;
+    margin-bottom: 50px;
+}
+
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
 }
