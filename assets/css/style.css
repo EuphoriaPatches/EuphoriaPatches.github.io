@@ -1362,10 +1362,6 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-donation:hover {
-    outline-color: var(--ThemeColor);
-}
-
 .section-donation-kofi {
     width: 45%;
     float: right;
@@ -1384,16 +1380,12 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-donation-kofi:hover {
-    outline-color: var(--ThemeColor);
-}
-
 .section-download-box {
     width: 45%;
     float: left;
     min-width: fit-content;
     margin-bottom: 60px;
-    margin-top: 130px;
+    margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 0px 15px;
@@ -1403,10 +1395,6 @@ table, th, td {
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
-}
-
-.section-download-box:hover {
-    outline-color: var(--ThemeColor);
 }
 
 .section-what-is-EP-box {
@@ -1415,20 +1403,20 @@ table, th, td {
     position: relative;
     min-width: fit-content;
     margin-bottom: 60px;
-    margin-top: 130px;
+    margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(87, 87, 87, 0.5);
 
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-what-is-EP-box:hover {
+.section-click-box:hover {
     outline-color: var(--ThemeColor);
 }
 
@@ -1440,7 +1428,7 @@ table, th, td {
     background: url(../img/other/kofibanner.webp) no-repeat top / cover;
 }
 
-.section-donation h2 {
+.section-click-box h2 {
     font-family: 'minecraftchmc';
     position: relative;
     margin: 0;
@@ -1457,27 +1445,10 @@ table, th, td {
     1.5px 1.5px 0 #000;
 }
 
-.section-donation-kofi h2 {
-    font-family: 'minecraftchmc';
-    position: relative;
-    margin: 0;
-    color: var(--VeryLightGray);;
-    font-size: 35px;
-    padding-bottom: 10px;
-    line-height: 360%;
-    text-shadow:
-    0.5px 1px 0 #000,
-    1px 0.5px 0 #000,
-    1px 1px 0 #000,
-    1px 1.5px 0 #000,
-    1.5px 1px 0 #000,
-    1.5px 1.5px 0 #000;
-}
-
-.section-donation .btn:focus {
+.section-click-box .btn:focus {
     color: var(--VeryLightGray);
 }
-.section-donation .btn:hover {
+.section-click-box .btn:hover {
     background-color: rgba(0, 0, 0, 0.25);
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
