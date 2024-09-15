@@ -1454,7 +1454,7 @@ table, th, td {
     cursor: pointer;
     transform: scale(1.0);
     left: -110px;
-    top: 30px;
+    top: 10px;
 }
 
 .tilted-box {
