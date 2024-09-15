@@ -1423,15 +1423,15 @@ table, th, td {
     float: right;
     position: relative;
     transform: scale(0.9);
-    left: -40px;
-    top: 50px;
+    left: -60px;
+    top: 40px;
 }
 
 .tilted-box {
-    border: 5px solid #ffffff48;
+    border: 5px solid #ffffff71;
     border-radius: 25px;
     background-color: transparent;
-    transform: rotate(1deg);
+    transform: rotate(0.5deg);
     transition: border-color 0.3s ease;
     overflow: hidden;
     display: flex; /* Use flexbox to center the image */
