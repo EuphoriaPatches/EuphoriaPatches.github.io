@@ -1423,8 +1423,8 @@ table, th, td {
     float: right;
     position: relative;
     transform: scale(0.9);
-    left: -60px;
-    top: 40px;
+    left: -130px;
+    top: 30px;
 }
 
 .tilted-box {
