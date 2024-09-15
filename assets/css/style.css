@@ -1458,6 +1458,8 @@ table, th, td {
     width: 100%;
     max-width: 90vw;
     margin: 20px;
+    left: -110px; /* Default offset */
+    transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
 .tilted-box {
@@ -1511,6 +1513,7 @@ table, th, td {
 @media (max-width: 768px) {
     .tilted-box-container {
         max-width: 95vw;
+        left: 0; /* Center on medium screens */
     }
 
     .tilted-box {
@@ -1526,6 +1529,7 @@ table, th, td {
 @media (max-width: 480px) {
     .tilted-box-container {
         max-width: 98vw;
+        left: 0; /* Center on small screens */
     }
 
     .tilted-box {

@@ -71,24 +71,39 @@
 
     <div id="hero" class="hero subpage-hero">
         <div class="hero-content">
-            <!--<div class="hero-text">
-                <a href="/download" class="btn btn-border">Download</a>
-            </div><!~~ /.hero-text ~~>-->
-            <div class="tilted-box-container "onclick="location.href='/download';">
-                <div class="tilted-box-container">
-                    <div class="tilted-box">
-                        <img src="/assets/img/other/euphoria_patches_banner.webp" alt="Image inside tilted box">
-                    </div>
-                    <div class="popup-container">
-                        <div class="hero-text">
-                            <h2>Click to go to the Downloads Page</h2>
-                        </div>
+            <div class="tilted-box-container" onclick="location.href='/download';">
+                <div class="tilted-box">
+                    <img src="/assets/img/other/euphoria_patches_banner.webp" alt="Image inside tilted box">
+                </div>
+                <div class="popup-container">
+                    <div class="hero-text">
+                        <h2>Click to go to the Downloads Page</h2>
                     </div>
                 </div>
             </div>
         </div><!-- /.hero-content -->
-        
     </div><!-- /.hero -->
+    
+    <!-- Add this script just before the closing </body> tag -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const boxContainer = document.querySelector('.tilted-box-container');
+            
+            function adjustPosition() {
+                const containerWidth = boxContainer.offsetWidth;
+                const viewportWidth = window.innerWidth;
+                
+                if (containerWidth > viewportWidth) {
+                    boxContainer.style.left = '0'; // Center if too wide
+                } else {
+                    boxContainer.style.left = '-110px'; // Default offset
+                }
+            }
+            
+            adjustPosition();
+            window.addEventListener('resize', adjustPosition); // Recalculate on resize
+        });
+    </script>
 
     <main id="main" class="site-main" style="margin-bottom: -25px;">
         <section class="site-section gray-bg">
