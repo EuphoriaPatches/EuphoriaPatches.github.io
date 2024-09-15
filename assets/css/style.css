@@ -902,7 +902,7 @@ html, body {
 /* HERO
 ================================================== */
 .hero { 
-    background: url(../img/Screenshots/mainBackground.png) no-repeat top / cover;
+    background: url(../img/Screenshots/mainBackground.webp) no-repeat top / cover;
     height: 100%;
     width: 100%;
     display: table;
@@ -1389,11 +1389,11 @@ table, th, td {
 }
 
 .section-patreon_img {
-    background: url(../img/other/creatingeuphoriapatchesasthemonkeyonatypewriterintended-preview2.png) no-repeat top / cover;
+    background: url(../img/other/patreon_banner.webp) no-repeat top / cover;
 }
 
 .section-kofi_img {
-    background: url(../img/other/kofipreview2.jpg) no-repeat top / cover;
+    background: url(../img/other/kofibanner.webp) no-repeat top / cover;
 }
 
 .section-donation h2 {
