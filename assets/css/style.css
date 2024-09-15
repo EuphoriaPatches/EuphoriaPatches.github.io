@@ -1383,7 +1383,7 @@ table, th, td {
 
 .section-download-box {
     width: 45%;
-    float: left;
+    float: center;
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
@@ -1400,7 +1400,7 @@ table, th, td {
 
 .section-what-is-EP-box {
     width: 45%;
-    float: right;
+    float: center;
     position: relative;
     min-width: fit-content;
     margin-bottom: 60px;
@@ -1446,11 +1446,19 @@ table, th, td {
     1.5px 1.5px 0 #000;
 }
 
+.section-click-box p {
+    position: relative;
+    margin: 30px 0 30px;
+    font-size: 20px;
+    color: var(--VeryLightGray);;
+    max-width: 100%;
+}
+
 .section-click-box .btn:focus {
     color: var(--VeryLightGray);
 }
 .section-click-box .btn:hover {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: transparent;
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
 }
