@@ -1346,6 +1346,22 @@ table, th, td {
     display: block;
 }
 
+.index-shader {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 50px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 50px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
 .section-donation {
     width: 45%;
     float: left;
@@ -1452,6 +1468,18 @@ table, th, td {
     font-size: 20px;
     color: var(--VeryLightGray);;
     max-width: 100%;
+}
+
+.section-click-box-desc p {
+    float: right;
+    position: relative;
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--VeryLightGray);;
+    max-width: 55%;
+    min-width: 340px;
+    margin-bottom: 50px;
 }
 
 .section-click-box .btn:focus {
