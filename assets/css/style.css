@@ -985,6 +985,24 @@ html, body {
     margin-bottom: 50px;
 }
 
+.index-shader-desc h2 {
+    float: right;
+    font-family: 'minecraftchmc';
+    position: relative;
+    margin: 0;
+    color: var(--VeryLightGray);;
+    font-size: 35px;
+    padding-bottom: 10px;
+    line-height: 360%;
+    text-shadow:
+    0.5px 1px 0 #000,
+    1px 0.5px 0 #000,
+    1px 1px 0 #000,
+    1px 1.5px 0 #000,
+    1.5px 1px 0 #000,
+    1.5px 1.5px 0 #000;
+}
+
 .index-shader .btn {
     position: relative;
     margin: 5px;
@@ -1344,22 +1362,6 @@ table, th, td {
 
 .section-donation-container {
     display: block;
-}
-
-.index-shader {
-    width: 45%;
-    float: left;
-    min-width: fit-content;
-    margin-bottom: 50px;
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 50px 15px;
-    text-align: center;
-    cursor: pointer;
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
 }
 
 .section-donation {
