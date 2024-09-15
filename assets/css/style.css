@@ -902,7 +902,7 @@ html, body {
 /* HERO
 ================================================== */
 .hero { 
-    background: url(../img/Screenshots/2024-06-12_13.13.54.png) no-repeat top / cover;
+    background: url(../img/Screenshots/mainBackground.webp) no-repeat top / cover;
     background-position: center -200px;
     height: 100%;
     width: 100%;
@@ -1418,7 +1418,7 @@ table, th, td {
 }
 
 .section-kofi_img {
-    background: url(../img/other/kofibanner.webp) no-repeat top / cover;
+    background: url(../img/other/kofi_banner.webp) no-repeat top / cover;
 }
 
 .section-click-box h2 {
