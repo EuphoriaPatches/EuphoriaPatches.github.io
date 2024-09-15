@@ -1458,7 +1458,7 @@ table, th, td {
     width: 100%;
     max-width: 90vw;
     margin: 20px;
-    left: 0px; /* Default offset */
+    left: 0; /* Default offset */
     transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
@@ -1489,7 +1489,7 @@ table, th, td {
 
 .popup-container {
     position: absolute;
-    bottom: -50px;
+    bottom: -70px; /* Adjusted to ensure it stays below the box */
     left: 50%;
     transform: translateX(-50%) scale(0.7);
     background-color: rgba(0, 0, 0, 0.7);
@@ -1508,7 +1508,7 @@ table, th, td {
 
 .tilted-box-container:hover .popup-container {
     opacity: 1;
-    bottom: -60px;
+    bottom: -70px; /* Ensure popup is below the box on hover */
 }
 
 @media (max-width: 768px) {
