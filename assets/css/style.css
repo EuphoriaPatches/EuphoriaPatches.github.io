@@ -1115,12 +1115,34 @@ html, body {
     color: var(--ThemeColor);
 }
 
+.support-hero {
+    height: 400px;
+}
+
+.support-hero.overlay:before {
+    background-color: var(--ScreenshotOverlayColor);
+}
+
+.support-hero .hero-content,
+.support-hero .hero-content h1,
+.support-hero a  {
+    color: #fff;
+}
+
+.support-hero a:hover {
+    color: var(--ThemeColor);
+}
+
 .reimagined-hero {
     background: url(../img/newScreenshots/4.jpg) no-repeat center / cover;
 }
 
 .contact-hero {
     background: url(../img/editedScreenshots/Taiga.jpg) no-repeat center / cover;
+}
+
+.support-hero {
+    background: url(../img/Screenshots/mainBackground.png) no-repeat center / cover;
 }
 
 .changelogs-hero {
@@ -1327,7 +1349,8 @@ table, th, td {
     width: 45%;
     float: left;
     min-width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
+    margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 0px 15px;
@@ -1348,7 +1371,8 @@ table, th, td {
     float: right;
     position: relative;
     min-width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
+    margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 0px 15px;
