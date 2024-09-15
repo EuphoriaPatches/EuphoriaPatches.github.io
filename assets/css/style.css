@@ -1328,8 +1328,8 @@ table, th, td {
     float: left;
     min-width: fit-content;
     margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
@@ -1349,8 +1349,8 @@ table, th, td {
     position: relative;
     min-width: fit-content;
     margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
