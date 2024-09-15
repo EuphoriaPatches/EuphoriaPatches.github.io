@@ -1346,9 +1346,9 @@ table, th, td {
     display: block;
 }
 
-.section-donation {
+.section-donation, .section-donation-kofi {
     width: 45%;
-    float: left;
+    float: left; /* Default float behavior for larger screens */
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
@@ -1357,28 +1357,30 @@ table, th, td {
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
 .section-donation-kofi {
-    width: 45%;
-    float: right;
-    position: relative;
-    min-width: fit-content;
-    margin-bottom: 60px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
+    float: right; /* Keep right float for large screens */
+}
 
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
+@media (max-width: 768px) {
+    .section-donation, .section-donation-kofi {
+        width: 90%; /* Full width for medium screens */
+        float: none; /* Remove float */
+        margin-left: auto;
+        margin-right: auto; /* Center-align on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-donation, .section-donation-kofi {
+        width: 100%; /* Full width on small screens */
+        margin-left: 0;
+        margin-right: 0; /* Remove horizontal margins for small screens */
+    }
 }
 
 .section-what-is-EP {
