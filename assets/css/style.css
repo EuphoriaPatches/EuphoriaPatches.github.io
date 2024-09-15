@@ -1385,7 +1385,7 @@ table, th, td {
     width: 45%;
     float: left;
     min-width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
@@ -1403,7 +1403,7 @@ table, th, td {
     float: right;
     position: relative;
     min-width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
