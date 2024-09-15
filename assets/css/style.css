@@ -1422,7 +1422,7 @@ table, th, td {
 .tilted-box-container {
     float: right;
     position: relative;
-    transform: scale(0.9);
+    transform: scale(1.25);
     left: -130px;
     top: 30px;
 }
