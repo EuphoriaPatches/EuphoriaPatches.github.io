@@ -1422,27 +1422,34 @@ table, th, td {
 
 
 
-.container-box {
+.tilted-box-container {
+    width: 300px;
+    height: 200px;
     position: relative;
-    display: inline-block;
 }
 
 .tilted-box {
-    width: 300px; /* Set the width of the box */
-    height: 200px; /* Set the height of the box */
-    border: 5px solid #000; /* Initial border color */
-    border-radius: 25px; /* Rounds the corners */
-    background-color: transparent; /* Always transparent */
-    background-image: url(../img/other/euphoria_patches\ -\ Copy.png) no-repeat top / cover; /* PNG with transparency */
-    background-size: contain; /* Ensures the image fits inside the box */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Avoids tiling the image */
-    transform: rotate(10deg); /* Tilt the box */
-    transition: border-color 0.3s ease; /* Smooth transition for the border color on hover */
+    width: 100%;
+    height: 100%;
+    border: 5px solid #000;
+    border-radius: 25px;
+    background-color: transparent;
+    transform: rotate(10deg);
+    transition: border-color 0.3s ease;
+    overflow: hidden;
+    position: relative;
 }
 
 .tilted-box:hover {
-    border-color: var(--ThemeColor); /* Change border color on hover */
+    border-color: var(--ThemeColor);
+}
+
+.tilted-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* transform: rotate(-10deg) scale(1.5); Counter-rotate and scale up to cover tilted area */
+    opacity: 0.7; /* Adjust for desired transparency */
 }
 
 /* Section: Services */
