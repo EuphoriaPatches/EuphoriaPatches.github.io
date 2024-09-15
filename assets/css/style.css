@@ -1388,6 +1388,50 @@ table, th, td {
     outline-color: var(--ThemeColor);
 }
 
+.section-download-box {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 60px;
+    margin-top: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-download-box:hover {
+    outline-color: var(--ThemeColor);
+}
+
+.section-what-is-EP-box {
+    width: 45%;
+    float: right;
+    position: relative;
+    min-width: fit-content;
+    margin-bottom: 60px;
+    margin-top: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.25);
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-what-is-EP-box:hover {
+    outline-color: var(--ThemeColor);
+}
+
 .section-patreon_img {
     background: url(../img/other/patreon_banner.webp) no-repeat top / cover;
 }
