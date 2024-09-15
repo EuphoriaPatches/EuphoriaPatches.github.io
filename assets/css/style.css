@@ -1424,8 +1424,8 @@ table, th, td {
 .tilted-box-container {
     float: right;
     position: relative;
-    transform: scale(1.1);
-    left: -530px;
+    transform: scale(1.0);
+    left: -150px;
     top: 30px;
 }
 
