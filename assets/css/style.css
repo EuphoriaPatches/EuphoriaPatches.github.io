@@ -1133,8 +1133,8 @@ html, body {
     color: var(--ThemeColor);
 }
 
-.reimagined-hero {
-    background: url(../img/newScreenshots/4.jpg) no-repeat center / cover;
+.download-hero {
+    background: url(../img/Screenshots/donateBackground.webp) no-repeat center / cover;
 }
 
 .contact-hero {
