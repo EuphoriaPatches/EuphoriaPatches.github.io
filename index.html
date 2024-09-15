@@ -91,9 +91,11 @@
         function adjustPosition() {
             const containerWidth = boxContainer.offsetWidth;
             const viewportWidth = window.innerWidth;
+
+            const offsetX = (viewportWidth - containerWidth) / 2;
             
             if (containerWidth + 820 > viewportWidth) { // Add some padding
-                boxContainer.style.left = '0'; // Center if too wide
+                boxContainer.style.left = `${offsetX}px`; // Center if too wide
             } else {
                 boxContainer.style.left = '820px'; // Default offset
             }
