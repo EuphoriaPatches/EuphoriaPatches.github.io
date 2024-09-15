@@ -1461,7 +1461,7 @@ table, th, td {
     max-width: 90vw;
     margin: 20px;
     left: 820px; /* Default offset */
-    top: -5px;
+    top: -10px;
     transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
@@ -1469,7 +1469,7 @@ table, th, td {
     border: 5px solid #ffffff44;
     border-radius: 25px;
     background-color: transparent;
-    transform: rotate(0.2deg);
+    transform: rotate(0.1deg);
     transition: border-color 0.3s ease, transform 0.3s ease;
     overflow: hidden;
     display: flex;
