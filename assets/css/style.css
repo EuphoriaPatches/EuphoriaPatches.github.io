@@ -1450,15 +1450,15 @@ table, th, td {
 /*Download Image Click*/
 
 .tilted-box-container {
-    position: relative;
+    position: relative; /* Allows positioning adjustments */
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: max-content; /* Ensure container only wraps around the box */
     max-width: 90vw;
     margin: 20px;
-    left: 0; /* Default offset */
+    left: 820px; /* Default offset */
     transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
@@ -1489,7 +1489,7 @@ table, th, td {
 
 .popup-container {
     position: absolute;
-    bottom: -70px; /* Adjusted to ensure it stays below the box */
+    bottom: -70px; /* Ensure popup is below the box */
     left: 50%;
     transform: translateX(-50%) scale(0.7);
     background-color: rgba(0, 0, 0, 0.7);
@@ -1499,7 +1499,7 @@ table, th, td {
     opacity: 0;
     transition: opacity 0.3s ease, bottom 0.3s ease;
     pointer-events: none;
-    white-space: normal; /* Allow text to wrap */
+    white-space: nowrap; /* Keep text on a single line */
     text-align: center;
     width: auto; /* Allow width to adjust based on content */
     max-width: 90vw; /* Limit width to prevent overflow */
@@ -1522,6 +1522,7 @@ table, th, td {
     }
 
     .popup-container {
+        white-space: normal; /* Allow wrapping on smaller screens */
         font-size: 14px;
         padding: 8px 16px;
     }
@@ -1538,6 +1539,7 @@ table, th, td {
     }
 
     .popup-container {
+        white-space: normal; /* Allow wrapping on very small screens */
         font-size: 12px;
         padding: 6px 12px;
     }
