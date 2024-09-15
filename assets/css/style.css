@@ -1660,36 +1660,36 @@ table, th, td {
 a.discord-bg {
     color: #5865F2;
     border-color: #5865F2; 
-    background: url(../img/companylogo/discord2.png) no-repeat center;
+    background: url(../img/logos/discord2.webp) no-repeat center;
     background-color: #5865F2;
 }
 
 a.discord-bg:hover {
-    background: url(../img/companylogo/discord.png) no-repeat center;
+    background: url(../img/logos/discord.webp) no-repeat center;
     background-color: white;
 }
 
 a.patreon-bg {
     color: #FF424D;
     border-color: #FF424D;
-    background: url(../img/companylogo/patreon2.png) no-repeat center;
+    background: url(../img/logos/patreon2.webp) no-repeat center;
     background-color: #FF424D;
 }
 
 a.patreon-bg:hover {
-    background: url(../img/companylogo/patreon.png) no-repeat center;
+    background: url(../img/logos/patreon.webp) no-repeat center;
     background-color: white;
 }
 
 a.github-bg {
     color: rgb(23,21,22);
     border-color: rgb(23,21,22);
-    background: url(../img/companylogo/github2.png) no-repeat center;
+    background: url(../img/logos/github2.webp) no-repeat center;
     background-color: rgb(23,21,22);
 }
 
 a.github-bg:hover {
-    background: url(../img/companylogo/github.png) no-repeat center;
+    background: url(../img/logos/github.webp) no-repeat center;
     background-color: white;
 }
 
