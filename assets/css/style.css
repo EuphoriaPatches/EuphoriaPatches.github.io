@@ -1499,10 +1499,11 @@ table, th, td {
     opacity: 0;
     transition: opacity 0.3s ease, bottom 0.3s ease;
     pointer-events: none;
-    white-space: nowrap;
+    white-space: normal; /* Allow text to wrap */
     text-align: center;
-    width: max-content;
-    max-width: 90vw;
+    width: auto; /* Allow width to adjust based on content */
+    max-width: 90vw; /* Limit width to prevent overflow */
+    box-sizing: border-box; /* Include padding and border in element’s total width and height */
 }
 
 .tilted-box-container:hover .popup-container {
