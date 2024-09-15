@@ -985,24 +985,6 @@ html, body {
     margin-bottom: 50px;
 }
 
-.index-shader-desc h2 {
-    float: right;
-    font-family: 'minecraftchmc';
-    position: relative;
-    margin: 0;
-    color: var(--VeryLightGray);;
-    font-size: 35px;
-    padding-bottom: 10px;
-    line-height: 360%;
-    text-shadow:
-    0.5px 1px 0 #000,
-    1px 0.5px 0 #000,
-    1px 1px 0 #000,
-    1px 1.5px 0 #000,
-    1.5px 1px 0 #000,
-    1.5px 1.5px 0 #000;
-}
-
 .index-shader .btn {
     position: relative;
     margin: 5px;
@@ -1399,42 +1381,6 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-download-box {
-    width: 45%;
-    float: center;
-    min-width: fit-content;
-    margin-bottom: 60px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-}
-
-.section-what-is-EP-box {
-    width: 45%;
-    float: center;
-    position: relative;
-    min-width: fit-content;
-    margin-bottom: 60px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-    background: rgba(87, 87, 87, 0.5);
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-}
-
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
 }
@@ -1462,26 +1408,6 @@ table, th, td {
     1px 1.5px 0 #000,
     1.5px 1px 0 #000,
     1.5px 1.5px 0 #000;
-}
-
-.section-click-box p {
-    position: relative;
-    margin: 30px 0 30px;
-    font-size: 20px;
-    color: var(--VeryLightGray);;
-    max-width: 100%;
-}
-
-.section-click-box-desc p {
-    float: right;
-    position: relative;
-    padding-left: 20px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: var(--VeryLightGray);;
-    max-width: 55%;
-    min-width: 340px;
-    margin-bottom: 50px;
 }
 
 .section-click-box .btn:focus {
