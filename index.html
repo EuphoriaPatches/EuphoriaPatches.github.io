@@ -87,6 +87,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         const boxContainer = document.querySelector('.tilted-box-container');
+        const popupContainer = document.querySelector('.popup-container');
         
         function adjustPosition() {
             const containerWidth = boxContainer.offsetWidth;
@@ -99,6 +100,12 @@
             } else {
                 boxContainer.style.left = '820px'; // Default offset
             }
+
+            // Calculate the height of the popup container
+            const popupHeight = popupContainer.offsetHeight;
+
+            // Adjust the position of the popup container based on its height
+            popupContainer.style.bottom = -(popupHeight + 10) + 'px';
         }
         
         adjustPosition();
