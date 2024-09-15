@@ -903,6 +903,7 @@ html, body {
 ================================================== */
 .hero { 
     background: url(../img/Screenshots/mainBackground.webp) no-repeat top / cover;
+    background-position: center -200px;
     height: 100%;
     width: 100%;
     display: table;
