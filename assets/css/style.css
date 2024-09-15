@@ -1098,7 +1098,7 @@ html, body {
 }
 
 .subpage-hero {
-    height: 800px;
+    height: 500px;
 }
 
 .subpage-hero.overlay:before {
