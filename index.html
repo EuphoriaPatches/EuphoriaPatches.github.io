@@ -70,48 +70,8 @@
     </header><!-- /#mastheaed -->
 
     <div id="hero" class="hero subpage-hero">
-        <div class="hero-content">
-            <div class="tilted-box-container" onclick="location.href='/download';">
-                <div class="tilted-box">
-                    <img src="/assets/img/other/euphoria_patches_banner.webp" alt="Image inside tilted box">
-                </div>
-                <div class="popup-container">
-                    <div class="hero-text">
-                        <h2>Click to go to the Downloads Page</h2>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.hero-content -->
     </div><!-- /.hero -->
     
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        const boxContainer = document.querySelector('.tilted-box-container');
-        const popupContainer = document.querySelector('.popup-container');
-        
-        function adjustPosition() {
-            const containerWidth = boxContainer.offsetWidth;
-            const viewportWidth = window.innerWidth;
-
-            const offsetX = (viewportWidth - containerWidth) / 2;
-            
-            if (containerWidth + 820 > viewportWidth) { // Add some padding
-                boxContainer.style.left = `${offsetX}px`; // Center if too wide
-            } else {
-                boxContainer.style.left = '820px'; // Default offset
-            }
-
-            // Calculate the height of the popup container
-            const popupHeight = popupContainer.offsetHeight;
-
-            // Adjust the position of the popup container based on its height
-            popupContainer.style.bottom = -(popupHeight) + 'px';
-        }
-        
-        adjustPosition();
-        window.addEventListener('resize', adjustPosition); // Recalculate on resize
-        });
-    </script>
 
     <main id="main" class="site-main" style="margin-bottom: -25px;">
         <section class="site-section gray-bg">
