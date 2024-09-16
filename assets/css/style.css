@@ -1384,20 +1384,20 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
-/* Flexbox layout for .section-what-is-EP and .section-what-is-EP-desc */
+/* Flexbox layout for .section-what-is-EP-container */
 .section-what-is-EP-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items side by side */
     align-items: flex-start;
     margin-bottom: 20px;
-    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
-    max-width: 100%;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    max-width: 100%; /* Keep within container bounds */
 }
 
 /* What is EP Section */
 .section-what-is-EP {
-    width: 45%; /* Keep it 45% width on larger screens */
-    min-width: 340px; /* Prevent shrinking */
+    flex: 0 0 45%; /* Flex-basis 45%, do not grow or shrink */
+    min-width: 340px; /* Prevent it from shrinking too small */
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
@@ -1408,9 +1408,9 @@ table, th, td {
 
 /* What is EP Description */
 .section-what-is-EP-desc p {
-    width: 45%; /* Ensure the description is also 45% width */
-    min-width: 340px; /* Prevent shrinking */
-    margin-left: 20px; /* Add space between the two elements */
+    flex: 0 0 45%; /* Flex-basis 45%, do not grow or shrink */
+    min-width: 340px; /* Prevent it from shrinking too small */
+    margin-left: 20px; /* Space between the sections */
     font-size: 16px;
     color: var(--VeryLightGray);
     text-align: left;
@@ -1419,20 +1419,20 @@ table, th, td {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .section-what-is-EP-container {
-        flex-direction: column; /* Stack the elements vertically on smaller screens */
-        align-items: center; /* Center-align when stacked */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center-align items when stacked */
     }
 
     .section-what-is-EP, .section-what-is-EP-desc p {
-        width: 90%; /* Full width for smaller screens */
-        margin: 0 auto;
-        text-align: center; /* Center-align the content */
+        flex: 0 0 90%; /* Take 90% width when stacked */
+        margin: 0 auto; /* Center-align in container */
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .section-what-is-EP, .section-what-is-EP-desc p {
-        width: 100%; /* Full width on very small screens */
+        flex: 0 0 100%; /* Full width on small screens */
         margin-left: 0;
         margin-right: 0;
         padding-left: 10px;
