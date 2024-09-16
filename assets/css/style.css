@@ -1359,7 +1359,7 @@ table, th, td {
 .section-install-container h2 {
     font-family: 'minecraftchmc';
     position: relative;
-    margin: 10px;
+    margin: 30px;
     color: var(--VeryLightGray);;
     font-size: 40px;
 }
