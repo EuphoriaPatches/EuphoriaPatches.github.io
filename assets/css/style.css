@@ -1458,7 +1458,7 @@ table, th, td {
 .works-on-list {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     margin-top: 10px;
 }
 
