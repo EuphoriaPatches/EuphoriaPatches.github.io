@@ -1346,43 +1346,52 @@ table, th, td {
 /* Section: Donate */
 
 .section-donation-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: block;
+    overflow: hidden;
+    width: 100%;
 }
 
 .section-donation, .section-donation-kofi {
     width: 45%;
+    float: left;
     min-width: 300px;
-    margin: 30px 10px 60px;
+    margin-bottom: 60px;
+    margin-top: 30px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     padding: 0 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
+    box-sizing: border-box;
+}
+
+.section-donation-kofi {
+    float: right;
 }
 
 .section-what-is-EP, .section-how-install {
     width: 45%;
     min-width: 300px;
-    margin: 20px 10px;
+    margin: 20px 2.5%;
     padding: 0 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
+    box-sizing: border-box;
 }
 
 .section-what-is-EP {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    float: left;
+    clear: both;
 }
 
-.section-what-is-EP-desc {
-    width: 100%;
+.section-how-install {
+    float: right;
 }
 
 .section-what-is-EP-desc p {
@@ -1440,7 +1449,9 @@ table, th, td {
     .section-donation, .section-donation-kofi,
     .section-what-is-EP, .section-how-install {
         width: 90%;
-        margin: 20px auto;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .section-what-is-EP-desc p {
@@ -1452,7 +1463,8 @@ table, th, td {
     .section-donation, .section-donation-kofi,
     .section-what-is-EP, .section-how-install {
         width: 100%;
-        margin: 20px 0;
+        margin-left: 0;
+        margin-right: 0;
         min-width: unset;
     }
 }
