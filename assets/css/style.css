@@ -1449,7 +1449,7 @@ table, th, td {
 }
 
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi .section-how-install {
+    .section-donation, .section-donation-kofi .section-how-install .section-what-is-EP .section-what-is-EP-desc {
         width: 90%; /* Full width for medium screens */
         float: none; /* Remove float */
         margin-left: auto;
@@ -1458,7 +1458,7 @@ table, th, td {
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi .section-how-install {
+    .section-donation, .section-donation-kofi .section-how-install .section-what-is-EP .section-what-is-EP-desc {
         width: 100%; /* Full width on small screens */
         margin-left: 0;
         margin-right: 0; /* Remove horizontal margins for small screens */
