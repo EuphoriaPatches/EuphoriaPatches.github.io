@@ -1346,73 +1346,48 @@ table, th, td {
 /* Section: Donate */
 
 .section-donation-container {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.section-donation, .section-donation-kofi {
+.section-click-box {
     width: 45%;
-    float: left; /* Default float behavior for larger screens */
     min-width: fit-content;
-    margin-bottom: 60px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
+    margin: 30px 10px 60px;
+    padding: 0 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
+    outline: 2px solid transparent;
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
+    width: 45%;
+    min-width: fit-content;
+    margin: 30px 10px 60px;
+    padding: 0 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: 2px solid transparent;
     transition: outline-color 0.25s ease-in-out;
 }
 
 .section-donation-kofi {
-    float: right; /* Keep right float for large screens */
-}
-
-@media (max-width: 768px) {
-    .section-donation, .section-donation-kofi {
-        width: 90%; /* Full width for medium screens */
-        float: none; /* Remove float */
-        margin-left: auto;
-        margin-right: auto; /* Center-align on medium screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .section-donation, .section-donation-kofi {
-        width: 100%; /* Full width on small screens */
-        margin-left: 0;
-        margin-right: 0; /* Remove horizontal margins for small screens */
-    }
+    margin-left: auto;
 }
 
 .section-what-is-EP {
-    width: 45%;
-    float: left;
-    min-width: fit-content;
-    margin-bottom: 20px;
     margin-left: -20px;
     margin-right: -20px;
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
+    margin-bottom: 20px;
 }
 
 .section-how-install {
     width: 45%;
-    min-width: fit-content;
-    margin: 0 auto 20px auto; /* Horizontally centers the element */
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
+    margin: 0 auto 20px;
 }
 
 .section-what-is-EP-desc p {
@@ -1421,13 +1396,14 @@ table, th, td {
     padding-left: 20px;
     margin-top: 20px;
     font-size: 16px;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     max-width: 55%;
     min-width: 340px;
     margin-bottom: 50px;
 }
 
-.section-click-box:hover {
+.section-donation:hover, .section-donation-kofi:hover, 
+.section-what-is-EP:hover, .section-how-install:hover {
     outline-color: var(--ThemeColor);
 }
 
@@ -1439,30 +1415,63 @@ table, th, td {
     background: url(../img/other/kofi_banner.webp) no-repeat top / cover;
 }
 
-.section-click-box h2 {
+.section-donation h2, .section-donation-kofi h2, 
+.section-what-is-EP h2, .section-how-install h2 {
     font-family: 'minecraftchmc';
     position: relative;
     margin: 0;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     font-size: 35px;
     padding-bottom: 10px;
     line-height: 360%;
     text-shadow:
-    0.5px 1px 0 #000,
-    1px 0.5px 0 #000,
-    1px 1px 0 #000,
-    1px 1.5px 0 #000,
-    1.5px 1px 0 #000,
-    1.5px 1.5px 0 #000;
+        0.5px 1px 0 #000,
+        1px 0.5px 0 #000,
+        1px 1px 0 #000,
+        1px 1.5px 0 #000,
+        1.5px 1px 0 #000,
+        1.5px 1.5px 0 #000;
 }
 
-.section-click-box .btn:focus {
+.section-donation .btn:focus, .section-donation-kofi .btn:focus, 
+.section-what-is-EP .btn:focus, .section-how-install .btn:focus {
     color: var(--VeryLightGray);
 }
-.section-click-box .btn:hover {
+
+.section-donation .btn:hover, .section-donation-kofi .btn:hover, 
+.section-what-is-EP .btn:hover, .section-how-install .btn:hover {
     background-color: transparent;
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
+}
+
+@media (max-width: 768px) {
+    .section-donation, .section-donation-kofi, 
+    .section-what-is-EP, .section-how-install {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .section-donation-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .section-what-is-EP-desc p {
+        float: none;
+        max-width: 100%;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-donation, .section-donation-kofi, 
+    .section-what-is-EP, .section-how-install {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .works-on-list {
