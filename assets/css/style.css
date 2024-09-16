@@ -1602,6 +1602,11 @@ table, th, td {
     bottom: -70px; /* Ensure popup is below the box on hover */
 }
 
+.section-what-is-EP:hover .popup-container {
+    opacity: 1;
+    bottom: -70px; /* Ensure popup is below the box on hover */
+}
+
 @media (max-width: 768px) {
     .tilted-box-container {
         max-width: 95vw;
