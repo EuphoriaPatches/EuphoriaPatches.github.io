@@ -1359,24 +1359,6 @@ table, th, td {
     padding-left: 20px;
 }
 
-.section-install-instructions a {
-    color: #007BFF;
-}
-
-.section-install-instructions a:hover {
-    text-decoration: underline;
-}
-
-h1 {
-    font-size: 1.8em;
-    margin-top: 20px;
-}
-
-h3 {
-    margin-top: 15px;
-    font-size: 1.2em;
-}
-
 /* Section: Donate */
 
 .section-donation-container {
