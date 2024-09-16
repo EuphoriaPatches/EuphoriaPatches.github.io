@@ -37,11 +37,8 @@
 :root {
     --EuphoriaMagenta: rgb(255, 80, 223);
     --EuphoriaMagentaBright: rgb(246, 142, 241);
-    --CompBlue: rgb(114, 114, 255);
-    --CompMiddle: rgb(255, 125, 222);
 
     --IndexColor: var(--EuphoriaMagenta);
-    --ReimaginedColor: var(--CompBlue);
 
     --ThemeColor: var(--IndexColor);
 
@@ -476,6 +473,10 @@ select {
     visibility: visible;
     opacity: 1;
     padding: 0;
+}
+
+.bootstrap-select .dropdown-menu li.active a {
+    background-color: rgb(56, 12, 96);
 }
 
 .bootstrap-select .bs-caret {
@@ -1357,6 +1358,14 @@ table, th, td {
 .section-install-instructions ul {
     margin-left: 20px;
     padding-left: 20px;
+}
+
+.section-install-instructions h2 {
+    font-family: 'minecraftchmc';
+    position: relative;
+    margin: 0;
+    color: var(--VeryLightGray);;
+    font-size: 40px;
 }
 
 /* Section: Donate */
