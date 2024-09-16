@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-      window.onload = function() {
+      function openLinkAndGoBack() {
         // Open the link in a new tab
         window.open("https://www.patreon.com/SpacEagle17", "_blank");
 
+        // Optionally, you can also provide feedback to the user
+        // For example, you can use an alert or a temporary message
+        alert("The link has been opened in a new tab. You will be returned to the previous page.");
+
         // Return to the previous page
         window.history.back();
-      };
+      }
     </script>
   </head>
-  <body>
+  <body onload="openLinkAndGoBack()">
     <p>
       You will be redirected shortly. If not, 
       <a href="https://www.patreon.com/SpacEagle17" style="padding-left: 20px" target="_blank" rel="noopener noreferrer">
