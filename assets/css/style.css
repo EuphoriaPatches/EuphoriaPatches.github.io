@@ -1859,15 +1859,15 @@ a.github-bg:hover {
 }
 
 a.twitter-bg {
-    color: rgb(23,21,22);
-    border-color: rgb(23,21,22);
+    color: #1da1f2;
+    border-color: #1da1f2;
     background: url(../img/logos/twitter2.webp) no-repeat center;
-    background-color: rgb(23,21,22);
+    background-color: #1da1f2;
 }
 
 a.twitter-bg:hover {
     background: url(../img/logos/twitter.webp) no-repeat center;
-    background-color: #1da1f2;
+    background-color: white;
 }
 
 .copyright .text-right {
