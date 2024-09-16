@@ -1405,9 +1405,7 @@ table, th, td {
 .section-how-install {
     width: 45%;
     min-width: fit-content;
-    margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin: 0 auto 20px auto; /* Horizontally centers the element */
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
