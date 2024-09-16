@@ -1452,13 +1452,13 @@ table, th, td {
 
 .works-on-header {
     text-align: center;
-    margin: 20px;
+    margin: 40px;
 }
 
 .works-on-list {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     margin-top: 10px;
 }
 
