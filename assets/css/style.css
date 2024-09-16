@@ -1398,6 +1398,21 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
+.section-how-install {
+    width: 45%;
+    min-width: fit-content;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
 .section-what-is-EP-desc p {
     float: right;
     position: relative;
