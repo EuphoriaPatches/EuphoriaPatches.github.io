@@ -1371,6 +1371,7 @@ table, th, td {
     float: right;
 }
 
+/* Medium screen adjustments */
 @media (max-width: 768px) {
     .section-donation, .section-donation-kofi {
         width: 90%;
@@ -1386,8 +1387,16 @@ table, th, td {
         float: none;
         padding: 0px 10px;
     }
+
+    .section-what-is-EP-desc p {
+        float: none;
+        max-width: 100%;
+        margin: 0 auto; /* Center-align text */
+        padding-left: 0; /* Adjust padding for centering */
+    }
 }
 
+/* Small screen adjustments */
 @media (max-width: 480px) {
     .section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
         width: 100%;
@@ -1399,7 +1408,8 @@ table, th, td {
         font-size: 14px;
         padding-left: 10px;
         max-width: 100%;
-        min-width: auto;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
@@ -1419,15 +1429,15 @@ table, th, td {
 
 .section-how-install {
     width: 45%;
-    float: left;
     min-width: fit-content;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px auto; /* Ensure horizontal centering */
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
+    float: none; /* No float */
 }
 
 /* What is EP Description */
@@ -1441,6 +1451,8 @@ table, th, td {
     max-width: 55%;
     min-width: 340px;
     margin-bottom: 50px;
+    display: inline-block; /* Keep inline with section */
+    vertical-align: top;
 }
 
 .section-click-box:hover {
