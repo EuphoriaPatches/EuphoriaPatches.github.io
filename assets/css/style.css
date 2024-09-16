@@ -1360,8 +1360,12 @@ table, th, td {
     font-family: 'minecraftchmc';
     position: relative;
     margin: 30px;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     font-size: 40px;
+}
+
+.section-install-container p {
+    margin: 15px 0;
 }
 
 /* Section: Donate */
