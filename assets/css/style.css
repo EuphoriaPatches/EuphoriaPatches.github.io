@@ -1349,45 +1349,25 @@ table, th, td {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.section-click-box {
-    width: 45%;
-    min-width: fit-content;
-    margin: 30px 10px 60px;
-    padding: 0 15px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    outline: 2px solid transparent;
-    transition: outline-color 0.25s ease-in-out;
+    margin: -10px; /* Negative margin to counteract item margins */
 }
 
 .section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
-    width: 45%;
-    min-width: fit-content;
-    margin: 30px 10px 60px;
-    padding: 0 15px;
+    width: calc(50% - 20px); /* 50% width minus margins */
+    min-width: 300px; /* Minimum width to prevent too narrow boxes */
+    margin: 10px; /* Equal margin all around */
+    padding: 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
     outline: 2px solid transparent;
     transition: outline-color 0.25s ease-in-out;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.section-donation-kofi {
-    margin-left: auto;
-}
-
-.section-what-is-EP {
-    margin-left: -20px;
-    margin-right: -20px;
+.section-what-is-EP, .section-how-install {
+    margin-top: 30px;
     margin-bottom: 20px;
-}
-
-.section-how-install {
-    width: 45%;
-    margin: 0 auto 20px;
 }
 
 .section-what-is-EP-desc p {
@@ -1446,16 +1426,15 @@ table, th, td {
 }
 
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi, 
-    .section-what-is-EP, .section-how-install {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
     .section-donation-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .section-donation, .section-donation-kofi, 
+    .section-what-is-EP, .section-how-install {
+        width: 90%;
+        margin: 10px auto;
     }
     
     .section-what-is-EP-desc p {
@@ -1469,8 +1448,7 @@ table, th, td {
     .section-donation, .section-donation-kofi, 
     .section-what-is-EP, .section-how-install {
         width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 10px 0;
     }
 }
 
