@@ -1345,13 +1345,15 @@ table, th, td {
 
 /* Section: Donate */
 
+/* Global container adjustments for mobile */
 .section-donation-container {
     display: block;
 }
 
+/* Donation and Kofi Sections */
 .section-donation, .section-donation-kofi {
     width: 45%;
-    float: left; /* Default float behavior for larger screens */
+    float: left;
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
@@ -1366,37 +1368,50 @@ table, th, td {
 }
 
 .section-donation-kofi {
-    float: right; /* Keep right float for large screens */
+    float: right;
 }
 
 @media (max-width: 768px) {
     .section-donation, .section-donation-kofi {
-        width: 90%; /* Full width for medium screens */
-        float: none; /* Remove float */
+        width: 90%;
+        float: none;
         margin-left: auto;
-        margin-right: auto; /* Center-align on medium screens */
+        margin-right: auto;
+    }
+
+    .section-what-is-EP, .section-how-install {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        padding: 0px 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi {
-        width: 100%; /* Full width on small screens */
+    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
+        width: 100%;
         margin-left: 0;
-        margin-right: 0; /* Remove horizontal margins for small screens */
+        margin-right: 0;
+    }
+
+    .section-what-is-EP-desc p {
+        font-size: 14px;
+        padding-left: 10px;
+        max-width: 100%;
+        min-width: auto;
     }
 }
 
+/* What is EP and How to Install Sections */
 .section-what-is-EP {
     width: 45%;
     float: left;
     min-width: fit-content;
     margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
@@ -1404,24 +1419,25 @@ table, th, td {
 
 .section-how-install {
     width: 45%;
+    float: left;
     min-width: fit-content;
-    margin: 0 auto 20px auto; /* Horizontally centers the element */
+    margin: 0 auto 20px auto;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
+/* What is EP Description */
 .section-what-is-EP-desc p {
     float: right;
     position: relative;
     padding-left: 20px;
     margin-top: 20px;
     font-size: 16px;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     max-width: 55%;
     min-width: 340px;
     margin-bottom: 50px;
