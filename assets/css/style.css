@@ -48,6 +48,7 @@
     --VeryVeryDarkGray: rgb(6, 6, 8);
     --VeryDarkGray: rgb(18, 18, 24);
     --DarkGray: rgb(23, 24, 28);
+    --Gray: rgb(42, 44, 52);
     --VeryLightGray: rgb(254, 254, 254);
     --LinkColor: rgb(144, 100, 255);
     --ScreenshotOverlayColor: rgba(0, 0, 0, 0.5);
@@ -746,6 +747,9 @@ html, body {
 /* Background colors */
 .gray-bg {
   background-color: var(--DarkGray);
+}
+.normal-gray-bg {
+    background-color: var(--Gray);
 }
 
 /* Margin and padding resets */
