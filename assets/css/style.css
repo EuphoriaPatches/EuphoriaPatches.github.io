@@ -1377,14 +1377,14 @@ table, th, td {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 20px;
+    flex-wrap: nowrap; /* Prevent wrapping */
 }
 
 .section-what-is-EP, .section-what-is-EP-desc {
-    flex-basis: 45%; /* Take up 45% each */
+    flex-basis: 45%; /* Each section takes 45% of the width */
+    padding: 0px 15px;
     min-width: fit-content;
     text-align: center;
-    cursor: pointer;
-    padding: 0px 15px;
 }
 
 .section-what-is-EP {
@@ -1398,8 +1398,7 @@ table, th, td {
     margin-top: 20px;
     font-size: 16px;
     color: var(--VeryLightGray);
-    max-width: 55%;
-    min-width: 340px;
+    max-width: 100%; /* Ensure proper width of text */
     margin-bottom: 50px;
 }
 
@@ -1429,11 +1428,16 @@ table, th, td {
         flex-direction: column; /* Stack the elements vertically */
     }
 
+    .section-what-is-EP, .section-what-is-EP-desc {
+        flex-basis: 100%; /* Full width when stacked */
+    }
+
     .section-what-is-EP-desc p {
         float: none;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
     }
 }
 
