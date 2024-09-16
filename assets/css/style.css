@@ -1369,6 +1369,23 @@ table, th, td {
     float: right; /* Keep right float for large screens */
 }
 
+@media (max-width: 768px) {
+    .section-donation, .section-donation-kofi {
+        width: 90%; /* Full width for medium screens */
+        float: none; /* Remove float */
+        margin-left: auto;
+        margin-right: auto; /* Center-align on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-donation, .section-donation-kofi {
+        width: 100%; /* Full width on small screens */
+        margin-left: 0;
+        margin-right: 0; /* Remove horizontal margins for small screens */
+    }
+}
+
 .section-what-is-EP {
     width: 45%;
     float: left;
@@ -1446,23 +1463,6 @@ table, th, td {
     background-color: transparent;
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
-}
-
-@media (max-width: 768px) {
-    .section-donation, .section-donation-kofi .section-how-install {
-        width: 90%; /* Full width for medium screens */
-        float: none; /* Remove float */
-        margin-left: auto;
-        margin-right: auto; /* Center-align on medium screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .section-donation, .section-donation-kofi .section-how-install {
-        width: 100%; /* Full width on small screens */
-        margin-left: 0;
-        margin-right: 0; /* Remove horizontal margins for small screens */
-    }
 }
 
 .works-on-list {
