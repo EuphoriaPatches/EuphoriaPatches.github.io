@@ -1313,11 +1313,11 @@ table, th, td {
 }
 .section-downloads .btn-manual {
     color: white;
-    background-color: var(--VeryDarkGray);
+    background-color: var(--DarkGray);
 }
 .section-downloads .btn-manual:hover {
     color: white;
-    background-color: var(--DarkGray);
+    background-color: var(--VeryLightGray);
 }
 
 /* Section: Screenshots */
