@@ -1378,28 +1378,28 @@ table, th, td {
     align-items: flex-start;
     margin-bottom: 20px;
     flex-wrap: nowrap; /* Prevent wrapping */
-}
-
-.section-what-is-EP, .section-what-is-EP-desc {
-    flex-basis: 45%; /* Each section takes 45% of the width */
-    padding: 0px 15px;
-    min-width: fit-content;
-    text-align: center;
+    max-width: 100%;
 }
 
 .section-what-is-EP {
+    width: 45%;
+    min-width: 340px; /* Set minimum width to prevent shrinking */
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
+/* What is EP Description */
 .section-what-is-EP-desc p {
-    padding-left: 20px;
-    margin-top: 20px;
+    width: 45%;
+    min-width: 340px;
+    margin-left: 20px;
     font-size: 16px;
     color: var(--VeryLightGray);
-    max-width: 100%; /* Ensure proper width of text */
-    margin-bottom: 50px;
+    text-align: left;
 }
 
 /* What is EP and How to Install Sections */
@@ -1428,13 +1428,8 @@ table, th, td {
         flex-direction: column; /* Stack the elements vertically */
     }
 
-    .section-what-is-EP, .section-what-is-EP-desc {
-        flex-basis: 100%; /* Full width when stacked */
-    }
-
-    .section-what-is-EP-desc p {
-        float: none;
-        max-width: 100%;
+    .section-what-is-EP, .section-what-is-EP-desc p {
+        width: 90%; /* Full width when stacked */
         margin-left: auto;
         margin-right: auto;
         text-align: center;
@@ -1454,6 +1449,7 @@ table, th, td {
         max-width: 100%;
     }
 }
+
 
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
