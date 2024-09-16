@@ -1345,15 +1345,13 @@ table, th, td {
 
 /* Section: Donate */
 
-/* Global container adjustments for mobile */
 .section-donation-container {
     display: block;
 }
 
-/* Donation and Kofi Sections */
 .section-donation, .section-donation-kofi {
     width: 45%;
-    float: left;
+    float: left; /* Default float behavior for larger screens */
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
@@ -1368,76 +1366,48 @@ table, th, td {
 }
 
 .section-donation-kofi {
-    float: right;
+    float: right; /* Keep right float for large screens */
 }
 
-/* What is EP and How to Install Sections */
+.section-what-is-EP {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
 .section-how-install {
     width: 45%;
     min-width: fit-content;
-    margin: 0 auto 20px auto; /* Ensure horizontal centering */
+    margin: 0 auto 20px auto; /* Horizontally centers the element */
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
+
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
-/* Flexbox layout for .section-what-is-EP-container */
-.section-what-is-EP-container {
-    display: flex;
-    justify-content: flex-start; /* Align items side by side */
-    align-items: flex-start;
-    margin-bottom: 20px;
-    flex-wrap: nowrap; /* Prevent wrapping */
-    max-width: 100%; /* Keep within container bounds */
-}
-
-/* What is EP Section */
-.section-what-is-EP {
-    flex: 0 0 45%; /* Flex-basis 45%, do not grow or shrink */
-    min-width: 340px; /* Prevent it from shrinking too small */
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-}
-
-/* What is EP Description */
 .section-what-is-EP-desc p {
-    flex: 0 0 45%; /* Flex-basis 45%, do not grow or shrink */
-    min-width: 340px; /* Prevent it from shrinking too small */
-    margin-left: 20px; /* Space between the sections */
+    float: right;
+    position: relative;
+    padding-left: 20px;
+    margin-top: 20px;
     font-size: 16px;
-    color: var(--VeryLightGray);
-    text-align: left;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .section-what-is-EP-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center-align items when stacked */
-    }
-
-    .section-what-is-EP, .section-what-is-EP-desc p {
-        flex: 0 0 90%; /* Take 90% width when stacked */
-        margin: 0 auto; /* Center-align in container */
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-what-is-EP, .section-what-is-EP-desc p {
-        flex: 0 0 100%; /* Full width on small screens */
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 10px;
-        font-size: 14px; /* Adjust font size for small screens */
-    }
+    color: var(--VeryLightGray);;
+    max-width: 55%;
+    min-width: 340px;
+    margin-bottom: 50px;
 }
 
 .section-click-box:hover {
@@ -1476,6 +1446,23 @@ table, th, td {
     background-color: transparent;
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
+}
+
+@media (max-width: 768px) {
+    .section-donation, .section-donation-kofi .section-how-install {
+        width: 90%; /* Full width for medium screens */
+        float: none; /* Remove float */
+        margin-left: auto;
+        margin-right: auto; /* Center-align on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-donation, .section-donation-kofi .section-how-install {
+        width: 100%; /* Full width on small screens */
+        margin-left: 0;
+        margin-right: 0; /* Remove horizontal margins for small screens */
+    }
 }
 
 .works-on-list {
