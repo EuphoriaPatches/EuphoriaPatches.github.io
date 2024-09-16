@@ -1278,6 +1278,10 @@ table, th, td {
     background-color: var(--VeryDarkGray);
 }
 
+.section-downloads-installer {
+    background-color: var(--DarkGray);
+}
+
 .section-downloads h2 {
     margin-top: -15px;
     margin-bottom: -10px;
@@ -1312,11 +1316,11 @@ table, th, td {
 }
 .section-downloads .btn-manual {
     color: white;
-    background-color: var(--DarkGray);
+    background-color: var(--VeryDarkGray);
 }
 .section-downloads .btn-manual:hover {
     color: white;
-    background-color: var(--VeryLightGray);
+    background-color: rgb(66, 66, 66);
 }
 
 /* Section: Screenshots */
