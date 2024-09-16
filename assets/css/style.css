@@ -475,10 +475,6 @@ select {
     padding: 0;
 }
 
-.bootstrap-select .dropdown-menu li.active a {
-    background-color: rgb(56, 12, 96);
-}
-
 .bootstrap-select .bs-caret {
     float: right;
     padding-right: 10px;
