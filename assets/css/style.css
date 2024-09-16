@@ -1863,11 +1863,15 @@ a.twitter-bg {
     border-color: #1da1f2;
     background: url(../img/logos/twitter2.webp) no-repeat center;
     background-color: #1da1f2;
+    background-size: contain;
+    background-position: center;
 }
 
 a.twitter-bg:hover {
     background: url(../img/logos/twitter.webp) no-repeat center;
     background-color: white;
+    background-size: contain;
+    background-position: center;
 }
 
 .copyright .text-right {
