@@ -1371,37 +1371,6 @@ table, th, td {
     float: right;
 }
 
-/* Flexbox layout for .section-what-is-EP and .section-what-is-EP-desc */
-.section-what-is-EP-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    flex-wrap: nowrap; /* Prevent wrapping */
-    max-width: 100%;
-}
-
-.section-what-is-EP {
-    width: 45%;
-    min-width: 340px; /* Set minimum width to prevent shrinking */
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-}
-
-/* What is EP Description */
-.section-what-is-EP-desc p {
-    width: 45%;
-    min-width: 340px;
-    margin-left: 20px;
-    font-size: 16px;
-    color: var(--VeryLightGray);
-    text-align: left;
-}
-
 /* What is EP and How to Install Sections */
 .section-how-install {
     width: 45%;
@@ -1415,41 +1384,61 @@ table, th, td {
     transition: outline-color 0.25s ease-in-out;
 }
 
+/* Flexbox layout for .section-what-is-EP and .section-what-is-EP-desc */
+.section-what-is-EP-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+    max-width: 100%;
+}
+
+/* What is EP Section */
+.section-what-is-EP {
+    width: 45%; /* Keep it 45% width on larger screens */
+    min-width: 340px; /* Prevent shrinking */
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+/* What is EP Description */
+.section-what-is-EP-desc p {
+    width: 45%; /* Ensure the description is also 45% width */
+    min-width: 340px; /* Prevent shrinking */
+    margin-left: 20px; /* Add space between the two elements */
+    font-size: 16px;
+    color: var(--VeryLightGray);
+    text-align: left;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        float: none;
-    }
-
     .section-what-is-EP-container {
-        flex-direction: column; /* Stack the elements vertically */
+        flex-direction: column; /* Stack the elements vertically on smaller screens */
+        align-items: center; /* Center-align when stacked */
     }
 
     .section-what-is-EP, .section-what-is-EP-desc p {
-        width: 90%; /* Full width when stacked */
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
+        width: 90%; /* Full width for smaller screens */
+        margin: 0 auto;
+        text-align: center; /* Center-align the content */
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
-        width: 100%;
+    .section-what-is-EP, .section-what-is-EP-desc p {
+        width: 100%; /* Full width on very small screens */
         margin-left: 0;
         margin-right: 0;
-    }
-
-    .section-what-is-EP-desc p {
-        font-size: 14px;
         padding-left: 10px;
-        max-width: 100%;
+        font-size: 14px; /* Adjust font size for small screens */
     }
 }
-
 
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
