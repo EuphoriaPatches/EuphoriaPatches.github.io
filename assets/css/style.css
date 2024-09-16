@@ -1449,6 +1449,62 @@ table, th, td {
     border-color: var(--VeryLightGray);
 }
 
+
+.works-on-header {
+    text-align: center;
+    margin: 20px;
+}
+
+.works-on-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.works-on-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.works-on-item span {
+    font-weight: bold;
+}
+
+/* Hover Tooltip */
+.works-on-item:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.works-on-item::after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+}
+
 /*Download Image Click*/
 
 .tilted-box-container {
