@@ -1027,15 +1027,15 @@ html, body {
 
 .hero-shader-title {
     text-shadow:
-    0.5px 1px 0 #fff,
-    1px 0.5px 0 #fff,
-    1px 1px 0 #fff,
-    1px 1.5px 0 #fff,
-    1.5px 1px 0 #fff,
-    1.5px 1.5px 0 #fff,
-    1.5px 2px 0 #fff,
-    2px 1.5px 0 #fff,
-    2px 2px 0 #fff; 
+    0.5px 1px 0 hsl(0, 0%, 50%),
+    1px 0.5px 0 hsl(0, 0%, 50%),
+    1px 1px 0 hsl(0, 0%, 50%),
+    1px 1.5px 0 hsl(0, 0%, 50%),
+    1.5px 1px 0 hsl(0, 0%, 50%),
+    1.5px 1.5px 0 hsl(0, 0%, 50%),
+    1.5px 2px 0 hsl(0, 0%, 50%),
+    2px 1.5px 0 hsl(0, 0%, 50%),
+    2px 2px 0 hsl(0, 0%, 50%); 
 }
 
 .hero-text h1 {
