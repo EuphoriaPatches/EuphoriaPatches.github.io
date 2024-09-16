@@ -1349,16 +1349,16 @@ table, th, td {
     display: block;
     overflow: hidden;
     width: 100%;
+    text-align: center; /* Center content when no description */
 }
 
 .section-donation, .section-donation-kofi {
     width: 45%;
-    float: left;
-    min-width: 300px;
+    min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0 15px;
     text-align: center;
     cursor: pointer;
@@ -1366,16 +1366,16 @@ table, th, td {
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
     box-sizing: border-box;
-}
-
-.section-donation-kofi {
-    float: right;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .section-what-is-EP, .section-how-install {
     width: 45%;
-    min-width: 300px;
-    margin: 20px 2.5%;
+    min-width: fit-content;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0 15px;
     text-align: center;
     cursor: pointer;
@@ -1383,15 +1383,8 @@ table, th, td {
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
     box-sizing: border-box;
-}
-
-.section-what-is-EP {
-    float: left;
-    clear: both;
-}
-
-.section-how-install {
-    float: right;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .section-what-is-EP-desc p {
@@ -1400,6 +1393,10 @@ table, th, td {
     margin-top: 20px;
     font-size: 16px;
     color: var(--VeryLightGray);
+    max-width: 55%;
+    min-width: 340px;
+    margin-bottom: 50px;
+    float: right;
 }
 
 .section-donation:hover, .section-donation-kofi:hover, 
@@ -1407,12 +1404,20 @@ table, th, td {
     outline-color: var(--ThemeColor);
 }
 
+.section-patreon_img, .section-kofi_img {
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
 .section-patreon_img {
-    background: url(../img/other/patreon_banner.webp) no-repeat top / cover;
+    background-image: url(../img/other/patreon_banner.webp);
 }
 
 .section-kofi_img {
-    background: url(../img/other/kofi_banner.webp) no-repeat top / cover;
+    background-image: url(../img/other/kofi_banner.webp);
 }
 
 .section-donation h2, .section-donation-kofi h2, 
@@ -1449,12 +1454,15 @@ table, th, td {
     .section-donation, .section-donation-kofi,
     .section-what-is-EP, .section-how-install {
         width: 90%;
-        float: none;
         margin-left: auto;
         margin-right: auto;
+        display: block;
     }
 
     .section-what-is-EP-desc p {
+        float: none;
+        max-width: 100%;
+        min-width: unset;
         padding-left: 0;
     }
 }
@@ -1465,7 +1473,6 @@ table, th, td {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-        min-width: unset;
     }
 }
 
