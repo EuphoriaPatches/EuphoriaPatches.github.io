@@ -1835,10 +1835,10 @@ a.discord-bg:hover {
 }
 
 a.patreon-bg {
-    color: #FF424D;
-    border-color: #FF424D;
+    color: #f4630c;
+    border-color: #f4630c;
     background: url(../img/logos/patreon2.webp) no-repeat center;
-    background-color: #FF424D;
+    background-color: #f4630c;
 }
 
 a.patreon-bg:hover {
@@ -1856,6 +1856,18 @@ a.github-bg {
 a.github-bg:hover {
     background: url(../img/logos/github.webp) no-repeat center;
     background-color: white;
+}
+
+a.twitter-bg {
+    color: rgb(23,21,22);
+    border-color: rgb(23,21,22);
+    background: url(../img/logos/twitter.webp) no-repeat center;
+    background-color: rgb(23,21,22);
+}
+
+a.twitter-bg:hover {
+    background: url(../img/logos/twitter2.webp) no-repeat center;
+    background-color: #1da1f2;
 }
 
 .copyright .text-right {
