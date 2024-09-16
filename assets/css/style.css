@@ -1415,6 +1415,7 @@ table, th, td {
     cursor: pointer;
 
     border-radius: 10px;
+    background-color: var(--VeryVeryDarkGray);
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
