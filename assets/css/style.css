@@ -1356,10 +1356,10 @@ table, th, td {
     padding-left: 20px;
 }
 
-.section-install-instructions h2 {
+.section-install-container h2 {
     font-family: 'minecraftchmc';
     position: relative;
-    margin: 0;
+    margin: 10px;
     color: var(--VeryLightGray);;
     font-size: 40px;
 }
