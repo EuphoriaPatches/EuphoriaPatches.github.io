@@ -35,14 +35,12 @@
 /* 
 ================================================== */
 :root {
-    --CompRed: rgb(255, 66, 66);
-    --CompOrange: rgb(255, 80, 223);
-    --CompOrangeBright: rgb(246, 142, 241);
+    --EuphoriaMagenta: rgb(255, 80, 223);
+    --EuphoriaMagentaBright: rgb(246, 142, 241);
     --CompBlue: rgb(114, 114, 255);
     --CompMiddle: rgb(255, 125, 222);
 
-    --IndexColor: var(--CompOrange);
-    --VersionFourColor: var(--CompRed);
+    --IndexColor: var(--EuphoriaMagenta);
     --ReimaginedColor: var(--CompBlue);
 
     --ThemeColor: var(--IndexColor);
@@ -1276,10 +1274,6 @@ table, th, td {
 .section-downloads {
     margin-top: -15px;
     background-color: var(--VeryDarkGray);
-}
-
-.section-downloads-installer {
-    background-color: var(--DarkGray);
 }
 
 .section-downloads h2 {
