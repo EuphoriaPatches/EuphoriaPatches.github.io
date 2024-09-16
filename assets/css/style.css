@@ -1276,7 +1276,7 @@ table, th, td {
 .section-downloads {
     margin-top: -15px;
     margin-bottom: 55px;
-    background-color: var(--VeryVeryDarkGray);
+    background-color: var(--VeryDarkGray);
 }
 
 .section-downloads h2 {
