@@ -1346,28 +1346,55 @@ table, th, td {
 /* Section: Donate */
 
 .section-donation-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: -10px; /* Negative margin to counteract item margins */
+    display: block;
+    overflow: hidden; /* Clear floats */
 }
 
-.section-donation, .section-donation-kofi, .section-what-is-EP, .section-how-install {
-    width: calc(50% - 20px); /* 50% width minus margins */
-    min-width: 300px; /* Minimum width to prevent too narrow boxes */
-    margin: 10px; /* Equal margin all around */
-    padding: 15px;
+.section-donation, .section-donation-kofi {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 60px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
-    outline: 2px solid transparent;
+    outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
-    box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.section-what-is-EP, .section-how-install {
-    margin-top: 30px;
+.section-donation-kofi {
+    float: right;
+}
+
+.section-what-is-EP {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
     margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-how-install {
+    width: 45%;
+    min-width: fit-content;
+    margin: 0 auto 20px auto;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
 }
 
 .section-what-is-EP-desc p {
@@ -1426,29 +1453,28 @@ table, th, td {
 }
 
 @media (max-width: 768px) {
-    .section-donation-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section-donation, .section-donation-kofi, 
+    .section-donation, .section-donation-kofi,
     .section-what-is-EP, .section-how-install {
         width: 90%;
-        margin: 10px auto;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
-    
+
     .section-what-is-EP-desc p {
         float: none;
         max-width: 100%;
         min-width: unset;
+        padding-left: 0;
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi, 
+    .section-donation, .section-donation-kofi,
     .section-what-is-EP, .section-how-install {
         width: 100%;
-        margin: 10px 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
