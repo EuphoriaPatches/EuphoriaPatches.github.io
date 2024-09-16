@@ -1347,133 +1347,122 @@ table, th, td {
 
 .section-donation-container {
     display: block;
-    overflow: hidden;
-    width: 100%;
-    text-align: center; /* Center content when no description */
 }
 
 .section-donation, .section-donation-kofi {
     width: 45%;
+    float: left; /* Default float behavior for larger screens */
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 0 15px;
+    padding: 0px 15px;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
 }
 
-.section-what-is-EP, .section-how-install {
-    width: 45%;
-    min-width: fit-content;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0 15px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.section-what-is-EP-desc p {
-    text-align: left;
-    padding-left: 20px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: var(--VeryLightGray);
-    max-width: 55%;
-    min-width: 340px;
-    margin-bottom: 50px;
-    float: right;
-}
-
-.section-donation:hover, .section-donation-kofi:hover, 
-.section-what-is-EP:hover, .section-how-install:hover {
-    outline-color: var(--ThemeColor);
-}
-
-.section-patreon_img, .section-kofi_img {
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: cover;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-}
-
-.section-patreon_img {
-    background-image: url(../img/other/patreon_banner.webp);
-}
-
-.section-kofi_img {
-    background-image: url(../img/other/kofi_banner.webp);
-}
-
-.section-donation h2, .section-donation-kofi h2, 
-.section-what-is-EP h2, .section-how-install h2 {
-    font-family: 'minecraftchmc';
-    position: relative;
-    margin: 0;
-    color: var(--VeryLightGray);
-    font-size: 35px;
-    padding-bottom: 10px;
-    line-height: 360%;
-    text-shadow:
-        0.5px 1px 0 #000,
-        1px 0.5px 0 #000,
-        1px 1px 0 #000,
-        1px 1.5px 0 #000,
-        1.5px 1px 0 #000,
-        1.5px 1.5px 0 #000;
-}
-
-.section-donation .btn:focus, .section-donation-kofi .btn:focus, 
-.section-what-is-EP .btn:focus, .section-how-install .btn:focus {
-    color: var(--VeryLightGray);
-}
-
-.section-donation .btn:hover, .section-donation-kofi .btn:hover, 
-.section-what-is-EP .btn:hover, .section-how-install .btn:hover {
-    background-color: transparent;
-    color: var(--ThemeColor);
-    border-color: var(--VeryLightGray);
+.section-donation-kofi {
+    float: right; /* Keep right float for large screens */
 }
 
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi,
-    .section-what-is-EP, .section-how-install {
-        width: 90%;
+    .section-donation, .section-donation-kofi {
+        width: 90%; /* Full width for medium screens */
+        float: none; /* Remove float */
         margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .section-what-is-EP-desc p {
-        float: none;
-        max-width: 100%;
-        min-width: unset;
-        padding-left: 0;
+        margin-right: auto; /* Center-align on medium screens */
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi,
-    .section-what-is-EP, .section-how-install {
-        width: 100%;
+    .section-donation, .section-donation-kofi {
+        width: 100%; /* Full width on small screens */
         margin-left: 0;
-        margin-right: 0;
+        margin-right: 0; /* Remove horizontal margins for small screens */
     }
+}
+
+.section-what-is-EP {
+    width: 45%;
+    float: left;
+    min-width: fit-content;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-how-install {
+    width: 45%;
+    min-width: fit-content;
+    margin: 0 auto 20px auto; /* Horizontally centers the element */
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
+}
+
+.section-what-is-EP-desc p {
+    float: right;
+    position: relative;
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--VeryLightGray);;
+    max-width: 55%;
+    min-width: 340px;
+    margin-bottom: 50px;
+}
+
+.section-click-box:hover {
+    outline-color: var(--ThemeColor);
+}
+
+.section-patreon_img {
+    background: url(../img/other/patreon_banner.webp) no-repeat top / cover;
+}
+
+.section-kofi_img {
+    background: url(../img/other/kofi_banner.webp) no-repeat top / cover;
+}
+
+.section-click-box h2 {
+    font-family: 'minecraftchmc';
+    position: relative;
+    margin: 0;
+    color: var(--VeryLightGray);;
+    font-size: 35px;
+    padding-bottom: 10px;
+    line-height: 360%;
+    text-shadow:
+    0.5px 1px 0 #000,
+    1px 0.5px 0 #000,
+    1px 1px 0 #000,
+    1px 1.5px 0 #000,
+    1.5px 1px 0 #000,
+    1.5px 1.5px 0 #000;
+}
+
+.section-click-box .btn:focus {
+    color: var(--VeryLightGray);
+}
+.section-click-box .btn:hover {
+    background-color: transparent;
+    color: var(--ThemeColor);
+    border-color: var(--VeryLightGray);
 }
 
 .works-on-list {
