@@ -1316,8 +1316,8 @@ table, th, td {
     background-color: var(--DarkGray);
 }
 .section-downloads .btn-manual:hover {
-    color: white;
-    background-color: var(--VeryLightGray);
+    color: var(--VeryDarkGray);
+    background-color: rgb(160, 160, 160);
 }
 
 /* Section: Screenshots */
