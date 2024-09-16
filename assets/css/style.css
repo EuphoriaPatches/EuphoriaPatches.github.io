@@ -1311,12 +1311,12 @@ table, th, td {
 .section-downloads .btn-manual {
     color: white;
     background-color: var(--VeryDarkGray);
-    margin-top: 30px;
+    margin-bottom: 50px;
 }
 .section-downloads .btn-manual:hover {
     color: white;
     background-color: rgb(66, 66, 66);
-    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 /* Section: Screenshots */
@@ -1453,7 +1453,7 @@ table, th, td {
     justify-content: center;
     gap: 30px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .works-on-item {
