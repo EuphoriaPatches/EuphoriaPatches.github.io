@@ -142,32 +142,41 @@
     <!-- Banner Image JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        const boxContainer = document.querySelector('.main-banner-box-container');
-        const popupContainer = document.querySelector('.popup-container');
-        
-        function adjustPosition() {
-            const containerWidth = boxContainer.offsetWidth;
-            const viewportWidth = window.innerWidth;
-
-            const offsetX = (viewportWidth - containerWidth) / 2;
+            const boxContainer = document.querySelector('.main-banner-box-container');
+            const popupContainer = document.querySelector('.popup-container');
             
-            if (containerWidth + 820 > viewportWidth) {
-                boxContainer.style.left = `${offsetX}px`;
-                boxContainer.style.transform = 'rotate(0deg)';
-                popupContainer.style.transform = 'rotate(0deg) translateX(-50%)';
-            } else {
-                boxContainer.style.left = '820px';
-                boxContainer.style.transform = 'rotate(-1.3deg)';
-                popupContainer.style.transform = 'rotate(1.3deg) translateX(-50%)';
-            }
+            function adjustPosition() {
+                const containerWidth = boxContainer.offsetWidth;
+                const viewportWidth = window.innerWidth;
 
-            const popupHeight = popupContainer.offsetHeight;
-            popupContainer.style.bottom = `-${popupHeight}px`;
-        }
-        
-        adjustPosition();
-        window.addEventListener('resize', adjustPosition);
-});
+                const offsetX = (viewportWidth - containerWidth) / 2;
+                
+                if (containerWidth + 820 > viewportWidth) {
+                    boxContainer.style.left = `${offsetX}px`;
+                    boxContainer.style.transform = 'rotate(0deg)';
+                    popupContainer.style.transform = 'rotate(0deg) translateX(-50%)';
+                } else {
+                    boxContainer.style.left = '820px';
+                    boxContainer.style.transform = 'rotate(-1.3deg)';
+                    popupContainer.style.transform = 'rotate(1.3deg) translateX(-50%)';
+                }
+
+                // Reset the bottom property to its original value
+                popupContainer.style.bottom = '-75px';
+
+                // Adjust the vertical position only if needed
+                const boxRect = boxContainer.getBoundingClientRect();
+                const popupRect = popupContainer.getBoundingClientRect();
+                const overlap = boxRect.bottom - popupRect.top;
+
+                if (overlap > 0) {
+                    popupContainer.style.bottom = `${-75 - overlap}px`;
+                }
+            }
+            
+            adjustPosition();
+            window.addEventListener('resize', adjustPosition);
+        });
     </script>
   
 </body>
