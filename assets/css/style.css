@@ -1375,42 +1375,58 @@ table, th, td {
 
 .section-donation-container {
     display: block;
+    overflow: hidden; /* Clear floats */
 }
 
-.section-donation, .section-donation-kofi {
+.section-donation, .section-donation-kofi, .section-what-is-EP {
     width: 45%;
-    float: left; /* Default float behavior for larger screens */
+    float: left;
     min-width: fit-content;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 0px 15px;
     text-align: center;
-    cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
+}
+
+.section-donation, .section-donation-kofi, .section-what-is-EP {
+    cursor: pointer;
 }
 
 .section-donation-kofi {
-    float: right; /* Keep right float for large screens */
+    float: right;
 }
 
 .section-what-is-EP {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.section-what-is-EP-desc {
     width: 45%;
-    float: left;
+    float: right;
     min-width: fit-content;
     margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
+}
 
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
+.section-what-is-EP-desc p {
+    font-size: 16px;
+    color: var(--VeryLightGray);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.section-click-box:hover {
+    outline-color: var(--ThemeColor);
 }
 
 .section-how-install {
@@ -1424,18 +1440,6 @@ table, th, td {
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
-}
-
-.section-what-is-EP-desc p {
-    float: right;
-    position: relative;
-    padding-left: 20px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: var(--VeryLightGray);;
-    max-width: 55%;
-    min-width: 340px;
-    margin-bottom: 50px;
 }
 
 .section-click-box:hover {
@@ -1477,19 +1481,19 @@ table, th, td {
 }
 
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi {
-        width: 90%; /* Full width for medium screens */
-        float: none; /* Remove float */
+    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-what-is-EP-desc {
+        width: 90%;
+        float: none;
         margin-left: auto;
-        margin-right: auto; /* Center-align on medium screens */
+        margin-right: auto;
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi {
-        width: 100%; /* Full width on small screens */
+    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-what-is-EP-desc {
+        width: 100%;
         margin-left: 0;
-        margin-right: 0; /* Remove horizontal margins for small screens */
+        margin-right: 0;
     }
 }
 
