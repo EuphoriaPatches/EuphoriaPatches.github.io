@@ -1556,7 +1556,7 @@ table, th, td {
     max-width: 90vw;
     margin: 20px;
     left: 820px; /* Default offset */
-    top: -4px;
+    top: 0px;
     transition: left 0.3s ease; /* Smooth transition for centering */
     transform: rotate(-1.3deg);
 }
