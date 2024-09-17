@@ -802,7 +802,7 @@ html, body {
     padding: 0;
     font-size: 16px;
     position: relative;
-    color: var(--DarkGray);
+    color: var(--VeryLightGray);
     line-height: 26px;
 }
 
@@ -891,7 +891,7 @@ html, body {
     padding: 5px 15px;
     position: relative;
     left: 0;
-    color: var(--VeryLightGray);
+    color: var(--DarkGray);
 }
 
 .dropdown-menu li a:hover {
