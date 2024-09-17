@@ -554,7 +554,7 @@ select {
 
 .apanel {
     padding: 0px 3%;
-    background-color: rgb(12, 12, 16);
+    background-color: rgb(16, 16, 21);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
@@ -562,7 +562,7 @@ select {
 }
 
 .panel-changelogs .apanel {
-    background-color: rgb(12, 12, 16);
+    background-color: rgb(16, 16, 21);
     border-radius: 10px;
 }
 
