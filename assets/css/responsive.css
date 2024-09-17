@@ -252,7 +252,7 @@
 		height: 2px;
 		width: 22px;
 		display: block;
-		background-color: #26272d;
+		background-color: var(--VeryLightGray);
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
 		-ms-transition: all 0.3s;
@@ -265,11 +265,12 @@
 	}
 
 	.site-header-white .slicknav_icon-bar {
-		background-color: #fff;
+		background-color: var(--VeryLightGray);
+		color: var(--VeryLightGray);
 	}
 
 	.site-header-white  .act .slicknav_icon-bar {
-		background-color: #26272d;
+		background-color: var(--VeryLightGray);
 	}
 
 	.act .slicknav_icon-bar:first-child, 
@@ -304,7 +305,8 @@
 	}
 
 	.slicknav_nav {
-		background-color: #f5f5f8;
+		/*background: url(../img/IceSpikes.jpg) no-repeat center / cover;*/
+		background-color: rgba(0, 0, 0, 0.85);
 		padding-left: 0;
 		list-style: none;
 		position: fixed;
@@ -350,7 +352,7 @@
 
 	.slicknav_nav > li a {
 		display: inline-block;
-		color: #26272d;
+		color: var(--VeryLightGray);
 		font-size: 14px;
 	}
 
@@ -427,7 +429,7 @@
 	    margin-bottom: 20px;
 	}
 
-	.section-services .col-md-3 .service {
+	.section-services .col-md-5 .service {
 	    margin-top: 20px;
 	}
 
