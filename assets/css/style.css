@@ -1589,7 +1589,7 @@ table, th, td {
 
 .popup-container {
     position: absolute;
-    bottom: -80px; /* Ensure popup is below the box */
+    bottom: -75px; /* Ensure popup is below the box */
     left: 50%;
     transform: translateX(-50%) scale(0.7) rotate(1.3deg);
     background-color: rgba(0, 0, 0, 0.7);
@@ -1608,7 +1608,7 @@ table, th, td {
 
 .main-banner-box-container:hover .popup-container {
     opacity: 1;
-    bottom: -80px; /* Ensure popup is below the box on hover */
+    bottom: -75px; /* Ensure popup is below the box on hover */
 }
 
 @media (max-width: 768px) {
