@@ -165,8 +165,10 @@
 
     <!-- Collapse button JavaScript -->
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        // Function to load changelog content
         async function loadChangelogContent(version, type) {
-            const response = await fetch(`changelogs/${type}-${version}.md`);
+            const response = await fetch(`changelogs/${type}-${version}.txt`);
             const markdownText = await response.text();
 
             // Use marked to convert Markdown to HTML
@@ -177,15 +179,21 @@
             element.innerHTML = htmlContent;
         }
 
-        // Event listeners for buttons
-        document.addEventListener('DOMContentLoaded', () => {
+        // Event listener for accordion buttons
+        function setupAccordion() {
             document.querySelectorAll('.aaccordion').forEach(button => {
                 button.addEventListener('click', () => {
+                    // Toggle the display of the associated panel
                     const panel = button.nextElementSibling;
-                    panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+                    if (panel) {
+                        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+                    }
                 });
             });
+        }
 
+        // Event listener for version buttons
+        function setupVersionButtons() {
             document.querySelectorAll('.aaversion').forEach(button => {
                 button.addEventListener('click', () => {
                     const version = button.innerText.split(' ')[0];
@@ -193,7 +201,12 @@
                     loadChangelogContent(version, type);
                 });
             });
-        });
+        }
+
+        // Initialize accordion and version button functionality
+        setupAccordion();
+        setupVersionButtons();
+    });
     </script>
     
   
