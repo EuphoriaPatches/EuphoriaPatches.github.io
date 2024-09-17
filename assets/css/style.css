@@ -1098,7 +1098,7 @@ html, body {
 }
 
 .subpage-hero {
-    height: 690px;
+    height: 680px;
 }
 
 .subpage-hero.overlay:before {
@@ -1556,7 +1556,7 @@ table, th, td {
     max-width: 90vw;
     margin: 20px;
     left: 820px; /* Default offset */
-    top: -10px;
+    top: -4px;
     transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
