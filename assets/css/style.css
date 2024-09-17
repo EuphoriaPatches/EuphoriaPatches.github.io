@@ -1119,6 +1119,10 @@ html, body {
     height: 400px;
 }
 
+.changelogs-hero {
+    height: 500px;
+}
+
 .support-hero.overlay:before {
     background-color: var(--ScreenshotOverlayColor);
 }
