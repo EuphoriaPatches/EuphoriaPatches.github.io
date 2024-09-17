@@ -1356,7 +1356,7 @@ table, th, td {
     padding-left: 20px;
 }
 
-.section-install-container h2 {
+.section-indented-container h2 {
     font-family: 'minecraftchmc';
     position: relative;
     margin: 30px;
@@ -1364,7 +1364,7 @@ table, th, td {
     font-size: 40px;
 }
 
-.section-install-container p {
+.section-indented-container p {
     position: relative;
     margin: 30px;
     color: var(--VeryLightGray);
@@ -1546,7 +1546,7 @@ table, th, td {
 
 /*Download Image Click*/
 
-.tilted-box-container {
+.main-banner-box-container {
     position: relative; /* Allows positioning adjustments */
     cursor: pointer;
     display: flex;
@@ -1560,11 +1560,10 @@ table, th, td {
     transition: left 0.3s ease; /* Smooth transition for centering */
 }
 
-.tilted-box {
+.main-banner-box {
     border: 5px solid #ffffff44;
     border-radius: 25px;
     background-color: transparent;
-    transform: rotate(0.1deg);
     transition: border-color 0.3s ease, transform 0.3s ease;
     overflow: hidden;
     display: flex;
@@ -1574,12 +1573,12 @@ table, th, td {
     max-height: 80vh;
 }
 
-.tilted-box:hover {
+.main-banner-box:hover {
     border-color: var(--ThemeColor);
     transform: rotate(0.5deg) scale(1.05);
 }
 
-.tilted-box img {
+.main-banner-box img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
@@ -1604,18 +1603,18 @@ table, th, td {
     box-sizing: border-box; /* Include padding and border in element’s total width and height */
 }
 
-.tilted-box-container:hover .popup-container {
+.main-banner-box-container:hover .popup-container {
     opacity: 1;
     bottom: -70px; /* Ensure popup is below the box on hover */
 }
 
 @media (max-width: 768px) {
-    .tilted-box-container {
+    .main-banner-box-container {
         max-width: 95vw;
         left: 0; /* Center on medium screens */
     }
 
-    .tilted-box {
+    .main-banner-box {
         max-height: 70vh;
     }
 
@@ -1627,12 +1626,12 @@ table, th, td {
 }
 
 @media (max-width: 480px) {
-    .tilted-box-container {
+    .main-banner-box-container {
         max-width: 98vw;
         left: 0; /* Center on small screens */
     }
 
-    .tilted-box {
+    .main-banner-box {
         max-height: 60vh;
     }
 
