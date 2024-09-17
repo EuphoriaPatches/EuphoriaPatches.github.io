@@ -1558,13 +1558,13 @@ table, th, td {
     left: 820px; /* Default offset */
     top: -4px;
     transition: left 0.3s ease; /* Smooth transition for centering */
+    transform: rotate(-0.3deg);
 }
 
 .main-banner-box {
     border: 5px solid #ffffff44;
     border-radius: 25px;
     background-color: transparent;
-    transform: rotate(-0.3deg);
     transition: border-color 0.3s ease, transform 0.3s ease;
     overflow: hidden;
     display: flex;
