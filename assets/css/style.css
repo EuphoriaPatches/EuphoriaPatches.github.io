@@ -1558,7 +1558,7 @@ table, th, td {
     left: 820px; /* Default offset */
     top: -4px;
     transition: left 0.3s ease; /* Smooth transition for centering */
-    transform: rotate(-1deg);
+    transform: rotate(-1.2deg);
 }
 
 .main-banner-box {
