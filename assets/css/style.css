@@ -1119,10 +1119,6 @@ html, body {
     height: 400px;
 }
 
-.changelogs-hero {
-    height: 500px;
-}
-
 .support-hero.overlay:before {
     background-color: var(--ScreenshotOverlayColor);
 }
@@ -1134,6 +1130,20 @@ html, body {
 }
 
 .support-hero a:hover {
+    color: var(--ThemeColor);
+}
+
+.changelogs-hero {
+    height: 500px;
+}
+
+.changelogs-hero .hero-content,
+.changelogs-hero .hero-content h1,
+.changelogs-hero a  {
+    color: #fff;
+}
+
+.changelogs-hero a:hover {
     color: var(--ThemeColor);
 }
 
