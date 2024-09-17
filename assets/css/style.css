@@ -1365,7 +1365,10 @@ table, th, td {
 }
 
 .section-install-container p {
-    margin: 15px 0;
+    position: relative;
+    margin: 30px;
+    color: var(--VeryLightGray);
+    font-size: 20;
 }
 
 /* Section: Donate */
