@@ -1368,7 +1368,7 @@ table, th, td {
     position: relative;
     margin: 30px;
     color: var(--VeryLightGray);
-    font-size: 20;
+    font-size: 20px;
 }
 
 /* Section: Donate */
