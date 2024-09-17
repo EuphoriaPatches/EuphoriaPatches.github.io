@@ -1917,6 +1917,18 @@ outline-color: var(--ThemeColor);
     z-index: 1010;
 }
 
+/* Media queries for responsive design (grid only) */
+@media screen and (max-width: 768px) {
+    .gallery-images-grid {
+        grid-template-columns: 1fr; /* Single column layout for mobile */
+        gap: 15px; /* Reduce gap for smaller screens */
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+    .gallery-images-item {
+        border-radius: 20px; /* Slightly reduce border radius for mobile */
+    }
+}
+
 /* FOOTER
 ================================================== */
 .site-footer {
