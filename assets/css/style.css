@@ -1374,69 +1374,60 @@ table, th, td {
 /* Section: Donate */
 
 .section-donation-container {
-    display: block;
-    overflow: hidden; /* Clear floats */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
 
-.section-donation, .section-donation-kofi, .section-what-is-EP {
-    width: 45%;
-    float: left;
-    min-width: fit-content;
-    margin-bottom: 20px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
+.section-donation, .section-donation-kofi {
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    margin: 10px;
+    padding: 15px;
     text-align: center;
+    cursor: pointer;
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-donation, .section-donation-kofi, .section-what-is-EP {
+.section-what-is-EP {
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
     cursor: pointer;
 }
 
-.section-donation-kofi {
-    float: right;
-}
-
-.section-what-is-EP {
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 .section-what-is-EP-desc {
-    width: 45%;
-    float: right;
-    min-width: fit-content;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0px 15px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    margin: 10px;
+    padding: 15px;
 }
 
 .section-what-is-EP-desc p {
     font-size: 16px;
     color: var(--VeryLightGray);
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.section-click-box:hover {
-    outline-color: var(--ThemeColor);
+    margin: 0;
 }
 
 .section-how-install {
     width: 45%;
     min-width: fit-content;
-    margin: 0 auto 20px auto; /* Horizontally centers the element */
+    margin: 0 auto 20px auto;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
@@ -1458,7 +1449,7 @@ table, th, td {
     font-family: 'minecraftchmc';
     position: relative;
     margin: 0;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     font-size: 35px;
     padding-bottom: 10px;
     line-height: 360%;
@@ -1474,6 +1465,7 @@ table, th, td {
 .section-click-box .btn:focus {
     color: var(--VeryLightGray);
 }
+
 .section-click-box .btn:hover {
     background-color: transparent;
     color: var(--ThemeColor);
@@ -1482,15 +1474,17 @@ table, th, td {
 
 @media (max-width: 768px) {
     .section-donation, .section-donation-kofi, .section-what-is-EP, .section-what-is-EP-desc {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    
+    .section-how-install {
         width: 90%;
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-what-is-EP-desc {
+    .section-donation, .section-donation-kofi, .section-what-is-EP, .section-what-is-EP-desc, .section-how-install {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
