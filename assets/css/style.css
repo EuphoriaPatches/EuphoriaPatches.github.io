@@ -1147,7 +1147,7 @@ html, body {
 
 .changelogs-hero {
     background: url(../img/Screenshots/changelogsBackground.webp) no-repeat top / cover;
-    background-position: center -200px;
+    background-position: center -100px;
 }
 
 .mod-issues-hero {
