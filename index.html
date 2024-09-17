@@ -161,17 +161,11 @@
                     popupContainer.style.transform = 'rotate(1.3deg) translateX(-50%)';
                 }
 
-                // Reset the bottom property to its original value
-                popupContainer.style.bottom = '-75px';
+                // Calculate the height of the popup container
+                const popupHeight = popupContainer.offsetHeight;
 
-                // Adjust the vertical position only if needed
-                const boxRect = boxContainer.getBoundingClientRect();
-                const popupRect = popupContainer.getBoundingClientRect();
-                const overlap = boxRect.bottom - popupRect.top;
-
-                if (overlap > 0) {
-                    popupContainer.style.bottom = `${-75 - overlap}px`;
-                }
+                // Adjust the position of the popup container based on its height
+                popupContainer.style.bottom = `-${popupHeight}px`;
             }
             
             adjustPosition();
