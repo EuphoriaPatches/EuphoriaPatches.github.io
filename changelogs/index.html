@@ -168,7 +168,7 @@
         document.addEventListener('DOMContentLoaded', () => {
         // Function to load changelog content
         async function loadChangelogContent(version, type) {
-            const response = await fetch(`changelogs/${type}-${version}.txt`);
+            const response = await fetch(`changelogs/${type}-${version}.md`);
             const markdownText = await response.text();
 
             // Use marked to convert Markdown to HTML
