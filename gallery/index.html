@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- Basic Page Needs
+        <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>How To Install | Euphoria Patches</title>
+    <title>Gallery | Euphoria Patches</title>
 
     <meta name="description" content="">
     <meta name="author" content="">
@@ -41,88 +40,39 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-</head>
+        </style>
+    </head>
 <body>
 
-    <header id="masthead" class="site-header site-header-white">
-        <nav id="primary-navigation" class="site-navigation">
-            <div class="container">
+    <header id="masthead" class="site-header">
+        <!-- Header content as provided in the template -->
+    </header>
 
-                <div class="navbar-header">
-                   
-                    <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
-
-                </div><!-- /.navbar-header -->
-
-                <div class="collapse navbar-collapse" id="agency-navbar-collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/download">Download</a></li>
-                        <li><a href="/support">Support</a></li>
-                        <li><a href="/gallery">Gallery</a></li>
-                        <li><a href="/changelogs">Changelogs</a></li>
-
-                        <li class="dropdown"><a href="/contact" class="dropdown-toggle" data-toggle="dropdown">More<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                              <li><a href="/contact">Contact</a></li>
-                              <li><a href="/faq">FAQ</a></li>
-                              <li><a href="/how-to-install" style="color: var(--ThemeColor);">How To Install</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>   
-        </nav><!-- /.site-navigation -->
-    </header><!-- /#mastheaed -->
-
-    <div id="hero" class="hero overlay support-hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>How To Install Euphoria Patches</h1>
-            </div><!-- /.hero-text -->
-        </div><!-- /.hero-content -->
-    </div><!-- /.hero -->
 
     <main id="main" class="site-main">
-        <section class="site-section gray-bg">
-            <div class="container section-indented-container">
-                <h2>The Mod Method</h2>
-                <ol class="section-install-instructions">
-                    <li>Get the required Complementary version and put it in the shaderpacks folder (<strong>don't unzip, modify or rename it</strong>).
-                        <ul>
-                            <li>Currently Complementary r5.2.2 (<a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a> or <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a>)</li>
-                        </ul>
-                    </li>
-                    <li>Get the latest <a href="https://modrinth.com/mod/euphoria-patches" target="_blank">EuphoriaPatcher</a> mod file and put it in your mods folder
-                        <ul>
-                            <li>Currently 0.3.4</li>
-                        </ul>
-                    </li>
-                    <li>Launch the game with Fabric/Quilt/Forge/Neoforge</li>
-                    <li>Complementary Shaders + Euphoria Patches will now appear in your shaderpacks folder</li>
-                </ol>
-
-                <br><br>
-
-                <section class="section-downloads" onclick="location.href='/download';">
-                    <a class="btn btn-installer" style="width: 300px; float: left; --ThemeColor: var(--EuphoriaMagenta);">Go To The Downloads Page</a>
-                </section><!-- /.section-downloads -->
-
-                <br><br><br><br>
-
-                <h2>The Installer Method</h2>
-                <ol class="section-install-instructions">
-                    <li>Go to <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders/</a> and download the installer.</li>
-                    <li>Open the installer by double-clicking the downloaded file</li>
-                    <li>Now click on "Advanced Settings"</li>
-                    <li>Check the "Install Euphoria Patches" checkbox</li>
-                    <li>Click on install, Complementary Shaders + Euphoria Patches will now appear in your shaderpacks folder</li>
-                </ol>
+        <section class="site-section">
+            <div class="hero-text">
+                <h1>Gallery</h1><br><br>
+            </div>
+            <div class="gallery-images-grid">
+                <div class="gallery-images-item">
+                    <img src="/assets/img/Screenshots/donateBackground.webp" data-fullsrc="$src">
+                </div>
+                <div class="gallery-images-item">
+                    <img src="/assets/img/Screenshots/mainBackground.webp" data-fullsrc="$src">
+                </div>
+                <div class="gallery-images-item">
+                    <img src="/assets/img/Screenshots/downloadBackground.webp" data-fullsrc="$src">
+                </div>
             </div>
         </section>
+    
+        <div id="gallery-images-overlay" class="gallery-images-overlay">
+            <span class="gallery-images-overlay-close">&times;</span>
+            <div class="gallery-image-container">
+                <img id="gallery-overlay-image" src="" alt="Overlay Image">
+            </div>
+        </div>
     </main>
 
     <footer id="colophon" class="site-footer"></footer>
@@ -146,9 +96,7 @@
             </div>
         </div><!-- /.copyright -->
     </footer><!-- /#footer -->
-
-
-
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -159,6 +107,63 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
-  
+
+    <script>
+        const galleryItems = document.querySelectorAll('.gallery-images-item');
+        const overlay = document.getElementById('gallery-images-overlay');
+        const overlayImage = document.getElementById('gallery-overlay-image');
+        const overlayClose = document.querySelector('.gallery-images-overlay-close');
+
+        // Store image sources
+        let imageSources = [];
+        let currentIndex = 0;
+
+        galleryItems.forEach((item, index) => {
+            const img = item.querySelector('img');
+            const fullSrc = img.getAttribute('data-fullsrc').replace('$src', img.src);
+            imageSources.push(fullSrc);
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                overlayImage.src = fullSrc;
+                overlay.classList.add('show');
+            });
+        });
+
+        function showImage(index) {
+            if (index >= 0 && index < imageSources.length) {
+                currentIndex = index;
+                overlayImage.src = imageSources[currentIndex];
+            }
+        }
+
+        overlayClose.addEventListener('click', () => {
+            overlay.classList.remove('show');
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('show');
+            }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                overlay.classList.remove('show');
+            }
+        });
+
+        // Handle arrow navigation
+        document.addEventListener('keydown', (e) => {
+            if (overlay.classList.contains('show')) {
+                if (e.key === 'ArrowLeft') {
+                    showImage(currentIndex - 1); // Previous image
+                } else if (e.key === 'ArrowRight') {
+                    showImage(currentIndex + 1); // Next image
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
