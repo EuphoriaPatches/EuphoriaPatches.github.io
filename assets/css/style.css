@@ -802,7 +802,7 @@ html, body {
     padding: 0;
     font-size: 16px;
     position: relative;
-    color: var(--VeryLightGray);
+    color: var(--DarkGray);
     line-height: 26px;
 }
 
