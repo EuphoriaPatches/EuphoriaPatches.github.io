@@ -891,7 +891,7 @@ html, body {
     padding: 5px 15px;
     position: relative;
     left: 0;
-    color: var(--DarkGray);
+    color: var(--VeryLightGray);
 }
 
 .dropdown-menu li a:hover {
