@@ -1564,6 +1564,7 @@ table, th, td {
     border: 5px solid #ffffff44;
     border-radius: 25px;
     background-color: transparent;
+    transform: rotate(-0.3deg);
     transition: border-color 0.3s ease, transform 0.3s ease;
     overflow: hidden;
     display: flex;

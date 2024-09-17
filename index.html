@@ -102,8 +102,10 @@
             
             if (containerWidth + 820 > viewportWidth) { // Add some padding
                 boxContainer.style.left = `${offsetX}px`; // Center if too wide
+                boxContainer.style.transform = 'rotate(0deg)'; // Reset rotation
             } else {
                 boxContainer.style.left = '820px'; // Default offset
+                boxContainer.style.transform = 'rotate(-0.3deg)';
             }
 
             // Calculate the height of the popup container
