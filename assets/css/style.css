@@ -1587,7 +1587,7 @@ table, th, td {
 
 .popup-container {
     position: absolute;
-    bottom: -70px; /* Ensure popup is below the box */
+    bottom: -75px; /* Ensure popup is below the box */
     left: 50%;
     transform: translateX(-50%) scale(0.7) rotate(1.3deg);
     background-color: rgba(0, 0, 0, 0.7);
