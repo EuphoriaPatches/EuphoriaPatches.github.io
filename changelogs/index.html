@@ -165,48 +165,71 @@
 
     <!-- Collapse button JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        // Function to load changelog content
-        async function loadChangelogContent(version, type) {
-            const response = await fetch(`changelogs/${type}-${version}.md`);
-            const markdownText = await response.text();
+        document.getElementById('aaShaderBtn').addEventListener('click', function() {
+                const shaderPanels = document.querySelectorAll('.cenShader');
+                shaderPanels.forEach((panel) => {
+                const version = panel.getAttribute('data-version');
+                const formattedVersion = version.replace(/\./g, ''); // Convert "1.3.2" to "132" for ID match
+                const elementId = `shader${formattedVersion}`;
 
-            // Use marked to convert Markdown to HTML
-            const htmlContent = marked(markdownText);
+                // Fetch the corresponding .md file for the shader version
+                fetch(`shader-ch/${version}.md`)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Convert Markdown to HTML using marked
+                        const formattedData = marked.parse(data);
+                        document.getElementById(elementId).innerHTML = formattedData;
+                    })
+                    .catch(error => {
+                        document.getElementById(elementId).innerHTML = "Error loading changelog.";
+                    });
+                });
+            });
 
-            // Update the corresponding element with the parsed HTML
-            const element = document.querySelector(`#${type}${version.replace('.', '')}`);
-            element.innerHTML = htmlContent;
-        }
+        document.getElementById('aaModBtn').addEventListener('click', function() {
+                const modPanels = document.querySelectorAll('.cenMod');
+                modPanels.forEach((panel) => {
+                const version = panel.getAttribute('data-version');
+                const formattedVersion = version.replace(/\./g, ''); // Convert "0.3.4" to "034" for ID match
+                const elementId = `mod${formattedVersion}`;
 
-        // Event listener for accordion buttons
-        function setupAccordion() {
-            document.querySelectorAll('.aaccordion').forEach(button => {
-                button.addEventListener('click', () => {
-                    // Toggle the display of the associated panel
-                    const panel = button.nextElementSibling;
-                    if (panel) {
-                        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+                // Fetch the corresponding .md file for the mod version
+                fetch(`mod-ch/${version}.md`)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Convert Markdown to HTML using marked
+                        const formattedData = marked.parse(data);
+                        document.getElementById(elementId).innerHTML = formattedData;
+                    })
+                    .catch(error => {
+                        document.getElementById(elementId).innerHTML = "Error loading changelog.";
+                    });
+                });
+            });
+
+        // Accordion functionality
+        var acc = document.getElementsByClassName("aaccordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("aactive");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+
+            // Adjust panel height after a brief delay
+            acc[i].addEventListener("click", function() {
+                setTimeout(function() {
+                    for (var h = 0; h < acc.length; h++) {
+                        var panelO = acc[h].nextElementSibling;
+                        if (panelO.style.maxHeight) panelO.style.maxHeight = panelO.scrollHeight + "px";
                     }
-                });
+                }, 500);
             });
         }
-
-        // Event listener for version buttons
-        function setupVersionButtons() {
-            document.querySelectorAll('.aaversion').forEach(button => {
-                button.addEventListener('click', () => {
-                    const version = button.innerText.split(' ')[0];
-                    const type = button.closest('.panel-changelogs').previousElementSibling.id.replace('aa', '').toLowerCase();
-                    loadChangelogContent(version, type);
-                });
-            });
-        }
-
-        // Initialize accordion and version button functionality
-        setupAccordion();
-        setupVersionButtons();
-    });
     </script>
     
   
