@@ -1928,32 +1928,16 @@ outline-color: var(--ThemeColor);
     z-index: 1010;
 }
 
-/*.image-description {
+.image-description {
     position: absolute;
     bottom: -36%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    opacity: 0; /~ Start hidden ~/
-    max-width: 100%;
-    max-height: 100%;
-    text-align: center;
-}*/
-
-.image-description {
-    position: absolute;
-    bottom: -30%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
     padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 13px;
+    font-size: 20px;
     white-space: nowrap;
     z-index: 10;
     opacity: 0;
