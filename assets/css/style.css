@@ -1946,6 +1946,7 @@ outline-color: var(--ThemeColor);
     -ms-text-size-adjust:none;
     -moz-text-size-adjust:none;
     text-size-adjust:none;
+    transform-origin: center;
 }
 
 .gallery-images-overlay.show .image-description {
@@ -1965,6 +1966,7 @@ outline-color: var(--ThemeColor);
     }
     .image-description {
         transform: scale(0.3);
+        transform-origin: center;
     }
 }
 
