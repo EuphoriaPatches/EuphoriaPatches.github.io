@@ -2452,15 +2452,9 @@ a.twitter-bg:hover {
     margin-top: 25px;
 }
 
-/* Section: map */
-.section-map {
-  height: 500px;
-  width: 100%
-}
-
 /* Ad Stuff */
 .adsbygoogle {
-    background-color: var(--VeryVeryDarkGray);
+    background-color: var(--VeryDarkGray);
 }
 
 .ad-vertical {
