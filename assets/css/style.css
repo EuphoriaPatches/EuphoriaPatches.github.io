@@ -1939,6 +1939,8 @@ outline-color: var(--ThemeColor);
     transition: opacity 0.3s ease;
     max-width: 100%;
     word-wrap: break-word; /* Ensures long text wraps */
+    z-index: 1011;
+    position: relative;
 }
 
 .gallery-images-overlay.show .image-description {
