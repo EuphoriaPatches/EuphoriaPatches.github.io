@@ -96,7 +96,7 @@
                     <img src="/assets/img/Screenshots/donateBackground.webp" loading="lazy" data-fullsrc="$src">
                 </div>
                 <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/mainBackground.webp" loading="lazy" data-fullsrc="$src" data-description="Scenic mountain landscape at sunset">
+                    <img src="/assets/img/Screenshots/mainBackground.webp" loading="lazy" data-fullsrc="$src">
                 </div>
                 <div class="gallery-images-item">
                     <img src="/assets/img/Screenshots/downloadBackground.webp" loading="lazy" data-fullsrc="$src">
@@ -121,6 +121,7 @@
             <div class="gallery-image-container">
                 <img id="gallery-overlay-image" src="" alt="Overlay Image">
             </div>
+            <div id="image-description" class="image-description"></div>
         </div>
     </main>
 
@@ -162,21 +163,24 @@
         const overlay = document.getElementById('gallery-images-overlay');
         const overlayImage = document.getElementById('gallery-overlay-image');
         const overlayClose = document.querySelector('.gallery-images-overlay-close');
-        const imageDescription = document.getElementById('image-description');
+        const imageDescription = document.getElementById('image-description'); // New line
 
+        // Store image sources and descriptions
         let imageSources = [];
-        let imageDescriptions = [];
+        let imageDescriptions = []; // New line
         let currentIndex = 0;
 
         galleryItems.forEach((item, index) => {
             const img = item.querySelector('img');
             const fullSrc = img.getAttribute('data-fullsrc').replace('$src', img.src);
-            const description = img.getAttribute('data-description') || '';
+            const description = img.getAttribute('data-description') || ''; // New line
             imageSources.push(fullSrc);
-            imageDescriptions.push(description);
+            imageDescriptions.push(description); // New line
             item.addEventListener('click', () => {
                 currentIndex = index;
-                showImage(currentIndex);
+                overlayImage.src = fullSrc;
+                imageDescription.textContent = description; // New line
+                overlay.classList.add('show');
             });
         });
 
@@ -184,8 +188,7 @@
             if (index >= 0 && index < imageSources.length) {
                 currentIndex = index;
                 overlayImage.src = imageSources[currentIndex];
-                imageDescription.textContent = imageDescriptions[currentIndex];
-                overlay.classList.add('show');
+                imageDescription.textContent = imageDescriptions[currentIndex]; // New line
             }
         }
 
@@ -199,15 +202,20 @@
             }
         });
 
+        // Handle escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 overlay.classList.remove('show');
             }
+        });
+
+        // Handle arrow navigation
+        document.addEventListener('keydown', (e) => {
             if (overlay.classList.contains('show')) {
                 if (e.key === 'ArrowLeft') {
-                    showImage(currentIndex - 1);
+                    showImage(currentIndex - 1); // Previous image
                 } else if (e.key === 'ArrowRight') {
-                    showImage(currentIndex + 1);
+                    showImage(currentIndex + 1); // Next image
                 }
             }
         });
