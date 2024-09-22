@@ -1901,7 +1901,6 @@ outline-color: var(--ThemeColor);
     transform: translate(-50%, -50%);
     max-width: 80%;
     max-height: 80%;
-    text-align: center;
 }
 
 .gallery-image-container img {
@@ -1929,18 +1928,19 @@ outline-color: var(--ThemeColor);
 }
 
 .image-description {
-    margin-top: 15px; /* Add space between image and description */
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly more opaque background */
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 16px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    max-width: 100%;
-    word-wrap: break-word; /* Ensures long text wraps */
-    z-index: 1011;
-    position: relative;
+    max-width: 80%;
+    text-align: center;
 }
 
 .gallery-images-overlay.show .image-description {
