@@ -1220,6 +1220,15 @@ html, body {
     color: var(--ThemeColor);
 }
 
+/* ADS
+================================================== */
+
+.horizontal-ad-container {
+    background-color: var(--VeryDarkGray);
+    max-height: 100px; /* Set your desired max height */
+    overflow: hidden; /* Prevent overflow if the ad exceeds the height */
+}
+
 /* SITEMAIN
 ================================================== */
 
