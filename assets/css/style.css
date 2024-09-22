@@ -1965,8 +1965,7 @@ outline-color: var(--ThemeColor);
         border-radius: 20px; /* Slightly reduce border radius for mobile */
     }
     .gallery-image-container {
-        max-width: 100%;
-        max-height: 100%;
+        transform: translate(-50%, -50%) scale(1.25);
     }
     .image-description {
         transform: translateX(-50%) scale(0.3);
