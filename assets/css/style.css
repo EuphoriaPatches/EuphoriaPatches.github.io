@@ -514,7 +514,7 @@ select {
     background-color: var(--DarkGray);
     color: white;
     cursor: pointer;
-    padding: 18px;
+    padding: 16px;
     width: 100%;
     text-align: center;
     border: none;
@@ -1204,15 +1204,6 @@ html, body {
   
 .close:hover {
     color: var(--ThemeColor);
-}
-
-/* ADS
-================================================== */
-
-.horizontal-ad-container {
-    background-color: var(--VeryDarkGray);
-    max-height: 144px;
-    overflow: hidden; /* Prevent overflow if the ad exceeds the height */
 }
 
 /* SITEMAIN
