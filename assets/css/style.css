@@ -1929,9 +1929,9 @@ outline-color: var(--ThemeColor);
 
 .image-description {
     position: absolute;
-    bottom: 150px;
+    /* bottom: px; */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateX(-40%);
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
     padding: 10px 20px;
