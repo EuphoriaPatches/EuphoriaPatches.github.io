@@ -1360,6 +1360,12 @@ table, th, td {
     padding-left: 20px;
 }
 
+.section-indented-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap */
+    margin-right: 20px; /* Space between content and ad */
+}
+
 .section-indented-container h2 {
     font-family: 'minecraftchmc';
     position: relative;
@@ -2458,18 +2464,20 @@ a.twitter-bg:hover {
 }
 
 .ad-vertical {
-    /* background-color: transparent; */
-    margin: 0;
-    position: relative;
-    top: 50vh;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%); 
-    
+    width: 300px; /* Set width for the ad */
+    margin-left: 20px; /* Space between content and ad */
+    flex-shrink: 0; /* Prevent ad from shrinking */
     border: 2px solid rgba(0, 0, 0, 0.25);
 }
-@media (max-width: 1100px) or (max-height: 500px) {
+
+@media (max-width: 768px) {
+    .section-indented-container {
+        flex-direction: column; /* Stack on smaller screens */
+    }
     .ad-vertical {
-        display: none;
+        margin-left: 0; /* Remove margin on smaller screens */
+        margin-top: 20px; /* Space above ad */
+        width: auto; /* Set width to auto for responsiveness */
     }
 }
 .ad-v1 {
