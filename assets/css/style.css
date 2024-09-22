@@ -1964,6 +1964,9 @@ outline-color: var(--ThemeColor);
     .gallery-images-item .gallery-image-container {
         border-radius: 20px; /* Slightly reduce border radius for mobile */
     }
+    .gallery-image-container {
+        transform: scale(1.5);
+    }
     .image-description {
         transform: translateX(-50%) scale(0.3);
         transform-origin: center;
