@@ -1579,7 +1579,7 @@ table, th, td {
 }
 
 .main-banner-box {
-    border: 5px solid #ffffff44;
+    border: 5px solid rgba(255, 255, 255, 0.45);
     border-radius: 25px;
     background-color: transparent;
     transition: border-color 0.3s ease, transform 0.3s ease;
