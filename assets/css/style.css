@@ -1942,6 +1942,10 @@ outline-color: var(--ThemeColor);
     z-index: 10;
     opacity: 0;
     visibility: hidden;
+    -webkit-text-size-adjust:none;
+    -ms-text-size-adjust:none;
+    -moz-text-size-adjust:none;
+    text-size-adjust:none;
 }
 
 .gallery-images-overlay.show .image-description {
