@@ -1127,16 +1127,13 @@ html, body {
     color: var(--ThemeColor);
 }
 
-.contact-hero {
-    height: 400px;
-}
-
 .download-hero {
     background: url(../img/Screenshots/downloadBackground.webp) no-repeat center / cover;
 }
 
 .contact-hero {
     background: url(../img/Screenshots/contactBackground.webp) no-repeat center / cover;
+    height: 400px;
 }
 
 .support-hero {
@@ -1148,8 +1145,9 @@ html, body {
     background-position: center -180px;
 }
 
-.mod-issues-hero {
-    background: url(../img/screenshots/MountainsNearOcean.jpg) no-repeat center / cover;
+.how-to-install-hero {
+    background: url(../img/Screenshots/howToInstallBackground.webp) no-repeat center / cover;
+    height: 400px;
 }
 
 .privacy-policy-hero {
