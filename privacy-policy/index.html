@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Basic Page Needs
+
+    <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Gallery | Euphoria Patches</title>
+    <title>Privacy Policy | Euphoria Patches</title>
 
-    <meta name="description" content="Incredible Screenshots of Complementary Shaders with Euphoria Patches! These screenshots show many features of Euphoria Patches and feature beautiful scenes">
+    <meta name="description" content="Privacy Policy of the Euphoria Patches website">
     <meta name="author" content="">
     <meta name="keywords" content="">
 
@@ -54,20 +55,24 @@
 </head>
 <body>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header site-header-white">
         <nav id="primary-navigation" class="site-navigation">
             <div class="container">
+
                 <div class="navbar-header">
+                   
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
+
                 </div><!-- /.navbar-header -->
-                
+
                 <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a href="/">Home</a></li>
                         <li><a href="/download">Download</a></li>
-                        <li><a href="/support">Support</a></li>   
-                        <li class="active"><a href="/gallery">Gallery</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
                         <li><a href="/changelogs">Changelogs</a></li>
 
                         <li class="dropdown"><a href="/contact" class="dropdown-toggle" data-toggle="dropdown">More<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
@@ -75,7 +80,7 @@
                               <li><a href="/contact">Contact</a></li>
                               <li><a href="/faq">FAQ</a></li>
                               <li><a href="/how-to-install">How To Install</a></li>
-                              <li><a href="/privacy-policy">Privacy Policy</a></li>
+                              <li><a href="/privacy-policy" style="color: var(--ThemeColor);">Privacy Policy</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -84,35 +89,40 @@
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
+    <div id="hero" class="hero overlay support-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Privacy Policy</h1>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+    </div><!-- /.hero -->
 
     <main id="main" class="site-main">
-        <section class="site-section">
-            <div class="hero-text">
-                <br><br><br><br><h1>Gallery</h1><br><br><br><br>
+        <section class="site-section section-features">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="text-align:left;">
+                        <h3>Privacy Policy</h3>
+                        <p>Last updated: September 22, 2024 (v1)<br><br>
+                        This policy outlines how personal information is managed in relation to the Euphoria Patches website and shader packs. We are committed to protecting user privacy and conduct regular reviews of this policy to ensure compliance with legal standards, improve clarity, and reflect updates to our offerings.</p>
+
+                        <h3>Information Collection</h3>
+                        <p>We do not directly collect personal data from users of our products. However, certain third-party services used on our website may automatically collect anonymous information for legitimate purposes. These services operate independently of us, and their respective privacy policies govern their data collection practices. We provide transparency regarding the services we use, why they are in place, and where you can find their privacy policies to better understand their handling of your data.</p>
+
+                        <h3>Third-Party Services</h3>
+                        <p>The following external services integrated with our website may collect certain types of user data:<br>
+                        - <strong>Google Services:</strong> Euphoria Patches makes use of Google services such as Google Analytics and Google Ads to monitor website traffic and display tailored advertisements. Google may collect non-personal data, such as user activity and performance metrics, to enhance the website experience. We encourage you to consult Google's privacy policy for details on how your information is processed.<br>
+                        - <strong>External Websites:</strong> Our website may contain links to external sites not controlled by us. We are not responsible for the content or privacy practices of these sites and recommend reviewing their privacy policies before sharing any personal information.</p>
+
+                        <h3>Contact</h3>
+                        <p>If you have any questions or concerns regarding this Privacy Policy, feel free to reach out to us.<br>
+                        <a href="/contact"><u>euphoriapatches.com/contact</u></a><br><br></p>
+                    </div>
+                </div>
             </div>
-            <div class="gallery-images-grid">
-                <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/donateBackground.webp" data-fullsrc="$src">
-                </div>
-                <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/mainBackground.webp" data-fullsrc="$src">
-                </div>
-                <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/downloadBackground.webp" data-fullsrc="$src">
-                </div>
-                <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/changelogsBackground.webp" data-fullsrc="$src">
-                </div>
-            </div>
-        </section>
+        </section><!-- /.section-features -->
+    </main><!-- /#main -->
     
-        <div id="gallery-images-overlay" class="gallery-images-overlay">
-            <span class="gallery-images-overlay-close">&times;</span>
-            <div class="gallery-image-container">
-                <img id="gallery-overlay-image" src="" alt="Overlay Image">
-            </div>
-        </div>
-    </main>
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -136,6 +146,8 @@
         </div><!-- /.copyright -->
     </footer><!-- /#footer -->
 
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -146,63 +158,6 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
-
-    <script>
-        const galleryItems = document.querySelectorAll('.gallery-images-item');
-        const overlay = document.getElementById('gallery-images-overlay');
-        const overlayImage = document.getElementById('gallery-overlay-image');
-        const overlayClose = document.querySelector('.gallery-images-overlay-close');
-
-        // Store image sources
-        let imageSources = [];
-        let currentIndex = 0;
-
-        galleryItems.forEach((item, index) => {
-            const img = item.querySelector('img');
-            const fullSrc = img.getAttribute('data-fullsrc').replace('$src', img.src);
-            imageSources.push(fullSrc);
-            item.addEventListener('click', () => {
-                currentIndex = index;
-                overlayImage.src = fullSrc;
-                overlay.classList.add('show');
-            });
-        });
-
-        function showImage(index) {
-            if (index >= 0 && index < imageSources.length) {
-                currentIndex = index;
-                overlayImage.src = imageSources[currentIndex];
-            }
-        }
-
-        overlayClose.addEventListener('click', () => {
-            overlay.classList.remove('show');
-        });
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('show');
-            }
-        });
-
-        // Handle escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                overlay.classList.remove('show');
-            }
-        });
-
-        // Handle arrow navigation
-        document.addEventListener('keydown', (e) => {
-            if (overlay.classList.contains('show')) {
-                if (e.key === 'ArrowLeft') {
-                    showImage(currentIndex - 1); // Previous image
-                } else if (e.key === 'ArrowRight') {
-                    showImage(currentIndex + 1); // Next image
-                }
-            }
-        });
-    </script>
-
+  
 </body>
 </html>
