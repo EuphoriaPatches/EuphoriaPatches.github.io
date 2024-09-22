@@ -1946,7 +1946,7 @@ outline-color: var(--ThemeColor);
 
 .image-description {
     position: absolute;
-    bottom: -40px;
+    bottom: -30%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.2);
