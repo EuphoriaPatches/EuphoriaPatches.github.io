@@ -1965,7 +1965,7 @@ outline-color: var(--ThemeColor);
         border-radius: 20px; /* Slightly reduce border radius for mobile */
     }
     .image-description {
-        transform: scale(0.3);
+        transform: translateX(-50%) scale(0.3);
         transform-origin: center;
     }
 }
