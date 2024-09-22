@@ -61,6 +61,26 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'rubiklight_italic';
+    src: url(../fonts/rubik/rubik-italic-variablefont_wght-webfont.eot);
+    src: url(../fonts/rubik/rubik-italic-variablefont_wght-webfont.eot?#iefix) format('embedded-opentype'),
+         url(../fonts/rubik/rubik-italic-variablefont_wght-webfont.ttf) format('truetype'),
+         url(../fonts/rubik/rubik-italic-variablefont_wght-webfont.svg#rubiklight_italic) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'rubiklight';
+    src: url(../fonts/rubik/rubik-variablefont_wght-webfont.eot);
+    src: url(../fonts/rubik/rubik-variablefont_wght-webfont.eot?#iefix) format('embedded-opentype'),
+         url(../fonts/rubik/rubik-variablefont_wght-webfont.ttf) format('truetype'),
+         url(../fonts/rubik/rubik-variablefont_wght-webfont.svg#rubiklight) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 /* CUSTOM RESETS
 ================================================== */
 a {
