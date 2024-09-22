@@ -96,7 +96,7 @@
                     <img src="/assets/img/Screenshots/donateBackground.webp" loading="lazy" data-fullsrc="$src">
                 </div>
                 <div class="gallery-images-item">
-                    <img src="/assets/img/Screenshots/mainBackground.webp" loading="lazy" data-fullsrc="$src">
+                    <img src="/assets/img/Screenshots/mainBackground.webp" loading="lazy" data-fullsrc="$src" data-description="Scenic mountain landscape at sunset">
                 </div>
                 <div class="gallery-images-item">
                     <img src="/assets/img/Screenshots/downloadBackground.webp" loading="lazy" data-fullsrc="$src">
@@ -162,19 +162,21 @@
         const overlay = document.getElementById('gallery-images-overlay');
         const overlayImage = document.getElementById('gallery-overlay-image');
         const overlayClose = document.querySelector('.gallery-images-overlay-close');
+        const imageDescription = document.getElementById('image-description');
 
-        // Store image sources
         let imageSources = [];
+        let imageDescriptions = [];
         let currentIndex = 0;
 
         galleryItems.forEach((item, index) => {
             const img = item.querySelector('img');
             const fullSrc = img.getAttribute('data-fullsrc').replace('$src', img.src);
+            const description = img.getAttribute('data-description') || '';
             imageSources.push(fullSrc);
+            imageDescriptions.push(description);
             item.addEventListener('click', () => {
                 currentIndex = index;
-                overlayImage.src = fullSrc;
-                overlay.classList.add('show');
+                showImage(currentIndex);
             });
         });
 
@@ -182,6 +184,8 @@
             if (index >= 0 && index < imageSources.length) {
                 currentIndex = index;
                 overlayImage.src = imageSources[currentIndex];
+                imageDescription.textContent = imageDescriptions[currentIndex];
+                overlay.classList.add('show');
             }
         }
 
@@ -195,20 +199,15 @@
             }
         });
 
-        // Handle escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 overlay.classList.remove('show');
             }
-        });
-
-        // Handle arrow navigation
-        document.addEventListener('keydown', (e) => {
             if (overlay.classList.contains('show')) {
                 if (e.key === 'ArrowLeft') {
-                    showImage(currentIndex - 1); // Previous image
+                    showImage(currentIndex - 1);
                 } else if (e.key === 'ArrowRight') {
-                    showImage(currentIndex + 1); // Next image
+                    showImage(currentIndex + 1);
                 }
             }
         });
