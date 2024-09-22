@@ -1155,6 +1155,7 @@ html, body {
 .privacy-policy-hero {
     background: url(../img/Screenshots/policyBackground.webp) no-repeat top / cover;
     box-shadow: inset 0 0 0 20000px rgba(0, 0, 0, 0.3);
+    background-position: center -180px;
     height: 500px;
 }
 
