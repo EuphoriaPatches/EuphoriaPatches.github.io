@@ -1954,7 +1954,7 @@ outline-color: var(--ThemeColor);
     visibility:visible;
 }
 
-/* Media queries for responsive design (grid only) */
+/* Media queries for responsive design */
 @media screen and (max-width: 768px) {
     .gallery-images-grid {
         grid-template-columns: 1fr; /* Single column layout for mobile */
@@ -1965,7 +1965,7 @@ outline-color: var(--ThemeColor);
         border-radius: 20px; /* Slightly reduce border radius for mobile */
     }
     .gallery-image-container {
-        transform: scale(1.5);
+        transform: translate(-50%, -50%) scale(1.15);
     }
     .image-description {
         transform: translateX(-50%) scale(0.3);
