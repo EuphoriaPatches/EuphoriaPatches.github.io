@@ -1144,17 +1144,18 @@ html, body {
 
 .how-to-install-hero {
     background: url(../img/Screenshots/howToInstallBackground.webp) no-repeat center / cover;
-    height: 400px;
+    height: 500px;
 }
 
 .faq-hero {
     background: url(../img/Screenshots/faqBackground.webp) no-repeat center / cover;
-    height: 400px;
+    height: 500px;
 }
 
 .privacy-policy-hero {
-    background: url(../img/screenshots/IceSpikesR.jpg) no-repeat top / cover;
+    background: url(../img/Screenshots/policyBackground.webp) no-repeat top / cover;
     box-shadow: inset 0 0 0 20000px rgba(0, 0, 0, 0.3);
+    height: 500px;
 }
 
 .overlayer {
