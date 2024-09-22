@@ -192,10 +192,10 @@
             const description = imageDescriptions[index];
             if (description) {
                 imageDescription.textContent = description; // Set description
-                imageDescription.classList.add('show'); // Show if description exists
+                imageDescription.style.opacity = '1'; // Make visible
             } else {
                 imageDescription.textContent = ''; // Clear description
-                imageDescription.classList.remove('show'); // Hide the description
+                imageDescription.style.opacity = '0'; // Make invisible
             }
         }
 
