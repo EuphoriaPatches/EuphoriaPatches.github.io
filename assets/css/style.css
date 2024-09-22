@@ -2115,6 +2115,11 @@ a.text-right {
     background-color: #fff;
 }
 
+.text-right a {
+    color: #fff;
+    background-color: #fff;
+}
+
 .copyright p {
     font-family: 'minecraftchmc';
     font-size: 20px;
@@ -2122,12 +2127,9 @@ a.text-right {
     color: var(--VeryLightGray);
 }
 
-.copyright a {
-    font-family: 'minecraftchmc';
-    font-size: 20px;
-    font-weight: 600;
+/*.copyright a {
     color: var(--VeryLightGray);
-}
+}*/
 
 .copyright p + p {
     font-family: 'rubiklight', sans-serif;
