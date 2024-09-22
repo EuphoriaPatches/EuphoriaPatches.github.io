@@ -179,25 +179,31 @@
             const description = img.getAttribute('data-description');
             imageSources.push(fullSrc);
             imageDescriptions.push(description ? description : null);
+
             item.addEventListener('click', () => {
                 currentIndex = index;
                 overlayImage.src = fullSrc;
-                if (description) {
-                    imageDescription.textContent = description; // Set description
-                    imageDescription.classList.add('show'); // Apply show class to fade it in
-                } else {
-                    imageDescription.textContent = ''; // Clear description
-                    imageDescription.classList.remove('show'); // Ensure it fades out
-                }
+                updateDescription(currentIndex);
                 overlay.classList.add('show');
             });
         });
+
+        function updateDescription(index) {
+            const description = imageDescriptions[index];
+            if (description) {
+                imageDescription.textContent = description; // Set description
+                imageDescription.classList.add('show'); // Show if description exists
+            } else {
+                imageDescription.textContent = ''; // Clear description
+                imageDescription.classList.remove('show'); // Hide the description
+            }
+        }
 
         function showImage(index) {
             if (index >= 0 && index < imageSources.length) {
                 currentIndex = index;
                 overlayImage.src = imageSources[currentIndex];
-                if (imageDescriptions[currentIndex]) imageDescription.textContent = imageDescriptions[currentIndex];
+                updateDescription(currentIndex); // Update description when changing image
             }
         }
 
@@ -227,7 +233,7 @@
                     showImage(currentIndex + 1); // Next image
                 }
             }
-        });
+});
     </script>
 
 </body>
