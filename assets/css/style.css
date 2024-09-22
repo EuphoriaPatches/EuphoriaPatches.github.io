@@ -1960,8 +1960,11 @@ outline-color: var(--ThemeColor);
         gap: 15px; /* Reduce gap for smaller screens */
         padding: 15px; /* Reduce padding for smaller screens */
     }
-    .gallery-images-item {
+    .gallery-images-item .gallery-image-container {
         border-radius: 20px; /* Slightly reduce border radius for mobile */
+    }
+    .image-description {
+        transform: scale(0.3);
     }
 }
 
