@@ -166,23 +166,29 @@
         const overlay = document.getElementById('gallery-images-overlay');
         const overlayImage = document.getElementById('gallery-overlay-image');
         const overlayClose = document.querySelector('.gallery-images-overlay-close');
-        const imageDescription = document.getElementById('image-description'); // New line
+        const imageDescription = document.getElementById('image-description');
 
         // Store image sources and descriptions
         let imageSources = [];
-        let imageDescriptions = []; // New line
+        let imageDescriptions = [];
         let currentIndex = 0;
 
         galleryItems.forEach((item, index) => {
             const img = item.querySelector('img');
             const fullSrc = img.getAttribute('data-fullsrc').replace('$src', img.src);
-            const description = img.getAttribute('data-description') || ''; // New line
+            const description = img.getAttribute('data-description');
             imageSources.push(fullSrc);
-            imageDescriptions.push(description); // New line
+            imageDescriptions.push(description ? description : null);
             item.addEventListener('click', () => {
                 currentIndex = index;
                 overlayImage.src = fullSrc;
-                imageDescription.textContent = description; // New line
+                if (description) {
+                    imageDescription.textContent = description; // Set description
+                    imageDescription.classList.add('show'); // Apply show class to fade it in
+                } else {
+                    imageDescription.textContent = ''; // Clear description
+                    imageDescription.classList.remove('show'); // Ensure it fades out
+                }
                 overlay.classList.add('show');
             });
         });
@@ -191,7 +197,7 @@
             if (index >= 0 && index < imageSources.length) {
                 currentIndex = index;
                 overlayImage.src = imageSources[currentIndex];
-                imageDescription.textContent = imageDescriptions[currentIndex]; // New line
+                if (imageDescriptions[currentIndex]) imageDescription.textContent = imageDescriptions[currentIndex];
             }
         }
 
