@@ -48,7 +48,7 @@
     --Gray: rgb(42, 44, 52);
     --VeryLightGray: rgb(254, 254, 254);
     --LinkColor: rgb(144, 100, 255);
-    --ScreenshotOverlayColor: rgba(0, 0, 0, 0.5);
+    --ScreenshotOverlayColor: rgba(0, 0, 0, 0.33);
 }
 
 @font-face {
@@ -1113,10 +1113,6 @@ html, body {
     color: var(--ThemeColor);
 }
 
-.changelogs-hero {
-    height: 530px;
-}
-
 .changelogs-hero .hero-content,
 .changelogs-hero .hero-content h1,
 .changelogs-hero a  {
@@ -1143,10 +1139,16 @@ html, body {
 .changelogs-hero {
     background: url(../img/Screenshots/changelogsBackground.webp) no-repeat top / cover;
     background-position: center -180px;
+    height: 530px
 }
 
 .how-to-install-hero {
     background: url(../img/Screenshots/howToInstallBackground.webp) no-repeat center / cover;
+    height: 400px;
+}
+
+.faq-hero {
+    background: url(../img/Screenshots/faqBackground.webp) no-repeat center / cover;
     height: 400px;
 }
 
