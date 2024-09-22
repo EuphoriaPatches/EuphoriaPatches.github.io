@@ -2110,6 +2110,10 @@ a.twitter-bg:hover {
     color: #fff;
 }
 
+a.text-right {
+    color: #fff;
+}
+
 .copyright p {
     font-family: 'minecraftchmc';
     font-size: 20px;
