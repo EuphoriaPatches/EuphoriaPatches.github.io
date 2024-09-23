@@ -1427,6 +1427,10 @@ table, th, td {
     margin-bottom: 50px;
 }
 
+.larger-text-EP-desc {
+    font-size: 18px;
+}
+
 .section-how-install {
     width: 45%;
     min-width: fit-content;
