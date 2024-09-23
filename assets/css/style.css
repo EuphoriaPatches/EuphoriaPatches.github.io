@@ -1086,7 +1086,7 @@ html, body {
 }
 
 .subpage-hero.overlay-main:before {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .subpage-hero .hero-content,
