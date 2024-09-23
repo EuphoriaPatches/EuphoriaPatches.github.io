@@ -1409,27 +1409,32 @@ table, th, td {
     text-align: center;
     cursor: pointer;
     background-color: rgb(26, 26, 35);
-
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
+.section-what-is-EP-desc {
+    width: 45%; /* Ensure this matches the box's width */
+    float: left; /* Keep the description next to the box */
+    margin-left: 20px; /* Adjust this for spacing */
+}
+
 .section-what-is-EP-desc p {
-    float: right;
     position: relative;
     padding-left: 20px;
     margin-top: 20px;
     font-size: 16px;
-    color: var(--VeryLightGray);;
-    max-width: 55%;
+    color: var(--VeryLightGray);
+    max-width: 100%; /* Use full width */
     min-width: 340px;
     margin-bottom: 50px;
 }
 
 .larger-text-EP-desc {
     font-size: 17px;
-    margin-top: 2em;
+    margin-top: 0.5em; /* Adjust as needed */
+    display: block; /* Ensures it behaves like a block element */
 }
 
 .section-how-install {
