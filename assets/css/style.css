@@ -1402,24 +1402,10 @@ table, th, td {
     width: 45%;
     float: left;
     min-width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-left: -20px;
     margin-right: -20px;
-    padding: 0px 15px;
-    text-align: center;
-    cursor: pointer;
-    background-color: rgb(26, 26, 35);
-
-    border-radius: 10px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
-}
-
-.section-how-install {
-    width: 45%;
-    min-width: fit-content;
-    margin: 0 auto 20px auto; /* Horizontally centers the element */
-    padding: 0px 15px;
+    padding: 50px 15px;
     text-align: center;
     cursor: pointer;
     background-color: rgb(26, 26, 35);
@@ -1439,6 +1425,20 @@ table, th, td {
     max-width: 55%;
     min-width: 340px;
     margin-bottom: 50px;
+}
+
+.section-how-install {
+    width: 45%;
+    min-width: fit-content;
+    margin: 0 auto 20px auto; /* Horizontally centers the element */
+    padding: 0px 15px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(26, 26, 35);
+
+    border-radius: 10px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    transition: outline-color 0.25s ease-in-out;
 }
 
 .section-click-box:hover {
