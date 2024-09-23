@@ -1426,7 +1426,7 @@ table, th, td {
     margin-top: 20px;
     font-size: 16px;
     color: var(--VeryLightGray);
-    max-width: 55%;
+    max-width: 100%; /* Use full width */
     min-width: 340px;
     margin-bottom: 50px;
 }
