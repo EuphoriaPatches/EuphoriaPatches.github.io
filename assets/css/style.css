@@ -1409,13 +1409,14 @@ table, th, td {
     text-align: center;
     cursor: pointer;
     background-color: rgb(26, 26, 35);
-
+    
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
 .section-what-is-EP-desc {
+    width: 55%; /* Ensure this matches the box's width */
     float: left; /* Keep the description next to the box */
     margin-left: 20px; /* Adjust this for spacing */
 }
