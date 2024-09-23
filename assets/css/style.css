@@ -1085,10 +1085,6 @@ html, body {
     background-color: var(--ScreenshotOverlayColor);
 }
 
-.subpage-hero.overlay-main:before {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
 .subpage-hero .hero-content,
 .subpage-hero .hero-content h1,
 .subpage-hero a  {
