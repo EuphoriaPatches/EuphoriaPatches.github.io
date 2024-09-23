@@ -1428,7 +1428,8 @@ table, th, td {
 }
 
 .larger-text-EP-desc {
-    font-size: 18px;
+    font-size: 17px;
+    margin-top: 2px;
 }
 
 .section-how-install {
