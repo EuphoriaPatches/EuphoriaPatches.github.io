@@ -1622,8 +1622,9 @@ table, th, td {
 
 @media (max-width: 768px) {
     .main-banner-box-container {
-        max-width: 85vw;
+        max-width: 90vw;
         left: 0; /* Center on medium screens */
+        margin: 0px;
     }
 
     .main-banner-box {
@@ -1639,8 +1640,9 @@ table, th, td {
 
 @media (max-width: 480px) {
     .main-banner-box-container {
-        max-width: 80vw;
+        max-width: 85vw;
         left: 0; /* Center on small screens */
+        margin: 0px;
     }
 
     .main-banner-box {
