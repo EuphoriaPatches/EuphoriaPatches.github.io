@@ -93,7 +93,7 @@
     <div id="hero" class="hero overlay how-to-install-hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>How To Install Euphoria Patches</h1>
+                <h1 id="pageTitle"></h1>
             </div><!-- /.hero-text -->
         </div><!-- /.hero-content -->
     </div><!-- /.hero -->
@@ -101,24 +101,34 @@
     <main id="main" class="site-main">
         <section class="site-section gray-bg">
             <div class="container section-indented-container">
-                <h2>The Mod Method</h2>
+                <h2 id="modMethodTitle"></h2>
                 <ol class="section-install-instructions">
-                    <li>Get the required Complementary version and put it in the shaderpacks folder (<strong>don't unzip, modify or rename it</strong>).
+                    <li id="step1">
+                        <span id="step1Text"></span>
+                        <strong id="step1AfterText"></strong>
                         <ul>
-                            <li>Works with Complementary (<a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a> or <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a>)</li>
+                            <li>
+                                <span id="substep1_1"></span>
+                                <span>(</span><a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a>
+                                <span id="substep1_or"></span>
+                                <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
+                            </li>
                         </ul>
                     </li>
-                    <li>Get the latest <a href="https://modrinth.com/mod/euphoria-patches" target="_blank">EuphoriaPatcher</a> mod file and put it in your mods folder
+                    <li id="step2">
+                        <span id="step2TextBefore"></span>
+                        <a href="https://modrinth.com/mod/euphoria-patches" target="_blank">EuphoriaPatcher</a>
+                        <span id="step2TextAfter"></span>
                     </li>
-                    <li>Launch the game with either: Fabric | Quilt | Forge | NeoForge</li>
-                    <li>Complementary Shaders + Euphoria Patches will now appear in your shaderpacks folder</li>
+                    <li id="step3"></li>
+                    <li id="step4"></li>
                 </ol>
-                <p>For unsupported Minecraft versions, use the patcher with a newer Minecraft version, generate Euphoria Patches and then copy the generated shaderpack folder to the unsupported instance afterwards.</p>
-
+                <p id="unsupportedVersions"></p>
+                
                 <br><br>
 
                 <section class="section-downloads">
-                    <a href="/download" class="btn btn-installer" style="width: 300px; float: left; --ThemeColor: var(--EuphoriaMagenta);">Go To The Downloads Page</a>
+                    <a href="/download" class="btn btn-installer" style="width: 300px; float: left; --ThemeColor: var(--EuphoriaMagenta);" id="downloadPageButton"></a>
                 </section><!-- /.section-downloads -->
 
                 <br><br><br><br>
@@ -133,13 +143,17 @@
                     </script>
                 </div>-->
 
-                <h2>The Installer Method</h2>
+                <h2 id="installerMethodTitle"></h2>
                 <ol class="section-install-instructions">
-                    <li>Go to <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders/</a> and download the installer.</li>
-                    <li>Open the installer by double-clicking the downloaded file</li>
-                    <li>Now click on "Advanced Settings"</li>
-                    <li>Check the "Install Euphoria Patches" checkbox</li>
-                    <li>Click on install, Complementary Shaders + Euphoria Patches will now appear in your shaderpacks folder</li>
+                    <li id="installerStep1">
+                        <span id="installerStep1TextBefore"></span>
+                        <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders</a>
+                        <span id="installerStep1TextAfter"></span>
+                    </li>
+                    <li id="installerStep2"></li>
+                    <li id="installerStep3"></li>
+                    <li id="installerStep4"></li>
+                    <li id="installerStep5"></li>
                 </ol>
             </div>
         </section>
@@ -179,6 +193,68 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+
+    <script>
+    function getBrowserLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+    function updateMainContent() {
+        const browserLanguage = getBrowserLanguage().split('-')[0];
+        const translationsPath = `translations/${browserLanguage}.json`;
+        const fallbackPath = 'translations/en.json'; 
+
+        fetch(translationsPath)
+            .then(response => {
+                if (!response.ok) {
+                    // If the language file is not found, fetch the fallback
+                    return fetch(fallbackPath);
+                }
+                return response; // Return the original response if ok
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Translation file not found');
+                }
+                return response.json(); // Parse the JSON
+            })
+            .then(data => {
+                document.getElementById('pageTitle').textContent = data.pageTitle;
+
+                document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
+                document.getElementById('step1Text').textContent = data.step1;
+                document.getElementById('step1AfterText').textContent = data.step1After;
+                document.getElementById('substep1_1').textContent = data.substep1_1;
+                document.getElementById('substep1_or').textContent = data.or;
+
+                document.getElementById('step2TextBefore').textContent = data.step2Before;
+                document.getElementById('step2TextAfter').textContent = data.step2After;
+
+                document.getElementById('step3').textContent = data.step3;
+                document.getElementById('step4').textContent = data.step4;
+
+                document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
+
+                document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
+
+                document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
+                document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
+                document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
+                document.getElementById('installerStep2').textContent = data.installerStep2;
+                document.getElementById('installerStep3').textContent = data.installerStep3;
+                document.getElementById('installerStep4').textContent = data.installerStep4;
+                document.getElementById('installerStep5').textContent = data.installerStep5;
+            })
+            .catch(error => {
+                console.error('Error fetching translation file:', error);
+                // Optionally handle errors, e.g., show a default message
+            });
+    }
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+    updateMainContent();
+    });
+
+    </script>
   
 </body>
 </html>

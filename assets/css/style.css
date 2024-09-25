@@ -919,14 +919,6 @@ html, body {
     outline-color: var(--ThemeColor);
 }
 
-.index-reimagined {
-    background: url(../img/newScreenshots/4.jpg) no-repeat top / cover;
-}
-
-.index-v4 {
-    background: url(../img/v4image.jpg) no-repeat top / cover;
-}
-
 .index-shader h2 {
     font-family: 'minecraftchmc';
     position: relative;
