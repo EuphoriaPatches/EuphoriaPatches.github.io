@@ -390,6 +390,36 @@
                 }
             }
 });
+
+// Swipe functionality for mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Function to handle swipe detection
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum swipe distance to trigger navigation
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe left (next image)
+            showImage(currentIndex + 1);
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe right (previous image)
+            showImage(currentIndex - 1);
+        }
+    }
+
+    // Add touch event listeners to the overlay
+    overlay.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX; // Get the starting X position of the touch
+    });
+
+    overlay.addEventListener('touchmove', (e) => {
+        touchEndX = e.changedTouches[0].screenX; // Continuously update the ending X position
+    });
+
+    overlay.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX; // Get the final X position
+        handleSwipe(); // Check if a swipe was detected
+    });
     </script>
 
 </body>
