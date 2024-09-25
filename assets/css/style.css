@@ -993,6 +993,11 @@ html, body {
     text-align: center;
 }
 
+.invisible-header {
+    opacity: 0;
+    cursor: default;
+}
+
 .hero-shader-text {
     text-shadow:
     0.5px 1px 0 #000,
