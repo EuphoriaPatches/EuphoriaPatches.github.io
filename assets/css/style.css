@@ -1518,13 +1518,13 @@ table, th, td {
     max-width: 90vw;
     margin: 20px;
     left: 820px; /* Default offset */
-    top: 2px;
+    top: -10px;
     transition: left 0.3s ease; /* Smooth transition for centering */
     transform: rotate(-1.3deg);
 }
 
 .main-banner-box {
-    border: 5px solid rgba(255, 255, 255, 0.45);
+    border: 5px solid rgba(255, 255, 255, 0.6);
     border-radius: 25px;
     background-color: transparent;
     transition: border-color 0.3s ease, transform 0.3s ease;
