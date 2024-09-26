@@ -52,13 +52,12 @@
 }
 
 @font-face {
-    font-family: 'minecraftchmc';
-    src: url(../fonts/minecraftchmc-dblx-webfont.eot);
-    src: url(../fonts/minecraftchmc-dblx-webfont.eot?#iefix) format('embedded-opentype'),
-         url(../fonts/minecraftchmc-dblx-webfont.ttf) format('truetype'),
-         url(../fonts/minecraftchmc-dblx-webfont.svg#minecraftchmcmedium) format('svg');
+    font-family: 'monocraft';
+    src: url(../fonts/Monocraft-Light.otf) format('opentype');
+    src: url(../fonts/Monocraft-Light.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
+    letter-spacing:2px;
 }
 
 /* CUSTOM RESETS
@@ -522,10 +521,11 @@ select {
     transition: 0.4s;
     border: 2px solid var(--DarkGray);
     
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
     font-size: 26px;
     line-height: 36px;
     color: var(--VeryLightGray);
+    letter-spacing:-0.5px;
 }
 
 .aactive, .aaccordion:hover {
@@ -705,7 +705,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'rubiklight', sans-serif;
-    /*font-family: 'minecraftchmc';*/
+    /*font-family: 'monocraft';*/
     background-color: var(--VeryDarkGray);
     color: var(--VeryLightGray);
     
@@ -748,7 +748,7 @@ html, body {
 
 /* Site-logo */
 .site-title {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
     font-size: 20px;
     line-height: 26px;
     color: var(--VeryLightGray);
@@ -907,78 +907,6 @@ html, body {
   z-index: 0;
 }
 
-.index-shader-container {
-    display: block;
-}
-
-.index-shader {
-    width: 45%;
-    float: left;
-    min-width: fit-content;
-    margin-bottom: 20px;
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 0px 15px;
-    text-align: center;
-}
-
-.index-shader:hover {
-    outline-color: var(--ThemeColor);
-}
-
-.index-shader h2 {
-    font-family: 'minecraftchmc';
-    position: relative;
-    margin: 0;
-    color: var(--VeryLightGray);;
-    font-size: 35px;
-    padding-bottom: 10px;
-    line-height: 360%;
-    text-shadow:
-    0.5px 1px 0 #000,
-    1px 0.5px 0 #000,
-    1px 1px 0 #000,
-    1px 1.5px 0 #000,
-    1.5px 1px 0 #000,
-    1.5px 1.5px 0 #000;
-}
-
-.index-shader p {
-    position: relative;
-    margin: 30px 0 30px;
-    font-size: 20px;
-    color: var(--VeryLightGray);;
-    max-width: 100%;
-}
-
-.index-shader-desc p {
-    float: right;
-    position: relative;
-    padding-left: 20px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: var(--VeryLightGray);;
-    max-width: 55%;
-    min-width: 340px;
-    margin-bottom: 50px;
-}
-
-.index-shader .btn {
-    position: relative;
-    margin: 5px;
-    background-color: transparent;
-    max-width: 100%;
-}
-
-.index-shader .btn:focus {
-    color: var(--VeryLightGray);
-}
-.index-shader .btn:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-    color: var(--ThemeColor);
-    border-color: var(--VeryLightGray);
-}
-
 .hero-content {
     display: table-cell;
     vertical-align: middle;
@@ -1017,18 +945,20 @@ html, body {
 }
 
 .hero-text h1 {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);;
+    letter-spacing:-2.5px;
 }
 
 .hero-text h2 {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);;
     font-size: 40px;
+    letter-spacing:-2.5px;
 }
 
 .hero-text p {
@@ -1301,6 +1231,10 @@ table, th, td {
     color: var(--VeryLightGray);
     /* text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
     background-color: var(--VeryDarkGray);
+
+    min-width: 300px;
+    padding: 20px 20px;
+    display: inline-block;
 }
 .section-downloads .btn-installer:hover {
     color: var(--ThemeColor);
@@ -1355,7 +1289,8 @@ table, th, td {
 }
 
 .section-indented-container h2 {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
+    letter-spacing:-2.5px;
     position: relative;
     margin: 30px;
     color: var(--VeryLightGray);
@@ -1405,7 +1340,6 @@ table, th, td {
     padding: 50px 15px;
     text-align: center;
     cursor: pointer;
-    background-color: rgb(26, 26, 35);
     
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
@@ -1442,15 +1376,21 @@ table, th, td {
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
-    background-color: rgb(26, 26, 35);
 
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
 }
 
+.section-click-box {
+    outline-color: rgb(81, 81, 81);
+    background-color: rgb(26, 26, 35);
+}
+
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.55) inset,
+    -8px -8px 8px rgba(255, 255, 255, 0.2) inset;
 }
 
 .section-patreon_img {
@@ -1462,7 +1402,8 @@ table, th, td {
 }
 
 .section-click-box h2 {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
+    letter-spacing:-1.5px;
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);;
@@ -1478,6 +1419,10 @@ table, th, td {
     1.5px 1.5px 0 #000;
 }
 
+.section-what-is-EP h2 {
+    letter-spacing:-3.5px;
+}
+
 .section-click-box .btn:focus {
     color: var(--VeryLightGray);
 }
@@ -1488,19 +1433,25 @@ table, th, td {
 }
 
 @media (max-width: 768px) {
-    .section-donation, .section-donation-kofi {
+    .section-click-box {
         width: 90%; /* Full width for medium screens */
         float: none; /* Remove float */
         margin-left: auto;
         margin-right: auto; /* Center-align on medium screens */
     }
+    .section-what-is-EP-desc {
+        margin-left: 0px;
+    }
 }
 
 @media (max-width: 480px) {
-    .section-donation, .section-donation-kofi {
+    .section-click-box {
         width: 100%; /* Full width on small screens */
         margin-left: 0;
         margin-right: 0; /* Remove horizontal margins for small screens */
+    }
+    .section-what-is-EP-desc {
+        margin-left: 0px;
     }
 }
 
@@ -1794,13 +1745,13 @@ table, th, td {
 
 .section-gallery {
     display: flex;
-    justify-content: center; /* Horizontally centers the box */
+    justify-content: center;
 }
 
 .gallery-box {
     position: relative;
-    width: 600px; /* Adjust size as needed */
-    height: 300px; /* Adjust size as needed */
+    width: 600px;
+    height: 300px;
     border-radius: 20px;
     overflow: hidden;
     background-color: var(--VeryVeryDarkGray);
@@ -1808,7 +1759,7 @@ table, th, td {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; /* Ensures horizontal centering if needed */
+    margin: 0 auto;
     cursor: pointer;
 
     outline: 5px solid rgba(0, 0, 0, 0);
@@ -1820,7 +1771,8 @@ outline-color: var(--ThemeColor);
 }
 
 .gallery-title {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
+    letter-spacing:-0.5px;
     position: absolute;
     color: var(--VeryLightGray);;
 
@@ -2116,7 +2068,7 @@ a.twitter-bg:hover {
 }
 
 .copyright p {
-    font-family: 'minecraftchmc';
+    font-family: 'monocraft';
     font-size: 20px;
     font-weight: 600;
     color: var(--VeryLightGray);
