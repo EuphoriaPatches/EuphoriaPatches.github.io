@@ -1362,7 +1362,7 @@ table, th, td {
 .section-what-is-EP-desc p {
     position: relative;
     padding-left: 20px;
-    margin-top: 20px;
+    margin-top: 8px;
     font-size: 16px;
     color: var(--VeryLightGray);
     max-width: 100%; /* Use full width */
