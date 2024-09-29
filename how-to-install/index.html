@@ -203,10 +203,14 @@
         const browserLanguage = getBrowserLanguage();
         const [baseLanguage, variant] = browserLanguage.split('-');
 
+        // Convert both baseLanguage and variant to lowercase
+        const lowerCaseBaseLanguage = baseLanguage.toLowerCase();
+        const lowerCaseVariant = variant ? variant.toLowerCase() : '';
+
         const translationFiles = [
-            `${browserLanguage}.json`,  // e.g., pt-br.json
-            `${baseLanguage}.json`,     // e.g., pt.json
-            'en.json'                   // Fallback to English
+            `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
+            `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
+            'en.json'                                            // Fallback to English
         ];
 
         function tryNextFile(index) {
