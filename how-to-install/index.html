@@ -200,59 +200,70 @@
         return navigator.language || navigator.userLanguage;
     }
     function updateMainContent() {
-        const browserLanguage = getBrowserLanguage().split('-')[0];
-        const translationsPath = `translations/${browserLanguage}.json`;
-        const fallbackPath = 'translations/en.json'; 
+        const browserLanguage = getBrowserLanguage();
+        const [baseLanguage, variant] = browserLanguage.split('-');
+        
+        // Array of translation files to try, in order of preference
+        const translationFiles = [
+            `${browserLanguage}.json`,  // e.g., pt-br.json
+            `${baseLanguage}.json`,     // e.g., pt.json
+            'en.json'                   // Fallback to English
+        ];
 
-        fetch(translationsPath)
-            .then(response => {
-                if (!response.ok) {
-                    return fetch(fallbackPath);
-                }
-                return response;
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Translation file not found');
-                }
-                return response.json(); // Parse the JSON
-            })
-            .then(data => {
-                document.getElementById('pageTitle').textContent = data.pageTitle;
+        function tryNextFile(index) {
+            if (index >= translationFiles.length) {
+                console.error('No translation file found');
+                return;
+            }
 
-                document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
-                document.getElementById('step1Text').textContent = data.step1;
-                document.getElementById('step1AfterText').textContent = data.step1After;
-                document.getElementById('substep1_1').textContent = data.substep1_1;
-                document.getElementById('substep1_or').textContent = data.or;
+            const filePath = `translations/${translationFiles[index]}`;
+            
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Translation file not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('pageTitle').textContent = data.pageTitle;
 
-                document.getElementById('step2TextBefore').textContent = data.step2Before;
-                document.getElementById('step2TextAfter').textContent = data.step2After;
+                    document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
+                    document.getElementById('step1Text').textContent = data.step1;
+                    document.getElementById('step1AfterText').textContent = data.step1After;
+                    document.getElementById('substep1_1').textContent = data.substep1_1;
+                    document.getElementById('substep1_or').textContent = data.or;
 
-                document.getElementById('step3').textContent = data.step3;
-                document.getElementById('step4').textContent = data.step4;
+                    document.getElementById('step2TextBefore').textContent = data.step2Before;
+                    document.getElementById('step2TextAfter').textContent = data.step2After;
 
-                document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
+                    document.getElementById('step3').textContent = data.step3;
+                    document.getElementById('step4').textContent = data.step4;
 
-                document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
+                    document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
 
-                document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
-                document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
-                document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
-                document.getElementById('installerStep2').textContent = data.installerStep2;
-                document.getElementById('installerStep3').textContent = data.installerStep3;
-                document.getElementById('installerStep4').textContent = data.installerStep4;
-                document.getElementById('installerStep5').textContent = data.installerStep5;
-            })
-            .catch(error => {
-                console.error('Error fetching translation file:', error);
-            });
+                    document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
+
+                    document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
+                    document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
+                    document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
+                    document.getElementById('installerStep2').textContent = data.installerStep2;
+                    document.getElementById('installerStep3').textContent = data.installerStep3;
+                    document.getElementById('installerStep4').textContent = data.installerStep4;
+                    document.getElementById('installerStep5').textContent = data.installerStep5;
+                })
+                .catch(error => {
+                    console.warn(`Error fetching ${filePath}:`, error);
+                    tryNextFile(index + 1);
+                });
+        }
+
+        tryNextFile(0);
     }
     // Call the function when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-    updateMainContent();
+        updateMainContent();
     });
-
     </script>
   
 </body>
