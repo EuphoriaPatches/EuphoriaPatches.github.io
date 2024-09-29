@@ -196,36 +196,36 @@
     
     <!-- Banner Image JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const boxContainer = document.querySelector('.main-banner-box-container');
-            const popupContainer = document.querySelector('.popup-container');
+    document.addEventListener("DOMContentLoaded", function() {
+        const boxContainer = document.querySelector('.main-banner-box-container');
+        const popupContainer = document.querySelector('.popup-container');
+        
+        function adjustPosition() {
+            const containerWidth = boxContainer.offsetWidth;
+            const viewportWidth = window.innerWidth;
+
+            const offsetX = (viewportWidth - containerWidth) / 2;
             
-            function adjustPosition() {
-                const containerWidth = boxContainer.offsetWidth;
-                const viewportWidth = window.innerWidth;
-
-                const offsetX = (viewportWidth - containerWidth) / 2;
-                
-                if (containerWidth + 820 > viewportWidth) {
-                    boxContainer.style.left = `${offsetX}px`;
-                    boxContainer.style.transform = 'rotate(0deg)';
-                    popupContainer.style.transform = 'rotate(0deg) translateX(-50%)';
-                } else {
-                    boxContainer.style.left = '820px';
-                    boxContainer.style.transform = 'rotate(-1.3deg)';
-                    popupContainer.style.transform = 'rotate(1.3deg) translateX(-50%)';
-                }
-
-                // Calculate the height of the popup container
-                const popupHeight = popupContainer.offsetHeight + 30;
-
-                // Adjust the position of the popup container based on its height
-                popupContainer.style.bottom = `-${popupHeight}px`;
+            if (containerWidth + 820 > viewportWidth) {
+                boxContainer.style.left = `${offsetX}px`;
+                boxContainer.style.transform = 'rotate(0deg)';
+                popupContainer.style.transform = 'translateX(-50%) scale(0.7)';
+            } else {
+                boxContainer.style.left = '820px';
+                boxContainer.style.transform = 'rotate(-1.3deg)';
+                popupContainer.style.transform = 'translateX(-50%) scale(0.7) rotate(1.3deg)';
             }
-            
-            adjustPosition();
-            window.addEventListener('resize', adjustPosition);
-        });
+
+            // Calculate the height of the popup container
+            const popupHeight = popupContainer.offsetHeight + 15;
+
+            // Adjust the position of the popup container based on its height
+            popupContainer.style.bottom = `-${popupHeight}px`;
+        }
+        
+        adjustPosition();
+        window.addEventListener('resize', adjustPosition);
+    });
     </script>
   
 </body>

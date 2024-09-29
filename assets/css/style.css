@@ -1382,6 +1382,38 @@ table, th, td {
     display: block; /* Ensures it behaves like a block element */
 }
 
+.larger-text-EP-desc a {
+    animation: background-text-gradient 3s linear infinite;
+    background: linear-gradient(
+        to right,
+        rgb(236, 87, 236),
+        orange
+    );
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+.larger-text-EP-desc a:hover {
+    background: var(--ThemeColor);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes background-text-gradient {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+    
+}
+
 .section-how-install {
     width: 45%;
     min-width: fit-content;
@@ -1521,37 +1553,103 @@ table, th, td {
 
 /*Download Image Click*/
 
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.015);
+    }
+}
+
 .main-banner-box-container {
-    position: relative; /* Allows positioning adjustments */
+    position: relative;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: max-content; /* Ensure container only wraps around the box */
+    width: max-content;
     max-width: 90vw;
     margin: 20px;
-    left: 820px; /* Default offset */
+    left: 820px;
     top: -10px;
-    transition: left 0.3s ease; /* Smooth transition for centering */
-    transform: rotate(-1.3deg);
+    transition: left 0.3s ease, transform 0.3s ease;
 }
 
 .main-banner-box {
-    border: 5px solid rgba(255, 255, 255, 0.6);
+    position: relative;
     border-radius: 25px;
-    background-color: transparent;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    padding: 1rem;
+    max-width: 100%;
+    max-height: 80vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
-    max-height: 80vh;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 45deg;
+    inherits: false;
+}
+
+.main-banner-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 7px; /* Thickness of the border */
+    background: conic-gradient(from var(--angle), rgb(173, 38, 173), orange, rgb(173, 38, 173));
+    opacity: 0.7;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; 
+            mask-composite: exclude; 
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none; /* Allows clicks to pass through the border */
+    animation: 3s spin linear;
+}
+
+.main-banner-content {
+    position: relative;
+    z-index: 1; /* Ensures content is above the pseudo-element */
+    background: transparent;
 }
 
 .main-banner-box:hover {
     border-color: var(--ThemeColor);
-    transform: rotate(0.5deg) scale(1.05);
+    animation: pulse 2s infinite ease-in-out, hover 0.3s forwards;
+}
+
+.main-banner-box:hover::before {
+    opacity: 1.0;
+    animation: 1.5s spin linear infinite;
+}
+
+@keyframes spin{
+    from{
+      --angle: 45deg;
+      opacity: 1.0;
+    }
+    to{
+      --angle: 405deg;
+      opacity: 0.7;
+    }
+  }
+
+@keyframes hover {
+    to {
+        transform: scale(1.05);
+    }
 }
 
 .main-banner-box img {
@@ -1562,7 +1660,7 @@ table, th, td {
 
 .popup-container {
     position: absolute;
-    bottom: -75px; /* Ensure popup is below the box */
+    bottom: -75px;
     left: 50%;
     transform: translateX(-50%) scale(0.7) rotate(1.3deg);
     background-color: rgba(0, 0, 0, 0.7);
@@ -1572,22 +1670,22 @@ table, th, td {
     opacity: 0;
     transition: opacity 0.3s ease, bottom 0.3s ease;
     pointer-events: none;
-    white-space: nowrap; /* Keep text on a single line */
+    white-space: nowrap;
     text-align: center;
-    width: auto; /* Allow width to adjust based on content */
-    max-width: 90vw; /* Limit width to prevent overflow */
-    box-sizing: border-box; /* Include padding and border in element’s total width and height */
+    width: auto;
+    max-width: 90vw;
+    box-sizing: border-box;
 }
 
 .main-banner-box-container:hover .popup-container {
     opacity: 1;
-    bottom: -75px; /* Ensure popup is below the box on hover */
+    bottom: -75px;
 }
 
 @media (max-width: 768px) {
     .main-banner-box-container {
         max-width: 90vw;
-        left: 0; /* Center on medium screens */
+        left: 0;
         margin: 0px;
     }
 
@@ -1596,7 +1694,7 @@ table, th, td {
     }
 
     .popup-container {
-        white-space: normal; /* Allow wrapping on smaller screens */
+        white-space: normal;
         font-size: 14px;
         padding: 8px 16px;
     }
@@ -1605,7 +1703,7 @@ table, th, td {
 @media (max-width: 480px) {
     .main-banner-box-container {
         max-width: 85vw;
-        left: 0; /* Center on small screens */
+        left: 0;
         margin: 0px;
     }
 
@@ -1614,7 +1712,7 @@ table, th, td {
     }
 
     .popup-container {
-        white-space: normal; /* Allow wrapping on very small screens */
+        white-space: normal;
         font-size: 12px;
         padding: 6px 12px;
     }
