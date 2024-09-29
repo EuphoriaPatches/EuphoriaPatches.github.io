@@ -2599,3 +2599,16 @@ a.twitter-bg:hover {
     padding-bottom: 22px;
     text-align: center;
 }
+
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+body.rtl .site-navigation .nav > li {
+    float: right;
+}
+
+body.rtl .hero-text {
+    text-align: right;
+}

@@ -202,8 +202,7 @@
     function updateMainContent() {
         const browserLanguage = getBrowserLanguage();
         const [baseLanguage, variant] = browserLanguage.split('-');
-        
-        // Array of translation files to try, in order of preference
+
         const translationFiles = [
             `${browserLanguage}.json`,  // e.g., pt-br.json
             `${baseLanguage}.json`,     // e.g., pt.json
@@ -217,7 +216,7 @@
             }
 
             const filePath = `translations/${translationFiles[index]}`;
-            
+
             fetch(filePath)
                 .then(response => {
                     if (!response.ok) {
@@ -251,6 +250,14 @@
                     document.getElementById('installerStep3').textContent = data.installerStep3;
                     document.getElementById('installerStep4').textContent = data.installerStep4;
                     document.getElementById('installerStep5').textContent = data.installerStep5;
+
+                    if (data.isRightToLeft) {
+                        document.body.dir = 'rtl';
+                        document.body.style.textAlign = 'right';
+                    } else {
+                        document.body.dir = 'ltr';
+                        document.body.style.textAlign = 'left';
+                    }
                 })
                 .catch(error => {
                     console.warn(`Error fetching ${filePath}:`, error);
