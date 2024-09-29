@@ -207,9 +207,9 @@
         const lowerCaseVariant = variant ? variant.toLowerCase() : '';
 
         const translationFiles = [
-            // `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
-            // `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
-            'he.json'                                            // Fallback to English
+            `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
+            `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
+            'en.json'                                            // Fallback to English
         ];
 
         function tryNextFile(index) {
