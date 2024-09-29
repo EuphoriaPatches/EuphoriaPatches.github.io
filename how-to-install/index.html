@@ -207,9 +207,9 @@
         const lowerCaseVariant = variant ? variant.toLowerCase() : '';
 
         const translationFiles = [
-            `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
-            `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
-            'en.json'                                            // Fallback to English
+            // `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
+            // `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
+            'he.json'                                            // Fallback to English
         ];
 
         function tryNextFile(index) {
@@ -255,11 +255,11 @@
                     document.getElementById('installerStep5').textContent = data.installerStep5;
 
                     if (data.isRightToLeft) {
-                        document.body.dir = 'rtl';
-                        document.body.style.textAlign = 'right';
+                        document.getElementById('main').style.direction = 'rtl';
+                        document.getElementById('main').classList.add('text-right'); // Optional, if you want text alignment
                     } else {
-                        document.body.dir = 'ltr';
-                        document.body.style.textAlign = 'left';
+                        document.getElementById('main').style.direction = 'ltr';
+                        document.getElementById('main').classList.remove('text-right');
                     }
                 })
                 .catch(error => {
