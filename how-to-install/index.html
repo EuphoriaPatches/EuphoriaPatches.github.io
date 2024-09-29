@@ -221,51 +221,51 @@
             const filePath = `translations/${translationFiles[index]}`;
 
             fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Translation file not found');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    document.getElementById('pageTitle').textContent = data.pageTitle;
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Translation file not found');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('pageTitle').textContent = data.pageTitle;
 
-                    document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
-                    document.getElementById('step1Text').textContent = data.step1;
-                    document.getElementById('step1AfterText').textContent = data.step1After;
-                    document.getElementById('substep1_1').textContent = data.substep1_1;
-                    document.getElementById('substep1_or').textContent = data.or;
+                document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
+                document.getElementById('step1Text').textContent = data.step1;
+                document.getElementById('step1AfterText').textContent = data.step1After;
+                document.getElementById('substep1_1').textContent = data.substep1_1;
+                document.getElementById('substep1_or').textContent = data.or;
 
-                    document.getElementById('step2TextBefore').textContent = data.step2Before;
-                    document.getElementById('step2TextAfter').textContent = data.step2After;
+                document.getElementById('step2TextBefore').textContent = data.step2Before;
+                document.getElementById('step2TextAfter').textContent = data.step2After;
 
-                    document.getElementById('step3').textContent = data.step3;
-                    document.getElementById('step4').textContent = data.step4;
+                document.getElementById('step3').textContent = data.step3;
+                document.getElementById('step4').textContent = data.step4;
 
-                    document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
+                document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
 
-                    document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
+                document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
 
-                    document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
-                    document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
-                    document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
-                    document.getElementById('installerStep2').textContent = data.installerStep2;
-                    document.getElementById('installerStep3').textContent = data.installerStep3;
-                    document.getElementById('installerStep4').textContent = data.installerStep4;
-                    document.getElementById('installerStep5').textContent = data.installerStep5;
+                document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
+                document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
+                document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
+                document.getElementById('installerStep2').textContent = data.installerStep2;
+                document.getElementById('installerStep3').textContent = data.installerStep3;
+                document.getElementById('installerStep4').textContent = data.installerStep4;
+                document.getElementById('installerStep5').textContent = data.installerStep5;
 
-                    if (data.isRightToLeft) {
-                        document.getElementById('main').style.direction = 'rtl';
-                        document.getElementById('main').classList.add('text-right');
-                    } else {
-                        document.getElementById('main').style.direction = 'ltr';
-                        document.getElementById('main').classList.remove('text-right');
-                    }
-                })
-                .catch(error => {
-                    console.warn(`Error fetching ${filePath}:`, error);
-                    tryNextFile(index + 1);
-                });
+                if (data.isRightToLeft) {
+                    document.getElementById('main').style.direction = 'rtl';
+                    document.getElementById('main').classList.add('text-right');
+                } else {
+                    document.getElementById('main').style.direction = 'ltr';
+                    document.getElementById('main').classList.remove('text-right');
+                }
+            })
+            .catch(error => {
+                console.warn(`Error fetching ${filePath}:`, error);
+                tryNextFile(index + 1);
+            });
         }
 
         tryNextFile(0);
