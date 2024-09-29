@@ -955,7 +955,7 @@ html, body {
     font-family: 'monocraft';
     position: relative;
     margin: 0;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     letter-spacing:-2.5px;
 }
 
@@ -963,7 +963,7 @@ html, body {
     font-family: 'monocraft';
     position: relative;
     margin: 0;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     font-size: 40px;
     letter-spacing:-2.5px;
 }
@@ -972,7 +972,7 @@ html, body {
     position: relative;
     margin: 30px 0 30px;
     font-size: 20px;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     max-width: 100%;
 }
 
@@ -990,6 +990,12 @@ html, body {
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
 }
+
+.main-page-text h1 {
+    visibility: hidden;
+    position: absolute;
+}
+
 
 .hero .breadcrumb {
     padding-top: 60px;
