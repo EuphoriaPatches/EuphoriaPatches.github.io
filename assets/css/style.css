@@ -1393,15 +1393,21 @@ table, th, td {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    white-space: nowrap;
+    border-radius: 50px;
+    position: absolute;
+    padding: 5px;
+    font-weight: bold;
 }
 
 .larger-text-EP-desc a:hover {
-    background: var(--ThemeColor);
+    background: linear-gradient(
+        to right,
+        rgb(236, 87, 236) 25%,
+        orange,
+        rgb(236, 87, 236)
+    );
     background-size: 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: black;
 }
 
 @keyframes background-text-gradient {
