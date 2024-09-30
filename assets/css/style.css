@@ -1635,12 +1635,21 @@ table, th, td {
 
 /*Download Image Click*/
 
-@keyframes pulse {
+@keyframes pulse-desktop {
     0%, 100% {
         transform: scale(1);
     }
     50% {
         transform: scale(1.015);
+    }
+}
+
+@keyframes pulse-mobile {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.035);
     }
 }
 
@@ -1668,7 +1677,14 @@ table, th, td {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: pulse 2s infinite ease-in-out;
+    animation: pulse-mobile 2s infinite ease-in-out;
+}
+
+/* Media query for desktop screens */
+@media screen and (min-width: 1024px) {
+    .main-banner-box {
+        animation: pulse-desktop 2s infinite ease-in-out;
+    }
 }
 
 @property --angle {
