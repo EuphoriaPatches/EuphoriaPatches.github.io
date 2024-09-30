@@ -205,66 +205,80 @@
         const [baseLanguage, variant] = browserLanguage.split('-');
 
         const lowerCaseBaseLanguage = baseLanguage.toLowerCase();
-        const lowerCaseVariant = variant ? variant.toLowerCase() : '';
+        const upperCaseVariant = variant ? variant.toUpperCase() : '';
 
         const translationFiles = [
-            `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
-            `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
-            'en.json'                                            // Fallback to Hebrew
+            `${lowerCaseBaseLanguage}-${upperCaseVariant}.json`,
+            `${lowerCaseBaseLanguage}.json`,
+            'en.json'
         ];
 
-        function tryNextFile(index) {
+        let currentTranslation = {};
+        let englishTranslation = {};
+
+        function loadTranslations(index) {
             if (index >= translationFiles.length) {
-                console.error('No translation file found');
+                applyTranslations();
                 return;
             }
 
             const filePath = `translations/${translationFiles[index]}`;
 
             fetch(filePath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Translation file not found');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const elementsToUpdate = [
-                    'pageTitle', 'modMethodTitle', 'step1', 'step1After', 
-                    'substep1_1', 'or', 'step2Before', 'step2After', 
-                    'step3', 'step4', 'unsupportedVersions', 'downloadPageButton', 
-                    'installerMethodTitle', 'installerStep1Before', 'installerStep1After', 
-                    'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5'
-                ];
-
-                elementsToUpdate.forEach(id => {
-                    const element = document.getElementById(id);
-                    if (element && data[id]) {
-                        element.textContent = data[id];
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Translation file not found');
                     }
+                    return response.json();
+                })
+                .then(data => {
+                    if (index === translationFiles.length - 1) {
+                        // This is the English fallback
+                        englishTranslation = data;
+                    } else if (Object.keys(currentTranslation).length === 0) {
+                        // This is the first successful non-English translation
+                        currentTranslation = data;
+                    }
+                    loadTranslations(index + 1);
+                })
+                .catch(error => {
+                    console.warn(`Error fetching ${filePath}:`, error);
+                    loadTranslations(index + 1);
                 });
-
-                // Handle RTL
-                if (data.isRightToLeft) {
-                    document.getElementById('main').dir = 'rtl';
-                    document.getElementById('main').classList.add('rtl');
-                } else {
-                    document.getElementById('main').dir = 'ltr';
-                    document.getElementById('main').classList.remove('rtl');
-                }
-            })
-            .catch(error => {
-                console.warn(`Error fetching ${filePath}:`, error);
-                tryNextFile(index + 1);
-            });
         }
 
-        tryNextFile(0);
+        function applyTranslations() {
+            const elementsToUpdate = [
+                'pageTitle', 'modMethodTitle', 'step1', 'step1After', 
+                'substep1_1', 'or', 'step2Before', 'step2After', 
+                'step3', 'step4', 'unsupportedVersions', 'downloadPageButton', 
+                'installerMethodTitle', 'installerStep1Before', 'installerStep1After', 
+                'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5'
+            ];
+
+            elementsToUpdate.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    // Use the current translation if available, otherwise fall back to English
+                    element.textContent = currentTranslation[id] || englishTranslation[id] || '';
+                }
+            });
+
+            // Handle RTL
+            if (currentTranslation.isRightToLeft) {
+                document.getElementById('main').dir = 'rtl';
+                document.getElementById('main').classList.add('rtl');
+            } else {
+                document.getElementById('main').dir = 'ltr';
+                document.getElementById('main').classList.remove('rtl');
+            }
+        }
+
+        loadTranslations(0);
     }
+
     // Call the function when the page loads
-    document.addEventListener('DOMContentLoaded', () => {
-        updateMainContent();
-    });
+    document.addEventListener('DOMContentLoaded', updateMainContent);
     </script>
   
 </body>
