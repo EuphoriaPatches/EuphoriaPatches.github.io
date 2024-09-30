@@ -243,15 +243,15 @@
                     }
                 });
 
-                    // Handle RTL
-                    if (data.isRightToLeft) {
-                        document.getElementById('main').dir = 'rtl';
-                        document.getElementById('main').classList.add('rtl');
-                    } else {
-                        document.getElementById('main').dir = 'ltr';
-                        document.getElementById('main').classList.remove('rtl');
-                    }
-                })
+                // Handle RTL
+                if (data.isRightToLeft) {
+                    document.getElementById('main').dir = 'rtl';
+                    document.getElementById('main').classList.add('rtl');
+                } else {
+                    document.getElementById('main').dir = 'ltr';
+                    document.getElementById('main').classList.remove('rtl');
+                }
+            })
             .catch(error => {
                 console.warn(`Error fetching ${filePath}:`, error);
                 tryNextFile(index + 1);
