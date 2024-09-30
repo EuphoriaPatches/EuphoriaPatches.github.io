@@ -212,15 +212,6 @@ button.btn:focus {
     float: right;
 }
 
-.rtl .navbar-right {
-    float: left !important;
-}
-
-.rtl .dropdown-menu {
-    left: auto;
-    right: 0;
-}
-
 .rtl .section-install-instructions {
     padding-right: 20px;
     padding-left: 0;
@@ -234,13 +225,6 @@ button.btn:focus {
 /* Preserve the order of text as it appears in the JSON */
 .rtl p, .rtl li, .rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6 {
     unicode-bidi: plaintext;
-}
-
-/* Ensure inline English text (like 'Advanced Settings') is displayed correctly */
-.rtl [lang="en"] {
-    unicode-bidi: embed;
-    direction: ltr;
-    display: inline-block;
 }
 
 /* ELEMENTS
