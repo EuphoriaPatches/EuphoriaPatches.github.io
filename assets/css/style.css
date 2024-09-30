@@ -1289,6 +1289,10 @@ table, th, td {
     margin-bottom: 50px;
 }
 
+.second-half-download-page {
+    background-color: var(--DarkGray);
+}
+
 /* Section: Screenshots */
 .section-screenshots {
     margin-top: -65px;
@@ -1349,7 +1353,7 @@ table, th, td {
 
 .section-donation, .section-donation-kofi {
     width: 45%;
-    float: left; /* Default float behavior for larger screens */
+    float: left;
     min-width: fit-content;
     margin-bottom: 60px;
     margin-top: 30px;
@@ -1364,7 +1368,7 @@ table, th, td {
 }
 
 .section-donation-kofi {
-    float: right; /* Keep right float for large screens */
+    float: right;
 }
 
 .section-what-is-EP {
@@ -1374,6 +1378,7 @@ table, th, td {
     margin-bottom: 50px;
     margin-left: -20px;
     margin-right: -20px;
+    margin-top: 5px;
     padding: 50px 15px;
     text-align: center;
     cursor: pointer;
@@ -1385,8 +1390,8 @@ table, th, td {
 
 .section-what-is-EP-desc {
     width: 55%; /* Ensure this matches the box's width */
-    float: left; /* Keep the description next to the box */
-    margin-left: 20px; /* Adjust this for spacing */
+    float: left;
+    margin-left: 20px;
 }
 
 .section-what-is-EP-desc p {
@@ -1395,15 +1400,16 @@ table, th, td {
     margin-top: 8px;
     font-size: 16px;
     color: var(--VeryLightGray);
-    max-width: 100%; /* Use full width */
+    max-width: 100%;
     min-width: 340px;
     margin-bottom: 50px;
 }
 
+/* Left-aligned version (original) */
 .larger-text-EP-desc {
     font-size: 17px;
-    margin-top: 0.5em; /* Adjust as needed */
-    display: block; /* Ensures it behaves like a block element */
+    margin-top: 0.5em;
+    display: block;
 }
 
 .larger-text-EP-desc a {
@@ -1434,6 +1440,44 @@ table, th, td {
     -webkit-text-fill-color: black;
 }
 
+/* Centered version */
+.larger-text-EP-desc-centered {
+    font-size: 20px;
+    margin-top: -1em;
+    display: block;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.larger-text-EP-desc-centered a {
+    animation: background-text-gradient 3s linear infinite;
+    background: linear-gradient(
+        to right,
+        rgb(236, 87, 236),
+        orange
+    );
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-radius: 50px;
+    padding: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.larger-text-EP-desc-centered a:hover {
+    background: linear-gradient(
+        to right,
+        rgb(236, 87, 236) 25%,
+        orange,
+        rgb(236, 87, 236)
+    );
+    background-size: 200%;
+    -webkit-text-fill-color: black;
+}
+
 @keyframes background-text-gradient {
     from {
         background-position: 0% center;
@@ -1441,13 +1485,12 @@ table, th, td {
     to {
         background-position: -200% center;
     }
-    
 }
 
 .section-how-install {
     width: 45%;
     min-width: fit-content;
-    margin: 0 auto 20px auto; /* Horizontally centers the element */
+    margin: 0 auto 20px auto;
     padding: 0px 15px;
     text-align: center;
     cursor: pointer;
@@ -1478,20 +1521,29 @@ table, th, td {
 
 .section-click-box h2 {
     font-family: 'monocraft';
-    letter-spacing:-1.5px;
+    letter-spacing: -1.5px;
     position: relative;
     margin: 0;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray);
     font-size: 35px;
     padding-bottom: 10px;
-    line-height: 360%;
+    line-height: 4;
     text-shadow:
-    0.5px 1px 0 #000,
-    1px 0.5px 0 #000,
-    1px 1px 0 #000,
-    1px 1.5px 0 #000,
-    1.5px 1px 0 #000,
-    1.5px 1.5px 0 #000;
+        0.5px 1px 0 #000,
+        1px 0.5px 0 #000,
+        1px 1px 0 #000,
+        1px 1.5px 0 #000,
+        1.5px 1px 0 #000,
+        1.5px 1.5px 0 #000;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .section-click-box h2 {
+        font-size: 28px; /* Reduced font size for mobile */
+        line-height: 1.3; /* Slightly increased line height for readability */
+        padding-bottom: 5px; /* Reduced padding for mobile */
+    }
 }
 
 .section-what-is-EP h2 {
@@ -1900,7 +1952,7 @@ table, th, td {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin-bottom: 3em;
     cursor: pointer;
 
     outline: 5px solid rgba(0, 0, 0, 0);
