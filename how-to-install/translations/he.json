@@ -18,8 +18,8 @@
     "downloadPageButton": "תלכו לעמוד ההורדות",
 
     "installerMethodTitle": "שיטת ההתקנה",
-    "installerStep1Before": ".ותורידו את המתקין",
-    "installerStep1After": "לכו ל",
+    "installerStep1Before": " לכו ל",
+    "installerStep1After": "ותורידו את המתקין." ,
     "installerStep2": "פתחו את המתקין על ידי לחיצה כפולה על הקובץ המורד",
     "installerStep3": "'Advanced Settings' עכשיו תלחצו על",
     "installerStep4": "'Install Euphoria Patches' תסמנו את תיבת הסימון",

@@ -104,22 +104,22 @@
             <div class="container section-indented-container">
                 <h2 id="modMethodTitle"></h2>
                 <ol class="section-install-instructions">
-                    <li id="step1">
-                        <span id="step1Text"></span>
-                        <strong id="step1AfterText"></strong>
+                    <li>
+                        <span id="step1"></span>
+                        <strong id="step1After"></strong>
                         <ul>
                             <li>
                                 <span id="substep1_1"></span>
                                 <span>(</span><a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a>
-                                <span id="substep1_or"></span>
+                                <span id="or"></span>
                                 <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
                             </li>
                         </ul>
                     </li>
-                    <li id="step2">
-                        <span id="step2TextBefore"></span>
+                    <li>
+                        <span id="step2Before"></span>
                         <a href="https://modrinth.com/mod/euphoria-patches" target="_blank">EuphoriaPatcher</a>
-                        <span id="step2TextAfter"></span>
+                        <span id="step2After"></span>
                     </li>
                     <li id="step3"></li>
                     <li id="step4"></li>
@@ -147,9 +147,9 @@
                 <h2 id="installerMethodTitle"></h2>
                 <ol class="section-install-instructions">
                     <li id="installerStep1">
-                        <span id="installerStep1TextBefore"></span>
+                        <span id="installerStep1Before"></span>
                         <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders</a>
-                        <span id="installerStep1TextAfter"></span>
+                        <span id="installerStep1After"></span>
                     </li>
                     <li id="installerStep2"></li>
                     <li id="installerStep3"></li>
@@ -209,7 +209,7 @@
         const translationFiles = [
             `${lowerCaseBaseLanguage}-${lowerCaseVariant}.json`,  // e.g., pt-br.json
             `${lowerCaseBaseLanguage}.json`,                      // e.g., pt.json
-            'en.json'                                            // Fallback to English
+            'en.json'                                            // Fallback to Hebrew
         ];
 
         function tryNextFile(index) {
@@ -228,40 +228,30 @@
                 return response.json();
             })
             .then(data => {
-                document.getElementById('pageTitle').textContent = data.pageTitle;
+                const elementsToUpdate = [
+                    'pageTitle', 'modMethodTitle', 'step1', 'step1After', 
+                    'substep1_1', 'or', 'step2Before', 'step2After', 
+                    'step3', 'step4', 'unsupportedVersions', 'downloadPageButton', 
+                    'installerMethodTitle', 'installerStep1Before', 'installerStep1After', 
+                    'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5'
+                ];
 
-                document.getElementById('modMethodTitle').textContent = data.modMethodTitle;
-                document.getElementById('step1Text').textContent = data.step1;
-                document.getElementById('step1AfterText').textContent = data.step1After;
-                document.getElementById('substep1_1').textContent = data.substep1_1;
-                document.getElementById('substep1_or').textContent = data.or;
+                elementsToUpdate.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && data[id]) {
+                        element.textContent = data[id];
+                    }
+                });
 
-                document.getElementById('step2TextBefore').textContent = data.step2Before;
-                document.getElementById('step2TextAfter').textContent = data.step2After;
-
-                document.getElementById('step3').textContent = data.step3;
-                document.getElementById('step4').textContent = data.step4;
-
-                document.getElementById('unsupportedVersions').textContent = data.unsupportedVersions;
-
-                document.getElementById('downloadPageButton').textContent = data.downloadPageButton;
-
-                document.getElementById('installerMethodTitle').textContent = data.installerMethodTitle;
-                document.getElementById('installerStep1TextBefore').textContent = data.installerStep1Before;
-                document.getElementById('installerStep1TextAfter').textContent = data.installerStep1After;
-                document.getElementById('installerStep2').textContent = data.installerStep2;
-                document.getElementById('installerStep3').textContent = data.installerStep3;
-                document.getElementById('installerStep4').textContent = data.installerStep4;
-                document.getElementById('installerStep5').textContent = data.installerStep5;
-
-                if (data.isRightToLeft) {
-                    document.getElementById('main').style.direction = 'rtl';
-                    document.getElementById('main').classList.add('text-right');
-                } else {
-                    document.getElementById('main').style.direction = 'ltr';
-                    document.getElementById('main').classList.remove('text-right');
-                }
-            })
+                    // Handle RTL
+                    if (data.isRightToLeft) {
+                        document.getElementById('main').dir = 'rtl';
+                        document.getElementById('main').classList.add('rtl');
+                    } else {
+                        document.getElementById('main').dir = 'ltr';
+                        document.getElementById('main').classList.remove('rtl');
+                    }
+                })
             .catch(error => {
                 console.warn(`Error fetching ${filePath}:`, error);
                 tryNextFile(index + 1);

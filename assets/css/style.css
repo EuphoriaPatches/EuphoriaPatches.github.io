@@ -203,6 +203,46 @@ button.btn:focus {
     padding-right: 80px;
 }
 
+/* RTL-specific styles */
+.rtl {
+    direction: rtl;
+}
+
+.rtl .site-navigation {
+    float: right;
+}
+
+.rtl .navbar-right {
+    float: left !important;
+}
+
+.rtl .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.rtl .section-install-instructions {
+    padding-right: 20px;
+    padding-left: 0;
+}
+
+.rtl .section-install-instructions li::before {
+    right: -20px;
+    left: auto;
+}
+
+/* Preserve the order of text as it appears in the JSON */
+.rtl p, .rtl li, .rtl h1, .rtl h2, .rtl h3, .rtl h4, .rtl h5, .rtl h6 {
+    unicode-bidi: plaintext;
+}
+
+/* Ensure inline English text (like 'Advanced Settings') is displayed correctly */
+.rtl [lang="en"] {
+    unicode-bidi: embed;
+    direction: ltr;
+    display: inline-block;
+}
+
 /* ELEMENTS
 ================================================== */
 /* Checkbox fields */
@@ -2152,10 +2192,10 @@ a.patreon-bg:hover {
 }
 
 a.github-bg {
-    color: rgb(23,21,22);
-    border-color: rgb(23,21,22);
+    color: rgb(55, 55, 58);
+    border-color: rgb(55, 55, 58);
     background: url(../img/logos/github2.webp) no-repeat center;
-    background-color: rgb(23,21,22);
+    background-color: rgb(55, 55, 58);
 }
 
 a.github-bg:hover {
@@ -2604,17 +2644,4 @@ a.twitter-bg:hover {
     margin-top: 15px;
     padding-bottom: 22px;
     text-align: center;
-}
-
-body.rtl {
-    direction: rtl;
-    text-align: right;
-}
-
-body.rtl .site-navigation .nav > li {
-    float: right;
-}
-
-body.rtl .hero-text {
-    text-align: right;
 }
