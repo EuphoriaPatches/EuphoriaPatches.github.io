@@ -912,36 +912,50 @@ html, body {
 /* HERO
 ================================================== */
 .hero { 
-    background: url(../img/Screenshots/mainBackground.webp) no-repeat top / cover;
-    background-position: center -200px;
     height: 100%;
     width: 100%;
     display: table;
     position: relative;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    .hero {
-        background-position: center 0px; /* Change position for mobile */
-    }
+.hero.overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--ScreenshotOverlayColor);
+    z-index: 1;
 }
 
-.overlay:before {
-  content: '';
-  background-color: var(--ScreenshotOverlayColor);
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 0;
+}
+
+.hero-main-image {
+    object-position: center -200px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .hero-main-image {
+        background-position: center 0px; /* Change position for mobile */
+    }
 }
 
 .hero-content {
     display: table-cell;
     vertical-align: middle;
     padding-top: 65px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white; /* Adjust text color as needed */
 }
 
 .hero-text {
@@ -1047,84 +1061,41 @@ html, body {
     height: 680px;
 }
 
-.subpage-hero.overlay:before {
-    background-color: var(--ScreenshotOverlayColor);
-}
-
-.subpage-hero .hero-content,
-.subpage-hero .hero-content h1,
-.subpage-hero a  {
-    color: #fff;
-}
-
 .subpage-hero a:hover {
     color: var(--ThemeColor);
 }
 
-.support-hero {
-    height: 400px;
-}
-
-.support-hero.overlay:before {
-    background-color: var(--ScreenshotOverlayColor);
-}
-
-.support-hero .hero-content,
-.support-hero .hero-content h1,
-.support-hero a  {
-    color: #fff;
-}
-
-.support-hero a:hover {
-    color: var(--ThemeColor);
-}
-
-.changelogs-hero .hero-content,
-.changelogs-hero .hero-content h1,
-.changelogs-hero a  {
-    color: #fff;
-}
-
-.changelogs-hero a:hover {
-    color: var(--ThemeColor);
-}
-
-.download-hero {
-    background: url(../img/Screenshots/downloadBackground.webp) no-repeat center / cover;
-}
-
 .contact-hero {
-    background: url(../img/Screenshots/contactBackground.webp) no-repeat center / cover;
     height: 400px;
 }
 
 .support-hero {
-    background: url(../img/Screenshots/donateBackground.webp) no-repeat center / cover;
+    height: 400px;
 }
 
 .changelogs-hero {
-    background: url(../img/Screenshots/changelogsBackground.webp) no-repeat top / cover;
+    background: url(../img/backgrounds/changelogsBackground.webp) no-repeat top / cover;
     height: 400px
 }
 
 .how-to-install-hero {
-    background: url(../img/Screenshots/howToInstallBackground.webp) no-repeat center / cover;
+    background: url(../img/backgrounds/howToInstallBackground.webp) no-repeat center / cover;
     height: 500px;
 }
 
 .faq-hero {
-    background: url(../img/Screenshots/faqBackground.webp) no-repeat center / cover;
+    background: url(../img/backgrounds/faqBackground.webp) no-repeat center / cover;
     height: 500px;
 }
 
 .privacy-policy-hero {
-    background: url(../img/Screenshots/policyBackground.webp) no-repeat top / cover;
+    background: url(../img/backgrounds/policyBackground.webp) no-repeat top / cover;
     box-shadow: inset 0 0 0 20000px rgba(0, 0, 0, 0.3);
     height: 650px;
 }
 
 .credits-hero {
-    background: url(../img/Screenshots/creditsBackground.webp) no-repeat top / cover;
+    background: url(../img/backgrounds/creditsBackground.webp) no-repeat top / cover;
     box-shadow: inset 0 0 0 20000px rgba(0, 0, 0, 0.3);
     height: 650px;
 }
