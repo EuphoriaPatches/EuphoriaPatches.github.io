@@ -1691,7 +1691,7 @@ table, th, td {
 
 .main-banner-box:hover {
     border-color: var(--ThemeColor);
-    animation: pulse 2s infinite ease-in-out, hover 0.3s forwards;
+    animation: hover 0.3s forwards;
 }
 
 .main-banner-box:hover::before {
