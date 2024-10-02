@@ -1996,7 +1996,51 @@ outline-color: var(--ThemeColor);
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.3s ease;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 250ms ease;
+}
+
+.blur-load-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    filter: blur(3px);
+}
+  
+.blur-load-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: pulse 2.5s infinite;
+    background-color: var(--VeryLightGray);
+}
+  
+@keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+.blur-load-img.loaded {
+    background-size: 0%;
+
+    filter: none;
+}
+  
+.gallery-images-item.loaded::before {
+    animation: none;
+    content: none;
+}
+  
+.gallery-images-item.loaded img {
+    opacity: 1;
 }
 
 .gallery-images-item:hover img {
