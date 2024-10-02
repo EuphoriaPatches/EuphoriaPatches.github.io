@@ -449,24 +449,34 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        const blurredImageDiv = document.querySelectorAll(".blur-load-img");
-        const normalImageDivs = document.querySelectorAll(".gallery-images-item");
+        document.addEventListener("DOMContentLoaded", () => {
+    // Select all gallery image containers
+    const galleryImageDivs = document.querySelectorAll(".gallery-images-item");
 
-        normalImageDivs.forEach(div => {
-            const img = div.querySelector("img");
-            
-            function loaded() {
+    galleryImageDivs.forEach(div => {
+        // Select the image inside the current container
+        const img = div.querySelector("img");
+
+        function loaded() {
+            // Add 'loaded' class to both the gallery container and blur background specifically
+            div.classList.add("loaded");
+
+            // Since the div itself has both classes, adding the loaded class will serve for both
+            if (div.classList.contains("blur-load-img")) {
                 div.classList.add("loaded");
-                if (blurredImageDiv) {
-                    blurredImageDiv.classList.add("loaded");
-                }
             }
+        }
 
-            if (img.complete) {
-                loaded();
-            } else {
-                img.addEventListener("load", loaded);
-            }
+        // Check if the image is already loaded (in case it's cached)
+        if (img.complete && img.naturalHeight !== 0) {
+            loaded();
+        } else {
+            // Listen for the 'load' event if the image hasn't loaded yet
+            img.addEventListener("load", loaded);
+        }
+    });
+});
+
         });
     </script>
 
