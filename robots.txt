@@ -1,5 +1,3 @@
 User-agent: *
 Disallow: /ads.txt
 Disallow: /README.md
-Disallow: https://euphoriapatches.com/faq
-Disallow: http://euphoriapatches.com/faq
