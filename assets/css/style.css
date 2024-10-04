@@ -1548,34 +1548,45 @@ table, th, td {
     }
 }
 
-.works-on-list {
+.dynamic-icon-row {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.works-on-item {
+.dynamic-icon-element {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease-in-out;
 }
 
-.icon {
+.dynamic-icon-element:hover {
+    transform: scale(1.1);
+}
+
+.dynamic-icon-image {
     width: 50px;
     height: 50px;
     margin-bottom: 5px;
 }
 
-.works-on-item span {
+.dynamic-icon-element span {
     font-weight: bold;
 }
 
 /* Hover Tooltip */
-.works-on-item:hover::after {
+.dynamic-icon-element[data-tooltip=""]:hover::after,
+.dynamic-icon-element:not([data-tooltip]):hover::after {
+    display: none;
+}
+
+.dynamic-icon-element:hover::after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: -40px;
@@ -1593,7 +1604,7 @@ table, th, td {
     transition: opacity 0.2s ease-in-out;
 }
 
-.works-on-item::after {
+.dynamic-icon-element::after {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out;
@@ -2265,16 +2276,40 @@ a.github-bg:hover {
     background-color: white;
 }
 
-a.twitter-bg {
-    color: #1da1f2;
-    border-color: #1da1f2;
-    background: url(../img/logos/twitter2.webp) no-repeat center;
-    background-color: #1da1f2;
+a.contact-bg {
+    position: relative; /* Make sure it has a positioning context */
+    font-weight: bold;
+    color: #fff;
+    border-color: #fff;
+    background-image: linear-gradient(to right, var(--LinkColor) 0%, var(--ThemeColor) 100%);
 }
 
-a.twitter-bg:hover {
-    background: url(../img/logos/twitter.webp) no-repeat center;
+a.contact-bg:hover {
+    color: black;
+    background-image: none;
     background-color: white;
+    border-color: var(--DarkGray);
+}
+
+a.contact-bg:hover::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: inherit;
+    padding: 3px; /* Thickness of the border */
+    background: linear-gradient(to right, var(--LinkColor) 0%, var(--ThemeColor) 100%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; 
+            mask-composite: exclude; 
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
 }
 
 .copyright .text-right {
