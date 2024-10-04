@@ -534,7 +534,7 @@ select {
 /* Accordion */
 .aaccordion {
     border-radius: 10px;
-    background-color: var(--DarkGray);
+    background-color: rgb(32, 32, 42);
     color: white;
     cursor: pointer;
     padding: 16px;
@@ -543,7 +543,7 @@ select {
     border: none;
     outline: none;
     transition: 0.4s;
-    border: 2px solid var(--DarkGray);
+    border: 3px solid rgb(61, 61, 80);
     
     font-family: 'monocraft';
     font-size: 26px;
@@ -575,7 +575,8 @@ select {
 }
 
 .aaversion {
-    background-color: var(--VeryDarkGray);
+    background-color: rgb(23, 24, 32);
+    border-color: rgb(16, 16, 21);
     text-align: left;
     padding-left: 72px;
     font-size: 20px;
