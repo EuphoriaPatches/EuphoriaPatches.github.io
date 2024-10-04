@@ -2289,7 +2289,7 @@ a.contact-bg {
     position: relative; /* Make sure it has a positioning context */
     font-weight: bold;
     color: #fff;
-    border-color: #fff;
+    border-color: transparent;
     background-image: linear-gradient(to right, var(--LinkColor) 0%, var(--ThemeColor) 100%);
 }
 
@@ -2300,7 +2300,7 @@ a.contact-bg:hover {
     border-color: var(--DarkGray);
 }
 
-a.contact-bg:hover::before {
+a.contact-bg:before {
     content: "";
     position: absolute;
     top: -3px;
