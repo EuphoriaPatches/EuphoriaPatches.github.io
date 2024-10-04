@@ -1572,7 +1572,7 @@ table, th, td {
     align-items: center;
     cursor: pointer;
     z-index: 2;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .dynamic-icon-element:hover {
