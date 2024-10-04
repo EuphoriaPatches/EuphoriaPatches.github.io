@@ -1555,6 +1555,13 @@ table, th, td {
     gap: 30px;
     margin-top: 30px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .dynamic-icon-row {
+        gap: 15px;
+    }
 }
 
 .dynamic-icon-element {
@@ -1563,7 +1570,7 @@ table, th, td {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    z-index: 100;
+    z-index: 2;
     transition: transform 0.3s ease-in-out;
 }
 
