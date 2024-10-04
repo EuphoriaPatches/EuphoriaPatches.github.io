@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /ads.txt
 Disallow: /README.md
