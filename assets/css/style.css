@@ -2082,6 +2082,7 @@ outline-color: var(--ThemeColor);
     min-height: 250px;
     width: 100%;
     height: auto;
+    z-index: 2;
 }
 
 .gallery-ad-item iframe {
