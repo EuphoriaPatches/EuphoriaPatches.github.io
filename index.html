@@ -225,7 +225,7 @@
     
     <!-- Banner Image JavaScript -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        window.onload = function() {
             const boxContainer = document.querySelector('.main-banner-box-container');
             const popupContainer = document.querySelector('.popup-container');
             
@@ -265,7 +265,7 @@
             }, 500);
 
             window.addEventListener('resize', debouncedResize);
-        });
+        };
 
         function debounce(func, wait) {
             let timeout;
