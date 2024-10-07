@@ -241,12 +241,12 @@
             function adjustPosition() {
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
-                        if (containerWidth + 820 > viewportWidth) {
-                            boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
-                            popupContainer.style.transform = 'translateX(-50%) scale(0.7)';
-                        } else {
+                        if (containerWidth + 820 < viewportWidth) {
                             boxContainer.style.cssText = 'left: 820px; transform: rotate(-1.3deg);';
                             popupContainer.style.transform = 'translateX(-50%) scale(0.7) rotate(1.3deg)';
+                        } else {
+                            boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
+                            popupContainer.style.transform = 'translateX(-50%) scale(0.7)';
                         }
 
                         popupContainer.style.bottom = `-${popupContainer.offsetHeight + 15}px`;

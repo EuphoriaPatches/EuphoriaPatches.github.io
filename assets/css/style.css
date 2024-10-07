@@ -1648,7 +1648,7 @@ table, th, td {
     width: max-content;
     max-width: 90vw;
     margin: 20px;
-    left: 820px;
+    left: 50%;
     top: -10px;
     transition: left 0.3s ease, transform 0.3s ease;
 }
