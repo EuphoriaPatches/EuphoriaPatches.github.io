@@ -2071,7 +2071,7 @@ outline-color: var(--ThemeColor);
     position: relative;
     overflow: hidden;
     border-radius: 30px;
-    background-color: #f0f0f0; /* Placeholder background */
+    background-color: var(--Gray);
     display: flex;
     align-items: center;
     justify-content: center;
