@@ -2073,7 +2073,7 @@ outline-color: var(--ThemeColor);
     position: relative;
     overflow: hidden;
     border-radius: 30px;
-    background-color: var(--Gray);
+    background-color: var(--DarkGray);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2089,6 +2089,7 @@ outline-color: var(--ThemeColor);
     height: 100%;
     min-width: 300px;
     min-height: 250px;
+    max-width: 1000px;
     border: none;
 }
 
