@@ -2746,7 +2746,7 @@ a.contact-bg:before {
 /* Ad Stuff */
 .adsbygoogle {
     background-color: var(--Gray);
-    z-index: 3;
+    z-index: 2;
 }
 
 .ad-vertical {
