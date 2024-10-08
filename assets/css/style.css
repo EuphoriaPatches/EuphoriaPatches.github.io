@@ -1410,7 +1410,7 @@ table, th, td {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     position: fixed;
     top: 50px;

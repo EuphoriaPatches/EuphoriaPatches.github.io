@@ -267,42 +267,55 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        window.onscroll = makeIndexSticky;
-    
-        const index = document.querySelector('.faq-index');
-        const hero = document.querySelector('#hero');
-        const toggleButton = document.getElementById('toggle-faq-index');
-        const stickyOffset = hero.offsetHeight; // Height of the hero section
-    
-        // Make the index sticky after scrolling past the hero section
-        function makeIndexSticky() {
-            const isSticky = window.pageYOffset >= stickyOffset;
-            index.classList.toggle("sticky", isSticky);
-            toggleButton.classList.toggle("sticky", isSticky);
-        }
-    
-        // Toggle FAQ index on mobile when the button is clicked
-        toggleButton.addEventListener('click', () => {
-            index.classList.toggle('open');
-            toggleButton.classList.toggle('open');
-        });
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkScrollIndicator = () => {
-                const isScrollable = index.scrollHeight > index.clientHeight;
-                const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
-                const isLargeScreen = window.innerWidth >= 768;
-    
-                index.classList.toggle('hide-gradient', isLargeScreen || isScrollable && isAtBottom);
-            };
-    
-            index.addEventListener('scroll', checkScrollIndicator);
-            window.addEventListener('resize', checkScrollIndicator);
-    
-            // Initial check
+    window.onscroll = makeIndexSticky;
+
+    const index = document.querySelector('.faq-index');
+    const hero = document.querySelector('#hero');
+    const toggleButton = document.getElementById('toggle-faq-index');
+
+    // Function to get the current sticky offset and screen size
+    function updateDimensions() {
+        isLargeScreen = window.innerWidth >= 768;
+    }
+
+    const stickyOffset = hero.offsetHeight;
+    let isLargeScreen = window.innerWidth >= 768; // Initial value
+
+    // Make the index sticky after scrolling past the hero section
+    function makeIndexSticky() {
+        const isSticky = window.pageYOffset >= stickyOffset;
+        index.classList.toggle("sticky", isSticky || !isLargeScreen);
+        toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
+    }
+
+    // Toggle FAQ index on mobile when the button is clicked
+    toggleButton.addEventListener('click', () => {
+        index.classList.toggle('open');
+        toggleButton.classList.toggle('open');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkScrollIndicator = () => {
+            const isScrollable = index.scrollHeight > index.clientHeight;
+            const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
+
+            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom);
+        };
+
+        index.addEventListener('scroll', checkScrollIndicator);
+        window.addEventListener('resize', () => {
+            updateDimensions();
+            makeIndexSticky();
             checkScrollIndicator();
         });
-    </script>
+
+        // Initial check
+        checkScrollIndicator();
+    });
+</script>
+
+    
+    
     
   
 </body>
