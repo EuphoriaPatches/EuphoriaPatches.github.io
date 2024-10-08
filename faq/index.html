@@ -267,34 +267,43 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        window.onscroll = function() { makeIndexSticky() };
+        window.onscroll = makeIndexSticky;
     
-        var index = document.querySelector('.faq-index');
-        var hero = document.querySelector('#hero');
-        var stickyOffset = hero.offsetHeight; // Height of the hero section
-    
-        // Button to toggle FAQ index on mobile
-        var toggleButton = document.getElementById('toggle-faq-index');
-        var faqIndex = document.querySelector('.faq-index');
+        const index = document.querySelector('.faq-index');
+        const hero = document.querySelector('#hero');
+        const toggleButton = document.getElementById('toggle-faq-index');
+        const stickyOffset = hero.offsetHeight; // Height of the hero section
     
         // Make the index sticky after scrolling past the hero section
         function makeIndexSticky() {
-            if (window.pageYOffset >= stickyOffset) {
-                index.classList.add("sticky");
-                toggleButton.classList.add("sticky");
-            } else {
-                index.classList.remove("sticky");
-                toggleButton.classList.remove("sticky");
-            }
+            const isSticky = window.pageYOffset >= stickyOffset;
+            index.classList.toggle("sticky", isSticky);
+            toggleButton.classList.toggle("sticky", isSticky);
         }
     
         // Toggle FAQ index on mobile when the button is clicked
-        toggleButton.addEventListener('click', function () {
-            faqIndex.classList.toggle('open');
+        toggleButton.addEventListener('click', () => {
+            index.classList.toggle('open');
             toggleButton.classList.toggle('open');
         });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkScrollIndicator = () => {
+                const isScrollable = index.scrollHeight > index.clientHeight;
+                const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
+                const isLargeScreen = window.innerWidth >= 768;
+    
+                index.classList.toggle('hide-gradient', isLargeScreen || isScrollable && isAtBottom);
+            };
+    
+            index.addEventListener('scroll', checkScrollIndicator);
+            window.addEventListener('resize', checkScrollIndicator);
+    
+            // Initial check
+            checkScrollIndicator();
+        });
     </script>
-
+    
   
 </body>
 </html>
