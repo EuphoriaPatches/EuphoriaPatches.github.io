@@ -288,23 +288,24 @@
             index.classList.toggle("sticky", isSticky || !isLargeScreen);
             toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
         }
+
+        const checkScrollIndicator = () => {
+                const isScrollable = index.scrollHeight > index.clientHeight;
+                const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
+    
+                index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
+            };
     
         // Toggle FAQ index on mobile when the button is clicked
         toggleButton.addEventListener('click', () => {
             index.classList.toggle('open');
             toggleButton.classList.toggle('open');
+            checkScrollIndicator();
         });
     
         document.addEventListener('DOMContentLoaded', () => {
             updateDimensions(); // Calculate dimensions on page load
             makeIndexSticky();  // Ensure sticky logic is applied immediately
-    
-            const checkScrollIndicator = () => {
-                const isScrollable = index.scrollHeight > index.clientHeight;
-                const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
-    
-                index.classList.toggle('hide-gradient', !isScrollable || isAtBottom);
-            };
     
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
@@ -316,6 +317,8 @@
             // Initial check
             checkScrollIndicator();
         });
+
+        document.addEventListener('DOMContentLoaded', checkScrollIndicator());
     </script>
     
 
