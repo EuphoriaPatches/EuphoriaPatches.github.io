@@ -1309,9 +1309,127 @@ table, th, td {
     font-size: 30px;
 }
 
+.section-indented-container li {
+    margin: 0.66rem;
+}
+
+.section-indented-container code {
+    background-color: rgb(39, 35, 47);
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .section-indented-container-credits li {
     margin-left: 40px;
 }
+
+/* Default styles for the index */
+.faq-index {
+    position: absolute;
+    top: auto;
+    left: 20px;
+    background-color: rgb(28, 30, 38);
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+    max-width: 250px;
+    z-index: 999;
+    outline: 2px solid rgb(97, 97, 97);
+}
+
+.faq-index.sticky {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.faq-index h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.faq-index ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.faq-index ul li {
+    margin-bottom: 10px;
+}
+
+.faq-index ul li a {
+    color: var(--VeryLightGray);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.faq-index ul li a:hover {
+    text-decoration: underline;
+    color: var(--ThemeColor);
+}
+
+.section-indented-container {
+    margin-left: 300px;
+}
+
+/* Styles for the FAQ toggle button (visible on mobile only) */
+.faq-index-toggle {
+    display: none;
+}
+
+.modern-button {
+    background-color: #7d2679;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: fixed;
+    top: 50px;
+    left: 20px;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .faq-index-toggle {
+        display: block; /* Show the button only on mobile */
+    }
+
+    .faq-index {
+        display: none;
+        position: static;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+
+    .faq-index.open {
+        display: block;
+    }
+
+    .modern-button.open {
+        outline: 3px solid var(--ThemeColor);
+    }
+
+    .section-indented-container {
+        margin-left: 0;
+    }
+}
+
+/* FAQ index sticky behavior on desktop */
+@media (min-width: 769px) {
+    .faq-index {
+        position: absolute;
+        top: 520px;
+        display: block;
+        width: 250px;
+    }
+}
+
 
 /* Section: Donate */
 
