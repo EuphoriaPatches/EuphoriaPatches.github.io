@@ -1332,6 +1332,8 @@ table, th, td {
     color: white;
     padding: 15px;
     border-radius: 25px;
+    max-height: 85vh;
+    overflow-y: auto;
     max-width: 250px;
     z-index: 999;
     outline: 2px solid rgb(97, 97, 97);
