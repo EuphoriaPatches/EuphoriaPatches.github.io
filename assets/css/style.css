@@ -62,6 +62,15 @@
     letter-spacing:2px;
 }
 
+@font-face {
+    font-family: 'monocraft-multiple-lang';
+    src: url('../fonts/Monocraft-Light.otf') format('opentype'),
+         url('../fonts/Monocraft-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing:2px;
+}
+
 /* CUSTOM RESETS
 ================================================== */
 a {
@@ -1009,6 +1018,10 @@ html, body {
     letter-spacing:-2.5px;
 }
 
+.hero-text-multiple-lang h1, h2 {
+    font-family: 'monocraft-multiple-lang';
+}
+
 .hero-text p {
     position: relative;
     margin: 30px 0 30px;
@@ -1294,7 +1307,7 @@ table, th, td {
 }
 
 .section-indented-container h2, h4 {
-    font-family: 'monocraft';
+    font-family: 'monocraft-multiple-lang';
     letter-spacing:-2.5px;
     position: relative;
     margin: 30px;
