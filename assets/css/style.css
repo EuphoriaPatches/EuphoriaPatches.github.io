@@ -53,8 +53,10 @@
 
 @font-face {
     font-family: 'monocraft';
-    src: url(../fonts/Monocraft-Light.otf) format('opentype');
-    src: url(../fonts/Monocraft-Light.ttf) format('truetype');
+    src: url('../fonts/monocraft-light.woff2') format('woff2'),
+         url('../fonts/monocraft-light.woff') format('woff'),
+         url('../fonts/Monocraft-Light.otf') format('opentype'),
+         url('../fonts/Monocraft-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     letter-spacing:2px;
@@ -729,7 +731,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'rubiklight', sans-serif;
     /*font-family: 'monocraft';*/
     background-color: var(--VeryDarkGray);
     color: var(--VeryLightGray);
@@ -2491,7 +2492,6 @@ a.contact-bg:before {
 }*/
 
 .copyright p + p {
-    font-family: 'rubiklight', sans-serif;
     font-size: 10px;
     margin-top: -20px;
     margin-right: 0px;
