@@ -1290,6 +1290,43 @@ table, th, td {
     margin-bottom: -50px;
 }
 
+.section-downloads .btn-installer:hover .download-count {
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.download-count {
+    color:var(--ThemeColor);
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.version-container {
+    display: flex;
+    justify-content: center; /* Center the banners horizontally */
+    gap: 20px; /* Space between banners */
+    margin-top: 20px; /* Space above banners */
+}
+
+.version-banner {
+    display: flex; /* Flexbox for content alignment */
+    align-items: center; /* Center content vertically */
+}
+
+.data-background {
+    color: var(--ThemeColor);
+    background-color: rgb(30, 33, 45); /* Light background for the data */
+    border: 2px solid #ccc; /* Border color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 8px; /* Padding inside the data */
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2); /* Subtle shadow for a modern look */
+    font-weight: bold; /* Bold text for emphasis */
+    min-width: 100px; /* Fixed minimum width for data */
+    text-align: center; /* Center text */
+    margin-left: 10px; /* Space between label and data */
+    transform: scale(0.87);
+}
+
 /* Section: Install Instructions */
 
 .section-install-instructions {

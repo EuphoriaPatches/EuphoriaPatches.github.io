@@ -135,7 +135,19 @@
                 <p id="down-section" class="download-title">Modrinth Download</p>
                 <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
                 <br>Note to download the correct version for your mod loader</p>
-                <a href="https://modrinth.com/mod/euphoria-patches/versions" target="_blank" class="btn btn-installer" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">Download on Modrinth</a>
+                <a href="https://modrinth.com/mod/euphoria-patches/versions" target="_blank" class="btn btn-installer" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">Download on Modrinth | 
+                    <span id="download-counter" class="download-count">Loading...</span>
+                </a>
+                <div class="version-container" style="display: none;">
+                    <div class="version-banner">
+                      <span>Latest Version:</span>
+                      <div class="data-background" id="version-number"></div>
+                    </div>
+                    <div class="version-banner">
+                      <span>Released:</span>
+                      <div class="data-background" id="version-date"></div>
+                    </div>
+                  </div>
             </div>
         </section><!-- /.section-downloads -->
         <div class="hero-text">
@@ -241,6 +253,47 @@
         }
 
         setInterval(showNextImage, 5000);  // Change image every 5 seconds
+
+        
+        function formatDownloads(num) {
+            if (num >= 1_000_000) {
+            return (num / 1_000_000).toFixed(2) + 'M';
+            } else if (num >= 1_000) {
+            return (num / 1_000).toFixed(2) + 'K';
+            }
+            return num;
+        }
+
+        function extractMainVersion(versionString) {
+            return versionString.split('-')[0]; // Extract version before the first dash
+        }
+
+        async function updateDownloadCounter() {
+            const projectId = '4H6sumDB';
+            
+            // Fetch project data for downloads
+            const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+            const data = await response.json();
+            const downloads = formatDownloads(data.downloads);
+            document.getElementById('download-counter').innerText = downloads;
+
+            // Fetch latest version info
+            const versionResponse = await fetch(`https://api.modrinth.com/v2/project/${projectId}/version`);
+            const versions = await versionResponse.json();
+            const latest = versions.find(version => version.featured);
+
+            let versionNumber = document.getElementById("version-number");
+            versionNumber.innerText = extractMainVersion(latest.version_number);
+
+            let versionDate = document.getElementById("version-date");
+            let date = new Date(latest.date_published);
+            versionDate.innerText = date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+
+            document.querySelector(".version-container").style.display = "flex"; // Show banners
+        }
+
+        updateDownloadCounter();
+    
     </script>
   
 </body>
