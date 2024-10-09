@@ -594,6 +594,16 @@
             handleSwipe(); // Check if a swipe was detected
         });
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/assets/js/service-worker.js')
+            .then(function(registration) {
+              console.log('Service worker registered with scope:', registration.scope);
+            }).catch(function(error) {
+              console.log('Service worker registration failed:', error);
+            });
+        }
+    </script>
 
 </body>
 </html>
