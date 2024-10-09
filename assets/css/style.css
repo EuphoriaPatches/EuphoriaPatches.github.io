@@ -1238,6 +1238,9 @@ table, th, td {
     border-color: white;
     background-color: var(--DarkGray);
 }
+.indented-download-button {
+    margin: 1.5rem;
+}
 .section-downloads .btn-manual {
     color: white;
     background-color: var(--VeryDarkGray);
@@ -1515,51 +1518,27 @@ table, th, td {
     margin-bottom: 50px;
 }
 
-/* Left-aligned version (original) */
-.larger-text-EP-desc {
+.larger-text-EP-desc, .larger-text-EP-desc-centered, .larger-text-EP-desc-left-margin {
     font-size: 17px;
     margin-top: 0.5em;
     display: block;
 }
 
-.larger-text-EP-desc a {
-    animation: background-text-gradient 3s linear infinite;
-    background: linear-gradient(
-        to right,
-        rgb(236, 87, 236),
-        orange
-    );
-    background-size: 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    border-radius: 50px;
-    position: absolute;
-    padding: 5px;
-    font-weight: bold;
-}
-
-.larger-text-EP-desc a:hover {
-    background: linear-gradient(
-        to right,
-        rgb(236, 87, 236) 25%,
-        orange,
-        rgb(236, 87, 236)
-    );
-    background-size: 200%;
-    -webkit-text-fill-color: black;
-}
-
-/* Centered version */
-.larger-text-EP-desc-centered {
+.larger-text-EP-desc-centered, .larger-text-EP-desc-left-margin {
     font-size: 20px;
     margin-top: -1em;
-    display: block;
-    text-align: center;
     margin-bottom: 2.5rem;
 }
 
-.larger-text-EP-desc-centered a {
+.larger-text-EP-desc-centered {
+    text-align: center;
+}
+
+.larger-text-EP-desc-left-margin {
+    margin: 2rem;
+}
+
+.larger-text-EP-desc a, .larger-text-EP-desc-centered a, .larger-text-EP-desc-left-margin a {
     animation: background-text-gradient 3s linear infinite;
     background: linear-gradient(
         to right,
@@ -1574,10 +1553,11 @@ table, th, td {
     padding: 5px;
     font-weight: bold;
     display: inline-block;
+    position: relative;
     margin-top: 10px;
 }
 
-.larger-text-EP-desc-centered a:hover {
+.larger-text-EP-desc a:hover, .larger-text-EP-desc-centered a:hover, .larger-text-EP-desc-left-margin a:hover {
     background: linear-gradient(
         to right,
         rgb(236, 87, 236) 25%,
