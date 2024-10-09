@@ -138,14 +138,14 @@
                 <a href="https://modrinth.com/mod/euphoria-patches/versions" target="_blank" class="btn btn-installer" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">Download on Modrinth | 
                     <span id="download-counter" class="download-count">Loading...</span>
                 </a>
-                <div class="version-container" style="display: none;">
+                <div class="version-container">
                     <div class="version-banner">
                       <span>Latest Version:</span>
-                      <div class="data-background" id="version-number"></div>
+                      <div class="data-background" id="version-number">Loading...</div>
                     </div>
                     <div class="version-banner">
                       <span>Released:</span>
-                      <div class="data-background" id="version-date"></div>
+                      <div class="data-background" id="version-date">Loading...</div>
                     </div>
                   </div>
             </div>
@@ -288,8 +288,6 @@
             let versionDate = document.getElementById("version-date");
             let date = new Date(latest.date_published);
             versionDate.innerText = date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-
-            document.querySelector(".version-container").style.display = "flex"; // Show banners
         }
 
         updateDownloadCounter();

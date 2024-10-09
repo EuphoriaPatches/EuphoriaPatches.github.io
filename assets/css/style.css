@@ -1303,28 +1303,39 @@ table, th, td {
 
 .version-container {
     display: flex;
-    justify-content: center; /* Center the banners horizontally */
-    gap: 20px; /* Space between banners */
-    margin-top: 20px; /* Space above banners */
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .version-banner {
-    display: flex; /* Flexbox for content alignment */
-    align-items: center; /* Center content vertically */
+    display: flex;
+    align-items: center;
 }
 
 .data-background {
     color: var(--ThemeColor);
-    background-color: rgb(30, 33, 45); /* Light background for the data */
-    border: 2px solid #ccc; /* Border color */
-    border-radius: 15px; /* Rounded corners */
-    padding: 8px; /* Padding inside the data */
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2); /* Subtle shadow for a modern look */
-    font-weight: bold; /* Bold text for emphasis */
-    min-width: 100px; /* Fixed minimum width for data */
-    text-align: center; /* Center text */
-    margin-left: 10px; /* Space between label and data */
+    background-color: rgb(30, 33, 45);
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 8px;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    min-width: 100px;
+    text-align: center;
+    margin-left: 10px;
     transform: scale(0.87);
+}
+
+@media (max-width: 768px) {
+    .version-container {
+        gap: 10px
+    }
+
+    .data-background {
+        margin-left: 0px;
+    }
 }
 
 /* Section: Install Instructions */
