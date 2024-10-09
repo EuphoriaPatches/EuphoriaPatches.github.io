@@ -20,6 +20,8 @@ function isFresh(response) {
 self.addEventListener('fetch', (event) => {
   const requestURL = new URL(event.request.url);
 
+  console.log('Fetch event for:', event.request.url);
+
   // Handle only WebP images
   if (requestURL.pathname.endsWith('.webp')) {
     event.respondWith(
