@@ -1236,21 +1236,29 @@ table, th, td {
 }
 
 .section-downloads .btn-installer {
-    border: 2px solid var(--ThemeColor);
+    border: 4px solid var(--ThemeColor);
 
     border-color: var(--ThemeColor);
     color: var(--VeryLightGray);
     /* text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
     background-color: var(--VeryDarkGray);
 
-    min-width: 300px;
+    min-width: 330px;
     padding: 20px 20px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    box-shadow: 0 0 0 transparent;
+    transition: box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 .section-downloads .btn-installer:hover {
     color: var(--ThemeColor);
     border-color: white;
     background-color: var(--DarkGray);
+
+    box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
 }
 .indented-download-button {
     margin: 1.5rem;
@@ -1290,6 +1298,21 @@ table, th, td {
     margin-bottom: -50px;
 }
 
+.download-icon {
+    width: 20px;
+    height: 20px;
+    margin: 7px;
+    vertical-align: middle;
+    filter: invert(53%) sepia(42%) saturate(4079%) hue-rotate(284deg) brightness(100%) contrast(107%);
+    transition: filter 0.3s ease-in-out;
+    scale: 1.5;
+}
+
+.section-downloads .btn-installer:hover .download-icon {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(185deg) brightness(107%) contrast(106%);
+    transition: filter 0.3s ease-in-out;
+}
+
 .section-downloads .btn-installer:hover .download-count {
     color: white;
     transition: color 0.3s ease-in-out;
@@ -1299,6 +1322,7 @@ table, th, td {
     color:var(--ThemeColor);
     font-weight: bold;
     transition: color 0.3s ease-in-out;
+    margin: 5px;
 }
 
 .version-container {
