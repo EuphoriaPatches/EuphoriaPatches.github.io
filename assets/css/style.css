@@ -1455,12 +1455,12 @@ table, th, td {
     content: '';
     position: fixed;
     height: 110px;
-    bottom: calc(100vh - 85vh -	71px);
+    bottom: 0;
     right: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(11, 12, 15));
     pointer-events: none;
 
-    top: auto;
+    top: calc(85vh - 20px * 2);
     left: 20px;
     max-width: 250px;
     border-radius: 15px;
@@ -1542,7 +1542,7 @@ table, th, td {
     }
 
     .faq-index::after {
-        bottom: calc(100vh - 65vh);
+        top: calc(55vh - 20px * 2);
     }
 
     .faq-index.open {
