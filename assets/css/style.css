@@ -238,6 +238,29 @@ button.btn:focus {
     unicode-bidi: plaintext;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #333;
+    border-radius: 10px;
+}
+
+/* Handle (scrollbar thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: #666;
+    border-radius: 10px;
+    border: 2px solid #333;
+    min-height: 30px;
+    max-height: 30px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ThemeColor);
+}
+
 /* ELEMENTS
 ================================================== */
 /* Checkbox fields */
