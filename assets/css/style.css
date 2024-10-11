@@ -808,7 +808,7 @@ html, body {
     /*background: url(../img/gradient.png) no-repeat center;*/
     background-size: 100% 100%;
     width: 100%;
-    z-index: 3;
+    z-index: 9999;
     font-weight: bolder;
 }
 
@@ -1447,7 +1447,7 @@ table, th, td {
     max-height: 85vh;
     overflow-y: auto;
     max-width: 250px;
-    z-index: 999;
+    z-index: 3;
     outline: 2px solid rgb(97, 97, 97);
 }
 
@@ -1524,7 +1524,7 @@ table, th, td {
     position: fixed;
     top: 50px;
     left: 20px;
-    z-index: 1000;
+    z-index: 4;
 }
 
 @media (max-width: 768px) {
@@ -1920,7 +1920,7 @@ table, th, td {
     right: 0;
     bottom: 0;
     border-radius: inherit;
-    padding: 7px; /* Thickness of the border */
+    padding: 7px;
     background: conic-gradient(from var(--angle), rgb(173, 38, 173), orange, rgb(173, 38, 173));
     opacity: 0.7;
     -webkit-mask: 
@@ -1932,13 +1932,13 @@ table, th, td {
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    pointer-events: none; /* Allows clicks to pass through the border */
+    pointer-events: none;
     animation: 3s spin linear;
 }
 
 .main-banner-content {
     position: relative;
-    z-index: 1; /* Ensures content is above the pseudo-element */
+    z-index: 1;
     background: transparent;
 }
 
