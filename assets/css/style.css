@@ -1542,7 +1542,7 @@ table, th, td {
     }
 
     .faq-index::after {
-        bottom: calc(100vh - 55vh -	71px);
+        bottom: calc(100vh - 55vh);
     }
 
     .faq-index.open {
