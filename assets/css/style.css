@@ -1542,7 +1542,7 @@ table, th, td {
     }
 
     .faq-index::after {
-        bottom: calc(100vh - 55vh);
+        bottom: calc(100vh - 65vh);
     }
 
     .faq-index.open {
