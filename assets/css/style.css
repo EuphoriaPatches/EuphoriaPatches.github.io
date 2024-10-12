@@ -2035,6 +2035,10 @@ table, th, td {
     }
 }
 
+.last-added-policy {
+    font-size: 12px;
+}
+
 /* Section: Services */
 .section-services .subheading-text {
     margin-bottom: 90px;
