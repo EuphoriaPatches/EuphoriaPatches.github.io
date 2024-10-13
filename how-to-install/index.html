@@ -139,6 +139,7 @@
                                 <span id="or"></span>
                                 <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
                             </li>
+                            <li id="version-number"></li>
                         </ul>
                     </li>
                     <li>
@@ -212,6 +213,26 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
+
+    function extractVersion(versionString, isMain) {
+        return isMain ? versionString.split('-')[0] : versionString.split('-')[1]; // Extract version before the first dash
+    }
+
+    async function updateDownloadCounter() {
+        const projectId = '4H6sumDB';
+        
+        // Fetch latest version info
+        const versionResponse = await fetch(`https://api.modrinth.com/v2/project/${projectId}/version`);
+        const versions = await versionResponse.json();
+        const latest = versions.find(version => version.featured);
+
+        document.getElementById("version-number").innerHTML = 
+        "Complementary <span class='version-style'>" + extractVersion(latest.version_number, false) + 
+        "</span> + Euphoria Patches <span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
+    }
+
+    updateDownloadCounter();
+
     function getBrowserLanguage() {
         return navigator.language || navigator.userLanguage;
     }

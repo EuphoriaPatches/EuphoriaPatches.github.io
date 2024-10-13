@@ -2039,6 +2039,12 @@ table, th, td {
     font-size: 12px;
 }
 
+.version-style {
+    color: #ff50df; /* Example color */
+    font-weight: bold; /* Customize as needed */
+    font-size: 19px;
+}
+
 /* Section: Services */
 .section-services .subheading-text {
     margin-bottom: 90px;
