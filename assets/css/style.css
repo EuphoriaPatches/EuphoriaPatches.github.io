@@ -2994,9 +2994,6 @@ a.contact-bg:before {
 .adsbygoogle {
     background-color: rgb(25, 25, 33);
     z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .ad-vertical {
