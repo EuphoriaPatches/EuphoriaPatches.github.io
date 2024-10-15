@@ -3028,17 +3028,3 @@ a.contact-bg:before {
     padding-bottom: 22px;
     text-align: center;
 }
-
-.ad-container {
-    max-height: 164px;
-    height: 164px;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ad-container ins {
-    max-height: 164px;
-    width: 100%;
-}
