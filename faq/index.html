@@ -93,36 +93,38 @@
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
-    <div id="hero" class="hero overlay faq-hero">
-        <img 
-            src="/assets/img/backgrounds/faqBackground.webp"
-            srcset="
-                /assets/img/backgrounds/faqBackground-480w.webp 480w,
-                /assets/img/backgrounds/faqBackground-540w.webp 540w,
-                /assets/img/backgrounds/faqBackground-768w.webp 768w,
-                /assets/img/backgrounds/faqBackground-780w.webp 780w,
-                /assets/img/backgrounds/faqBackground-991w.webp 991w,
-                /assets/img/backgrounds/faqBackground-1280w.webp 1280w,
-                /assets/img/backgrounds/faqBackground.webp"
-            alt="Frequently asked questions about Euphoria Patches: image of a beautiful canyon"
-            class="hero-image"
-        >
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Frequently Asked Questions</h1>
-            </div><!-- /.hero-text -->
-        </div><!-- /.hero-content -->
-    </div><!-- /.hero -->
+    <div id="headerPart" class="headerPart">
+        <div id="hero" class="hero overlay faq-hero">
+            <img 
+                src="/assets/img/backgrounds/faqBackground.webp"
+                srcset="
+                    /assets/img/backgrounds/faqBackground-480w.webp 480w,
+                    /assets/img/backgrounds/faqBackground-540w.webp 540w,
+                    /assets/img/backgrounds/faqBackground-768w.webp 768w,
+                    /assets/img/backgrounds/faqBackground-780w.webp 780w,
+                    /assets/img/backgrounds/faqBackground-991w.webp 991w,
+                    /assets/img/backgrounds/faqBackground-1280w.webp 1280w,
+                    /assets/img/backgrounds/faqBackground.webp"
+                alt="Frequently asked questions about Euphoria Patches: image of a beautiful canyon"
+                class="hero-image"
+            >
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Frequently Asked Questions</h1>
+                </div><!-- /.hero-text -->
+            </div><!-- /.hero-content -->
+        </div><!-- /.hero -->
 
-    <!-- Horizontal Ad 1 -->
-    <div class="ad-div1">
-        <ins class="adsbygoogle"
-            style="display:inline-block;width:100%;height:160px"
-            data-ad-client="ca-pub-3756100266756497"
-            data-ad-slot="3183453809"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <!-- Horizontal Ad 1 -->
+        <div class="ad-div1">
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:100%;height:160px"
+                data-ad-client="ca-pub-3756100266756497"
+                data-ad-slot="3183453809"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
 
     <div class="faq-index-toggle">
@@ -270,7 +272,7 @@
         window.onscroll = makeIndexSticky;
     
         const index = document.querySelector('.faq-index');
-        const hero = document.querySelector('#hero');
+        const hero = document.querySelector('#headerPart');
         const toggleButton = document.getElementById('toggle-faq-index');
     
         // Function to get the current sticky offset and screen size

@@ -1566,7 +1566,7 @@ table, th, td {
 @media (min-width: 769px) {
     .faq-index {
         position: absolute;
-        top: 520px;
+        top: 720px;
         display: block;
         width: 250px;
     }
