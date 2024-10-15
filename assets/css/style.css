@@ -2994,6 +2994,9 @@ a.contact-bg:before {
 .adsbygoogle {
     background-color: var(--Gray);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ad-vertical {
@@ -3036,7 +3039,6 @@ a.contact-bg:before {
     align-items: center;
 }
 .ad-container ins {
-    display: block;
     max-height: 164px;
     width: 100%;
 }
