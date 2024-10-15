@@ -3031,7 +3031,6 @@ a.contact-bg:before {
 .ad-placeholder {
     color: var(--VeryLightGray);
     font-size: 32px;
-    font-family: 'monocraft';
     position: absolute;
     top: 0;
     left: 0;
