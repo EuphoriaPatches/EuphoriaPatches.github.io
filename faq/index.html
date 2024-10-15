@@ -295,7 +295,7 @@
                 const isScrollable = index.scrollHeight > index.clientHeight;
                 const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
     
-                index.classList.toggle('hide-gradient', !isScrollable || isAtBottom);
+                index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
             };
     
         // Toggle FAQ index on mobile when the button is clicked
