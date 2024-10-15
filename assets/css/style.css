@@ -3028,11 +3028,15 @@ a.contact-bg:before {
 
 .ad-container {
     max-height: 164px;
+    height: 164px;
     overflow: hidden;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ad-container ins {
     display: block;
-    height: 164px;
+    max-height: 164px;
     width: 100%;
 }
