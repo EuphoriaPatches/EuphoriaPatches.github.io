@@ -1383,6 +1383,10 @@ table, th, td {
     .data-background {
         margin-left: 0px;
     }
+
+    .section-downloads .btn-installer {
+        min-width: 290px;
+    }
 }
 
 /* Section: Install Instructions */
@@ -3020,4 +3024,15 @@ a.contact-bg:before {
     margin-top: 15px;
     padding-bottom: 22px;
     text-align: center;
+}
+
+.ad-container {
+    max-height: 164px;
+    overflow: hidden;
+    width: 100%;
+}
+.ad-container ins {
+    display: block;
+    height: 164px;
+    width: 100%;
 }
