@@ -3024,27 +3024,4 @@ a.contact-bg:before {
     margin-top: 15px;
     padding-bottom: 22px;
     text-align: center;
-    position: relative;
-    height: 160px;
-}
-
-.ad-placeholder {
-    color: var(--VeryLightGray);
-    font-size: 32px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-.ad-div1 .adsbygoogle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
 }
