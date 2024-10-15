@@ -2992,7 +2992,7 @@ a.contact-bg:before {
 
 /* Ad Stuff */
 .adsbygoogle {
-    background-color: var(--Gray);
+    background-color: rgb(25, 25, 33);
     z-index: 2;
     display: flex;
     justify-content: center;
