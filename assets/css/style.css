@@ -1427,6 +1427,7 @@ table, th, td {
 
 .section-indented-container li {
     margin: 0.66rem;
+    font-size: 18px;
 }
 
 .section-indented-container code {
