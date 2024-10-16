@@ -281,40 +281,6 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        window.onscroll = makeIndexSticky;
-
-        const indexContainer = document.querySelector('.faq-index-container');
-        const index = document.querySelector('.faq-index');
-        const hero = document.querySelector('#headerPart');
-        const toggleButton = document.getElementById('toggle-faq-index');
-
-        function updateDimensions() {
-            isLargeScreen = window.innerWidth >= 768;
-            stickyOffset = hero.offsetHeight;
-        }
-
-        let stickyOffset = 0;
-        let isLargeScreen = window.innerWidth >= 768;
-
-        function makeIndexSticky() {
-            const isSticky = window.pageYOffset >= stickyOffset;
-            indexContainer.classList.toggle("sticky", isSticky || !isLargeScreen);
-            toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
-        }
-
-        const checkScrollIndicator = () => {
-            const isScrollable = index.scrollHeight > index.clientHeight;
-            const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
-
-            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
-        };
-
-        toggleButton.addEventListener('click', () => {
-            index.classList.toggle('open');
-            toggleButton.classList.toggle('open');
-            checkScrollIndicator();
-        });
-
         var hasRun = false;
         function loadAd() {
             hasRun = true;
@@ -342,15 +308,46 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             }
         }
+        window.onscroll = makeIndexSticky;
+
+        const indexContainer = document.querySelector('.faq-index-container');
+        const index = document.querySelector('.faq-index');
+        const hero = document.querySelector('#headerPart');
+        const toggleButton = document.getElementById('toggle-faq-index');
+
+        function updateDimensions() {
+            isLargeScreen = window.innerWidth >= 768;
+            stickyOffset = hero.offsetHeight;
+        }
+
+        let stickyOffset = 0;
+        let isLargeScreen = window.innerWidth >= 768;
+
+        function makeIndexSticky() {
+            const isSticky = window.pageYOffset >= stickyOffset;
+            indexContainer.classList.toggle("sticky", isSticky || !isLargeScreen);
+            toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
+            loadAd();
+        }
+
+        const checkScrollIndicator = () => {
+            const isScrollable = index.scrollHeight > index.clientHeight;
+            const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
+
+            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
+        };
+
+        toggleButton.addEventListener('click', () => {
+            index.classList.toggle('open');
+            toggleButton.classList.toggle('open');
+            checkScrollIndicator();
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             updateDimensions();
             makeIndexSticky();
 
-            index.addEventListener('scroll', function() {
-                checkScrollIndicator();
-                loadAd();
-            });
-
+            index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
                 updateDimensions();
                 makeIndexSticky();
