@@ -154,7 +154,7 @@
             </ul>
         </div>
     
-        <div id="faq-ad-placeholder" class="faq-ad">
+        <div id="faq-ad" class="faq-ad">
             <ins class="adsbygoogle"
                  style="display:inline-block;width:220px;height:145px"
                  data-ad-client="ca-pub-3756100266756497"
@@ -281,33 +281,34 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        window.onscroll = makeIndexSticky;
+        window.onscroll = handleScroll;
 
         const indexContainer = document.querySelector('.faq-index-container');
         const index = document.querySelector('.faq-index');
+        const adElement = document.getElementById('faq-ad');
         const hero = document.querySelector('#headerPart');
         const toggleButton = document.getElementById('toggle-faq-index');
+
+        let stickyOffset = 0;
+        let isLargeScreen = window.innerWidth >= 768;
+        let adLoaded = false;
+        let adMoved = false;
 
         function updateDimensions() {
             isLargeScreen = window.innerWidth >= 768;
             stickyOffset = hero.offsetHeight;
         }
 
-        let stickyOffset = 0;
-        let isLargeScreen = window.innerWidth >= 768;
-
-        function makeIndexSticky() {
+        function handleScroll() {
             const isSticky = window.pageYOffset >= stickyOffset;
-            indexContainer.classList.toggle("sticky", isSticky || !isLargeScreen);
+            indexContainer.classList.toggle("sticky", isSticky && isLargeScreen);
             toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
-            loadAd();
         }
 
         const checkScrollIndicator = () => {
             const isScrollable = index.scrollHeight > index.clientHeight;
             const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
-
-            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
+            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || !isLargeScreen);
         };
 
         toggleButton.addEventListener('click', () => {
@@ -316,14 +317,33 @@
             checkScrollIndicator();
         });
 
+        function adMove(){
+            if (adLoaded && isLargeScreen) {
+                if (!adMoved) {
+                    adElement.classList.toggle("repositioned");
+                }
+                adMoved = true;
+            }
+        }
+
+        function waitForAdLoad() {
+            if (adElement.querySelector('ins').getAttribute('data-ad-status') === 'filled') {
+                adLoaded = true;
+                adMove();
+            } else {
+                setTimeout(waitForAdLoad, 100); // Check again in 100ms
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             updateDimensions();
-            makeIndexSticky();
+            handleScroll();
+            waitForAdLoad();
 
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
                 updateDimensions();
-                makeIndexSticky();
+                handleScroll();
                 checkScrollIndicator();
             });
 
