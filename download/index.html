@@ -278,6 +278,7 @@
             const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
             const data = await response.json();
             const downloads = formatDownloads(data.downloads);
+            console.log(data.downloads + " downloads");
             document.getElementById('download-counter').innerText = downloads;
 
             // Fetch latest version info
