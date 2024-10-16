@@ -281,33 +281,6 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        var hasRun = false;
-        function loadAd() {
-            // hasRun = true;
-            // if (hasRun) {
-            //     return;
-            // }
-            const adPlaceholder = document.getElementById('faq-ad-placeholder');
-            if (adPlaceholder && !adPlaceholder.hasChildNodes()) {
-                const adScript = document.createElement('script');
-                adScript.async = true;
-                adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3756100266756497';
-                adScript.crossOrigin = 'anonymous';
-                document.head.appendChild(adScript);
-
-                const adInsElement = document.createElement('ins');
-                adInsElement.className = 'adsbygoogle';
-                adInsElement.style.display = 'inline-block';
-                adInsElement.style.width = '220px';
-                adInsElement.style.height = '145px';
-                adInsElement.setAttribute('data-ad-client', 'ca-pub-3756100266756497');
-                adInsElement.setAttribute('data-ad-slot', '7047876302');
-
-                adPlaceholder.appendChild(adInsElement);
-
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        }
         window.onscroll = makeIndexSticky;
 
         const indexContainer = document.querySelector('.faq-index-container');
