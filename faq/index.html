@@ -328,13 +328,11 @@
         }
 
         function waitForAdLoad() {
-            if (isLargeScreen) {
-                if (adElement.querySelector('ins').getAttribute('data-ad-status') === 'filled') {
-                    adLoaded = true;
-                    adMove();
-                } else {
-                    setTimeout(waitForAdLoad, 100); // Check again in 100ms
-                }
+            if (adElement.querySelector('ins').getAttribute('data-ad-status') === 'filled') {
+                adLoaded = true;
+                adMove();
+            } else {
+                setTimeout(waitForAdLoad, 100); // Check again in 100ms
             }
         }
 
