@@ -127,30 +127,47 @@
         </div>
     </div>
 
-    <div class="faq-index-toggle">
-        <button id="toggle-faq-index" class="modern-button">Table of Contents</button>
-    </div>
+    <div class="faq-index-container">
+        <div class="faq-index-toggle">
+            <button id="toggle-faq-index" class="modern-button">Table of Contents</button>
+        </div>
+    
+        <div class="faq-index collapsible">
+            <h3>Jump to a question:</h3>
+            <ul>
+                <li><a href="#what-is-euphoria-patches">What is Euphoria Patches?</a></li>
+                <li><a href="#how-to-install">How to Install Euphoria Patches?</a></li>
+                <li><a href="#when-update">When does Euphoria Patches update?</a></li>
+                <li><a href="#new-settings">After Installing where are the new settings?</a></li>
+                <li><a href="#not-showing">What to do if Euphoria Patches doesn't show up?</a></li>
+                <li><a href="#shader-settings">Where can I find shader settings?</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#why-mod">Why does Euphoria Patches need a mod?</a></li>
+                <li><a href="#contribute">Contribute</a></li>
+                <li><a href="#settings">Euphoria Patches Settings</a></li>
+                <li><a href="#credits">Credits</a></li>
+                <li><a href="#support">How to support Euphoria Patches?</a></li>
+                <li><a href="#mod-support">Mod Support</a></li>
+                <li><a href="#license">License notice</a></li>
+                <li><a href="#shader-loader">Best Shader Loader</a></li>
+                <li><a href="#iris-exclusive">Iris Exclusive Features</a></li>
 
-    <div class="faq-index collapsible">
-        <h3>Jump to a question:</h3>
-        <ul>
-            <li><a href="#what-is-euphoria-patches">What is Euphoria Patches?</a></li>
-            <li><a href="#how-to-install">How to Install Euphoria Patches?</a></li>
-            <li><a href="#when-update">When does Euphoria Patches update?</a></li>
-            <li><a href="#new-settings">After Installing where are the new settings?</a></li>
-            <li><a href="#not-showing">What to do if Euphoria Patches doesn't show up?</a></li>
-            <li><a href="#shader-settings">Where can I find shader settings?</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#why-mod">Why does Euphoria Patches need a mod?</a></li>
-            <li><a href="#contribute">Contribute</a></li>
-            <li><a href="#settings">Euphoria Patches Settings</a></li>
-            <li><a href="#credits">Credits</a></li>
-            <li><a href="#support">How to support Euphoria Patches?</a></li>
-            <li><a href="#mod-support">Mod Support</a></li>
-            <li><a href="#license">License notice</a></li>
-            <li><a href="#shader-loader">Best Shader Loader</a></li>
-            <li><a href="#iris-exclusive">Iris Exclusive Features</a></li>
-        </ul>
+                <li><a href="#mod-support">Mod Support</a></li>
+                <li><a href="#license">License notice</a></li>
+                <li><a href="#shader-loader">Best Shader Loader</a></li>
+                <li><a href="#iris-exclusive">Iris Exclusive Features</a></li>
+            </ul>
+        </div>
+    
+        <div class="faq-ad">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:220px;height:110px"
+                 data-ad-client="ca-pub-3756100266756497"
+                 data-ad-slot="7047876302"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
 
     <main id="main" class="site-main">
@@ -270,57 +287,52 @@
 
     <script>
         window.onscroll = makeIndexSticky;
-    
+
+        const indexContainer = document.querySelector('.faq-index-container');
         const index = document.querySelector('.faq-index');
         const hero = document.querySelector('#headerPart');
         const toggleButton = document.getElementById('toggle-faq-index');
-    
-        // Function to get the current sticky offset and screen size
+
         function updateDimensions() {
             isLargeScreen = window.innerWidth >= 768;
-            stickyOffset = hero.offsetHeight; // Recalculate stickyOffset on resize
+            stickyOffset = hero.offsetHeight;
         }
-    
+
         let stickyOffset = 0;
-        let isLargeScreen = window.innerWidth >= 768; // Initial value
-    
-        // Make the index sticky after scrolling past the hero section
+        let isLargeScreen = window.innerWidth >= 768;
+
         function makeIndexSticky() {
             const isSticky = window.pageYOffset >= stickyOffset;
-            index.classList.toggle("sticky", isSticky || !isLargeScreen);
+            indexContainer.classList.toggle("sticky", isSticky || !isLargeScreen);
             toggleButton.classList.toggle("sticky", isSticky || !isLargeScreen);
         }
 
         const checkScrollIndicator = () => {
-                const isScrollable = index.scrollHeight > index.clientHeight;
-                const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
-    
-                index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
-            };
-    
-        // Toggle FAQ index on mobile when the button is clicked
+            const isScrollable = index.scrollHeight > index.clientHeight;
+            const isAtBottom = Math.abs(index.scrollHeight - index.scrollTop - index.clientHeight) < 1;
+
+            index.classList.toggle('hide-gradient', !isScrollable || isAtBottom || isLargeScreen);
+        };
+
         toggleButton.addEventListener('click', () => {
             index.classList.toggle('open');
             toggleButton.classList.toggle('open');
             checkScrollIndicator();
         });
-    
+
         document.addEventListener('DOMContentLoaded', () => {
-            updateDimensions(); // Calculate dimensions on page load
-            makeIndexSticky();  // Ensure sticky logic is applied immediately
-    
+            updateDimensions();
+            makeIndexSticky();
+
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
                 updateDimensions();
                 makeIndexSticky();
                 checkScrollIndicator();
             });
-    
-            // Initial check
-            checkScrollIndicator();
-        });
 
-        document.addEventListener('DOMContentLoaded', checkScrollIndicator());
+            checkScrollIndicator();
+});
     </script>
     
 

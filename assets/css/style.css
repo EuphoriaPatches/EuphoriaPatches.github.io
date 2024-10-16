@@ -1441,32 +1441,39 @@ table, th, td {
 }
 
 /* Default styles for the index */
-.faq-index {
+.faq-index-container {
     position: absolute;
     top: auto;
     left: 20px;
+    z-index: 3;
+    width: 250px;
+    max-width: 250px;
+}
+
+.faq-index, .faq-ad {
     background-color: rgb(28, 30, 38);
     color: white;
     padding: 15px;
     border-radius: 25px;
-    max-height: 85vh;
-    overflow-y: auto;
-    max-width: 250px;
-    z-index: 3;
     outline: 2px solid rgb(97, 97, 97);
+    margin-bottom: 20px;
+}
+
+.faq-index {
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .faq-index::after {
     content: '';
-    position: fixed;
-    height: 110px;
+    position: absolute;
+    height: 90px;
     bottom: 0;
     right: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(11, 12, 15));
     pointer-events: none;
-
-    top: calc(85vh - 20px * 2);
-    left: 20px;
+    top: calc(85vh - 1990px * 2);
+    left: 0px;
     max-width: 250px;
     border-radius: 15px;
 }
@@ -1475,7 +1482,7 @@ table, th, td {
     display: none;
 }
 
-.faq-index.sticky {
+.faq-index-container.sticky {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -1512,7 +1519,6 @@ table, th, td {
     margin-left: 300px;
 }
 
-/* Styles for the FAQ toggle button (visible on mobile only) */
 .faq-index-toggle {
     display: none;
 }
@@ -1532,9 +1538,18 @@ table, th, td {
     z-index: 4;
 }
 
+.faq-ad {
+    display: block;
+}
+
 @media (max-width: 768px) {
     .faq-index-toggle {
-        display: block; /* Show the button only on mobile */
+        display: block;
+    }
+
+    .faq-index-container {
+        position: static;
+        width: auto;
     }
 
     .faq-index {
@@ -1561,15 +1576,16 @@ table, th, td {
     .section-indented-container {
         margin-left: 0;
     }
+
+    .faq-ad {
+        display: none;
+    }
 }
 
-/* FAQ index sticky behavior on desktop */
 @media (min-width: 769px) {
-    .faq-index {
+    .faq-index-container {
         position: absolute;
         top: 720px;
-        display: block;
-        width: 250px;
     }
 }
 
