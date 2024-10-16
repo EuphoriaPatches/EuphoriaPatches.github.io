@@ -1542,8 +1542,6 @@ table, th, td {
     display: block;
     position:relative;
     bottom: 750px;
-    z-index: -1;
-    left: 70px;
 }
 
 .faq-ad.repositioned {
