@@ -315,7 +315,12 @@
             checkScrollIndicator();
         });
 
+        var hasRun = false;
         function loadAd() {
+            hasRun = true;
+            if (hasRun) {
+                return;
+            }
             const adPlaceholder = document.getElementById('faq-ad-placeholder');
             if (adPlaceholder && !adPlaceholder.hasChildNodes()) {
                 const adScript = document.createElement('script');
@@ -340,9 +345,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateDimensions();
             makeIndexSticky();
-            loadAd(); // Force load the ad when the DOM is ready
 
-            index.addEventListener('scroll', checkScrollIndicator);
+            index.addEventListener('scroll', function() {
+                checkScrollIndicator();
+                loadAd();
+            });
+
             window.addEventListener('resize', () => {
                 updateDimensions();
                 makeIndexSticky();
