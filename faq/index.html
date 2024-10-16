@@ -154,7 +154,7 @@
             </ul>
         </div>
     
-        <div class="faq-ad">
+        <div id="faq-ad-placeholder" class="faq-ad">
             <ins class="adsbygoogle"
                  style="display:inline-block;width:220px;height:145px"
                  data-ad-client="ca-pub-3756100266756497"
@@ -315,9 +315,32 @@
             checkScrollIndicator();
         });
 
+        function loadAd() {
+            const adPlaceholder = document.getElementById('faq-ad-placeholder');
+            if (adPlaceholder && !adPlaceholder.hasChildNodes()) {
+                const adScript = document.createElement('script');
+                adScript.async = true;
+                adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3756100266756497';
+                adScript.crossOrigin = 'anonymous';
+                document.head.appendChild(adScript);
+
+                const adInsElement = document.createElement('ins');
+                adInsElement.className = 'adsbygoogle';
+                adInsElement.style.display = 'inline-block';
+                adInsElement.style.width = '250px';
+                adInsElement.style.height = '250px';
+                adInsElement.setAttribute('data-ad-client', 'ca-pub-3756100266756497');
+                adInsElement.setAttribute('data-ad-slot', '7047876302');
+
+                adPlaceholder.appendChild(adInsElement);
+
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        }
         document.addEventListener('DOMContentLoaded', () => {
             updateDimensions();
             makeIndexSticky();
+            loadAd(); // Force load the ad when the DOM is ready
 
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
@@ -327,7 +350,7 @@
             });
 
             checkScrollIndicator();
-});
+        });
     </script>
     
 
