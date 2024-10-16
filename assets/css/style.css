@@ -1555,8 +1555,9 @@ table, th, td {
     }
 
     .faq-index-container {
-        position: static;
-        width: auto;
+        position: sticky;
+        top: 20px;
+        left: 20px;
     }
 
     .faq-index {
