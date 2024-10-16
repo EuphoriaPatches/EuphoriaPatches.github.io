@@ -283,7 +283,7 @@
             // Fetch latest version info
             const versionResponse = await fetch(`https://api.modrinth.com/v2/project/${projectId}/version`);
             const versions = await versionResponse.json();
-            const latest = versions.find(version => version.featured);
+            const latest = versions[0];
 
             let versionNumber = document.getElementById("version-number");
             versionNumber.innerText = extractMainVersion(latest.version_number);
