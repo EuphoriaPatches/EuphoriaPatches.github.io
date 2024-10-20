@@ -137,21 +137,24 @@
                         <ul>
                             <li>
                                 <span id="substep1_1"></span>
+                                <span id="version-number"><code>Loading data from Modrinth...</code></span>
                                 <span>(</span><a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a>
                                 <span id="or"></span>
                                 <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
                             </li>
-                            <li id="version-number"><code>Loading data from Modrinth...</code></li>
                         </ul>
                     </li>
                     <li>
                         <span id="step2Before"></span>
                         <a href="/modrinth" target="_blank">EuphoriaPatcher</a>
-                        <span id="version-number2"><code>Loading data from Modrinth...</code></span><span>)</span>
+                        <span id="version-number3"><code>Loading data from Modrinth...</code></span><span>)</span>
                         <span id="step2After"></span>
                     </li>
                     <li id="step3"></li>
-                    <li id="step4"></li>
+                    <li>
+                        <span id="version-number2"><code>Loading data from Modrinth...</code></span>
+                        <span id="step4"></span>
+                    </li>
                 </ol>
                 <p id="unsupportedVersions"></p>
                 
@@ -229,11 +232,13 @@
         const versions = await versionResponse.json();
         const latest = versions[0];
 
-        document.getElementById("version-number").innerHTML = 
-        "Complementary <span class='version-style'>" + extractVersion(latest.version_number, false) + 
-        "</span> + Euphoria Patches <span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
+        document.getElementById("version-number").innerHTML = "</span><span class='version-style'>" + extractVersion(latest.version_number, false) + "</span>";
 
-        document.getElementById("version-number2").innerHTML = "</span>(<span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
+        document.getElementById("version-number2").innerHTML = 
+        "Complementary <span class='version-style'>" + extractVersion(latest.version_number, false) + 
+        "</span> Shaders + Euphoria Patches <span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
+
+        document.getElementById("version-number3").innerHTML = "</span>(<span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
     }
 
     updateDownloadCounter();
