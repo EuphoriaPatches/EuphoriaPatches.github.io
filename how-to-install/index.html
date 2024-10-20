@@ -146,7 +146,8 @@
                     </li>
                     <li>
                         <span id="step2Before"></span>
-                        <a href="https://modrinth.com/mod/euphoria-patches" target="_blank">EuphoriaPatcher</a>
+                        <a href="/modrinth" target="_blank">EuphoriaPatcher</a>
+                        <span id="version-number2"><code>Loading data from Modrinth...</code></span><span>)</span>
                         <span id="step2After"></span>
                     </li>
                     <li id="step3"></li>
@@ -231,6 +232,8 @@
         document.getElementById("version-number").innerHTML = 
         "Complementary <span class='version-style'>" + extractVersion(latest.version_number, false) + 
         "</span> + Euphoria Patches <span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
+
+        document.getElementById("version-number2").innerHTML = "</span>(<span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
     }
 
     updateDownloadCounter();
