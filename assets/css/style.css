@@ -1183,6 +1183,11 @@ table, th, td {
     padding: 4px;
 }
 
+code {
+    background-color: rgb(39, 35, 47);
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
 /* site-section */
 .site-section {
@@ -1428,12 +1433,6 @@ table, th, td {
 .section-indented-container li {
     margin: 0.66rem;
     font-size: 18px;
-}
-
-.section-indented-container code {
-    background-color: rgb(39, 35, 47);
-    color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .section-indented-container-credits li {
