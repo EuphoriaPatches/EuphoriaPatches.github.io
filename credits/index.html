@@ -144,7 +144,8 @@
 
                 <h2>Properties Files</h2>
                 <p>People who helped create the community-made properties files can be found here:
-                <a href="https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors" target="_blank">GitHub Contributors</a>. Unfortunately, this only includes those who made pull requests; others are still very much appreciated!</p>
+                <a href="https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors" target="_blank">GitHub Contributors</a>. Unfortunately, this only includes those who made pull requests; others are still very much appreciated! Data fetched from GitHub</p>
+                <ul id="contributors-list"><code>Loading data from GitHub</code></ul>
                 
                 <h2>Translations</h2>
                 <ul>
@@ -230,6 +231,32 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+
+    <script>
+        const repoOwner = "EuphoriaPatches";
+        const repoName = "propertiesFiles";
+        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
+
+        async function fetchContributors() {
+            try {
+                const response = await fetch(apiUrl);
+                const contributors = await response.json();
+
+                const contributorsList = document.getElementById("contributors-list");
+                contributorsList.innerHTML = ""; // Clear previous content
+
+                contributors.forEach(contributor => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<strong>${contributor.login}</strong>`;
+                    contributorsList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error fetching contributors:", error);
+            }
+        }
+
+        fetchContributors();
+    </script>
   
 </body>
 </html>
