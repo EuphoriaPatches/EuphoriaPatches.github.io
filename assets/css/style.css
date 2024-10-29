@@ -1291,6 +1291,11 @@ code {
 .indented-download-button {
     margin: 1.5rem;
 }
+@media (max-width: 768px) {
+    .indented-download-button {
+        margin: 0;
+    }
+}
 .section-downloads .btn-manual {
     color: white;
     background-color: var(--VeryDarkGray);
@@ -1410,6 +1415,10 @@ code {
     padding-left: 20px;
 }
 
+.section-install-instructions a {
+    overflow-wrap: break-word;
+}
+
 .section-indented-container h2, h4 {
     font-family: 'monocraft-multiple-lang';
     letter-spacing:-2.5px;
@@ -1424,6 +1433,7 @@ code {
     margin: 30px;
     color: var(--VeryLightGray);
     font-size: 18px;
+    text-wrap:wrap;
 }
 
 .section-indented-container h4 {
@@ -2070,6 +2080,90 @@ code {
     color: #ff50df; /* Example color */
     font-weight: bold; /* Customize as needed */
     font-size: 19px;
+}
+
+.carousel-how-to-install {
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.carousel {
+    max-width: 800px;
+    aspect-ratio: 16/9;
+}
+.carousel-item img {
+    max-height: 450px;
+    object-fit: cover;
+    background-color: var(--DarkGray);
+}
+.carousel-inner {
+    border-radius: 25px;
+}
+.carousel-caption h5{
+    box-shadow: #000000 10px 10px 100px 20px;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 25px;
+    position:absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.carousel-indicators img {
+    width: 70px;
+    height: 40px;
+    object-fit: cover;
+    display: block;
+}
+.carousel-indicators button {
+    width: max-content!important;
+    margin: 0 5px;
+}
+.carousel-indicators {
+    position: absolute;
+    margin-top: 10px;
+    bottom: -50px;
+    left: -50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Adjust space between indicators */
+    width: calc(100% - 100px); /* Adjust width to keep within bounds */
+}
+
+@media (max-width: 768px) {
+    .carousel-caption h5{
+        font-size: 10px;
+        bottom: -10px;
+    }
+    .carousel-indicators {
+        visibility: hidden;
+    }
+    .carousel-how-to-install {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+}
+
+/* Navigation buttons styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(28, 28, 28, 0.8);
+    border-radius: 30%;
+    padding: 20px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 1;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--EuphoriaMagenta);
 }
 
 /* Section: Services */
