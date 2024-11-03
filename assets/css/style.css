@@ -1056,8 +1056,10 @@ html, body {
 .hero-text .btn-border {
     position: relative;
     margin: 5px;
+    border: 3.5px solid var(--ThemeColor);
     background-color: rgba(0, 0, 0, 0.25);
     max-width: 100%;
+    transition: all 0.25s ease-in-out;
 }
 .hero-text .btn-border:focus {
     color: var(--VeryLightGray);
@@ -1066,6 +1068,7 @@ html, body {
     background-color: rgba(0, 0, 0, 0.5);
     color: var(--ThemeColor);
     border-color: var(--VeryLightGray);
+    scale: 1.05;
 }
 
 .main-page-text h1 {
@@ -1278,8 +1281,10 @@ code {
     justify-content: center;
     text-align: center;
 
+    font-weight: 600;
+
     box-shadow: 0 0 0 transparent;
-    transition: box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    transition: box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, scale 0.3s ease;
 }
 .section-downloads .btn-installer:hover {
     color: var(--ThemeColor);
@@ -1287,6 +1292,8 @@ code {
     background-color: var(--DarkGray);
 
     box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
+
+    scale: 1.03;
 }
 .indented-download-button {
     margin: 1.5rem;
@@ -1612,6 +1619,10 @@ code {
     display: block;
 }
 
+.section-donation-container ins {
+    color: var(--EuphoriaMagenta);
+}
+
 .section-donation, .section-donation-kofi {
     width: 45%;
     float: left;
@@ -1714,6 +1725,7 @@ code {
     );
     background-size: 200%;
     -webkit-text-fill-color: black;
+    scale: 1.05;
 }
 
 @keyframes background-text-gradient {
@@ -1741,12 +1753,14 @@ code {
 .section-click-box {
     outline-color: rgb(81, 81, 81);
     background-color: rgb(26, 26, 35);
+    transition: scale 0.2s ease-in-out;
 }
 
 .section-click-box:hover {
     outline-color: var(--ThemeColor);
     box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.55) inset,
     -8px -8px 8px rgba(255, 255, 255, 0.2) inset;
+    scale: 1.025;
 }
 
 .section-patreon_img {
@@ -2322,11 +2336,12 @@ code {
     cursor: pointer;
 
     outline: 5px solid rgba(0, 0, 0, 0);
-    transition: outline-color 0.25s ease-in-out;
+    transition: outline-color 0.25s ease-in-out, scale 0.25s ease-in-out;
 }
 
 .gallery-box:hover {
-outline-color: var(--ThemeColor);
+    outline-color: var(--ThemeColor);
+    scale: 1.025;
 }
 
 .gallery-title {
