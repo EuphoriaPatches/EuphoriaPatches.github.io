@@ -1293,14 +1293,26 @@ code {
 
     box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
 
-    scale: 1.03;
+    scale: 1.1;
+}
+.download-modrinth-btn{
+    scale: 1.075;
 }
 .indented-download-button {
     margin: 1.5rem;
 }
+.download-modrinth-part{
+    scale: 1.1;
+}
+.download-installer-part{
+    scale: 0.8;
+}
 @media (max-width: 768px) {
     .indented-download-button {
         margin: 0;
+    }
+    .download-modrinth-part {
+        scale: 0.9;
     }
 }
 .section-downloads .btn-manual {
