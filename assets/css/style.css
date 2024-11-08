@@ -2150,7 +2150,7 @@ code {
 .carousel-indicators {
     position: absolute;
     margin-top: 10px;
-    bottom: -50px;
+    bottom: -30px;
     left: -50px;
     display: flex;
     flex-wrap: wrap;
@@ -2171,6 +2171,9 @@ code {
         padding-top: 20px;
         padding-bottom: 10px;
     }
+    .carousel-control-next, .carousel-control-prev {
+        scale: 0.75;
+    }
 }
 
 /* Navigation buttons styling */
@@ -2190,6 +2193,10 @@ code {
 .carousel-control-next:hover .carousel-control-next-icon {
     background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid var(--EuphoriaMagenta);
+}
+
+.Installer-Method-Title {
+    margin-top: 50px;
 }
 
 /* Section: Services */
