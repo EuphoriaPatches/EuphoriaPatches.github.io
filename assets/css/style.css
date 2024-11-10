@@ -1292,14 +1292,18 @@ code {
     background-color: var(--DarkGray);
 
     box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
-
-    scale: 1.1;
 }
-.download-modrinth-btn{
+.download-modrinth-btn {
     scale: 1.075;
+}
+.download-modrinth-btn:hover {
+    scale: 1.125;
 }
 .indented-download-button {
     margin: 1.5rem;
+}
+.indented-download-button:hover {
+    scale: 1.03;
 }
 .download-modrinth-part{
     scale: 1.1;
