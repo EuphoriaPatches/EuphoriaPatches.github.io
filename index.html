@@ -349,7 +349,9 @@
                 downloadCounter.innerText = formattedDownloads;
                 
                 // Set the tooltip with exact number
-                downloadCounter.setAttribute('data-tooltip', totalDownloads.toLocaleString());
+                downloadCounter.setAttribute('data-tooltip', "Modrinth Downloads: " + modrinthDownloads.toLocaleString() + "\n" 
+                + "CurseForge Downloads: " + curseforgeDownloads.toLocaleString() + "\n" 
+                + "Total Downloads: " + totalDownloads.toLocaleString());
 
                 return totalDownloads;
             } catch (error) {

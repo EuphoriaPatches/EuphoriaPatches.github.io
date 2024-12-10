@@ -1920,7 +1920,8 @@ code {
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
-    white-space: nowrap;
+    white-space: pre;  /* This preserves only explicit line breaks */
+    max-width: 250px;
     z-index: 10;
     opacity: 0;
     visibility: hidden;
