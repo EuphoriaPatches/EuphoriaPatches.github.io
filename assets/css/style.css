@@ -1693,6 +1693,40 @@ code {
     margin-bottom: 50px;
 }
 
+.section-what-is-EP-desc a[href="/download"] {
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: var(--LinkColor);
+    color: white;
+    padding: 0 4px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.section-what-is-EP-desc a[href="/download"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--EuphoriaMagenta); /* Use a contrasting color */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.section-what-is-EP-desc a[href="/download"]:hover {
+    background-color: var(--VeryDarkGray);
+    color: var(--EuphoriaMagenta);
+    transform: scale(1.05);
+}
+
+.section-what-is-EP-desc a[href="/download"]:hover::after {
+    transform: scaleX(1);
+}
+
 .larger-text-EP-desc, .larger-text-EP-desc-centered, .larger-text-EP-desc-left-margin {
     font-size: 17px;
     margin-top: 0.5em;
@@ -1863,6 +1897,39 @@ code {
     .dynamic-icon-row {
         gap: 15px;
     }
+}
+
+.dynamic-hover-element {
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline dotted;
+}
+
+.dynamic-hover-element:hover {
+    text-decoration: underline;
+}
+
+.dynamic-hover-element::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+}
+
+.dynamic-hover-element:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .dynamic-icon-element {

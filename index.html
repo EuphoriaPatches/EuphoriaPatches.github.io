@@ -182,7 +182,8 @@
                 </div>
                 <div class="section-what-is-EP-desc">
                     <p>
-                        Euphoria Patches is an add-on mod for Complementary Shaders (Reimagined and Unbound), a popular shader pack for Minecraft Java Edition. Developed by SpacEagle17, this patcher mod extends Complementary with unique, handcrafted features and settings, allowing for extensive customization. With countless new options introduced based on user feedback, Euphoria Patches delivers regular updates that enhance visuals and unleash player creativity. Players can <a href="/download"><strong>Download</strong></a> Euphoria Patches to enjoy endless possibilities for shaping their unique Minecraft experience, with excellent mod support for seamless integration with numerous mods.<br>
+                        Euphoria Patches is an add-on mod for Complementary Shaders (Reimagined and Unbound), a popular shader pack for Minecraft Java Edition. Developed by SpacEagle17, this patcher mod extends Complementary with unique, handcrafted features and settings, allowing for extensive customization. With countless new options introduced based on user feedback, Euphoria Patches delivers regular updates that enhance visuals and unleash player creativity.
+                        Players can <a href="/download"><strong>Download</strong></a> Euphoria Patches and join <span id="download-counter" class="download-count dynamic-hover-element" data-tooltip="">thousands of</span> users who have already enhanced their Minecraft visual experience. The mod offers endless possibilities for shaping your unique Minecraft environment, with excellent mod support for seamless integration with numerous mods.
                         <span class="larger-text-EP-desc"><ins><strong>Support development and get access to exclusive Preview Versions?</strong></ins><br><a href="/support" target="_blank"> Get the Preview Versions now!</a></span>
                     </p>
                 </div>
@@ -280,6 +281,85 @@
                 timeout = setTimeout(later, wait);
             };
         }
+    </script>
+
+    <script>
+        async function formatDownloads(num) {
+            if (num >= 1_000_000) {
+                return (num / 1_000_000).toFixed(2) + 'M';
+            } else if (num >= 1_000) {
+                return (num / 1_000).toFixed(2) + 'K';
+            }
+            return num;
+        }
+
+        async function fetchModrinthDownloads(projectId) {
+            try {
+                const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+                const data = await response.json();
+                return data.downloads || 0;
+            } catch (error) {
+                console.error('Error fetching Modrinth downloads:', error);
+                return 0;
+            }
+        }
+
+        async function fetchCurseforgeDownloads(projectId) {
+            try {
+                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK' // Replace with your actual API key
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Curseforge API request failed');
+                }
+                
+                const data = await response.json();
+                return data.data.downloadCount || 0;
+            } catch (error) {
+                console.error('Error fetching Curseforge downloads:', error);
+                return 0;
+            }
+        }
+
+        async function updateDownloadCounter() {
+            const modrinthProjectId = '4H6sumDB';
+            const curseforgeProjectId = '915902'; // Replace with your actual Curseforge project ID
+
+            try {
+                // Fetch downloads from both platforms
+                const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
+                const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
+
+                // Calculate total downloads
+                const totalDownloads = modrinthDownloads + curseforgeDownloads;
+
+                // Format and display downloads
+                const formattedDownloads = await formatDownloads(totalDownloads);
+                
+                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
+                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
+                console.log(`Total Downloads: ${totalDownloads}`);
+
+                // Update the download counter element
+                const downloadCounter = document.getElementById('download-counter');
+                downloadCounter.innerText = formattedDownloads;
+                
+                // Set the tooltip with exact number
+                downloadCounter.setAttribute('data-tooltip', totalDownloads.toLocaleString());
+
+                return totalDownloads;
+            } catch (error) {
+                console.error('Error updating download counter:', error);
+                document.getElementById('download-counter').innerText = 'Error';
+            }
+        }
+
+        // Call the function to update downloads
+        updateDownloadCounter();
     </script>
   
 </body>
