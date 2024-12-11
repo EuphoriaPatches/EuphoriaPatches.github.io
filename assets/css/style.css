@@ -2170,6 +2170,72 @@ code {
     }
 }
 
+#download-counter-all-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.download-page-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #e872be, #c79063);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.download-counter-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.download-counter-page span:first-child {
+    font-size: 5vw;
+    color: #333;
+}
+
+.download-counter-page span:last-child {
+    font-size: 10vw;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: -5px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .download-counter-page span:first-child {
+        font-size: 6vw; /* Slightly larger for better readability */
+    }
+
+    .download-counter-page span:last-child {
+        font-size: 12vw;
+        letter-spacing: -2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-counter-page span:first-child {
+        font-size: 8vw;
+    }
+
+    .download-counter-page span:last-child {
+        font-size: 15vw;
+        letter-spacing: 0;
+    }
+}
+
+
+
 .last-added-policy {
     font-size: 12px;
 }

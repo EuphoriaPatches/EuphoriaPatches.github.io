@@ -6,11 +6,11 @@
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="canonical" href="https://www.euphoriapatches.com/privacy-policy/"/>
+    <link rel="canonical" href="https://www.euphoriapatches.com/download-count/"/>
 
-    <title>Privacy Policy | Euphoria Patches</title>
+    <title>Download Count | Euphoria Patches</title>
 
-    <meta name="description" content="Privacy Policy of the Euphoria Patches website">
+    <meta name="description" content="Total Download Counter">
     <meta name="author" content="">
     <meta name="keywords" content="">
 
@@ -52,11 +52,9 @@
 
     gtag('config', 'G-3CGSG92RGD');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3756100266756497"
-    crossorigin="anonymous"></script>
 </head>
 <body>
-
+<div id="download-counter-all-page">
     <header id="masthead" class="site-header site-header-white">
         <nav id="primary-navigation" class="site-navigation">
             <div class="container">
@@ -84,8 +82,8 @@
                               <li><a href="/faq">FAQ</a></li>
                               <li><a href="/how-to-install">How To Install</a></li>
                               <li><a href="/credits">Credits</a></li>
-                              <li><a href="/download-count/">Download Count</a></li>
-                              <li><a href="/privacy-policy" style="color: var(--ThemeColor);">Privacy Policy</a></li>
+                              <li><a href="/download-count/" style="color: var(--ThemeColor);">Download Count</a></li>
+                              <li><a href="/privacy-policy">Privacy Policy</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -94,55 +92,14 @@
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
-    <div id="hero" class="hero overlay privacy-policy-hero">
-        <img 
-            src="/assets/img/backgrounds/policyBackground.webp"
-            srcset="
-                /assets/img/backgrounds/policyBackground-480w.webp 480w,
-                /assets/img/backgrounds/policyBackground-540w.webp 540w,
-                /assets/img/backgrounds/policyBackground-768w.webp 768w,
-                /assets/img/backgrounds/policyBackground-780w.webp 780w,
-                /assets/img/backgrounds/policyBackground-991w.webp 991w,
-                /assets/img/backgrounds/policyBackground-1280w.webp 1280w,
-                /assets/img/backgrounds/policyBackground.webp"
-            alt="Privacy Policy of the website: image of a little harbor with a little ship"
-            class="hero-image"
-        >
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Privacy Policy</h1>
-            </div><!-- /.hero-text -->
-        </div><!-- /.hero-content -->
-    </div><!-- /.hero -->
-
-    <main id="main" class="site-main">
-        <section class="site-section section-features">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12" style="text-align:left;">
-                        <h3>Privacy Policy</h3>
-                        <p>Last updated: October 22, 2024 (v1.1)<br>
-                        <span class="last-added-policy">Last added: GitHub API</span><br><br>
-                        This policy outlines how personal information is managed in relation to the Euphoria Patches website and shader packs. We are committed to protecting user privacy and conduct regular reviews of this policy to ensure compliance with legal standards, improve clarity, and reflect updates to our offerings.</p>
-
-                        <h3>Information Collection</h3>
-                        <p>We do not directly collect personal data from users of our products. However, certain third-party services used on our website may automatically collect anonymous information for legitimate purposes. These services operate independently of us, and their respective privacy policies govern their data collection practices. We provide transparency regarding the services we use, why they are in place, and where you can find their privacy policies to better understand their handling of your data.</p>
-
-                        <h3>Third-Party Services</h3>
-                        <p>The following external services integrated with our website may collect certain types of user data:<br>
-                        - <strong>Google Services:</strong> Euphoria Patches makes use of Google services such as Google Analytics and Google Ads to monitor website traffic and display tailored advertisements. Google may collect non-personal data, such as user activity and performance metrics, to enhance the website experience. We encourage you to consult Google's privacy policy for details on how your information is processed.<br>
-                        - <strong>API's:</strong> The Website uses the Modrinth and GitHub APIs to get the data about Euphoria Patches from Modrinth and GitHub.<br>
-                        - <strong>External Websites:</strong> Our website may contain links to external sites not controlled by us. We are not responsible for the content or privacy practices of these sites and recommend reviewing their privacy policies before sharing any personal information.</p>
-
-                        <h3>Contact</h3>
-                        <p>If you have any questions or concerns regarding this Privacy Policy, feel free to reach out to us.<br>
-                        <a href="/contact"><u>euphoriapatches.com/contact</u></a><br><br></p>
-                    </div>
-                </div>
+    <main id="main" class="site-main download-page-main">
+        <section class="site-section gradient-bg">
+            <div class="download-counter-page">
+                <span>Total Downloads:</span>
+                <span id="download-counter">Loading...</span>
             </div>
-        </section><!-- /.section-features -->
-    </main><!-- /#main -->
-    
+        </section>
+    </main>
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -165,8 +122,7 @@
             </div>
         </div><!-- /.copyright -->
     </footer><!-- /#footer -->
-
-
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -178,6 +134,70 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
-  
+
+    <script>
+        async function fetchModrinthDownloads(projectId) {
+            try {
+                const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+                const data = await response.json();
+                return data.downloads || 0;
+            } catch (error) {
+                console.error('Error fetching Modrinth downloads:', error);
+                return 0;
+            }
+        }
+
+        async function fetchCurseforgeDownloads(projectId) {
+            try {
+                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK' // Replace with your actual API key
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Curseforge API request failed');
+                }
+                
+                const data = await response.json();
+                return data.data.downloadCount || 0;
+            } catch (error) {
+                console.error('Error fetching Curseforge downloads:', error);
+                return 0;
+            }
+        }
+
+        async function updateDownloadCounter() {
+            const modrinthProjectId = '4H6sumDB';
+            const curseforgeProjectId = '915902'; // Replace with your actual Curseforge project ID
+
+            try {
+                // Fetch downloads from both platforms
+                const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
+                const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
+
+                // Calculate total downloads
+                const totalDownloads = modrinthDownloads + curseforgeDownloads;
+                
+                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
+                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
+                console.log(`Total Downloads: ${totalDownloads}`);
+
+                // Update the download counter element
+                const downloadCounter = document.getElementById('download-counter');
+                downloadCounter.innerText = totalDownloads.toLocaleString();
+
+                return totalDownloads;
+            } catch (error) {
+                console.error('Error updating download counter:', error);
+                document.getElementById('download-counter').innerText = 'Error';
+            }
+        }
+
+        // Call the function to update downloads
+        updateDownloadCounter();
+    </script>
+
 </body>
 </html>
