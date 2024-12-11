@@ -95,8 +95,10 @@
     <main id="main" class="site-main download-page-main">
         <section class="site-section gradient-bg">
             <div class="download-counter-page">
-                <span>Total Downloads:</span>
-                <span id="download-counter">Loading...</span>
+                <h2>Total Downloads:</h2>
+                <div class="typed-out" id="typed-out">
+                    <h1 id="download-counter">&nbsp</h1>
+                </div>
             </div>
         </section>
     </main>
@@ -187,6 +189,9 @@
                 // Update the download counter element
                 const downloadCounter = document.getElementById('download-counter');
                 downloadCounter.innerText = totalDownloads.toLocaleString();
+
+                const typedOutElement = document.getElementById('typed-out');
+                typedOutElement.classList.add('animate');
 
                 return totalDownloads;
             } catch (error) {

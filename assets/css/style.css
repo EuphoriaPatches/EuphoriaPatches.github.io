@@ -2199,16 +2199,46 @@ code {
     text-align: center;
 }
 
-.download-counter-page span:first-child {
-    font-size: 5vw;
+.download-counter-page h2:first-child {
+    font-size: 4.75vw;
     color: #333;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
 }
 
-.download-counter-page span:last-child {
+.download-counter-page h1:last-child {
     font-size: 10vw;
     font-weight: bold;
     color: #333;
     letter-spacing: -5px;
+    line-height: 0.75;
+}
+
+.typed-out {
+    overflow: hidden;
+    border-right: .5em solid transparent;
+    padding: 0 0.35rem 1rem 0;
+    font-size: 1vw;
+}
+
+.typed-out.animate {
+    animation: 
+        typing 1.2s steps(20, end) forwards,
+        blinking .8s infinite 0s,
+        hideBorder 0.15s forwards 2.4s;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blinking {
+    from { border-color: transparent }
+    to { border-color: white; }
+}
+@keyframes hideBorder {
+    from { border-right-width: .5em; border-right-color: white; }
+    to { border-right-width: 0; border-right-color: transparent; }
 }
 
 /* Mobile Styles */
