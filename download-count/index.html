@@ -187,7 +187,7 @@
                 const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
                     headers: {
                         'Accept': 'application/json',
-                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK' // Replace with your actual API key
+                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
                     }
                 });
                 
@@ -211,7 +211,6 @@
                 const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
                 const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
                 const totalDownloads = modrinthDownloads + curseforgeDownloads;
-                var dailyAverage = 0;
 
                 console.log(`Modrinth Downloads: ${modrinthDownloads}`);
                 console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
@@ -244,7 +243,6 @@
                 let newTimestamp = previousData.timestamp; 
                 let newYesterdayDownloads = previousData.yesterdayDownloads;
 
-                const wholeDaysPassed = Math.floor(daysPassed); 
                 const downloadDifference = totalDownloads - previousData.totalDownloads;
 
                 if (downloadDifference < 0) {
@@ -281,11 +279,9 @@
                 const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
                 const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
 
-                dailyAvgElement.innerText = `Yesterday's Downloads: ${newTotalDownloads.toLocaleString()}`;
+                dailyAvgElement.innerText = `Yesterday's Downloads: ${newYesterdayDownloads.toLocaleString()}`;
                 modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
                 curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
-
-                // dailyAvgElement.setAttribute('data-tooltip', "Yesterday's Downloads: " + dailyAverage.toLocaleString());
 
                 dailyAvgElement.style.transition = "opacity 0.2s ease"; // Add transition to the element
 

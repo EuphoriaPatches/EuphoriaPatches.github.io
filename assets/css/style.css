@@ -2253,7 +2253,7 @@ code {
     animation: 
         typing 1.2s steps(20, end) forwards,
         blinking .8s infinite 0s,
-        hideBorder 0.15s forwards 2.4s;
+        hideBorder 0.15s forwards 3.2s;
 }
 
 @keyframes typing {
