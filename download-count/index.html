@@ -232,8 +232,7 @@
                 const previousData = snapshot.exists() ? snapshot.val() : { 
                     timestamp: currentTimestamp, 
                     totalDownloads: totalDownloads, 
-                    dailyAverageSum: 0, 
-                    totalDaysSinceStart: 0
+                    yesterdayDownloads: 0
                 };
 
                 console.log('Previous Data:', previousData);
@@ -241,10 +240,9 @@
                 console.log('Previous Timestamp (Readable):', readableTimestamp);
 
                 const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
-                let dailyAverageSum = previousData.dailyAverageSum; 
                 let newTotalDownloads = previousData.totalDownloads; 
                 let newTimestamp = previousData.timestamp; 
-                let totalDaysSinceStart = previousData.totalDaysSinceStart;
+                let newYesterdayDownloads = previousData.yesterdayDownloads;
 
                 const wholeDaysPassed = Math.floor(daysPassed); 
                 const downloadDifference = totalDownloads - previousData.totalDownloads;
@@ -254,15 +252,10 @@
                 } else {
                     console.log('Download counter increased by', downloadDifference, 'downloads');
                     if (daysPassed >= 1) { // Update only if at least 1 day has passed              
-                        dailyAverageSum += downloadDifference;
-                        totalDaysSinceStart += wholeDaysPassed;
-
-                        // Calculate the new cumulative daily average
-                        dailyAverage = Math.round(dailyAverageSum / totalDaysSinceStart);
-
                         // Update the historical data
                         newTotalDownloads = totalDownloads;
                         newTimestamp = currentTimestamp;
+                        newYesterdayDownloads = downloadDifference;
                     }
                 }
 
@@ -272,8 +265,7 @@
                     console.log('Data being written to the database:', {
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
-                    dailyAverageSum: dailyAverageSum,
-                    totalDaysSinceStart: totalDaysSinceStart
+                    yesterdayDownloads: newYesterdayDownloads
                 });
                 }
 
@@ -281,8 +273,7 @@
                 await set(dbRef, {
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
-                    dailyAverageSum: dailyAverageSum,
-                    totalDaysSinceStart: totalDaysSinceStart
+                    yesterdayDownloads: newYesterdayDownloads
                 });
 
                 // Update additional DOM elements
@@ -290,7 +281,7 @@
                 const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
                 const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
 
-                dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
+                dailyAvgElement.innerText = `Yesterday's Downloads: ${newTotalDownloads.toLocaleString()}`;
                 modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
                 curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
 
@@ -301,7 +292,7 @@
                 dailyAvgElement.addEventListener('mouseenter', () => {
                     dailyAvgElement.style.opacity = "0"; // Fade out
                     setTimeout(() => {
-                        dailyAvgElement.innerText = "Yesterday's Downloads: " + dailyAverage.toLocaleString(); // Change text after fade-out
+                        dailyAvgElement.innerText = "Today's Downloads: " + downloadDifference.toLocaleString();
                         dailyAvgElement.style.opacity = "1"; // Fade back in
                     }, 200); // Match the transition duration
                 });
@@ -309,7 +300,7 @@
                 dailyAvgElement.addEventListener('mouseleave', () => {
                     dailyAvgElement.style.opacity = "0"; // Fade out
                     setTimeout(() => {
-                        dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
+                        dailyAvgElement.innerText = "Yesterday's Downloads: " + newYesterdayDownloads.toLocaleString();
                         dailyAvgElement.style.opacity = "1"; // Fade back in
                     }, 200); // Match the transition duration
                 });
