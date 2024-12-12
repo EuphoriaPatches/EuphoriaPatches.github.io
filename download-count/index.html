@@ -104,7 +104,7 @@
                         <h1 id="download-counter">&nbsp;</h1>
                     </div>
                     <div id="download-details" class="download-details">
-                        <div id="daily-avg"></div>
+                        <div id="daily-avg" class="dynamic-hover-element" data-tooltip=""></div>
                         <div id="modrinth-downloads"></div>
                         <div id="curseforge-downloads"></div>
                     </div>
@@ -214,6 +214,10 @@
                 const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
                 const totalDownloads = modrinthDownloads + curseforgeDownloads;
 
+                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
+                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
+                console.log(`Total Downloads: ${totalDownloads}`);
+
                 // Update DOM
                 const downloadCounter = document.getElementById('download-counter');
                 downloadCounter.innerText = totalDownloads.toLocaleString();
@@ -229,14 +233,16 @@
                 const previousData = snapshot.exists() ? snapshot.val() : { 
                     timestamp: currentTimestamp, 
                     totalDownloads: 0, 
-                    dailyAverage: 0, 
-                    totalDaysSinceStart: 0 
+                    dailyAverageSum: 0, 
+                    dailyAverage : 0,
+                    totalDaysSinceStart: 0
                 };
 
                 console.log('Previous Data:', previousData);
 
                 const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
-                let dailyAverage = previousData.dailyAverage; 
+                let dailyAverageSum = previousData.dailyAverageSum; 
+                let dailyAverage = previousData.dailyAverage;
                 let newTotalDownloads = previousData.totalDownloads; 
                 let newTimestamp = previousData.timestamp; 
                 let totalDaysSinceStart = previousData.totalDaysSinceStart;
@@ -246,11 +252,11 @@
                     const wholeDaysPassed = Math.floor(daysPassed); 
                     const downloadDifference = totalDownloads - previousData.totalDownloads;
 
-                    // Update total days since start
+                    dailyAverageSum += downloadDifference;
                     totalDaysSinceStart += wholeDaysPassed;
 
                     // Calculate the new cumulative daily average
-                    dailyAverage = Math.round(totalDownloads / totalDaysSinceStart);
+                    dailyAverage = Math.round(dailyAverageSum / totalDaysSinceStart);
 
                     // Update the historical data
                     newTotalDownloads = totalDownloads;
@@ -263,6 +269,7 @@
                     console.log('Data being written to the database:', {
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
+                    dailyAverageSum: dailyAverageSum,
                     dailyAverage: dailyAverage,
                     totalDaysSinceStart: totalDaysSinceStart
                 });
@@ -272,6 +279,7 @@
                 await set(dbRef, {
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
+                    dailyAverageSum: dailyAverageSum,
                     dailyAverage: dailyAverage,
                     totalDaysSinceStart: totalDaysSinceStart
                 });
@@ -284,6 +292,8 @@
                 dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
                 modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
                 curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
+
+                dailyAvgElement.setAttribute('data-tooltip', "AAAA");
             } catch (error) {
                 console.error('Error updating download counter:', error);
                 document.getElementById('download-counter').innerText = 'Error';

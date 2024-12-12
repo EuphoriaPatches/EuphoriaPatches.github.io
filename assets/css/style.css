@@ -1369,12 +1369,12 @@ code {
     transition: filter 0.3s ease-in-out;
 }
 
-.section-downloads .btn-installer:hover .download-count {
+.section-downloads .btn-installer:hover .download-count-home-page {
     color: white;
     transition: color 0.3s ease-in-out;
 }
 
-.download-count {
+.download-count-home-page {
     color:var(--ThemeColor);
     font-weight: bold;
     transition: color 0.3s ease-in-out;
@@ -1939,7 +1939,7 @@ code {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    z-index: 2;
+    z-index: 10;
     transition: transform 0.2s ease-in-out;
 }
 
