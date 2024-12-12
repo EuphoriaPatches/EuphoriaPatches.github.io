@@ -252,7 +252,7 @@
                 const downloadDifference = totalDownloads - previousData.totalDownloads;
 
                 if (downloadDifference < 0) {
-                    console.log('Download counter reset detected - skipping today');
+                    console.log('Download counter reset detected - An API might be down');
                 } else {
                     console.log('Download counter increased by', downloadDifference, 'downloads');
                     if (daysPassed >= 1) { // Update only if at least 1 day has passed              
