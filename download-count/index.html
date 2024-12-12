@@ -243,6 +243,8 @@
                 let newTimestamp = previousData.timestamp; 
                 let newYesterdayDownloads = previousData.yesterdayDownloads;
 
+                console.log(`Time since last update: ${Math.floor(daysPassed * 24)} hours and ${Math.floor((daysPassed * 24 * 60) % 60)} minutes`);
+
                 const downloadDifference = totalDownloads - previousData.totalDownloads;
 
                 if (downloadDifference < 0) {
