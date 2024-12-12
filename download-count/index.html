@@ -248,16 +248,14 @@
                 let newTimestamp = previousData.timestamp; 
                 let totalDaysSinceStart = previousData.totalDaysSinceStart;
 
-                // Update only if at least 1 day has passed
-                if (daysPassed >= 1) {
-                    const wholeDaysPassed = Math.floor(daysPassed); 
-                    const downloadDifference = totalDownloads - previousData.totalDownloads;
+                const wholeDaysPassed = Math.floor(daysPassed); 
+                const downloadDifference = totalDownloads - previousData.totalDownloads;
 
-                    if (downloadDifference < 0) {
-                        console.log('Download counter reset detected - skipping today');
-                    } else {
-                        console.log('Download counter increased by', downloadDifference, 'downloads');
-                    
+                if (downloadDifference < 0) {
+                    console.log('Download counter reset detected - skipping today');
+                } else {
+                    console.log('Download counter increased by', downloadDifference, 'downloads');
+                    if (daysPassed >= 1) { // Update only if at least 1 day has passed              
                         dailyAverageSum += downloadDifference;
                         totalDaysSinceStart += wholeDaysPassed;
 
