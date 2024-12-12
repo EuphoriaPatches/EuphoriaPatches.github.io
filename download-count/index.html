@@ -104,9 +104,9 @@
                         <h1 id="download-counter">&nbsp;</h1>
                     </div>
                     <div id="download-details" class="download-details">
-                        <div id="daily-avg">&nbsp;</div>
                         <div id="modrinth-downloads">&nbsp;</div>
                         <div id="curseforge-downloads">&nbsp;</div>
+                        <div id="daily-avg">&nbsp;</div>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error('Curseforge API request failed');
+                    throw new Error('CurseForge API request failed');
                 }
                 
                 const data = await response.json();
@@ -203,8 +203,6 @@
             }
         }
     
-        // Update Download Counter
-        // Update Download Counter
         async function updateDownloadCounter() {
             const modrinthProjectId = '4H6sumDB';
             const curseforgeProjectId = '915902';
