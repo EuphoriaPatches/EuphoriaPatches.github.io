@@ -104,7 +104,7 @@
                         <h1 id="download-counter">&nbsp;</h1>
                     </div>
                     <div id="download-details" class="download-details">
-                        <div id="daily-avg" class="dynamic-hover-element" data-tooltip=""></div>
+                        <div id="daily-avg">&nbsp;</div>
                         <div id="modrinth-downloads"></div>
                         <div id="curseforge-downloads"></div>
                     </div>
@@ -232,13 +232,15 @@
                 const snapshot = await get(dbRef);
                 const previousData = snapshot.exists() ? snapshot.val() : { 
                     timestamp: currentTimestamp, 
-                    totalDownloads: 0, 
+                    totalDownloads: totalDownloads, 
                     dailyAverageSum: 0, 
                     dailyAverage : 0,
                     totalDaysSinceStart: 0
                 };
 
                 console.log('Previous Data:', previousData);
+                const readableTimestamp = new Date(previousData.timestamp).toLocaleString();
+                console.log('Previous Timestamp (Readable):', readableTimestamp);
 
                 const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
                 let dailyAverageSum = previousData.dailyAverageSum; 
@@ -264,7 +266,7 @@
                 }
 
                 if (newTimestamp == previousData.timestamp) {
-                    console.log('No new data to update');
+                    console.log('A day has not yet passed - no new data to update');
                 } else {
                     console.log('Data being written to the database:', {
                     timestamp: newTimestamp,
@@ -293,7 +295,25 @@
                 modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
                 curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
 
-                dailyAvgElement.setAttribute('data-tooltip', "AAAA");
+                // dailyAvgElement.setAttribute('data-tooltip', "Yesterday's Downloads: " + dailyAverage.toLocaleString());
+
+                dailyAvgElement.style.transition = "opacity 0.2s ease"; // Add transition to the element
+
+                dailyAvgElement.addEventListener('mouseenter', () => {
+                    dailyAvgElement.style.opacity = "0"; // Fade out
+                    setTimeout(() => {
+                        dailyAvgElement.innerText = "Yesterday's Downloads: " + dailyAverage.toLocaleString(); // Change text after fade-out
+                        dailyAvgElement.style.opacity = "1"; // Fade back in
+                    }, 200); // Match the transition duration
+                });
+
+                dailyAvgElement.addEventListener('mouseleave', () => {
+                    dailyAvgElement.style.opacity = "0"; // Fade out
+                    setTimeout(() => {
+                        dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
+                        dailyAvgElement.style.opacity = "1"; // Fade back in
+                    }, 200); // Match the transition duration
+                });
             } catch (error) {
                 console.error('Error updating download counter:', error);
                 document.getElementById('download-counter').innerText = 'Error';
