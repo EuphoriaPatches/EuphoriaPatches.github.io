@@ -2197,6 +2197,7 @@ code {
     align-items: center;
     font-family: Arial, sans-serif;
     text-align: center;
+    width: 100%;
 }
 
 .download-counter-page h2 {
@@ -2204,6 +2205,7 @@ code {
     color: #333;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .download-counter-page h1 {
@@ -2212,6 +2214,7 @@ code {
     color: #333;
     letter-spacing: -5px;
     line-height: 0.75;
+    margin: 0;
 }
 
 .typed-out {
@@ -2219,6 +2222,31 @@ code {
     border-right: .5em solid transparent;
     padding: 0 0.35rem 1rem 0;
     font-size: 1vw;
+}
+
+.download-details {
+    font-size: 2.75vw;
+    color: #333;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    margin-top: 10px;
+    /* visibility:hidden; */
+}
+
+.total-download-number:hover .download-details {
+    max-height: 400px; /* Adjust as needed */
+    opacity: 1;
+}
+
+.download-details > div {
+    padding: 5px 10px;
 }
 
 .typed-out.animate {
@@ -2243,8 +2271,8 @@ code {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .download-counter-page h2 {
-        font-size: 6vw; /* Slightly larger for better readability */
+    .download-counter-page h2, .download-details {
+        font-size: 4vw;
     }
 
     .download-counter-page h1 {
@@ -2254,8 +2282,9 @@ code {
 }
 
 @media (max-width: 480px) {
-    .download-counter-page h2 {
-        font-size: 8vw;
+    .download-counter-page h2, .download-details {
+        font-size: 4vw;
+        letter-spacing: 0px;
     }
 
     .download-counter-page h1 {
@@ -2263,8 +2292,6 @@ code {
         letter-spacing: 0;
     }
 }
-
-
 
 .last-added-policy {
     font-size: 12px;

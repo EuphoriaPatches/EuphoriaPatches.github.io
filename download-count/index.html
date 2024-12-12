@@ -96,12 +96,20 @@
         <section class="site-section gradient-bg">
             <div class="download-counter-page">
                 <h2>Total Downloads:</h2>
-                <div class="typed-out" id="typed-out">
-                    <h1 id="download-counter">&nbsp</h1>
+                <div class="total-download-number">
+                    <div class="typed-out" id="typed-out">
+                        <h1 id="download-counter">&nbsp;</h1>
+                    </div>
+                    <div id="download-details" class="download-details">
+                        <div id="daily-avg"></div>
+                        <div id="modrinth-downloads"></div>
+                        <div id="curseforge-downloads"></div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -172,7 +180,7 @@
 
         async function updateDownloadCounter() {
             const modrinthProjectId = '4H6sumDB';
-            const curseforgeProjectId = '915902'; // Replace with your actual Curseforge project ID
+            const curseforgeProjectId = '915902';
 
             try {
                 // Fetch downloads from both platforms
@@ -182,16 +190,45 @@
                 // Calculate total downloads
                 const totalDownloads = modrinthDownloads + curseforgeDownloads;
                 
-                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
-                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
-                console.log(`Total Downloads: ${totalDownloads}`);
-
                 // Update the download counter element
                 const downloadCounter = document.getElementById('download-counter');
                 downloadCounter.innerText = totalDownloads.toLocaleString();
 
                 const typedOutElement = document.getElementById('typed-out');
                 typedOutElement.classList.add('animate');
+
+                // Calculate and display daily average
+                const dailyAvgElement = document.getElementById('daily-avg');
+                const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
+                const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
+
+                // Check if we have a previous download count stored
+                const storedDownloadsKey = 'euphoria-total-downloads';
+                const storedTimestampKey = 'euphoria-downloads-timestamp';
+                
+                const storedDownloads = localStorage.getItem(storedDownloadsKey);
+                const storedTimestamp = localStorage.getItem(storedTimestampKey);
+                const currentTimestamp = Date.now();
+
+                let dailyAverage = 0;
+
+                if (storedDownloads && storedTimestamp) {
+                    const daysPassed = (currentTimestamp - parseInt(storedTimestamp)) / (1000 * 60 * 60 * 24);
+                    
+                    if (daysPassed >= 1) {
+                        const downloadDifference = totalDownloads - parseInt(storedDownloads);
+                        dailyAverage = Math.round(downloadDifference / daysPassed);
+                    }
+                }
+
+                // Update localStorage
+                localStorage.setItem(storedDownloadsKey, totalDownloads.toString());
+                localStorage.setItem(storedTimestampKey, currentTimestamp.toString());
+
+                // Populate download details
+                // dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
+                modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
+                curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
 
                 return totalDownloads;
             } catch (error) {
