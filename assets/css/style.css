@@ -2235,7 +2235,7 @@ code {
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
     background-color: rgba(255,255,255,0.15);
-    border-radius: 10px;
+    border-radius: 20px;
     margin-top: 10px;
     /* visibility:hidden; */
 }
@@ -2271,8 +2271,13 @@ code {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .download-counter-page h2, .download-details {
+    .download-counter-page h2 {
+        font-size: 6vw;
+    }
+
+    .download-details {
         font-size: 4vw;
+        letter-spacing: 0;
     }
 
     .download-counter-page h1 {
@@ -2282,9 +2287,8 @@ code {
 }
 
 @media (max-width: 480px) {
-    .download-counter-page h2, .download-details {
-        font-size: 4vw;
-        letter-spacing: 0px;
+    .download-counter-page h2 {
+        font-size: 8vw;
     }
 
     .download-counter-page h1 {

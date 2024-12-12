@@ -52,6 +52,9 @@
 
     gtag('config', 'G-3CGSG92RGD');
     </script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
 <div id="download-counter-all-page">
@@ -145,7 +148,28 @@
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
 
-    <script>
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+    
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBheyXP71wW38Pr1Pz7td5fA1ceNF7I-4U",
+            authDomain: "ep-website-backend.firebaseapp.com",
+            databaseURL: "https://ep-website-backend-default-rtdb.firebaseio.com",
+            projectId: "ep-website-backend",
+            storageBucket: "ep-website-backend.appspot.com",
+            messagingSenderId: "527249989649",
+            appId: "1:527249989649:web:7c4913be47d320cbb891b0",
+            measurementId: "G-W72RZF1WBJ"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+    
+        // Fetch Modrinth Downloads
         async function fetchModrinthDownloads(projectId) {
             try {
                 const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
@@ -156,7 +180,8 @@
                 return 0;
             }
         }
-
+    
+        // Fetch CurseForge Downloads
         async function fetchCurseforgeDownloads(projectId) {
             try {
                 const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
@@ -177,69 +202,98 @@
                 return 0;
             }
         }
-
+    
+        // Update Download Counter
+        // Update Download Counter
         async function updateDownloadCounter() {
             const modrinthProjectId = '4H6sumDB';
             const curseforgeProjectId = '915902';
 
             try {
-                // Fetch downloads from both platforms
                 const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
                 const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
-
-                // Calculate total downloads
                 const totalDownloads = modrinthDownloads + curseforgeDownloads;
-                
-                // Update the download counter element
+
+                // Update DOM
                 const downloadCounter = document.getElementById('download-counter');
                 downloadCounter.innerText = totalDownloads.toLocaleString();
 
                 const typedOutElement = document.getElementById('typed-out');
                 typedOutElement.classList.add('animate');
 
-                // Calculate and display daily average
+                const currentTimestamp = Date.now();
+                const dbRef = ref(database, 'totals');
+
+                // Fetch previous data from the database
+                const snapshot = await get(dbRef);
+                const previousData = snapshot.exists() ? snapshot.val() : { 
+                    timestamp: currentTimestamp, 
+                    totalDownloads: 0, 
+                    dailyAverage: 0, 
+                    totalDaysSinceStart: 0 
+                };
+
+                console.log('Previous Data:', previousData);
+
+                const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
+                let dailyAverage = previousData.dailyAverage; 
+                let newTotalDownloads = previousData.totalDownloads; 
+                let newTimestamp = previousData.timestamp; 
+                let totalDaysSinceStart = previousData.totalDaysSinceStart;
+
+                // Update only if at least 1 day has passed
+                if (daysPassed >= 1) {
+                    const wholeDaysPassed = Math.floor(daysPassed); 
+                    const downloadDifference = totalDownloads - previousData.totalDownloads;
+
+                    // Update total days since start
+                    totalDaysSinceStart += wholeDaysPassed;
+
+                    // Calculate the new cumulative daily average
+                    dailyAverage = Math.round(totalDownloads / totalDaysSinceStart);
+
+                    // Update the historical data
+                    newTotalDownloads = totalDownloads;
+                    newTimestamp = currentTimestamp;
+                }
+
+                if (newTimestamp == previousData.timestamp) {
+                    console.log('No new data to update');
+                } else {
+                    console.log('Data being written to the database:', {
+                    timestamp: newTimestamp,
+                    totalDownloads: newTotalDownloads,
+                    dailyAverage: dailyAverage,
+                    totalDaysSinceStart: totalDaysSinceStart
+                });
+                }
+
+                // Save the updated data to the database
+                await set(dbRef, {
+                    timestamp: newTimestamp,
+                    totalDownloads: newTotalDownloads,
+                    dailyAverage: dailyAverage,
+                    totalDaysSinceStart: totalDaysSinceStart
+                });
+
+                // Update additional DOM elements
                 const dailyAvgElement = document.getElementById('daily-avg');
                 const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
                 const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
 
-                // Check if we have a previous download count stored
-                const storedDownloadsKey = 'euphoria-total-downloads';
-                const storedTimestampKey = 'euphoria-downloads-timestamp';
-                
-                const storedDownloads = localStorage.getItem(storedDownloadsKey);
-                const storedTimestamp = localStorage.getItem(storedTimestampKey);
-                const currentTimestamp = Date.now();
-
-                let dailyAverage = 0;
-
-                if (storedDownloads && storedTimestamp) {
-                    const daysPassed = (currentTimestamp - parseInt(storedTimestamp)) / (1000 * 60 * 60 * 24);
-                    
-                    if (daysPassed >= 1) {
-                        const downloadDifference = totalDownloads - parseInt(storedDownloads);
-                        dailyAverage = Math.round(downloadDifference / daysPassed);
-                    }
-                }
-
-                // Update localStorage
-                localStorage.setItem(storedDownloadsKey, totalDownloads.toString());
-                localStorage.setItem(storedTimestampKey, currentTimestamp.toString());
-
-                // Populate download details
-                // dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
+                dailyAvgElement.innerText = `Daily Average: ${dailyAverage.toLocaleString()} downloads`;
                 modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
                 curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
-
-                return totalDownloads;
             } catch (error) {
                 console.error('Error updating download counter:', error);
                 document.getElementById('download-counter').innerText = 'Error';
             }
         }
 
-        // Call the function to update downloads
+        // Call the function
         updateDownloadCounter();
     </script>
+    
 
 </body>
 </html>
