@@ -213,6 +213,7 @@
                 const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
                 const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
                 const totalDownloads = modrinthDownloads + curseforgeDownloads;
+                var dailyAverage = 0;
 
                 console.log(`Modrinth Downloads: ${modrinthDownloads}`);
                 console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
@@ -234,7 +235,6 @@
                     timestamp: currentTimestamp, 
                     totalDownloads: totalDownloads, 
                     dailyAverageSum: 0, 
-                    dailyAverage : 0,
                     totalDaysSinceStart: 0
                 };
 
@@ -244,7 +244,6 @@
 
                 const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
                 let dailyAverageSum = previousData.dailyAverageSum; 
-                let dailyAverage = previousData.dailyAverage;
                 let newTotalDownloads = previousData.totalDownloads; 
                 let newTimestamp = previousData.timestamp; 
                 let totalDaysSinceStart = previousData.totalDaysSinceStart;
@@ -254,15 +253,21 @@
                     const wholeDaysPassed = Math.floor(daysPassed); 
                     const downloadDifference = totalDownloads - previousData.totalDownloads;
 
-                    dailyAverageSum += downloadDifference;
-                    totalDaysSinceStart += wholeDaysPassed;
+                    if (downloadDifference < 0) {
+                        console.log('Download counter reset detected - skipping today');
+                    } else {
+                        console.log('Download counter increased by', downloadDifference, 'downloads');
+                    
+                        dailyAverageSum += downloadDifference;
+                        totalDaysSinceStart += wholeDaysPassed;
 
-                    // Calculate the new cumulative daily average
-                    dailyAverage = Math.round(dailyAverageSum / totalDaysSinceStart);
+                        // Calculate the new cumulative daily average
+                        dailyAverage = Math.round(dailyAverageSum / totalDaysSinceStart);
 
-                    // Update the historical data
-                    newTotalDownloads = totalDownloads;
-                    newTimestamp = currentTimestamp;
+                        // Update the historical data
+                        newTotalDownloads = totalDownloads;
+                        newTimestamp = currentTimestamp;
+                    }
                 }
 
                 if (newTimestamp == previousData.timestamp) {
@@ -272,7 +277,6 @@
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
                     dailyAverageSum: dailyAverageSum,
-                    dailyAverage: dailyAverage,
                     totalDaysSinceStart: totalDaysSinceStart
                 });
                 }
@@ -282,7 +286,6 @@
                     timestamp: newTimestamp,
                     totalDownloads: newTotalDownloads,
                     dailyAverageSum: dailyAverageSum,
-                    dailyAverage: dailyAverage,
                     totalDaysSinceStart: totalDaysSinceStart
                 });
 
