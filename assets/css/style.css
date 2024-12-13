@@ -2195,7 +2195,7 @@ code {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI';
     text-align: center;
     width: 100%;
 }
@@ -2203,9 +2203,10 @@ code {
 .download-counter-page h2 {
     font-size: 4.75vw;
     color: #333;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    letter-spacing: 2px;
+    font-family: 'Segoe UI';
+    letter-spacing: -3px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .download-counter-page h1 {
@@ -2227,7 +2228,8 @@ code {
 .download-details {
     font-size: 2.75vw;
     color: #333;
-    font-family: Tahoma, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 600;
     letter-spacing: -2px;
     text-align: center;
     max-height: 0;
@@ -2273,6 +2275,7 @@ code {
 @media (max-width: 768px) {
     .download-counter-page h2 {
         font-size: 6vw;
+        letter-spacing: -1px;
     }
 
     .download-details {
@@ -2290,6 +2293,7 @@ code {
 @media (max-width: 480px) {
     .download-counter-page h2 {
         font-size: 8vw;
+        letter-spacing: -1px;
     }
 
     .download-counter-page h1 {
