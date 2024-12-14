@@ -169,38 +169,18 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
     
-        // Fetch Modrinth Downloads
         async function fetchModrinthDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
-                const data = await response.json();
-                return data.downloads || 0;
-            } catch (error) {
-                console.error('Error fetching Modrinth downloads:', error);
-                return 0;
-            }
+            const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+            const data = await response.json();
+            return data.downloads || 0;
         }
-    
-        // Fetch CurseForge Downloads
+
         async function fetchCurseforgeDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error('CurseForge API request failed');
-                }
-                
-                const data = await response.json();
-                return data.data.downloadCount || 0;
-            } catch (error) {
-                console.error('Error fetching Curseforge downloads:', error);
-                return 0;
-            }
+            const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
+                headers: { 'x-api-key': process.env.CURSEFORGE_API_KEY }
+            });
+            const data = await response.json();
+            return data.data.downloadCount || 0;
         }
     
         async function updateDownloadCounter() {
@@ -240,42 +220,11 @@
                 console.log('Previous Timestamp (Readable):', readableTimestamp);
 
                 const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
-                let newTotalDownloads = previousData.totalDownloads; 
-                let newTimestamp = previousData.timestamp; 
                 let newYesterdayDownloads = previousData.yesterdayDownloads;
 
                 console.log(`Time since last update: ${Math.floor(daysPassed * 24)} hours and ${Math.floor((daysPassed * 24 * 60) % 60)} minutes`);
 
                 const downloadDifference = totalDownloads - previousData.totalDownloads;
-
-                if (downloadDifference < 0) {
-                    console.log('Download counter reset detected - An API might be down');
-                } else {
-                    console.log('Download counter increased by', downloadDifference, 'downloads');
-                    if (daysPassed >= 1) { // Update only if at least 1 day has passed              
-                        // Update the historical data
-                        newTotalDownloads = totalDownloads;
-                        newTimestamp = currentTimestamp;
-                        newYesterdayDownloads = downloadDifference;
-                    }
-                }
-
-                if (newTimestamp == previousData.timestamp) {
-                    console.log('A day has not yet passed - no new data to update');
-                } else {
-                    console.log('Data being written to the database:', {
-                    timestamp: newTimestamp,
-                    totalDownloads: newTotalDownloads,
-                    yesterdayDownloads: newYesterdayDownloads
-                });
-                }
-
-                // Save the updated data to the database
-                await set(dbRef, {
-                    timestamp: newTimestamp,
-                    totalDownloads: newTotalDownloads,
-                    yesterdayDownloads: newYesterdayDownloads
-                });
 
                 // Update additional DOM elements
                 const dailyAvgElement = document.getElementById('daily-avg');
