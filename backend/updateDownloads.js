@@ -14,17 +14,30 @@ initializeApp({
 const db = getDatabase();
 
 async function fetchModrinthDownloads(projectId) {
-    const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
-    const data = await response.json();
-    return data.downloads || 0;
+    try {
+        const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
+        const data = await response.json();
+        return data.downloads || 0;
+    } catch (error) {
+        console.error('Error fetching Modrinth downloads:', error);
+        return 0;
+    }
 }
 
 async function fetchCurseforgeDownloads(projectId) {
-    const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
-        headers: { 'x-api-key': process.env.CURSEFORGE_API_KEY }
-    });
-    const data = await response.json();
-    return data.data.downloadCount || 0;
+    try {
+        const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
+            headers: {
+                'Accept': 'application/json',
+                'x-api-key': process.env.CURSEFORGE_API_KEY
+            }
+        });                
+        const data = await response.json();
+        return data.data.downloadCount || 0;
+    } catch (error) {
+        console.error('Error fetching Curseforge downloads:', error);
+        return 0;
+    }
 }
 
 async function updateDownloadCounts() {
