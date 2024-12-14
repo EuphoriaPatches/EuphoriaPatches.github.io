@@ -187,27 +187,6 @@
                 const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
                     headers: {
                         'Accept': 'application/json',
-                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error('CurseForge API request failed');
-                }
-                
-                const data = await response.json();
-                return data.data.downloadCount || 0;
-            } catch (error) {
-                console.error('Error fetching Curseforge downloads:', error);
-                return 0;
-            }
-        }
-
-        async function fetchCurseforgeDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
-                    headers: {
-                        'Accept': 'application/json',
                         'x-api-key': process.env.CURSEFORGE_API_KEY
                     }
                 });                
