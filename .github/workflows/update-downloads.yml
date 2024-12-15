@@ -2,7 +2,8 @@ name: Update Downloads
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs daily at midnight UTC
+    - cron: "0 0 * * *" # Every UTC midnight 
+  workflow_dispatch:
 
 jobs:
   update-downloads:
