@@ -226,7 +226,8 @@
                 const previousData = snapshot.exists() ? snapshot.val() : { 
                     timestamp: currentTimestamp, 
                     totalDownloads: totalDownloads, 
-                    yesterdayDownloads: 0
+                    yesterdayDownloads: 0,
+                    matchesLength: 0,
                 };
 
                 console.log('Previous Data:', previousData);

@@ -14,20 +14,28 @@ if (!admin.apps.length) {
 
 const db = admin.database();
 
-async function fetchWithTimeout(url, options = {}, timeout = 5000) {
+async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
     try {
         const response = await fetch(url, { ...options, signal: controller.signal });
         clearTimeout(timeoutId);
-        return await response.json();
+
+        if (responseType === "json") {
+            return await response.json();
+        } else if (responseType === "text") {
+            return await response.text();
+        } else {
+            throw new Error(`Unsupported response type: ${responseType}`);
+        }
     } catch (error) {
         clearTimeout(timeoutId);
         console.error(`Error fetching ${url}:`, error.message);
         throw error;
     }
 }
+
 
 async function fetchModrinthDownloads(projectId) {
     const url = `https://api.modrinth.com/v2/project/${projectId}`;
@@ -59,17 +67,32 @@ async function fetchCurseforgeDownloads(projectId) {
     }
 }
 
-async function updateDownloadCounts() {
+async function countRegexMatches(fileUrl, regex) {
+    try {
+        const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+        const matches = fileContent.match(regex) || [];
+        return matches.length;
+    } catch (error) {
+        console.error("Error during regex matching:", error);
+        return 0;
+    }
+}
+
+async function updateDatabase() {
     const modrinthProjectId = "4H6sumDB";
     const curseforgeProjectId = "915902";
 
-    console.time("Update Downloads Script");
+    const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
+    const propertiesRegex = /:(?![a-z_]+=)/g;
+
+    console.time("Database Script");
 
     try {
         console.time("Fetch Downloads");
-        const [modrinthDownloads, curseforgeDownloads] = await Promise.all([
+        const [modrinthDownloads, curseforgeDownloads, matchesLength] = await Promise.all([
             fetchModrinthDownloads(modrinthProjectId),
             fetchCurseforgeDownloads(curseforgeProjectId),
+            countRegexMatches(propertiesFileUrl, propertiesRegex),
         ]);
         console.timeEnd("Fetch Downloads");
 
@@ -89,6 +112,7 @@ async function updateDownloadCounts() {
             timestamp: currentTimestamp,
             totalDownloads,
             yesterdayDownloads: downloadDifference > 0 ? downloadDifference : 0,
+            matchesLength,
         });
         console.timeEnd("Set Firebase Data");
 
@@ -96,22 +120,23 @@ async function updateDownloadCounts() {
             timestamp: currentTimestamp,
             totalDownloads,
             yesterdayDownloads: downloadDifference,
+            matchesLength,
         });
     } catch (error) {
-        console.error("Error updating download counts:", error);
+        console.error("Error updating database:", error);
         throw error;
     }
 
-    console.timeEnd("Update Downloads Script");
+    console.timeEnd("Database Script");
 }
 
-updateDownloadCounts()
+updateDatabase()
     .then(async () => {
         console.log("Script completed successfully.");
         await admin.app().delete(); // Close Firebase connections
         process.exit(0); // Exit cleanly
     })
     .catch((err) => {
-        console.error("Fatal error in updateDownloadCounts:", err);
+        console.error("Fatal error in updateDatabase:", err);
         process.exit(1); // Exit with error code
     });

@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install firebase-admin node-fetch node-abort-controller
 
-      - name: Run update script
+      - name: Run database script
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
