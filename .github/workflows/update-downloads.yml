@@ -19,10 +19,10 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install node-fetch firebase-admin
+        run: npm install firebase-admin node-fetch
 
       - name: Run update script
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
-        run: node backend/updateDownloads.js
+        run: node backend/updateDownloads.mjs
