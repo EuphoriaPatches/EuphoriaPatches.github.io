@@ -1,18 +1,24 @@
-const { initializeApp, cert } = require('firebase-admin/app');
-const { getDatabase } = require('firebase-admin/database');
-const fetch = require('node-fetch');
+// Import Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
 
-// Firebase Admin Service Account credentials from environment variable
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBheyXP71wW38Pr1Pz7td5fA1ceNF7I-4U",
+    authDomain: "ep-website-backend.firebaseapp.com",
+    databaseURL: "https://ep-website-backend-default-rtdb.firebaseio.com",
+    projectId: "ep-website-backend",
+    storageBucket: "ep-website-backend.appspot.com",
+    messagingSenderId: "527249989649",
+    appId: "1:527249989649:web:7c4913be47d320cbb891b0",
+    measurementId: "G-W72RZF1WBJ"
+};
 
 // Initialize Firebase
-initializeApp({
-    credential: cert(serviceAccount),
-    databaseURL: "https://ep-website-backend-default-rtdb.firebaseio.com",
-});
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
-const db = getDatabase();
-
+// Fetch Modrinth Downloads
 async function fetchModrinthDownloads(projectId) {
     try {
         const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
@@ -24,12 +30,13 @@ async function fetchModrinthDownloads(projectId) {
     }
 }
 
+// Fetch CurseForge Downloads
 async function fetchCurseforgeDownloads(projectId) {
     try {
         const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
             headers: {
                 'Accept': 'application/json',
-                'x-api-key': process.env.CURSEFORGE_API_KEY
+                'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
             }
         });                
         const data = await response.json();
@@ -40,39 +47,50 @@ async function fetchCurseforgeDownloads(projectId) {
     }
 }
 
-async function updateDownloadCounts() {
+async function updateDownloadCounter() {
     const modrinthProjectId = '4H6sumDB';
     const curseforgeProjectId = '915902';
 
-    // Fetch downloads from both platforms
-    const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
-    const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
-    const totalDownloads = modrinthDownloads + curseforgeDownloads;
+    try {
+        const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
+        const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
+        const totalDownloads = modrinthDownloads + curseforgeDownloads;
 
-    const currentTimestamp = Date.now();
+        console.log(`Modrinth Downloads: ${modrinthDownloads}`);
+        console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
+        console.log(`Total Downloads: ${totalDownloads}`);
 
-    // Get existing data from Firebase
-    const ref = db.ref('totals');
-    const snapshot = await ref.once('value');
-    const previousData = snapshot.exists() ? snapshot.val() : { totalDownloads: 0 };
+        const currentTimestamp = Date.now();
+        const dbRef = ref(database, 'totals');
 
-    // Calculate download difference
-    const downloadDifference = totalDownloads - previousData.totalDownloads;
+        // Fetch previous data from the database
+        const snapshot = await get(dbRef);
+        const previousData = snapshot.exists() ? snapshot.val() : { 
+            timestamp: currentTimestamp, 
+            totalDownloads: totalDownloads, 
+            yesterdayDownloads: 0
+        };
 
-    // Update Firebase with the new data
-    await ref.set({
-        timestamp: currentTimestamp,
-        totalDownloads: totalDownloads,
-        yesterdayDownloads: downloadDifference > 0 ? downloadDifference : 0,
-    });
+        const downloadDifference = totalDownloads - previousData.totalDownloads;
 
-    console.log('Download counts updated:', {
-        timestamp: currentTimestamp,
-        totalDownloads,
-        yesterdayDownloads: downloadDifference,
-    });
+        // Save the updated data to the database
+        await set(dbRef, {
+            timestamp: currentTimestamp,
+            totalDownloads: totalDownloads,
+            yesterdayDownloads: downloadDifference > 0 ? downloadDifference : yesterdayDownloads
+        });
+
+        console.log('Download counts updated:', {
+            timestamp: currentTimestamp,
+            totalDownloads,
+            yesterdayDownloads: downloadDifference,
+        });
+
+    } catch (error) {
+        console.error('Error updating download counter:', error);
+        document.getElementById('download-counter').innerText = 'Error';
+    }
 }
 
-updateDownloadCounts().catch((err) => {
-    console.error('Error updating download counts:', err);
-});
+// Call the function
+updateDownloadCounter();
