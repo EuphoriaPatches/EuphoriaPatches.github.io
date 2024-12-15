@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install firebase-admin node-fetch
+        run: npm install firebase-admin node-fetch node-abort-controller
 
       - name: Run update script
         env:
