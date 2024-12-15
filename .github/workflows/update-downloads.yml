@@ -25,4 +25,4 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
-        run: node backend/updateDownloads.mjs
+        run: node --trace-exit backend/updateDownloads.mjs

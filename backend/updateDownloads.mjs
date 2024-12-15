@@ -105,6 +105,13 @@ async function updateDownloadCounts() {
     console.timeEnd("Update Downloads Script");
 }
 
-updateDownloadCounts().catch((err) => {
-    console.error("Fatal error in updateDownloadCounts:", err);
-});
+updateDownloadCounts()
+    .then(async () => {
+        console.log("Script completed successfully.");
+        await admin.app().delete(); // Close Firebase connections
+        process.exit(0); // Exit cleanly
+    })
+    .catch((err) => {
+        console.error("Fatal error in updateDownloadCounts:", err);
+        process.exit(1); // Exit with error code
+    });
