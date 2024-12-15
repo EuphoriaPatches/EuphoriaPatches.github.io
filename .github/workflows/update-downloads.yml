@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install node-fetch firebase-admin
+        run: npm install firebase-admin node-fetch
 
       - name: Run update script
         env:
