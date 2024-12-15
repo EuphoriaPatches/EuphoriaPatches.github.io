@@ -36,7 +36,6 @@ jobs:
       # Setup environment variables using secrets
       - name: Export secret keys
         run: |
-          echo "FIREBASE_SERVICE_ACCOUNT=${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" >> $GITHUB_ENV
           echo "CURSEFORGE_API_KEY=${{ secrets.CURSEFORGE_API_KEY }}" >> $GITHUB_ENV
 
       - name: Setup Pages
