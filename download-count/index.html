@@ -197,7 +197,21 @@
                 return 0;
             }
         }
-    
+
+        function timeUntilTransfer() {
+            const now = new Date(), utcOffset = 1;
+            let msUntilTarget = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), utcOffset) - now.getTime();
+            if (msUntilTarget < 0) msUntilTarget += 86400000; // Add 24 hours in milliseconds if the target is in the past
+            return {
+                hours: Math.floor(msUntilTarget / 3600000),
+                minutes: Math.floor((msUntilTarget % 3600000) / 60000),
+                seconds: Math.floor((msUntilTarget % 60000) / 1000)
+            };
+        }
+
+        const { hours, minutes, seconds } = timeUntilTransfer();
+        console.log(`Time until data transfer: ${hours}h ${minutes}m ${seconds}s`);
+
         async function updateDownloadCounter() {
             const modrinthProjectId = '4H6sumDB';
             const curseforgeProjectId = '915902';
