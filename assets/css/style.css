@@ -2229,6 +2229,18 @@ code {
     transform: scale(0);
 }
 
+/* Hide custom cursor on mobile devices/touch screens */
+@media (max-width: 768px), (pointer: coarse) {
+    #custom-cursor {
+        display: none;
+    }
+    
+    /* Restore default cursor for all elements */
+    #download-counter-all-page {
+        cursor: auto !important;
+    }
+}
+
 .gradient-bg {
     background: linear-gradient(135deg, #e872be, #c79063);
     display: flex;
