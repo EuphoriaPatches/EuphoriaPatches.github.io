@@ -57,6 +57,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
+<div id="custom-cursor"></div> <!-- Custom Cursor -->
 <div id="download-counter-all-page">
     <header id="masthead" class="site-header site-header-white">
         <nav id="primary-navigation" class="site-navigation">
@@ -290,6 +291,67 @@
 
         // Call the function
         updateDownloadCounter();
+    </script>
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        let timeoutId = null;
+
+        function updateCursor(e) {
+            requestAnimationFrame(() => {
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+            });
+            
+            cursor.classList.remove('idle');
+            
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            
+            timeoutId = setTimeout(() => {
+                cursor.classList.add('idle');
+            }, 3000);
+        }
+
+        // Add cursor tracking
+        document.addEventListener('mousemove', updateCursor, { passive: true });
+
+        // Add hover detection for download-counter-page
+        const downloadCounter = document.querySelector('.download-counter-page');
+        const headings = downloadCounter.querySelectorAll('h1, h2');
+        const downloadDetails = downloadCounter.querySelector('#daily-avg');
+
+        // Add hover for headings
+        headings.forEach(heading => {
+            heading.addEventListener('mouseenter', () => {
+                cursor.classList.add('scaled');
+            });
+
+            heading.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scaled');
+            });
+        });
+
+        // Add hover for download-details
+        if (downloadDetails) {
+            downloadDetails.addEventListener('mouseenter', () => {
+                cursor.classList.add('scaled');
+            });
+
+            downloadDetails.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scaled');
+            });
+        }
+
+        // Click effect
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('scaled');
+            cursor.style.transform += ' scale(0.7)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('scaled');
+            cursor.style.transform = cursor.style.transform.replace(' scale(0.7)', '');
+        });
     </script>
     
 

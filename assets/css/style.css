@@ -114,6 +114,19 @@ p + p {
     margin-top: 40px;
 }
 
+*::selection {
+    background: #b91bb162;
+    color: #ffffff;
+}
+*::-moz-selection {
+    background: #b91bb162;
+    color: #ffffff;
+}
+*::-webkit-selection {
+    background: #b91bb162;
+    color: #ffffff;
+}
+
 /* Buttons */
 .btn {
     padding: 0;
@@ -2174,12 +2187,46 @@ code {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    cursor: none;
 }
 
 .download-page-main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* Cursor styling */
+#custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+}
+
+#custom-cursor::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    transition: transform 200ms ease-out;
+    will-change: transform;
+}
+
+/* Add a class for scaled state */
+#custom-cursor.scaled::before {
+    transform: scale(1.33);
+}
+
+#custom-cursor.idle::before {
+    transform: scale(0);
 }
 
 .gradient-bg {
