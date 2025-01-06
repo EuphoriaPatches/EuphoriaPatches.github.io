@@ -1485,6 +1485,15 @@ code {
     margin-left: 40px;
 }
 
+#contributors-list, .honrable-credits-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: disc;
+}
+#contributors-list li, .honrable-credits-list li {
+    margin-right: -0.5rem;
+}
+
 /* Default styles for the index */
 .faq-index-container {
     position: absolute;
