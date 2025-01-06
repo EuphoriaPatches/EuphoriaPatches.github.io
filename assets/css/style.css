@@ -1320,6 +1320,7 @@ code {
 }
 .download-modrinth-part{
     scale: 1.1;
+    margin-top: 3rem;
 }
 .download-installer-part{
     scale: 0.8;
@@ -1514,7 +1515,7 @@ code {
 }
 
 .faq-index {
-    max-height: 77vh;
+    max-height: 80vh;
     overflow-y: auto;
 }
 
@@ -1646,7 +1647,7 @@ code {
 @media (min-width: 769px) {
     .faq-index-container {
         position: absolute;
-        top: 720px;
+        top: 520px; /* With ad 720. THIS MARKS THE NORMAL CONTAINER POSITION*/
     }
 }
 
