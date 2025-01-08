@@ -2864,6 +2864,110 @@ code {
     }
 }
 
+/* Hidden QR Page */
+
+.hidden-qr-page {
+    background-color: #000;
+    color: rgb(225, 0, 255);
+    font-family: 'Courier New', monospace;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: url('/assets/img/other/retro-cursor.png'), auto; /* Specify your retro cursor here */
+}
+
+.hidden-qr-page .secret-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    flex-wrap: wrap; /* Allows content to wrap on smaller screens */
+}
+
+.hidden-qr-page .site-footer, .hidden-qr-page .copyright {
+    background-color: black;
+}
+
+.hidden-qr-page .container {
+    padding: 15px;
+    border: 1px solid rgb(255, 0, 255);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+}
+
+.hidden-qr-page .container-middle {
+    width: fit-content;
+    margin: 10rem auto;
+}
+
+.hidden-qr-page h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    word-wrap: break-word; /* Prevents text overflow */
+}
+
+.hidden-qr-page .message {
+    font-size: 16px;
+    margin: 15px 0;
+    line-height: 1.5rem;
+    word-wrap: break-word;
+}
+
+.hidden-qr-page .timestamp {
+    font-size: 12px;
+    color: rgb(176, 0, 199);
+    margin-top: 15px;
+}
+
+.hidden-qr-page .footnote {
+    font-size: 12px;
+    color: rgb(176, 0, 199);
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .hidden-qr-page h1 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .hidden-qr-page .message {
+        font-size: 14px;
+        line-height: 1.3rem;
+    }
+
+    .hidden-qr-page .timestamp,
+    .hidden-qr-page .footnote {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hidden-qr-page h1 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .hidden-qr-page .message {
+        font-size: 12px;
+        line-height: 1.2rem;
+    }
+
+    .hidden-qr-page .timestamp,
+    .hidden-qr-page .footnote {
+        font-size: 9px;
+    }
+}
+
+
 /* FOOTER
 ================================================== */
 .site-footer {
@@ -3044,375 +3148,6 @@ a.contact-bg:before {
     font-size: 10px;
     margin-top: -20px;
     margin-right: 0px;
-}
-
-/* PAGES
-================================================== */
-.subpage-site-section {
-    padding: 60px 0;
-}
-
-.breadcrumb {
-    background-color: transparent;
-    position: relative;
-}
-
-.breadcrumb .active {
-    color: #fff;
-}
-
-/* 
- * Portfolio
- */
-.portfolio-sorting li:nth-child(-n+3){
-    margin-bottom: 5px;
-}
-
-.portfolio-sorting li a {
-    line-height: 40px;
-    min-width: 120px;
-    font-size: 16px;
-}
-
-.portfolio-sorting li .active {
-    background-color: var(--ThemeColor);
-    color: #fff;  
-    box-shadow: none;   
-}
-
-#grid {
-    margin-top: 25px;
-}
-
-#grid .col-md-4 {
-    display: none;
-}
-
-#loadMore {
-    margin-top: 30px;
-}
-
-#loadMore.disabled {
-    background-color: #eee;
-    color: #000;
-    opacity: 0.3;
-}
-
-/* 
- * Portfolio-item
- */
-.project-img {
-    height: 480px;
-}
-
-.project-img + .project-img  {
-    margin-top: 20px;
-}
-
-.project-info h5 {
-    font-size: 18px;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-.project-description,
-.project-date-category {
-    margin: 30px 0 0;
-}
-
-.project-date-category p + p {
-    margin-top: 10px;
-}
-
-.project-date-category p span {
-    font-size: 14px;
-    text-transform: uppercase; 
-    color: var(--VeryLightGray);
-    font-weight: 400;
-}
-
-.project-info .btn {
-    margin-top: 25px;
-    line-height: 40px;
-    min-width: 120px;
-}
-
-.project-info .social-links {
-    margin-top: 25px;
-}
-
-.section-related-projects {
-    padding-top: 0;
-}
-
-/* 
- * Blog
- */
-.blog-post + .blog-post {
-    margin-top: 60px;
-}
-
-.blog-post img {
-    height: 480px;
-}
-
-.post-content,
-.post-content .text-right,
-.post-meta {
-    margin-top: 25px;
-}
-
-.blog-post .post-title {
-    padding: 0;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.post-content p {
-    margin: 25px 0 0;
-}
-
-.post-content .post-title a {
-    color: var(--VeryLightGray);
-}
-
-.post-content a {
-    color: var(--VeryLightGray);   
-}
-
-.post-content .read-more {
-    position: relative;
-    padding-right: 30px;
-    text-transform: uppercase;
-}
-
-.post-content .read-more:after {
-    content: '';
-    display: block;
-    background-color: var(--VeryLightGray);  
-    width: 20px;
-    height: 2px;
-    position: absolute;
-    right: 0;
-    top: 8px;
-    transition: background-color 0.25s ease-in-out;
-    -moz-transition: background-color 0.25s ease-in-out;
-    -webkit-transition: background-color 0.25s ease-in-out;
-    -o-transition: background-color 0.25s ease-in-out;
-    -ms-transition: background-color 0.25s ease-in-out;
-}
-
-.post-content .read-more:hover:after {
-    background-color: var(--ThemeColor); 
-}
-
-.blog-post a:hover + .post-content .post-title a,
-.post-content a:hover {
-    color: var(--ThemeColor);
-}
-
-.post-meta {
-    padding: 5px 0;
-}
-
-.post-meta span {
-    padding: 6px 0;
-}
-
-.post-meta span + span {
-    margin-left: 40px;
-}
-
-.post-meta span a {
-    position: relative;
-    padding: 6px 0 6px 40px;
-}
-
-.post-meta i,
-.post-author img {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.post-author img {
-    height: 30px;
-    width: 30px;
-}
-
-.post-meta i {
-    font-size: 30px;
-}
-
-.post-category i {
-    top: 1px;
-}
-
-.section-blog .ui-pagination {
-    margin-top: 60px;
-}
-
-/* 
- * Blog post
- */
-/* Post Comments */
-.post-comments {
-    margin-top: 40px;
-}
-
-.post-comments h3,
-.respond h3 {
-    font-size: 16px;
-    margin: 30px 0 15px;
-    text-transform: uppercase;
-}
-
-.post-comment {
-    padding-left: 70px;
-    position: relative;
-}
-
-.post-comment + .post-comment,
-.replied + .post-comment {
-    margin-top: 30px;
-}
-
-.replied {
-    margin: 20px 0 0 70px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(224, 224, 224, 0.05)
-}
-
-.post-comment img {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.post-comment-content-details {
-    background-color: var(--DarkGray);
-    padding: 10px 0 10px 20px;
-}
-
-.post-comment-content-details p {
-    display: inline-block;
-    color: var(--VeryLightGray);
-}
-
-.post-comment-content-details p + p {
-    margin: 0 0 0 20px;
-}
-
-.post-comment-date i {
-    margin-right: 5px;
-    line-height: 18px;
-}
-
-.comment {
-    padding: 15px 0 0 20px;
-}
-
-.comment + .comment {
-    margin-top: 0px;
-}
-
-.comment-reply {
-    margin-top: 5px;
-}
-
-/* Respond */
-.respond .form-control + .btn {
-    margin-top: 10px;
-}
-
-/* Sidebar */
-.sidebar {
-    padding-left: 30px;
-}
-
-.widget + .widget {
-    margin-top: 60px;
-}
-
-.widget-title {
-    font-size: 18px;
-    margin: 0 0 30px;
-    text-transform: uppercase;
-    letter-spacing: 1px;   
-}
-
-.widget .list-unstyled a:hover {
-    padding-left: 15px;
-}
-
-.widget .list-unstyled li + li {
-    margin-top: 20px;
-}
-
-.widget-categories li a span {
-    float: right;
-}
-
-.widget-tags .list-unstyled li + li {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(224, 224, 224, 0.05)
-}
-
-/* 
- * Contact
- */
-/* Section: Contact-us */
-.section-contact-us h2 {
-    font-size: 18px;
-    text-transform: uppercase;
-    padding-bottom: 50px;
-    letter-spacing: 1px;
-}
-
-.section-contact-us .form-group label,
-.contact-info h3 {
-    margin: 0 0 10px 20px;
-    color: var(--VeryLightGray);
-    font-size: 16px;
-    font-weight: 300; 
-}
-
-.section-contact-us textarea {
-    height: 130px;
-}
-
-.section-contact-us .btn {
-    margin-top: 35px;
-}
-
-.contact-info {
-    padding-left: 30px;
-}
-
-.contact-info h3 {
-    margin-left: 0;
-    color: var(--VeryLightGray);
-}
-
-.contact-info .list-unstyled li {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--VeryLightGray);
-}
-
-.contact-info .list-unstyled + h3,
-.contact-info a + h3 {
-    margin-top: 30px;
-}
-
-.section-contact-us .row + .form-group,
-.section-contact-us .form-group + .form-group {
-    margin-top: 25px;
 }
 
 /* Ad Stuff */
