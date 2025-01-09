@@ -2933,6 +2933,19 @@ code {
     margin-top: 15px;
 }
 
+.hidden-qr-page a {
+    cursor: url('/assets/img/other/retro-pointer.png'), auto;
+}
+
+.hidden-qr-page .social-links a {
+    margin: 2px;
+    line-height: 55px;
+    align-items: center;
+    padding: 3px 3px;
+    font-size: 16px;
+    border: 0px solid;
+}
+
 @media (max-width: 768px) {
     .hidden-qr-page h1 {
         font-size: 18px;
@@ -3123,6 +3136,7 @@ a.contact-bg:before {
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
 }
+
 
 .copyright .text-right {
     padding: 14px 0;
