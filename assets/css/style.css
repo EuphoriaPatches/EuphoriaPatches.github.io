@@ -2978,6 +2978,12 @@ code {
     .hidden-qr-page .footnote {
         font-size: 9px;
     }
+    .hidden-qr-page .social-links a {
+        font-size: 14px;
+        padding: -100px;
+        margin: 0px;
+        gap: -100px;
+    }
 }
 
 
