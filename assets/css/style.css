@@ -2933,6 +2933,11 @@ code {
     word-wrap: break-word;
 }
 
+.hidden-qr-page .hint {
+    font-weight: bold;
+}
+
+
 .hidden-qr-page .timestamp {
     font-size: 12px;
     color: rgb(176, 0, 199);
