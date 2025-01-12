@@ -60,7 +60,7 @@
 <div id="custom-cursor"></div> <!-- Custom Cursor -->
 <div id="download-counter-all-page">
     <header id="masthead" class="site-header site-header-white">
-        <nav id="primary-navigation" class="site-navigation">
+        <nav id="primary-navigation" class="site-navigation download-count-nav-footer">
             <div class="container">
 
                 <div class="navbar-header">
@@ -99,6 +99,7 @@
     <main id="main" class="site-main download-page-main">
         <section class="site-section gradient-bg">
             <div class="download-counter-page">
+                    <img src="/assets/img/other/euphoria_patches_alone_banner.svg" alt="Euphoria Patches Banner" class="download-count-image" width="50%" height="auto">
                 <h2>Total Downloads:</h2>
                 <div class="total-download-number">
                     <div class="typed-out" id="typed-out">
@@ -116,7 +117,7 @@
 
 
     <footer id="colophon" class="site-footer"></footer>
-        <div class="copyright">
+        <div class="copyright download-count-nav-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-8">
@@ -294,14 +295,31 @@
     </script>
     <script>
         const cursor = document.getElementById('custom-cursor');
+        const navFooters = document.querySelectorAll('.download-count-nav-footer');
         let timeoutId = null;
+        let isMobile = window.innerWidth <= 768;
+
+        window.addEventListener('resize', () => {
+            isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                navFooters.forEach(element => {
+                    element.style.opacity = '1';
+                });
+            }
+        });
 
         function updateCursor(e) {
             requestAnimationFrame(() => {
-                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
             });
             
             cursor.classList.remove('idle');
+            if (!isMobile) {
+                navFooters.forEach(element => {
+                    element.style.transition = 'opacity 0.5s';
+                    element.style.opacity = '1';
+                });
+            }
             
             if (timeoutId) {
                 clearTimeout(timeoutId);
@@ -309,6 +327,11 @@
             
             timeoutId = setTimeout(() => {
                 cursor.classList.add('idle');
+                if (!isMobile) {
+                    navFooters.forEach(element => {
+                        element.style.opacity = '0';
+                    });
+                }
             }, 3000);
         }
 

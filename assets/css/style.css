@@ -2193,6 +2193,10 @@ code {
     }
 }
 
+.download-count-image{
+    margin-bottom: 3rem;
+}
+
 #download-counter-all-page {
     display: flex;
     flex-direction: column;
@@ -2276,6 +2280,7 @@ code {
     letter-spacing: -3px;
     margin-bottom: 10px;
     font-weight: bold;
+    margin-top: -1rem;
 }
 
 .download-counter-page h1 {
@@ -2357,6 +2362,9 @@ code {
         letter-spacing: -2px;
         line-height: 0.9;
     }
+    .download-count-image {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2369,6 +2377,10 @@ code {
         font-size: 15vw;
         letter-spacing: 0;
         line-height: 0.9;
+    }
+
+    .download-count-image {
+        display: none;
     }
 }
 
