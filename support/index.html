@@ -116,9 +116,19 @@
     <main id="main" class="site-main"></main>
         <section class="site-section">
             <div class="container section-donation-container">
-                <div class="hero-text">
-                    <p>Help advance the development of Euphoria Patches and enjoy special perks! By supporting on Patreon or Ko-Fi, you can access early preview versions of my projects.</p>
-                    <p><ins><strong>Exclusive Preview Versions</strong></ins> - Monthly supporters get early access to unique builds and updates before they are publicly released!</p>
+                <div class="hero-text support-dev-page">
+                    <h3>Help advance the development of Euphoria Patches and enjoy special perks!</h3>
+                    <ul align="left">
+                        <li><p><ins><strong>Exclusive Preview Versions</strong></ins> - Monthly supporters get early access to unique in-development updates before they are publicly released!</p></li>
+                        <div class="see-more-container" align="center">
+                            <div class="see-more-content" id="morePerks" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;" align="left">
+                                <li><strong>Exclusive Discord Access</strong> - Get a special role in my discord server to get access to exclusive channels with development talk and feature showcases</li>
+                                <li><strong>Behind-the-scenes</strong> - Behind-the-scenes content and exclusive Euphoria Patches news</li>
+                            </div>
+                            <button onclick="togglePerks()" class="see-more-btn" id="seeMoreBtn">See More ▼</button>
+                        </div>
+                    </ul>
+                    <div class="footnote">By supporting me, you help cover essential costs like domain fees as well as allowing me to dedicate more time to developing Euphoria Patches and other projects!</div>
                 </div><!-- /.hero-text -->
                 <div class="section-donation section-click-box section-patreon_img">
                     <a href="/patreon" target="_blank" class="link-overlay">
@@ -168,6 +178,19 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script>
+        function togglePerks() {
+            const content = document.getElementById("morePerks");
+            const btn = document.getElementById("seeMoreBtn");
+            if (content.style.maxHeight === "0px" || !content.style.maxHeight) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                btn.innerHTML = "See Less ▲";
+            } else {
+                content.style.maxHeight = "0";
+                btn.innerHTML = "See More ▼";
+            }
+        }
+    </script>
   
 </body>
 </html>

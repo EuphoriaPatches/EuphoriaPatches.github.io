@@ -2200,6 +2200,50 @@ code {
     }
 }
 
+.support-dev-page h3 {
+    margin-top: -1.5rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.support-dev-page p {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.support-dev-page li {
+    margin-top: 0.5rem;
+}
+
+.see-more-btn {
+    background: none;
+    border: none;
+    color: var(--EuphoriaMagenta);
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.see-more-btn:hover {
+    color: var(--EuphoriaMagenta);
+}
+
+.see-more-content {
+    overflow: hidden;
+    padding-left: 20px; /* Add padding to accommodate list dots */
+    position: relative;
+}
+
+.see-more-content ul {
+    list-style-position: outside; /* Force dots to render outside */
+    margin-left: 0;
+    padding-left: 20px; /* Add padding for the dots */
+}
+
+.see-more-content li {
+    position: relative;
+    margin-bottom: 5px;
+}
+
 #download-counter-all-page {
     display: flex;
     flex-direction: column;
