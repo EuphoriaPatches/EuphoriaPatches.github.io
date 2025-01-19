@@ -1873,7 +1873,7 @@ code {
 @media screen and (max-width: 768px) {
     .section-click-box h2 {
         font-size: 28px; /* Reduced font size for mobile */
-        line-height: 1.3; /* Slightly increased line height for readability */
+        line-height: 5rem; /* Slightly increased line height for readability */
         padding-bottom: 5px; /* Reduced padding for mobile */
     }
 }
