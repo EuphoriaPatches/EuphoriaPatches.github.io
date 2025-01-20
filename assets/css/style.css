@@ -600,14 +600,24 @@ select {
     border: 3px solid rgb(61, 61, 80);
     
     font-family: 'monocraft';
+    font-weight: bold;
     font-size: 26px;
     line-height: 36px;
     color: var(--VeryLightGray);
     letter-spacing:-0.5px;
 }
 
-.aactive, .aaccordion:hover {
-    border-color: var(--ThemeColor);
+.changelog-image {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 15px;
+    max-width: 100% !important;
+    border-radius: 25px;
 }
 
 .apanel {
@@ -633,7 +643,14 @@ select {
     border-color: rgb(16, 16, 21);
     text-align: left;
     padding-left: 72px;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: normal;
+    font-family: 'graphicpixel';
+    letter-spacing: 0.1rem;
+}
+
+.aactive, .aaccordion:hover {
+    border-color: var(--ThemeColor);
 }
 
 .aapre {
