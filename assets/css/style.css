@@ -1000,8 +1000,13 @@ html, body {
     position: absolute;
     inset: 0%;
     backdrop-filter: blur(20px);
-    -webkit-mask: linear-gradient(to bottom, transparent 70%, black 90%);  
-    mask: linear-gradient(to bottom, transparent 70%, black 90%);
+    -webkit-mask: linear-gradient(to bottom, transparent 80%, black 90%);  
+    mask: linear-gradient(to bottom, transparent 80%, black 90%);
+}
+
+.home-page-hero {
+    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 }
 
 .home-page-hero::after {
@@ -1180,6 +1185,12 @@ html, body {
 .privacy-policy-hero,
 .credits-hero {
     height: 650px;
+}
+
+@media screen and (max-width: 768px) {
+    .home-page-hero {
+        height: 500px;
+    }
 }
 
 .overlayer {
@@ -2097,7 +2108,7 @@ code {
     justify-content: center;
     align-items: center;
     width: max-content;
-    max-width: 90vw;
+    /* max-width: 90vw; */
     margin: 20px;
     left: 50%;
     top: -10px;
@@ -2195,31 +2206,29 @@ code {
 
 .popup-container {
     position: absolute;
-    bottom: -75px;
     left: 50%;
-    transform: translateX(-50%) scale(0.7) rotate(1.3deg);
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.15);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 20px;
     opacity: 0;
     transition: opacity 0.3s ease, bottom 0.3s ease;
     pointer-events: none;
     white-space: nowrap;
     text-align: center;
+    backdrop-filter: blur(7px);
+    border: white 3px solid;
     width: auto;
-    max-width: 90vw;
     box-sizing: border-box;
 }
 
 .main-banner-box-container:hover .popup-container {
     opacity: 1;
-    bottom: -75px;
 }
 
 @media (max-width: 768px) {
     .main-banner-box-container {
-        max-width: 90vw;
+        max-width: 95vw;
         left: 0;
         margin: 0px;
     }
@@ -2230,14 +2239,17 @@ code {
 
     .popup-container {
         white-space: normal;
+        width: 100vw; /* Set width to 80% of viewport width */
+        min-width: 500px; /* Ensure minimum readable width */
         font-size: 14px;
         padding: 8px 16px;
+        opacity: 1;
     }
 }
 
 @media (max-width: 480px) {
     .main-banner-box-container {
-        max-width: 85vw;
+        max-width: 95vw;
         left: 0;
         margin: 0px;
     }
@@ -2246,11 +2258,7 @@ code {
         max-height: 60vh;
     }
 
-    .popup-container {
-        white-space: normal;
-        font-size: 12px;
-        padding: 6px 12px;
-    }
+
 }
 
 .support-dev-page h3 {
