@@ -2267,6 +2267,7 @@ code {
         font-size: 14px;
         padding: 8px 16px;
         opacity: 1;
+        pointer-events: all;
         transform: translateX(-50%) scale(0.5);
     }
 }
