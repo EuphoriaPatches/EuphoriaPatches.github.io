@@ -237,56 +237,48 @@
             let ticking = false;
 
             function updateDimensions() {
-                containerWidth = boxContainer.offsetWidth;
-                viewportWidth = window.innerWidth;
-                offsetX = (viewportWidth - containerWidth) / 2;
+            containerWidth = boxContainer.offsetWidth;
+            viewportWidth = window.innerWidth;
+            offsetX = (viewportWidth - containerWidth) / 2;
             }
 
             function adjustPosition() {
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
-                        // if (containerWidth + 820 < viewportWidth) {
-                        //     boxContainer.style.cssText = 'left: 820px; transform: rotate(-1.3deg);';
-                        //     popupContainer.style.transform = 'translateX(-50%) scale(0.7) rotate(1.3deg)';
-                        // } else {
-                            // boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
-                            // popupContainer.style.transform = 'translateX(-50%) scale(1.0)';
-                        // }
-
-                        boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
-                        if (window.innerWidth <= 768) {
-                            popupContainer.style.transform = 'translateX(-50%) scale(0.5)';
-                            popupContainer.style.bottom = `-${popupContainer.offsetHeight - 20}px`;
-                        } else {
-                            popupContainer.style.transform = 'translateX(-50%) scale(1.0)';
-                            popupContainer.style.bottom = `-${popupContainer.offsetHeight + 25}px`;
-                        }
-                        ticking = false;
+                    boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
+                    if (window.innerWidth <= 768) {
+                        popupContainer.style.transform = 'translateX(-50%) scale(0.5)';
+                        popupContainer.style.bottom = `-${popupContainer.offsetHeight - 20}px`;
+                    } else {
+                        popupContainer.style.transform = 'translateX(-50%) scale(1.0)';
+                        popupContainer.style.bottom = `-${popupContainer.offsetHeight + 25}px`;
+                    }
+                    ticking = false;
                     });
                     ticking = true;
                 }
             }
             
+            // Initial load without delay
             updateDimensions();
             adjustPosition();
 
-            const debouncedResize = debounce(() => {
-                updateDimensions();
-                adjustPosition();
-            }, 500);
-
-            window.addEventListener('resize', debouncedResize);
+            // Resize with debounce
+            window.addEventListener('resize', debounce(() => {
+            updateDimensions();
+            adjustPosition();
+            }, 500));
         };
 
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
+            const later = () => {
                 clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
             };
         }
     </script>
