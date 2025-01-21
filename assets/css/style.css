@@ -1149,9 +1149,14 @@ html, body {
 }
 
 .contact-hero,
-.support-hero,
 .changelogs-hero {
     height: 400px;
+}
+
+.support-hero {
+    height: 250px;
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 .how-to-install-hero,
