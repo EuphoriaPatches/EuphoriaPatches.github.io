@@ -1000,9 +1000,14 @@ html, body {
     position: absolute;
     inset: 0%;
     backdrop-filter: blur(20px);
-    -webkit-mask: linear-gradient(to bottom, transparent 70%, black 90%);
+    -webkit-mask: linear-gradient(to bottom, transparent 70%, black 90%);  
     mask: linear-gradient(to bottom, transparent 70%, black 90%);
-  }
+}
+
+.home-page-hero::after {
+    -webkit-mask: linear-gradient(to bottom, transparent 90%, black 100%);
+    mask: linear-gradient(to bottom, transparent 90%, black 100%);
+}
 
 .hero.overlay::before {
     content: '';
