@@ -992,7 +992,17 @@ html, body {
     width: 100%;
     display: table;
     position: relative;
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0%;
+    backdrop-filter: blur(20px);
+    -webkit-mask: linear-gradient(to bottom, transparent 70%, black 90%);
+    mask: linear-gradient(to bottom, transparent 70%, black 90%);
+  }
 
 .hero.overlay::before {
     content: '';
@@ -1155,8 +1165,6 @@ html, body {
 
 .support-hero {
     height: 250px;
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 .how-to-install-hero,
