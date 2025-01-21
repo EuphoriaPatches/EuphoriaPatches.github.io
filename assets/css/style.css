@@ -1735,6 +1735,10 @@ code {
     transition: outline-color 0.25s ease-in-out;
 }
 
+.big-text-donation-page {
+    font-size: 19px !important;
+}
+
 .section-donation-kofi {
     float: right;
 }
@@ -1905,12 +1909,30 @@ code {
     scale: 1.025;
 }
 
+
+.donation-redirect-box::before {
+    padding: 4.5px;
+}
+
+.donation-redirect-box:hover {
+    outline-color: transparent;
+}
+
 .section-patreon_img {
-    background: url(../img/other/patreon_banner.webp) no-repeat top / cover;
+    background: url(../img/other/patreon_banner.webp) no-repeat center / 105% auto;
 }
 
 .section-kofi_img {
-    background: url(../img/other/kofi_banner.webp) no-repeat top / cover;
+    background: url(../img/other/kofi_banner.webp) no-repeat center / 105% auto;
+}
+
+@media (max-width: 1200px) {
+    .section-patreon_img {
+        background: url(../img/other/patreon_banner.webp) no-repeat center / cover;
+    }
+    .section-kofi_img {
+        background: url(../img/other/kofi_banner.webp) no-repeat center / cover;
+    }
 }
 
 .section-click-box h2 {
