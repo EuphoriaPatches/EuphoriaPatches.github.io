@@ -985,6 +985,30 @@ html, body {
     left: 15px;
 }
 
+.download-navigation-button {
+    position:absolute;
+    top: -4px;
+    color: white !important;
+    font-weight: bold;
+    background: var(--ThemeColor);
+    padding: 4px 16px !important;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.download-navigation-button:hover {
+    background: var(--VeryLightGray) !important;
+    color: var(--ThemeColor) !important;
+    transform: scale(1.05);
+}
+
+/* Special styling for when on download page */
+.download-navigation-button.active {
+    background: var(--VeryLightGray);
+    color: var(--ThemeColor) !important;
+    outline: 2px solid var(--ThemeColor);
+}
+
 /* HERO
 ================================================== */
 .hero { 
