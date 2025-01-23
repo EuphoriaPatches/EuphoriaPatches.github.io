@@ -1792,13 +1792,15 @@ code {
 
 .section-what-is-EP-desc p {
     position: relative;
-    padding-left: 20px;
+    padding-left: 30px;
     margin-top: 8px;
     font-size: 16px;
     color: var(--VeryLightGray);
     max-width: 100%;
     min-width: auto; /* Remove fixed min-width to allow wrapping */
     margin-bottom: 50px;
+    text-align: justify;
+    text-justify: inter-word;
     word-wrap: break-word; /* Enable word wrapping */
     overflow-wrap: break-word; /* Additional wrapping support */
     white-space: normal; /* Ensure text wraps */
@@ -2058,6 +2060,7 @@ code {
     background-color: #333;
     color: #fff;
     padding: 5px 10px;
+    pointer-events: none;
     border-radius: 5px;
     font-size: 14px;
     white-space: pre;  /* This preserves only explicit line breaks */
