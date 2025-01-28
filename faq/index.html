@@ -212,7 +212,7 @@
     
                 <h2 id="mod-support">Mod Support</h2>
                 <ul>
-                    <li>Euphoria Patches adds support to MANY blocks <code>(over 27k modded blocks in total)</code>, entities and items though the properties files thanks to the community. Check the supportedMods.md file or the <a href="/properties" target="_blank">Properties Repo</a></li>
+                    <li>Euphoria Patches adds support to MANY blocks <code id="totalProperties">(over 30k modded blocks in total)</code>, entities and items though the properties files thanks to the community. Check the supportedMods.md file or the <a href="/properties" target="_blank">Properties Repo</a></li>
                     <li>Euphoria Patches aims to better support modded blocks than regular Complementary by having default modded block support (check block.properties). Light Source Detection with automatic applied emission. Foliage model detection with automatically applied SSS.</li>
                     <li>Better modded end handling, the ender beams and fog will correctly change to the intended fog color in non vanilla biomes in the end</li>
                 </ul>
@@ -337,10 +337,66 @@
             }
         }
 
+        function formatNumbers(num) {
+            if (num >= 1_000_000) {
+            return (num / 1_000_000).toFixed(2) + 'M';
+            } else if (num >= 1_000) {
+            return (num / 1_000).toFixed(2) + 'K';
+            }
+            return num;
+        }
+
+        async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+            
+            try {
+                const response = await fetch(url, { ...options, signal: controller.signal });
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                return responseType === "json" ? response.json() : response.text();
+            } catch (error) {
+                clearTimeout(timeoutId);
+                throw error;
+            }
+        }
+
+        const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
+        const propertiesRegex = /:(?![a-z_]+=)/g;
+
+        async function countRegexMatches(fileUrl, regex) {
+            try {
+                const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+                const matches = fileContent.match(regex) || [];
+                return matches.length;
+            } catch (error) {
+                console.error("Error during regex matching:", error);
+                return 0;
+            }
+        }
+
+        async function updateTotalProperties() {
+            try {
+                const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
+                const totalPropertiesElement = document.getElementById('totalProperties');
+                if (totalPropertiesElement) {   
+                    totalPropertiesElement.textContent = "(Around " + formatNumbers(count).toString() + " modded blocks in total)";
+                    console.log("Total properties:", count);
+                }
+            } catch (error) {
+                console.error("Failed to update total properties:", error);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            updateTotalProperties();
             updateDimensions();
             makeIndexSticky();
-            waitForAdLoad();
+            // waitForAdLoad();
 
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
@@ -350,13 +406,8 @@
             });
 
             checkScrollIndicator();
-});
+        });
     </script>
-    
-
-    
-    
-    
   
 </body>
 </html>
