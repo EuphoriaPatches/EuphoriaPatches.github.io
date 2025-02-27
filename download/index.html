@@ -140,10 +140,10 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         <section id="download-section" class="site-section section-downloads">
             <div class="hero-text download-modrinth-part">
                 <h2>Downloads</h2>
-                <p id="down-section" class="download-title">Modrinth Download</p>
+                <p class="download-title">Modrinth Download</p>
                 <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
                 <br>Note to download the correct version for your mod loader</p>
-                <a href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">
+                <a id="down-section"href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">
                     <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
                     | Download on Modrinth | 
                     <span id="download-counter" class="download-count"><code>...</code></span>
@@ -305,6 +305,34 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
         updateDownloadCounter();
     
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we need to scroll to a specific element
+            const scrollTarget = sessionStorage.getItem('scrollTarget');
+            if (scrollTarget) {
+                // Clear the storage item
+                sessionStorage.removeItem('scrollTarget');
+                
+                // Find the target element
+                const targetElement = document.getElementById(scrollTarget);
+                if (targetElement) {
+                    // Wait a moment for page to fully render
+                    setTimeout(function() {
+                        // Calculate position to center element in viewport
+                        const elementRect = targetElement.getBoundingClientRect();
+                        const absoluteElementTop = elementRect.top + window.pageYOffset;
+                        const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                        
+                        // Scroll to the centered position
+                        window.scrollTo({
+                            top: middle,
+                            behavior: 'smooth'
+                        });
+                    }, 500);
+                }
+            }
+        });
     </script>
   
 </body>

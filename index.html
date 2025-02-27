@@ -167,7 +167,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             <div class="hero-text main-page-text">
                 <h1>Euphoria Patches</h1>
             </div><!-- /.hero-text -->
-            <div class="main-banner-box-container" onclick="location.href='/download';">
+            <div class="main-banner-box-container" onclick="navigateToDownload();">
                 <a href="/download"></a>
                 <div class="main-banner-box">
                     <img src="/assets/img/other/euphoria_patches_banner.svg" alt="Euphoria Patches Minecraft shader banner which leads to the download page">
@@ -287,6 +287,13 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
             };
+        }
+
+        function navigateToDownload() {
+            // Store the target location
+            sessionStorage.setItem('scrollTarget', 'down-section');
+            // Navigate to download page
+            window.location.href = '/download';
         }
     </script>
 
