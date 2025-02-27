@@ -175,6 +175,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     let countdownTimeout;
     let animationTimeout;
     let redirectURL = "https://modrinth.com/mod/euphoria-patches";
+    var loadingPageText = Math.random() <= 0.01 ? 'Potato...' : 'Loading page...'; // 1% chance of Easter egg
     
     // Countdown timer
     let timeLeft = 5;
@@ -265,7 +266,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         loadingText.style.fontSize = '14px';
         loadingText.style.fontFamily = 'monospace';
         loadingText.style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.7)';
-        loadingText.innerText = 'Loading page...';
+        loadingText.innerText = loadingPageText;
         container.appendChild(loadingText);
         
         // Animation stages - adjusted to complete within 5 seconds
@@ -370,7 +371,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         // Resume animation
         const animData = window.animationData;
         if (animData && animData.loadingText) {
-            animData.loadingText.innerText = 'Loading Page...';
+            animData.loadingText.innerText = loadingPageText;
             animData.loadingText.style.color = '#ffffff';
         }
         
