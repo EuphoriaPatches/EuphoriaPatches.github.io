@@ -1198,7 +1198,7 @@ html, body {
 }
 
 .support-hero {
-    height: 250px;
+    height: 120px;
 }
 
 .how-to-install-hero,
@@ -1952,15 +1952,6 @@ code {
     background: url(../img/other/kofi_banner.webp) no-repeat center / 105% auto;
 }
 
-@media (max-width: 1200px) {
-    .section-patreon_img {
-        background: url(../img/other/patreon_banner.webp) no-repeat center / cover;
-    }
-    .section-kofi_img {
-        background: url(../img/other/kofi_banner.webp) no-repeat center / cover;
-    }
-}
-
 .section-click-box h2 {
     font-family: 'monocraft';
     letter-spacing: -1.5px;
@@ -2327,17 +2318,22 @@ code {
     margin-top: 0.5rem;
 }
 
+/* Improve see more button */
 .see-more-btn {
-    background: none;
-    border: none;
+    background-color: rgba(255, 80, 223, 0.1);
+    border: 1px solid var(--ThemeColor);
+    border-radius: 20px;
     color: var(--EuphoriaMagenta);
-    cursor: pointer;
-    padding: 10px;
+    padding: 8px 20px;
+    margin-top: 10px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
+
 .see-more-btn:hover {
-    color: var(--EuphoriaMagenta);
+    background-color: var(--EuphoriaMagenta);
+    color: white;
+    transform: translateY(-2px);
 }
 
 .see-more-content {
@@ -3381,4 +3377,358 @@ a.contact-bg:before {
     margin-top: 15px;
     padding-bottom: 22px;
     text-align: center;
+}
+
+/* Support page enhancements */
+.support-heading {
+    font-size: 2.2rem !important;
+    margin-top: 0 !important;
+    color: var(--ThemeColor) !important;
+    font-weight: bold !important;
+    margin-bottom: 1rem !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.support-subheading {
+    font-size: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 600 !important;
+}
+
+.benefits-list {
+    background-color: rgba(255, 80, 223, 0.05);
+    padding: 1.5rem !important;
+    border-radius: 15px;
+    border-left: 4px solid var(--ThemeColor);
+}
+
+.highlight-benefit {
+    color: var(--EuphoriaMagentaBright) !important;
+}
+
+.benefit-item {
+    font-size: 17px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.supporter-level {
+    margin-top: 1.5rem;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.supporter-level .highlight {
+    color: var(--ThemeColor);
+    font-weight: bold;
+}
+
+/* Banner improvements */
+.banner-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.section-click-box:hover .banner-overlay {
+    opacity: 1;
+}
+
+.banner-cta {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    border: 2px solid var(--ThemeColor);
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.section-click-box:hover .banner-cta {
+    transform: translateY(0);
+}
+
+.banner-description {
+    color: white !important;
+    font-size: 16px !important;
+    margin-top: 0 !important;
+}
+
+.click-indicator {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: var(--ThemeColor);
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-donation, .section-donation-kofi {
+        width: 100%;
+        float: none;
+        margin: 15px auto;
+    }
+    
+    .banner-cta {
+        padding: 15px;
+    }
+}
+
+/* Donation Banners - New Implementation */
+.donation-banner-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.donation-banner {
+    position: relative;
+    width: 45%;
+    min-width: 300px;
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donation-banner:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.donation-banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: transform 0.5s ease;
+}
+
+.donation-banner:hover .donation-banner-background {
+    transform: scale(1.05);
+}
+
+.donation-banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.7) 40%,
+        rgba(0, 0, 0, 0.4) 60%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.donation-banner-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.donation-banner-logo img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.donation-banner h3 {
+    color: white;
+    margin: 0 0 8px 0;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.donation-banner p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 20px 0;
+    font-size: 16px;
+}
+
+.donation-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--ThemeColor);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.donation-banner-cta svg {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.donation-banner:hover .donation-banner-cta {
+    background-color: white;
+    color: var(--ThemeColor);
+    transform: scale(1.05);
+}
+
+.donation-banner:hover .donation-banner-cta svg {
+    transform: translateX(5px);
+}
+
+.donation-banner-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+/* Banner specific styles */
+.patreon-banner .donation-banner-cta {
+    background-color: #FF424D;
+}
+
+.patreon-banner:hover .donation-banner-cta {
+    background-color: white;
+    color: #FF424D;
+}
+
+.kofi-banner .donation-banner-cta {
+    background-color: #29ABE0;
+}
+
+.kofi-banner:hover .donation-banner-cta {
+    background-color: white;
+    color: #29ABE0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .donation-banner {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .donation-banner h3 {
+        font-size: 22px;
+    }
+    
+    .donation-banner-content {
+        padding: 20px;
+    }
+    
+    .donation-banner-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .donation-banner-logo img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-banner {
+        height: 180px;
+    }
+    
+    .donation-banner h3 {
+        font-size: 20px;
+    }
+    
+    .donation-banner p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .donation-banner-cta {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Add this class to your <body> tag for the support page */
+.support-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the empty main not take up space on support page */
+.support-page main.site-main {
+    flex: 0;
+}
+
+/* Target the section that contains your content on support page */
+.support-page section.site-section {
+    flex: 1 0 auto;
+}
+
+/* Footer positioning on support page */
+.support-page footer#colophon.site-footer,
+.support-page .copyright {
+    margin-top: auto;
+}
+
+/* Disable flex layout on mobile screens */
+@media (max-width: 1024px) {
+    .support-page {
+        display: block;
+        min-height: auto;
+    }
+    
+    .support-page section.site-section {
+        flex: none;
+    }
+    
+    .support-page footer#colophon.site-footer,
+    .support-page .copyright {
+        margin-top: 0;
+    }
 }

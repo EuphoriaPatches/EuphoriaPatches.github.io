@@ -24,8 +24,8 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable"="yes">
+    <meta name="mobile-web-app-capable"="yes">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700" rel="stylesheet">
@@ -60,7 +60,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     gtag('config', 'G-3CGSG92RGD');
     </script>
 </head>
-<body>
+<body class="support-page">
 
     <header id="masthead" class="site-header site-header-white">
         <nav id="primary-navigation" class="site-navigation">
@@ -113,42 +113,73 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             alt="Get exclusive preview versions of Euphoria Patches by supporting the developer: image of a stars"
             class="hero-image"
         >
-        <div class="hero-content">
+        <!--<div class="hero-content">
             <div class="hero-text">
                 <h1>Support Development</h1>
-            </div><!-- /.hero-text -->
-        </div><!-- /.hero-content -->
+            </div><!~~ /.hero-text ~~>
+        </div>/.hero-content-->
     </div><!-- /.hero -->
 
     <main id="main" class="site-main"></main>
         <section class="site-section">
             <div class="container section-donation-container">
                 <div class="hero-text support-dev-page">
-                    <h3>Help advance the development of Euphoria Patches and enjoy special perks!</h3>
-                    <ul align="left">
-                        <li><p  class="big-text-donation-page"><ins><strong>Exclusive Preview Versions</strong></ins> - Monthly supporters get early access to unique in-development updates before they are publicly released!</p></li>
+                    <h3 class="support-heading">Join the Euphoria Patches Development Journey!</h3>
+                    <p class="support-subheading">Support the project and unlock these exclusive benefits:</p>
+                    <ul align="left" class="benefits-list">
+                        <li><p class="big-text-donation-page highlight-benefit"><strong>🚀 Exclusive Preview Versions</strong> - Get early access to new features and updates before they're publicly released!</p></li>
                         <div class="see-more-container" align="center">
                             <div class="see-more-content" id="morePerks" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;" align="left">
-                                <li><strong>Exclusive Discord Access</strong> - Get a special role in my discord server to get access to exclusive channels with development talk and feature showcases</li>
-                                <li><strong>Behind-the-scenes</strong> - Behind-the-scenes content and exclusive Euphoria Patches news</li>
+                                <li><p class="benefit-item"><strong>💬 Exclusive Discord Access</strong> - Join special channels with behind-the-scenes development talk and feature showcases</p></li>
+                                <li><p class="benefit-item"><strong>🔍 Behind-the-scenes Content</strong> - See how features are developed and influence future updates</p></li>
                             </div>
                             <button onclick="togglePerks()" class="see-more-btn" id="seeMoreBtn">See More ▼</button>
                         </div>
                     </ul>
-                    <div class="footnote">By supporting me, you help cover essential costs like domain fees as well as allowing me to dedicate more time to developing Euphoria Patches and other projects!</div>
+                    <div class="supporter-level">Become a <span class="highlight">valued supporter</span> and enjoy all exclusive benefits!</div>
+                    <div class="footnote">Your support helps cover essential costs and allows me to dedicate more time to Euphoria Patches development!</div>
                 </div><!-- /.hero-text -->
-                <div class="section-donation section-click-box section-patreon_img main-banner-box donation-redirect-box">
-                    <a href="/patreon" target="_blank" class="link-overlay">
-                        <h2>Patreon</h2>
-                    </a>
-                </div>
-                <div class="section-donation-kofi section-click-box section-kofi_img main-banner-box donation-redirect-box">
-                    <a href="/kofi" target="_blank" class="link-overlay donation-redirect-box">
-                        <h2>Ko-Fi</h2>
-                    </a>
+                <div class="donation-banner-container">
+                    <!-- Patreon Banner -->
+                    <div class="donation-banner patreon-banner">
+                        <div class="donation-banner-background section-patreon_img"></div>
+                        <div class="donation-banner-content">
+                            <div class="donation-banner-logo">
+                                <img src="/assets/img/logos/patreonBlack200x.webp" alt="Patreon logo">
+                            </div>
+                            <h3>Support on Patreon</h3>
+                            <p>Monthly support with exclusive rewards</p>
+                            <div class="donation-banner-cta">
+                                <span>Join Now</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="/patreon" target="_blank" class="donation-banner-link" aria-label="Go to Patreon"></a>
+                    </div>
+
+                    <!-- Ko-Fi Banner -->
+                    <div class="donation-banner kofi-banner">
+                        <div class="donation-banner-background section-kofi_img"></div>
+                        <div class="donation-banner-content">
+                            <div class="donation-banner-logo">
+                                <img src="/assets/img/logos/kofi200x.png" alt="Ko-fi logo">
+                            </div>
+                            <h3>Support on Ko-Fi</h3>
+                            <p>One-time or recurring donations</p>
+                            <div class="donation-banner-cta">
+                                <span>Support Now</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="/kofi" target="_blank" class="donation-banner-link" aria-label="Go to Ko-fi"></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main><!-- /#main -->
 
     <footer id="colophon" class="site-footer"></footer>
@@ -189,12 +220,16 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         function togglePerks() {
             const content = document.getElementById("morePerks");
             const btn = document.getElementById("seeMoreBtn");
+            
             if (content.style.maxHeight === "0px" || !content.style.maxHeight) {
+                // Calculate the actual height needed
                 content.style.maxHeight = content.scrollHeight + "px";
                 btn.innerHTML = "See Less ▲";
+                btn.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
             } else {
                 content.style.maxHeight = "0";
                 btn.innerHTML = "See More ▼";
+                btn.style.backgroundColor = "rgba(255, 80, 223, 0.1)";
             }
         }
     </script>
