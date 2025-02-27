@@ -145,8 +145,19 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         <div class="countdown" id="countdown">Redirecting in 5...</div>
         
         <a id="banner1" href="/support">
-            <img src="/assets/img/other/support_banner.png" alt="Support on Patreon" class="banner">
+            <img src="/assets/img/other/support_banner.png" alt="Support on Patreon" class="banner" 
+             style="filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.6)); 
+                animation: pulse 2s infinite alternate;">
         </a>
+        <style>
+            @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.6)); }
+            100% { transform: scale(1.03); filter: drop-shadow(0 0 18px rgba(255, 0, 255, 0.8)); }
+            }
+            #banner1 img:hover {
+            animation: pulse 0.5s infinite alternate;
+            }
+        </style>
         
         <h2>Looking for a Minecraft Server?</h2>
         
