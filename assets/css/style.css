@@ -1945,7 +1945,7 @@ code {
 }
 
 .section-kofi_img {
-    background: url(../img/other/kofi_banner.webp) no-repeat center / 105% auto;
+    background: url(../img/other/kofi_banner.png) no-repeat center / 105% auto;
 }
 
 .section-click-box h2 {
@@ -3410,7 +3410,8 @@ a.contact-bg:before {
 
 @media screen and (max-width: 768px) {
     .support-heading {
-        font-size: 1.5rem;
+        font-size: 1.5rem !important;
+        margin-top: -2rem !important;
     }
     .support-subheading {
         font-size: 1.1rem !important;
@@ -3645,6 +3646,7 @@ a.contact-bg:before {
 /* Banner specific styles */
 .patreon-banner .donation-banner-cta {
     background-color: #FF424D;
+    box-shadow: 0 4px 8px rgba(212, 15, 25, 0.582);
 }
 
 .patreon-banner:hover .donation-banner-cta {
@@ -3654,6 +3656,7 @@ a.contact-bg:before {
 
 .kofi-banner .donation-banner-cta {
     background-color: #29ABE0;
+    box-shadow: 0 4px 8px rgba(41, 171, 224, 0.582);
 }
 
 .kofi-banner:hover .donation-banner-cta {
