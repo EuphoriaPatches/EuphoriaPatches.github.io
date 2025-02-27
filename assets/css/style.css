@@ -1759,10 +1759,6 @@ code {
     transition: outline-color 0.25s ease-in-out;
 }
 
-.big-text-donation-page {
-    font-size: 19px !important;
-}
-
 .section-donation-kofi {
     float: right;
 }
@@ -3163,7 +3159,7 @@ code {
 /* FOOTER
 ================================================== */
 .site-footer {
-    background-color: var(--DarkGray);
+    background-color: var(--VeryDarkGray);
 }
 
 .site-footer .site-title {
@@ -3381,7 +3377,7 @@ a.contact-bg:before {
 
 /* Support page enhancements */
 .support-heading {
-    font-size: 2.2rem !important;
+    font-size: 2.2rem;
     margin-top: 0 !important;
     color: var(--ThemeColor) !important;
     font-weight: bold !important;
@@ -3395,6 +3391,16 @@ a.contact-bg:before {
     font-weight: 600 !important;
 }
 
+.big-text-donation-page {
+    font-size: 19px !important;
+}
+
+.benefit-item {
+    font-size: 17px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
 .benefits-list {
     background-color: rgba(255, 80, 223, 0.05);
     padding: 1.5rem !important;
@@ -3402,14 +3408,33 @@ a.contact-bg:before {
     border-left: 4px solid var(--ThemeColor);
 }
 
-.highlight-benefit {
-    color: var(--EuphoriaMagentaBright) !important;
+@media screen and (max-width: 768px) {
+    .support-heading {
+        font-size: 1.5rem;
+    }
+    .support-subheading {
+        font-size: 1.1rem !important;
+    }
+    .big-text-donation-page {
+        font-size: 17px !important;
+    }
+    .benefit-item {
+        font-size: 15px !important;
+    }
+
+    .support-dev-page .footnote {
+        font-size: 14px;
+    }
+
+    .benefits-list {
+        padding-top: 0.7rem !important;
+        padding-bottom: 0.7rem !important;
+    }
+    
 }
 
-.benefit-item {
-    font-size: 17px !important;
-    margin-top: 1rem !important;
-    margin-bottom: 0.5rem !important;
+.highlight-benefit {
+    color: var(--EuphoriaMagentaBright) !important;
 }
 
 .supporter-level {
@@ -3463,24 +3488,12 @@ a.contact-bg:before {
     margin-top: 0 !important;
 }
 
-.click-indicator {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: var(--ThemeColor);
-    color: white;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    animation: pulse 1.5s infinite;
-}
-
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
     100% {
         transform: scale(1);
@@ -3602,6 +3615,7 @@ a.contact-bg:before {
     font-size: 16px;
     transition: transform 0.2s ease, background-color 0.2s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
 }
 
 .donation-banner-cta svg {
@@ -3694,29 +3708,29 @@ a.contact-bg:before {
 }
 
 /* Add this class to your <body> tag for the support page */
-.support-page {
+/*.support-page {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
 }
 
-/* Make the empty main not take up space on support page */
+/~ Make the empty main not take up space on support page ~/
 .support-page main.site-main {
     flex: 0;
 }
 
-/* Target the section that contains your content on support page */
+/~ Target the section that contains your content on support page ~/
 .support-page section.site-section {
     flex: 1 0 auto;
 }
 
-/* Footer positioning on support page */
+/~ Footer positioning on support page ~/
 .support-page footer#colophon.site-footer,
 .support-page .copyright {
     margin-top: auto;
 }
 
-/* Disable flex layout on mobile screens */
+/~ Disable flex layout on mobile screens ~/
 @media (max-width: 1024px) {
     .support-page {
         display: block;
@@ -3731,4 +3745,16 @@ a.contact-bg:before {
     .support-page .copyright {
         margin-top: 0;
     }
+}*/
+
+#support-counter-all-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+.support-page-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
