@@ -3489,18 +3489,6 @@ a.contact-bg:before {
     margin-top: 0 !important;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.01);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 @media (max-width: 768px) {
     .section-donation, .section-donation-kofi {
         width: 100%;
@@ -3605,6 +3593,18 @@ a.contact-bg:before {
     font-size: 16px;
 }
 
+@keyframes pulse-scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.0125);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .donation-banner-cta {
     display: inline-flex;
     align-items: center;
@@ -3616,7 +3616,7 @@ a.contact-bg:before {
     font-size: 16px;
     transition: transform 0.2s ease, background-color 0.2s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: pulse 1.5s infinite;
+    animation: pulse-scale 1.5s infinite;
 }
 
 .donation-banner-cta svg {
