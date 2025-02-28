@@ -394,25 +394,86 @@
     // Google Analytics Measurement ID
     const GA_MEASUREMENT_ID = 'G-3CGSG92RGD';
 
-    // Detect user region
+    // Cache for detected region
+    let cachedRegion = null;
+
+    // Detect user region with logging
     function detectUserRegion() {
-        const browserLang = navigator.language || navigator.userLanguage;
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        
-        if (browserLang.startsWith('en-GB') || timezone.includes('Europe/London')) {
-            return 'uk';
-        } else if (browserLang.startsWith('en-US') || timezone.includes('America/New_York') || 
-                  timezone.includes('America/Los_Angeles') || timezone.includes('America/Chicago')) {
-            return 'us';
-        } else if (browserLang.startsWith('en-CA') || timezone.includes('America/Toronto')) {
-            return 'ca';
-        } else if (timezone.includes('Europe/') || browserLang.startsWith('de') || 
-                  browserLang.startsWith('fr') || browserLang.startsWith('es-ES') || 
-                  browserLang.startsWith('it')) {
-            return 'eu';
-        } else {
-            return 'other';
+        // Check for cached region - don't log individually here anymore
+        if (cachedRegion) {
+            return cachedRegion;
         }
+        
+        // Get timezone and language info
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const browserLang = navigator.language || navigator.userLanguage;
+        
+        // Create a collapsible group for all detection logs
+        console.groupCollapsed('Cookie Consent - Region Detection');
+        console.log(`Browser timezone: ${timezone}`);
+        console.log(`Browser language: ${browserLang}`);
+        
+        // First check timezone as it's more reliable for physical location
+        if (timezone.includes('Europe/')) {
+            console.log('✓ DETECTED: EU (by timezone - Europe/)');
+            console.groupEnd();
+            cachedRegion = 'eu';
+            return cachedRegion;
+        } else if (timezone.includes('GB/') || timezone.includes('Europe/London')) {
+            console.log('✓ DETECTED: UK (by timezone - GB/ or Europe/London)');
+            console.groupEnd();
+            cachedRegion = 'uk';
+            return cachedRegion;
+        } else if (timezone.includes('America/Toronto') || timezone.includes('Canada/')) {
+            console.log('✓ DETECTED: Canada (by timezone - America/Toronto or Canada/)');
+            console.groupEnd();
+            cachedRegion = 'ca';
+            return cachedRegion;
+        } else if (timezone.includes('America/New_York') || 
+                   timezone.includes('America/Los_Angeles') || 
+                   timezone.includes('America/Chicago') ||
+                   timezone.includes('US/')) {
+            console.log('✓ DETECTED: US (by timezone - American timezone)');
+            console.groupEnd();
+            cachedRegion = 'us';
+            return cachedRegion;
+        }
+        
+        console.log('⚠ Timezone detection failed, falling back to language detection');
+        
+        // Fallback to language detection (less reliable)
+        // EU country language codes
+        const euLanguages = ['bg', 'hr', 'cs', 'da', 'nl', 'et', 'fi', 'fr', 'de', 
+                             'el', 'hu', 'ga', 'it', 'lv', 'lt', 'mt', 'pl', 'pt', 
+                             'ro', 'sk', 'sl', 'es', 'sv'];
+        
+        console.log('Checking against EU languages:', euLanguages.join(', '));
+                             
+        // Check if language code matches any EU language
+        if (euLanguages.some(lang => browserLang.startsWith(lang)) || browserLang.startsWith('en-GB')) {
+            const matchedLang = euLanguages.find(lang => browserLang.startsWith(lang)) || 'en-GB';
+            console.log(`✓ DETECTED: EU (by language - ${matchedLang})`);
+            console.groupEnd();
+            cachedRegion = 'eu';
+            return cachedRegion;
+        } else if (browserLang.startsWith('en-US')) {
+            console.log('✓ DETECTED: US (by language - en-US)');
+            console.groupEnd();
+            cachedRegion = 'us';
+            return cachedRegion;
+        } else if (browserLang.startsWith('en-CA')) {
+            console.log('✓ DETECTED: Canada (by language - en-CA)');
+            console.groupEnd();
+            cachedRegion = 'ca';
+            return cachedRegion;
+        }
+        
+        // Default to most privacy-respecting option for unknown regions
+        console.log('⚠ FALLBACK: Defaulting to EU (most privacy-respecting option)');
+        console.log(`Unable to detect region reliably from timezone "${timezone}" or language "${browserLang}"`);
+        console.groupEnd();
+        cachedRegion = 'eu';
+        return cachedRegion;
     }
 
     // Set cookie
@@ -584,21 +645,39 @@
     // Initialize banner
     function initBanner() {
         const cookieConsent = getCookie('cookie_consent');
+        const wasCached = cachedRegion !== null; // Check if region was already cached
+        const settings = getRegionSettings();
+        
+        // Determine consent status for log title
+        let consentStatus = "- no existing consent";
+        if (cookieConsent) {
+            const preferences = JSON.parse(cookieConsent);
+            consentStatus = preferences.analytics ? "- consent approved" : "- consent rejected";
+        }
+        
+        // Create a collapsible group with cached status and consent status in the title
+        console.groupCollapsed(`Cookie Consent - Region: ${cachedRegion}${wasCached ? ' (cached)' : ' (detected)'} ${consentStatus}`);
+        console.log(`Consent required: ${settings.requireConsent}`);
+        console.log(`Show reject button: ${settings.showRejectAll}`);
+        console.log(`Cookie expiry days: ${settings.expireDays}`);
         
         if (cookieConsent) {
             // Consent already given, initialize GA with saved preferences
             const preferences = JSON.parse(cookieConsent);
+            console.log('Existing consent found:', preferences);
+            console.groupEnd();
             initGA(preferences);
             showSettingsButton();
         } else {
-            // No consent yet, show banner
+            // No existing consent yet, show banner
+            console.log('No existing consent, showing banner');
+            console.groupEnd();
             applyRegionalSettings();
             showBanner();
         }
 
         // Add click event listener to close modal when clicking outside
         preferencesModal.addEventListener('click', function(event) {
-            // Check if the click is on the modal background (not on the modal content)
             if (event.target === preferencesModal) {
                 closePreferencesModal();
             }
