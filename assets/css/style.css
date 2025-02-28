@@ -849,7 +849,7 @@ html, body {
     /*background: url(../img/gradient.png) no-repeat center;*/
     background-size: 100% 100%;
     width: 100%;
-    z-index: 9999;
+    z-index: 50;
     font-weight: bolder;
 }
 
