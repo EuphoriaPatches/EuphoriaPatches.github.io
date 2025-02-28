@@ -105,28 +105,31 @@
             position: relative;
         }
         .modal-header {
-            display: block;
+            display: flex;
             position: relative;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--Gray);
             text-align: center;
+            justify-content: center;
+            align-items: center;
         }
         .modal-title {
             font-size: 20px;
             font-weight: 600;
             color: var(--VeryLightGray);
             width: 100%;
+            margin: 0;
         }
         .close-modal {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: 0;
+            right: 0;
             background: none;
             border: none;
             font-size: 22px;
             cursor: pointer;
-            color: var (--VeryLightGray);
+            color: var(--VeryLightGray);
             transition: color 0.2s;
             padding: 5px;
         }
@@ -217,11 +220,23 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             color: var(--VeryLightGray);
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         #cookie-settings-btn:hover {
             background-color: var(--Gray);
             transform: translateY(-2px);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        #cookie-settings-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--VeryLightGray);
+        }
+        #cookie-settings-btn .cookie-settings-text {
+            display: inline;
+            padding-left: 4px;
         }
         @media (max-width: 768px) {
             .consent-buttons {
@@ -234,6 +249,16 @@
             .modal-content {
                 padding: 15px;
             }
+            #cookie-settings-btn {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                justify-content: center;
+                border-radius: 50%;
+            }
+            #cookie-settings-btn .cookie-settings-text {
+                display: none;
+            }
         }
     `;
     document.head.appendChild(style);
@@ -241,7 +266,10 @@
     // Create and insert HTML elements
     const bannerHTML = `
         <!-- Cookie Settings Button -->
-        <button id="cookie-settings-btn">Cookie Settings</button>
+        <button id="cookie-settings-btn">
+            <img src="/assets/img/other/cookie.svg"/>
+            <span class="cookie-settings-text">Cookie Settings</span>
+        </button>
 
         <!-- Consent Banner -->
         <div id="consent-banner">
