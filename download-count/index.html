@@ -370,7 +370,126 @@
             cursor.classList.remove('scaled');
             cursor.style.transform = cursor.style.transform.replace(' scale(0.7)', '');
         });
-    </script>
+
+
+// Execute immediately without waiting for DOMContentLoaded
+(function() {
+        
+        // Keep track of whether we've already patched things
+        let functionPatched = false;
+        let buttonFound = false;
+        
+        // Function to patch the updateCursor function
+        function patchUpdateCursor() {
+            if (functionPatched) return;
+            
+            const original = window.updateCursor;
+            window.updateCursor = function(e) {
+                // Call the original first
+                original.call(this, e);
+                
+                // Find the cookie button
+                const cookieButton = document.getElementById('cookie-settings-btn');
+                if (!cookieButton) return;
+                
+                // Mark that we found the button
+                if (!buttonFound) {
+                    buttonFound = true;
+                }
+                
+                // Apply the same behavior as navFooters
+                if (!isMobile) {
+                    cookieButton.style.transition = 'opacity 0.5s';
+                    cookieButton.style.opacity = '1';
+                    cookieButton.style.display = 'block';
+                    cookieButton.style.visibility = 'visible';
+                }
+            };
+            
+            // Also patch setTimeout to catch the inactivity timer
+            const originalSetTimeout = window.setTimeout;
+            window.setTimeout = function(callback, delay) {
+                if (delay === 3000 && callback.toString().includes('cursor.classList.add')) {
+                    // This is likely the inactivity timer from updateCursor
+                    const newCallback = function() {
+                        // Run original callback
+                        callback();
+                        
+                        // Also handle cookie button
+                        const cookieButton = document.getElementById('cookie-settings-btn');
+                        if (cookieButton && !isMobile) {
+                            cookieButton.style.opacity = '0';
+                        }
+                    };
+                    
+                    return originalSetTimeout(newCallback, delay);
+                }
+                
+                // For all other setTimeout calls, pass through unchanged
+                return originalSetTimeout(callback, delay);
+            };
+            
+            functionPatched = true;
+        }
+        
+        // 1. Check if updateCursor already exists and patch it
+        if (typeof window.updateCursor === 'function') {
+            patchUpdateCursor();
+        } 
+        // 2. If not, set up a property descriptor to catch when it's defined
+        else {
+            let _updateCursor; // For storing the real function
+            Object.defineProperty(window, 'updateCursor', {
+                configurable: true,
+                enumerable: true,
+                get: function() { return _updateCursor; },
+                set: function(newFunc) {
+                    _updateCursor = newFunc;
+                    patchUpdateCursor();
+                }
+            });
+        }
+        
+        // 3. Also set up a direct event listener for mouse movement in case our patching fails
+        document.addEventListener('mousemove', function(e) {
+            const cookieButton = document.getElementById('cookie-settings-btn');
+            if (cookieButton && !isMobile) {
+                cookieButton.style.transition = 'opacity 0.5s';
+                cookieButton.style.opacity = '1';
+                cookieButton.style.display = 'block';
+                cookieButton.style.visibility = 'visible';
+            }
+        });
+        
+        // 4. Periodically check if the cookie button exists and apply styles
+        const styleInterval = setInterval(() => {
+            const cookieButton = document.getElementById('cookie-settings-btn');
+            if (cookieButton) {
+                // Ensure transition is set
+                cookieButton.style.transition = 'opacity 0.5s';
+                
+                // Match opacity with navFooters
+                const navFooter = document.querySelector('.download-count-nav-footer');
+                if (navFooter) {
+                    const computedOpacity = window.getComputedStyle(navFooter).opacity;
+                    cookieButton.style.opacity = computedOpacity;
+                }
+                
+                buttonFound = true;
+            }
+        }, 500);
+        
+        // Stop interval after 10 seconds
+        setTimeout(() => {
+            clearInterval(styleInterval);
+        }, 10000);
+    })();
+
+
+</script>
+
+
+
     
 
 </body>
