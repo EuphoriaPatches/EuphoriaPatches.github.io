@@ -235,19 +235,26 @@
     <script>
         const repoOwner = "EuphoriaPatches";
         const repoName = "propertiesFiles";
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
+        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
 
         async function fetchContributors() {
             try {
                 const response = await fetch(apiUrl);
-                const contributors = await response.json();
+                const contributorsStats = await response.json();
+                
+                // Sort by additions (most to least)
+                contributorsStats.sort((a, b) => {
+                    const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
+                    const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
+                    return totalAdditionsB - totalAdditionsA;
+                });
 
                 const contributorsList = document.getElementById("contributors-list");
                 contributorsList.innerHTML = ""; // Clear previous content
 
-                contributors.forEach(contributor => {
+                contributorsStats.forEach(contributor => {
                     const li = document.createElement("li");
-                    li.innerHTML = `<strong>${contributor.login}</strong>`;
+                    li.innerHTML = `<strong>${contributor.author.login}</strong>`;
                     contributorsList.appendChild(li);
                 });
             } catch (error) {
