@@ -131,9 +131,11 @@
                 <p class="download-title">Modrinth Download</p>
                 <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
                 <br>Note to download the correct version for your mod loader</p>
-                <a id="down-section"href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">
-                    <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
-                    | Download on Modrinth | 
+                <a id="down-section" href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn animated-download-btn" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">
+                    <span class="download-icon-wrapper">
+                        <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
+                    </span>
+                    <span class="download-text">Download on Modrinth | &nbsp;</span>
                     <span id="download-counter" class="download-count"><code>...</code></span>
                 </a>
                 <div class="version-container">
@@ -149,60 +151,179 @@
             </div>
         </section><!-- /.section-downloads -->
         <br>
-        <span class="larger-text-EP-desc-centered"><ins><strong>Support development and get access to early exclusive updates?</strong></ins><br><a href="/support" target="_blank"> Get the Preview Versions now!</a></span>
-        <div class="hero-text">
-            <h2>Works on:</h2>
-            <div class="dynamic-icon-row">
-                <div class="dynamic-icon-element" data-tooltip="Fabric: 1.14 to Latest">
-                    <img src="/assets/img/logos/fabric.webp" alt="Fabric Icon" class="dynamic-icon-image">
-                    <span>Fabric</span>
-                </div>
-                <div class="dynamic-icon-element" data-tooltip="NeoForge: 1.20.1 and 1.20.5 to Latest">
-                    <img src="/assets/img/logos/neoforge.webp" alt="NeoForge Icon" class="dynamic-icon-image">
-                    <span>NeoForge</span>
-                </div>
-                <div class="dynamic-icon-element" data-tooltip="Forge: 1.7.10 to Latest">
-                    <img src="/assets/img/logos/forge.webp" alt="Forge Icon" class="dynamic-icon-image">
-                    <span>Forge</span>
-                </div>
-                <div class="dynamic-icon-element" data-tooltip="Quilt: 1.14 to Latest">
-                    <img src="/assets/img/logos/quilt.webp" alt="Quilt Icon" class="dynamic-icon-image">
-                    <span>Quilt</span>
+        <section class="preview-banner">
+            <div class="container">
+                <div class="preview-content">
+                    <div class="preview-text">
+                        <h2><i class="fa fa-star"></i> Want Early Access?</h2>
+                        <p>Support development and get access to exclusive early updates with cutting-edge features!</p>
+                    </div>
+                    <a href="/support" target="_blank" class="btn btn-preview">
+                        Get Preview Versions
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="hero-text download-installer-part">
-            <p class="download-title" style="--ThemeColor: var(--VeryLightGray);">Installer Method</p>
-            <p>Euphoria Patches can also be obtained through the Complementary Installer.
-            <br>Note Euphoria Patches is hidden under the Advanced Setting</p>
-            <a href="https://www.complementary.dev/shaders/" target="_blank" class="btn btn-manual" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">Download via the Installer method</a>
-        </div>
-        <br><br>
-        <section class="second-half-download-page">
-            <section class="site-section second-half-download-page">
-                <div class="container">
-                    <div class="section-how-install section-click-box" onclick="location.href='/how-to-install';">
-                        <h2>How to install Euphoria Patches?</h2>
-                        <a href="/how-to-install"></a>
+        </section>
+
+        <style>
+            .preview-banner {
+                background: linear-gradient(45deg, #8a2be2, #ff69b4);
+                padding: 2rem 0;
+                margin: 2rem 0;
+            }
+
+            .preview-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .preview-text {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            .preview-text h2 {
+                color: white;
+                margin-top: 0;
+            }
+
+            .preview-text p {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.1rem;
+            }
+
+            .btn-preview {
+                background-color: white;
+                color: #8a2be2;
+                padding: 0.75rem 1.5rem;
+                border-radius: 4px;
+                font-weight: bold;
+                transition: transform 0.2s;
+            }
+
+            .btn-preview:hover {
+                transform: scale(1.05);
+                color: #ff69b4;
+            }
+
+            @media (max-width: 768px) {
+                .preview-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                .btn-preview {
+                    margin-top: 1rem;
+                }
+            }
+
+            .animated-download-btn {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .download-text {
+                flex-grow: 1;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .animated-download-btn::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: -100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: all 0.6s;
+            }
+
+            .animated-download-btn:hover::after {
+                left: 100%;
+            }
+        </style>
+        <section class="features-grid">
+            <div class="container">
+                <div class="row">
+                    <!-- First row with platforms and installer -->
+                    <div class="col-md-7">
+                        <div class="feature-card">
+                            <h2>Works on:</h2>
+                            <div class="dynamic-icon-row">
+                                <!-- Keep existing mod loader icons -->
+                                <div class="dynamic-icon-element" data-tooltip="Fabric: 1.14 to Latest">
+                                    <img src="/assets/img/logos/fabric.webp" alt="Fabric Icon" class="dynamic-icon-image">
+                                    <span>Fabric</span>
+                                </div>
+                                <div class="dynamic-icon-element" data-tooltip="NeoForge: 1.20.1 and 1.20.5 to Latest">
+                                    <img src="/assets/img/logos/neoforge.webp" alt="NeoForge Icon" class="dynamic-icon-image">
+                                    <span>NeoForge</span>
+                                </div>
+                                <div class="dynamic-icon-element" data-tooltip="Forge: 1.7.10 to Latest">
+                                    <img src="/assets/img/logos/forge.webp" alt="Forge Icon" class="dynamic-icon-image">
+                                    <span>Forge</span>
+                                </div>
+                                <div class="dynamic-icon-element" data-tooltip="Quilt: 1.14 to Latest">
+                                    <img src="/assets/img/logos/quilt.webp" alt="Quilt Icon" class="dynamic-icon-image">
+                                    <span>Quilt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <div class="feature-card installer-method" onclick="window.open('https://www.complementary.dev/shaders/', '_blank');">
+                            <h2 style="text-align: center; color: var(--EuphoriaMagenta);">Installer Method</h2>
+                            <p>Euphoria Patches can also be obtained through the Complementary Installer.
+                            <br>Note Euphoria Patches is hidden under the Advanced Setting</p>
+                            <div class="card-button">Download via the Installer method</div>
+                            <a href="https://www.complementary.dev/shaders/" target="_blank"></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Second row with install guide and gallery -->
+                    <div class="col-md-6">
+                        <div class="feature-card section-how-install" onclick="window.open('/how-to-install', '_blank');">
+                            <h2>How to install Euphoria Patches?</h2>
+                            <p>Get step-by-step instructions for setting up Euphoria Patches with your favorite mod loader.</p>
+                            <div class="card-button">Learn More</div>
+                            <a href="/how-to-install" target="_blank"></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="feature-card gallery-box" onclick="window.open('/gallery', '_blank');">
+                            <h2 class="gallery-title">Gallery</h2>
+                            <div class="carousel-container">
+                                <div class="carousel">
+                                    <img src="/assets/img/downloadCarousel/mainBackground-960x540.webp" loading="lazy" class="carousel-image active">
+                                    <img src="/assets/img/downloadCarousel/downloadBackground-960x540.webp" loading="lazy" class="carousel-image">
+                                    <img src="/assets/img/downloadCarousel/changelogsBackground-960x540.webp" loading="lazy" class="carousel-image">
+                                    <img src="/assets/img/downloadCarousel/contactBackground-960x540.webp" loading="lazy" class="carousel-image">
+                                    <img src="/assets/img/downloadCarousel/faqBackground-960x540.webp" loading="lazy" class="carousel-image">
+                                    <img src="/assets/img/downloadCarousel/and_much_more-960x540.webp" loading="lazy" class="carousel-image">
+                                </div>
+                                <div class="carousel-indicator">
+                                    <span class="indicator-dot active"></span>
+                                    <span class="indicator-dot"></span>
+                                    <span class="indicator-dot"></span>
+                                    <span class="indicator-dot"></span>
+                                    <span class="indicator-dot"></span>
+                                    <span class="indicator-dot"></span>
+                                </div>
+                            </div>
+                            <a href="/gallery" target="_blank"></a>
+                        </div>
                     </div>
                 </div>
-            </section>
-            <!-- Gallery carousel section -->
-            <section class="section-gallery">
-                <div class="gallery-box" onclick="location.href='/gallery';">
-                    <h2 class="gallery-title">Gallery</h2>
-                    <div class="carousel">
-                        <img src="/assets/img/downloadCarousel/mainBackground-960x540.webp" loading="lazy" class="carousel-image active">
-                        <img src="/assets/img/downloadCarousel/downloadBackground-960x540.webp" loading="lazy" class="carousel-image">
-                        <img src="/assets/img/downloadCarousel/changelogsBackground-960x540.webp" loading="lazy" class="carousel-image">
-                        <img src="/assets/img/downloadCarousel/contactBackground-960x540.webp" loading="lazy" class="carousel-image">
-                        <img src="/assets/img/downloadCarousel/faqBackground-960x540.webp" loading="lazy" class="carousel-image">
-                        <img src="/assets/img/downloadCarousel/and_much_more-960x540.webp" loading="lazy" class="carousel-image">
-                        <img src="/assets/img/downloadCarousel/and_much_more-960x540.webp" loading="lazy" class="carousel-image">
-                    </div>
-                    <a href="/gallery"></a>
-                </div>
-            </section>
+            </div>
         </section>
     </main><!-- /#main -->
 
@@ -243,18 +364,42 @@
 
     <!-- Carousel JavaScript -->
     <script>
-        let currentImageIndex = 0;
-        const images = document.querySelectorAll('.carousel-image');
-
-        function showNextImage() {
-            images[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].classList.add('active');
-        }
-
-        setInterval(showNextImage, 5000);  // Change image every 5 seconds
-
+        /* Add to your script section or update the existing carousel script */
+document.addEventListener('DOMContentLoaded', function() {
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    const dots = document.querySelectorAll('.indicator-dot');
+    
+    function showImage(index) {
+        // Hide current image and deactivate dot
+        images[currentImageIndex].classList.remove('active');
+        dots[currentImageIndex].classList.remove('active');
         
+        // Show new image and activate dot
+        currentImageIndex = index;
+        images[currentImageIndex].classList.add('active');
+        dots[currentImageIndex].classList.add('active');
+    }
+    
+    function showNextImage() {
+        let nextIndex = (currentImageIndex + 1) % images.length;
+        showImage(nextIndex);
+    }
+    
+    // Add click handlers to dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering the card's onclick
+            showImage(index);
+        });
+    });
+    
+    // Auto-rotate images
+    setInterval(showNextImage, 5000);
+});
+    
+    </script>
+    <script>
         function formatDownloads(num) {
             if (num >= 1_000_000) {
             return (num / 1_000_000).toFixed(2) + 'M';
@@ -292,7 +437,6 @@
         }
 
         updateDownloadCounter();
-    
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
