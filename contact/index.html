@@ -52,6 +52,414 @@
 </head>
 <body>
 
+    <style>
+        /* ...existing code... */
+
+/* Contact Page Grid Layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 25px;
+    margin: 30px 0;
+}
+
+.contact-card {
+    background-color: var(--DarkGray);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    padding-top: 60px; /* Make room for the icon at top */
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--ThemeColor);
+}
+
+.contact-card-featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(45deg, var(--DarkGray), rgba(86, 53, 121, 0.8));
+    border-left: 5px solid #5865F2;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    padding-top: 25px; /* Reset for featured card */
+}
+
+.contact-card-featured .card-icon {
+    justify-self: center;
+    position: static;
+    margin-bottom: 0;
+}
+
+.contact-card-featured .card-content {
+    padding-left: 20px;
+}
+
+.card-icon {
+    margin-bottom: 20px;
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    left: -270px;
+}
+
+.card-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+.contact-card-featured .card-icon img {
+    width: 80px;
+    height: 80px;
+    top: 10px;
+    left: 10px;
+}
+
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--VeryLightGray);
+    font-size: 22px;
+}
+
+.card-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: var(--ThemeColor);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.contact-button:active, 
+.contact-button:focus {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+.contact-button:hover {
+    background-color: transparent;
+    border-color: var(--ThemeColor);
+    color: var(--ThemeColor);
+    transform: scale(1.05);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-button {
+    flex: 1;
+    min-width: 90px;
+    padding: 8px 15px;
+    font-size: 14px;
+    position: relative;
+    padding-right: 40px; /* Make room for icon */
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.social-button .button-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sub-links {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.sub-links a {
+    text-decoration: underline;
+}
+
+.contact-card-email {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 25px; /* Reset padding */
+}
+
+.contact-card-email .card-icon i {
+    font-size: 48px;
+    color: var(--ThemeColor);
+    position: static; /* Reset position */
+    margin-bottom: 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-card-featured {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .contact-card-featured .card-content {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+    
+    .social-buttons {
+        justify-content: center;
+    }
+    
+    .contact-card {
+        padding-top: 25px;
+    }
+    
+}
+
+/* Fix card icon positioning and sizing */
+.card-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-card-featured .card-icon img {
+    width: 80px;
+    height: 80px;
+}
+
+
+/* Adjust featured card layout */
+.contact-card-featured {
+    grid-template-columns: 100px 1fr;
+    display: grid;
+    text-align: left;
+}
+
+.contact-card-featured .card-content {
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .contact-card-featured {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-card-featured .card-icon {
+        display: none;
+    }
+    
+    .contact-card-featured .card-content {
+        text-align: center;
+    }
+}
+
+/* Social Media Button Styles */
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 120px;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-button .button-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2) contrast(1.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+/* Brand-specific gradients */
+.bluesky-button {
+    background: linear-gradient(135deg, #1DA1F2, #0074E4);
+}
+
+.bluesky-button:hover {
+    background: linear-gradient(135deg, #0A85D1, #0058B3);
+    color: white;
+    border-color: transparent;
+}
+
+.twitter-button {
+    background: linear-gradient(135deg, #1DA1F2, #14171A);
+}
+
+.twitter-button:hover {
+    background: linear-gradient(135deg, #0A85D1, #000000);
+    color: white;
+    border-color: transparent;
+}
+
+.instagram-button {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-button:hover {
+    background: linear-gradient(45deg, #e78b2d 0%, #d45e35 25%, #c5233b 50%, #b3205c 75%, #a4157a 100%);
+    color: white;
+    border-color: transparent;
+}
+
+/* Mobile adjustments for social buttons */
+@media (max-width: 480px) {
+    .social-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .social-button {
+        min-width: unset;
+        margin-bottom: 8px;
+    }
+}
+
+/* Improve spacing and alignment */
+.contact-grid {
+    margin: 40px 0;
+}
+
+.contact-card {
+    overflow: hidden; /* For border radius */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card .card-content {
+    width: 100%;
+    text-align: center;
+}
+
+/* Make sure the button icon remains visible on hover */
+.contact-button:hover .button-icon {
+    filter: brightness(1);
+}
+
+/* Ensure social icons in the card header have proper spacing */
+.social-icons {
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Make button hover states consistent */
+.contact-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Email icon vertical alignment */
+.contact-card-email .card-icon i {
+    line-height: 48px;
+}
+
+/* Ensure consistent icon sizing */
+.contact-card-featured .card-icon img {
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Improve social button appearance */
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 120px;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Fix hover effect for brand buttons */
+.social-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Make icons in buttons more visible */
+.social-button .button-icon {
+    filter: brightness(1.2) contrast(1.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 2px;
+}
+    </style>
+
     <header id="masthead" class="site-header site-header-white">
         <nav id="primary-navigation" class="site-navigation">
             <div class="container">
@@ -111,69 +519,93 @@
     </div><!-- /.hero -->
 
     <main id="main" class="site-main">
-        <div class="dynamic-icon-row">
-            <div class="dynamic-icon-element">
-                <a href="/discord" target="_blank" alt="Discord Invite">
-                    <img src="/assets/img/logos/discord200x.webp" alt="Fabric Icon" class="dynamic-icon-image">
-                </a>
-                <span>Discord</span>
-            </div>
-            <div class="dynamic-icon-element">
-                <a href="/support" target="_blank" alt="Patreon Support">
-                    <img src="/assets/img/logos/patreon200x.webp" alt="NeoForge Icon" class="dynamic-icon-image">
-                </a>
-                <span>Patreon</span>
-            </div>
-            <div class="dynamic-icon-element">
-                <a href="/bluesky" target="_blank" alt="Bluesky">
-                    <img src="/assets/img/logos/bluesky200x.webp" alt="Forge Icon" class="dynamic-icon-image">
-                </a>
-                <span>Bluesky</span>
-            </div>
-            <div class="dynamic-icon-element">
-                <a href="/twitter" target="_blank" alt="Twitter/X">
-                    <img src="/assets/img/logos/twitter200x.webp" alt="Forge Icon" class="dynamic-icon-image">
-                </a>
-                <span>Twitter/X</span>
-            </div>
-            <div class="dynamic-icon-element">
-                <a href="/instagram" target="_blank" alt="Instagram">
-                    <img src="/assets/img/logos/instagram200x.webp" alt="Quilt Icon" class="dynamic-icon-image">
-                </a>
-                <span>Instagram</span>
-            </div>
-            <div class="dynamic-icon-element">
-                <a href="/github" target="_blank" alt="GitHub">
-                    <img src="/assets/img/logos/github200x.webp" alt="Quilt Icon" class="dynamic-icon-image">
-                </a>
-                <span>GitHub</span>
-            </div>
-        </div>
-        <section class="section-features">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12" style="text-align:center;">
+    <section class="section-features">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Discord Card - Most important -->
+                <div class="contact-card contact-card-featured">
+                    <div class="card-icon">
+                        <img src="/assets/img/logos/discord200x.webp" alt="Discord Icon">
+                    </div>
+                    <div class="card-content">
                         <h3>Discord</h3>
-                        <p>For casual questions, suggestions and to get support; you can join the Euphoria Patches Discord community.
-                            <br><a href="/discord" target="_blank"><u>Join SpacEagle17's Discord Server</u></a></p>
-                        <p></p>
-                        <h3>Support</h3>
-                        <p>If you want to support the development of Euphoria Patches and get some little benefits, you can become a supporter.
-                            <br><a href="/support" target="_blank"><u>Support SpacEagle17 on Patreon or Ko-Fi</u></a></p>
-                        <p></p>
-                        <h3>Github</h3>
-                        <p>If you are interested in code, you can take a look and even make pull requests on Github.
-                            <br><a href="/github" target="_blank"><u>Euphoria Patches on Github</u></a><br><br>
-                            Also check the <a href="/properties"><u>Properties Files Repo</u></a> and the <a href="/properties"><u>Lang Files Repo</u></a>.</p>
-                        <p></p>
-                        <h3>Social Media</h3>
-                        <p>Follow SpacEagle17 on Twitter, Bluesky or Instagram to be updated about Euphoria Patches.
-                            <br><a href="/bluesky" target="_blank"><u>Bluesky</u></a> | <a href="/twitter" target="_blank"><u>Twitter/X</u></a> | <a href="/instagram" target="_blank"><u>Instagram</u></a></p>
-                        <p></p>
+                        <p>For casual questions, suggestions and to get support; you can join the Euphoria Patches Discord community.</p>
+                        <a href="/discord" target="_blank" class="contact-button">Join Discord Server</a>
                     </div>
                 </div>
+
+                <!-- Social Media Card -->
+                <div class="contact-card">
+                    <div class="card-content">
+                        <h3>Social Media</h3>
+                        <p>Follow SpacEagle17 on social media to stay updated about Euphoria Patches.</p>
+                        <div class="social-buttons">
+                            <a href="/bluesky" target="_blank" class="contact-button social-button bluesky-button">
+                                <img src="/assets/img/logos/bluesky200x.webp" alt="Bluesky" class="button-icon">
+                                <span>Bluesky</span>
+                            </a>
+                            <a href="/twitter" target="_blank" class="contact-button social-button twitter-button">
+                                <img src="/assets/img/logos/twitter200x.webp" alt="Twitter/X" class="button-icon">
+                                <span>Twitter/X</span>
+                            </a>
+                            <a href="/instagram" target="_blank" class="contact-button social-button instagram-button">
+                                <img src="/assets/img/logos/instagram200x.webp" alt="Instagram" class="button-icon">
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support Card -->
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <img src="/assets/img/logos/patreon200x.webp" alt="Patreon Icon">
+                    </div>
+                    <div class="card-content">
+                        <h3>Support</h3>
+                        <p>If you want to support the development of Euphoria Patches and get some little benefits, you can become a supporter.</p>
+                        <a href="/support" target="_blank" class="contact-button">Support on Patreon/Ko-Fi</a>
+                    </div>
+                </div>
+                
+                <!-- Github Card -->
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <img src="/assets/img/logos/github200x.webp" alt="Github Icon">
+                    </div>
+                    <div class="card-content">
+                        <h3>Github</h3>
+                        <p>If you are interested in code, you can take a look and even make pull requests on Github.</p>
+                        <a href="/github" target="_blank" class="contact-button">View on Github</a>
+                        <div class="sub-links">
+                            <a href="/properties">Properties Files Repo</a> | 
+                            <a href="/properties">Lang Files Repo</a>
+                        </div>
+                    </div>
+                </div>
+                            
+                <!-- Email Card -->
+                <div class="contact-card contact-card-email">
+                    <div class="card-icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Email</h3>
+                        <p>For direct and private communication:</p>
+                        <a href="javascript:void(0)" class="contact-button" onclick="copyToClipboard('spaceagle17@gmail.com'); this.innerHTML = '<i class=\'fa fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML = '<i class=\'fa fa-envelope-o\'></i> spaceagle17@gmail.com', 2000);">
+                            <i class="fa fa-envelope-o"></i> spaceagle17@gmail.com
+                        </a>
+                    </div>
+                </div>
+                <script>
+                function copyToClipboard(text) {
+                    navigator.clipboard.writeText(text)
+                        .catch(err => console.error('Could not copy text: ', err));
+                }
+                </script>
             </div>
-        </section><!-- /.section-features -->
+        </div>
+    </section>
         <!-- Horizontal Ad 1 -->
         <!-- <div class="ad-div1">
             <ins class="adsbygoogle"
