@@ -1098,15 +1098,15 @@ html, body {
 
 .hero-shader-title {
     text-shadow:
-    0.5px 1px 0 hsl(0, 0%, 50%),
-    1px 0.5px 0 hsl(0, 0%, 50%),
-    1px 1px 0 hsl(0, 0%, 50%),
-    1px 1.5px 0 hsl(0, 0%, 50%),
-    1.5px 1px 0 hsl(0, 0%, 50%),
-    1.5px 1.5px 0 hsl(0, 0%, 50%),
-    1.5px 2px 0 hsl(0, 0%, 50%),
-    2px 1.5px 0 hsl(0, 0%, 50%),
-    2px 2px 0 hsl(0, 0%, 50%); 
+    2px 2px 0 hsl(300, 60%, 15%),
+    2px 3px 0 hsl(300, 60%, 15%),
+    3px 2px 0 hsl(300, 60%, 15%),
+    3px 3px 0 hsl(300, 60%, 15%),
+    3px 4px 0 hsl(300, 60%, 15%),
+    4px 3px 0 hsl(300, 60%, 15%),
+    4px 4px 0 hsl(300, 60%, 15%),
+    4px 5px 0 hsl(300, 60%, 15%),
+    5px 5px 2px hsl(300, 60%, 10%);
 }
 
 .hero-text h1 {
@@ -1348,9 +1348,10 @@ code {
 
 .section-downloads .download-title {
     color: var(--ThemeColor);
-    font-size: 25px;
+    font-size: 32px;
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .section-downloads p {
@@ -2805,13 +2806,20 @@ code {
     font-family: 'monocraft';
     letter-spacing:-0.5px;
     position: absolute;
-    color: var(--VeryLightGray);;
+    color: var(--VeryLightGray) !important;
 
     margin: 0;
     font-weight: bold;
     z-index: 1;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 40px;
+    font-size: 40px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .gallery-title {
+        font-size: 30px !important;
+    }
+    
 }
 
 .carousel {
@@ -3958,9 +3966,5 @@ a.contact-bg:before {
     
     .gallery-box {
         margin-bottom: 20px;
-    }
-    
-    .gallery-title {
-        margin-bottom: 10px;
     }
 }
