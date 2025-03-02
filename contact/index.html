@@ -208,18 +208,6 @@
     justify-content: flex-start;
 }
 
-.social-button .button-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .sub-links {
     margin-top: 15px;
     font-size: 14px;
@@ -323,15 +311,23 @@
 }
 
 .social-button .button-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     object-fit: contain;
     display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     filter: brightness(1.2) contrast(1.1);
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
-    padding: 2px;
+    padding: 2.5px;
+}
+
+.bluesky-button .button-icon {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.instagram-button .button-icon {
+    background-color: rgba(0, 0, 0, 0.45);
 }
 
 /* Brand-specific gradients */
@@ -395,11 +391,6 @@
     text-align: center;
 }
 
-/* Make sure the button icon remains visible on hover */
-.contact-button:hover .button-icon {
-    filter: brightness(1);
-}
-
 /* Ensure social icons in the card header have proper spacing */
 .social-icons {
     justify-content: center;
@@ -449,14 +440,6 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     color: white;
-}
-
-/* Make icons in buttons more visible */
-.social-button .button-icon {
-    filter: brightness(1.2) contrast(1.1);
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    padding: 2px;
 }
     </style>
 
