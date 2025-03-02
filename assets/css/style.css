@@ -1734,6 +1734,243 @@ code {
 }
 
 
+
+
+
+
+/* Modern FAQ Page Styling */
+
+/* FAQ Container Styling */
+.faq-section {
+    margin: 30px 0;
+}
+
+.faq-item {
+    background-color: rgba(23, 24, 28, 0.6);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--ThemeColor);
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.faq-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 80, 223, 0.1) 0%, transparent 70%);
+    border-bottom-left-radius: 100%;
+    pointer-events: none;
+}
+
+.faq-item h2 {
+    color: var(--EuphoriaMagentaBright);
+    padding: 15px 20px 0;
+    margin: 0;
+    font-size: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 10px;
+}
+
+.faq-item p, .faq-item ul, .faq-item ol {
+    padding: 5px 25px 15px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.faq-item li {
+    margin: 10px 0;
+}
+
+.faq-item a {
+    color: var(--ThemeColor);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.faq-item a:hover {
+    color: var(--EuphoriaMagentaBright);
+}
+
+.faq-item a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--ThemeColor);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.faq-item a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.faq-item code {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+/* Table of Contents Styling */
+.faq-index-container {
+    position: absolute;
+    top: 520px;
+    left: 20px;
+    z-index: 10;
+    width: 260px;
+    max-width: 260px;
+}
+
+.faq-index {
+    background-color: rgba(18, 18, 24, 1);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.faq-index h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--ThemeColor);
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.faq-index ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.faq-index ul li {
+    margin-bottom: 12px;
+}
+
+.faq-index ul li a {
+    color: var(--VeryLightGray);
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.faq-index ul li a:hover, 
+.faq-index ul li a.active {
+    background-color: rgba(255, 80, 223, 0.15);
+    color: var(--ThemeColor);
+    border-left: 2px solid var(--ThemeColor);
+    padding-left: 13px;
+}
+
+
+
+.faq-index-container.sticky {
+    position: fixed;
+    top: 20px;
+}
+
+.section-indented-container {
+    margin-left: 300px;
+}
+
+/* Mobile Toggle Button */
+.faq-index-toggle {
+    display: none;
+}
+
+.modern-button {
+    background-color: var(--ThemeColor);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 80, 223, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+.modern-button:hover {
+    background-color: var(--EuphoriaMagentaBright);
+    box-shadow: 0 6px 20px rgba(255, 80, 223, 0.4);
+}
+
+.modern-button::after {
+    content: '▼';
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.modern-button.open::after {
+    transform: rotate(180deg);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .faq-index-toggle {
+        display: block;
+    }
+    .modern-button {
+        position: fixed;
+        top: 60px;
+        left: 20px;
+        z-index: 500;
+    }
+    .faq-index-container.sticky {
+        top: 50px;
+    }
+    .section-indented-container {
+        margin-left: 0;
+        padding: 0 15px;
+    }
+
+    .faq-item {
+        margin-bottom: 20px;
+    }
+
+    .faq-item h2 {
+        font-size: 24px;
+        padding: 15px 15px 10px;
+    }
+
+    .faq-item p, .faq-item ul, .faq-item ol {
+        padding: 5px 15px 15px;
+    }
+}
+
 /* Section: Donate */
 
 .section-donation-container {

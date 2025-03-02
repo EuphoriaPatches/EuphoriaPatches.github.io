@@ -213,7 +213,7 @@
                 </ul>
 
                 <h2 id="license">License notice:</h2>
-                <p>Most of the code in this project is subject to the Complementary License Agreement by EminGT (check License file) and is therefore NOT allowed to be redistributed.</p>
+                <p>Most of the code in this project is subject to the Complementary License Agreement by EminGT (check License file) and also by the Euphoria Patches license extension and is therefore NOT allowed to be redistributed.</p>
     
                 <h2 id="shader-loader">Best Shader Loader</h2>
                 <p>Euphoria Patches and also Complementary Shaders use iris-exclusive features which don't work on optifine. For the optimal experience, Iris is recommended on Fabric and Neoforge. On Forge Oculus is for now recommended as it seems to support most iris-exclusive features.</p>
@@ -314,24 +314,6 @@
             checkScrollIndicator();
         });
 
-        function adMove(){
-            if (adLoaded && isLargeScreen) {
-                if (!adMoved) {
-                    adElement.classList.toggle("repositioned");
-                }
-                adMoved = true;
-            }
-        }
-
-        function waitForAdLoad() {
-            if (adElement.querySelector('ins').getAttribute('data-ad-status') === 'filled') {
-                adLoaded = true;
-                adMove();
-            } else {
-                setTimeout(waitForAdLoad, 100); // Check again in 100ms
-            }
-        }
-
         function formatNumbers(num) {
             if (num >= 1_000_000) {
             return (num / 1_000_000).toFixed(2) + 'M';
@@ -401,6 +383,77 @@
             });
 
             checkScrollIndicator();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wrap each FAQ section in a modern container
+            const faqItems = document.querySelectorAll('.section-indented-container > h2');
+            
+            faqItems.forEach(heading => {
+                // Create wrapper for the FAQ item
+                const wrapper = document.createElement('div');
+                wrapper.className = 'faq-item';
+                wrapper.id = heading.id + '-container';
+                
+                // Get content until the next heading
+                const content = [];
+                let sibling = heading.nextElementSibling;
+                
+                while(sibling && sibling.tagName !== 'H2') {
+                    content.push(sibling);
+                    sibling = sibling.nextElementSibling;
+                }
+                
+                // Move the heading and content to the wrapper
+                heading.parentNode.insertBefore(wrapper, heading);
+                wrapper.appendChild(heading);
+                
+                // Move all related content
+                content.forEach(item => {
+                    wrapper.appendChild(item);
+                });
+            });
+            
+            // Setup the mobile toggle button
+            const indexToggle = document.getElementById('toggle-faq-index');
+            const indexContainer = document.querySelector('.faq-index-container');
+            const index = document.querySelector('.faq-index');
+            
+            indexToggle.innerHTML = `Table of Contents`;
+            
+            indexToggle.addEventListener('click', function() {
+                this.classList.toggle('open');
+                indexContainer.classList.toggle('active');
+            });
+            
+            // Highlight active section in table of contents
+            const faqLinks = document.querySelectorAll('.faq-index a');
+            const sections = document.querySelectorAll('.faq-item');
+            
+            const highlightCurrentSection = () => {
+                let currentSectionId = null;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop - 100 && 
+                        window.scrollY < sectionTop + sectionHeight - 100) {
+                        currentSectionId = section.querySelector('h2').id;
+                    }
+                });
+                
+                faqLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            
+            // Check current section on scroll
+            window.addEventListener('scroll', highlightCurrentSection);
+
         });
     </script>
   
