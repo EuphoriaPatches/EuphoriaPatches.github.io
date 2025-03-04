@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.euphoriapatches.com/faq/"/>
+
+    <title>Features | Euphoria Patches</title>
+
+    <meta name="description" content="What exactly does Euphoria Patches offer? Find out about the many new features, modded support, extensive customization, and more!">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/EuphoriaPatchesLogo_180x.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/EuphoriaPatchesLogo_16x.png">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/css/responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Cookie Consent Script -->
+    <script src="/assets/js/cookie-consent.js" async></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body{
+            margin: 0;
+            color: #eee;
+        }
+        header{
+            top: 0;
+        }
+        /* carouselFeatures */
+        .carouselFeatures{
+            font-family: Poppins;
+            height: calc(100dvh - 30px) !important;
+            margin-top: -50px;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+        .carouselFeatures .list .item{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0 0 0 0;
+        }
+        .carouselFeatures .list .item img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carouselFeatures .list .item .content{
+            position: absolute;
+            top: 20%;
+            width: 1240px;
+            max-width: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-right: 25%;
+            box-sizing: border-box;
+            color: #fff;
+            text-shadow: 0 5px 10px #0004;
+        }
+        .carouselFeatures .list .item .author{
+            font-weight: bold;
+            letter-spacing: 8px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        .carouselFeatures .list .item .title,
+        .carouselFeatures .list .item .topic{
+            font-size: 5em;
+            font-weight: bold;
+            line-height: 1.3em;
+            font-family: 'monocraft';
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        .carouselFeatures .list .item .topic{
+            color: var(--ThemeColor);
+        }
+        .carouselFeatures .list .item .buttons{
+            display: grid;
+            grid-template-columns: repeat(2, 150px);
+            grid-template-rows: 50px;
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .carouselFeatures .list .item .buttons button{
+            border: none;
+            background-color: var(--ThemeColor);
+            letter-spacing: 3px;
+            font-family: Poppins;
+            font-weight: bold;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        .carouselFeatures .list .item .buttons button:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .carouselFeatures .list .item .buttons button:nth-child(2) {
+            background-color: rgba(0, 0, 0, 0.25);
+            border: 2px solid #fff;
+            color: #eee;
+        }
+        /* thumbail */
+        .thumbnail{
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            width: max-content;
+            z-index: 20;
+            display: flex;
+            gap: 20px;
+            background-color: transparent;
+            border: transparent;
+        }
+        .thumbnail .item{
+            width: 150px;
+            height: 220px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .thumbnail .item img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .thumbnail .item .content{
+            color: #fff;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 7px;
+            padding: 5px;
+        }
+        .thumbnail .item .content .title{
+            font-weight: 500;
+        }
+        .thumbnail .item .content .description{
+            font-weight: 300;
+        }
+        /* arrows */
+        .arrows{
+            position: absolute;
+            top: 80%;
+            right: 52%;
+            z-index: 20;
+            width: 300px;
+            max-width: 30%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .arrows button{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: var(--ThemeColor) 2px solid;
+            color: #fff;
+            font-family: monospace;
+            font-weight: bold;
+            transition: .5s;
+
+            background-color: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);            
+        }
+        .arrows button:hover{
+            background-color: #fff;
+            color: #000;
+        }
+
+        .carouselFeatures .list .item .des {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+        .carouselFeatures .list .item .des ins {
+            color: var(--ThemeColor);
+            text-decoration: none;
+        }
+        
+        /* animation */
+        .carouselFeatures .list .item:nth-child(1){
+            z-index: 1;
+        }
+        
+        /* animation text in first item */
+        
+        .carouselFeatures .list .item:nth-child(1) .content .author,
+        .carouselFeatures .list .item:nth-child(1) .content .title,
+        .carouselFeatures .list .item:nth-child(1) .content .topic,
+        .carouselFeatures .list .item:nth-child(1) .content .des,
+        .carouselFeatures .list .item:nth-child(1) .content .buttons
+        {
+            transform: translateY(50px);
+            filter: blur(20px);
+            opacity: 0;
+            animation: showContent .5s 1s linear 1 forwards;
+        }
+        @keyframes showContent{
+            to{
+                transform: translateY(0px);
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+        .carouselFeatures .list .item:nth-child(1) .content .title{
+            animation-delay: 1.2s!important;
+        }
+        .carouselFeatures .list .item:nth-child(1) .content .topic{
+            animation-delay: 1.4s!important;
+        }
+        .carouselFeatures .list .item:nth-child(1) .content .des{
+            animation-delay: 1.6s!important;
+        }
+        .carouselFeatures .list .item:nth-child(1) .content .buttons{
+            animation-delay: 1.8s!important;
+        }
+        /* create animation when next click */
+        .carouselFeatures.next .list .item:nth-child(1) img{
+            width: 150px;
+            height: 220px;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            border-radius: 30px;
+            animation: showImage .5s linear 1 forwards;
+        }
+        @keyframes showImage{
+            to{
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+        
+        .carouselFeatures.next .thumbnail .item:nth-last-child(1){
+            overflow: hidden;
+            animation: showThumbnail .5s linear 1 forwards;
+        }
+        .carouselFeatures.prev .list .item img{
+            z-index: 20;
+        }
+        @keyframes showThumbnail{
+            from{
+                width: 0;
+                opacity: 0;
+            }
+        }
+        .carouselFeatures.next .thumbnail{
+            animation: effectNext .5s linear 1 forwards;
+        }
+        
+        @keyframes effectNext{
+            from{
+                transform: translateX(150px);
+            }
+        }
+        
+        /* running time */
+        
+        .carouselFeatures .time{
+            position: absolute;
+            z-index: 21;
+            width: 0%;
+            height: 3px;
+            background-color: var(--ThemeColor);
+            left: 0;
+            top: 99.6%;
+        }
+        
+        .carouselFeatures.next .time,
+        .carouselFeatures.prev .time{
+            animation: runningTime 3s linear 1 forwards;
+        }
+        @keyframes runningTime{
+            from{ width: 100%}
+            to{width: 0}
+        }
+        
+        
+        /* prev click */
+        
+        .carouselFeatures.prev .list .item:nth-child(2){
+            z-index: 2;
+        }
+        
+        .carouselFeatures.prev .list .item:nth-child(2) img{
+            animation: outFrame 0.5s linear 1 forwards;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        @keyframes outFrame{
+            to{
+                width: 150px;
+                height: 220px;
+                bottom: 94px;
+                left: 50.15%;
+                border-radius: 20px;
+            }
+        }
+        
+        .carouselFeatures.prev .thumbnail .item:nth-child(1){
+            overflow: hidden;
+            opacity: 0;
+            animation: showThumbnail .5s linear 1 forwards;
+        }
+        .carouselFeatures.next .arrows button,
+        .carouselFeatures.prev .arrows button{
+            pointer-events: none;
+            border: none;
+            background-color: rgba(238, 238, 238, 0.062);
+            color: #ffffff69;
+        }
+
+        .carouselFeatures.prev .list .item:nth-child(2) .content .author,
+        .carouselFeatures.prev .list .item:nth-child(2) .content .title,
+        .carouselFeatures.prev .list .item:nth-child(2) .content .topic,
+        .carouselFeatures.prev .list .item:nth-child(2) .content .des,
+        .carouselFeatures.prev .list .item:nth-child(2) .content .buttons
+        {
+            animation: contentOut 1.5s linear 1 forwards!important;
+        }
+
+        .arrows #pauseplay {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.15);
+            border: var(--ThemeColor) 2px solid;
+            color: #fff;
+            font-family: monospace;
+            font-weight: bold;
+            transition: .5s;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+        }
+
+        .arrows #pauseplay svg {
+            fill: white;
+            transition: fill 0.5s;
+        }
+
+        .arrows #pauseplay:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .arrows #pauseplay:hover svg {
+            fill: black;
+        }
+
+        .pause-indicator {
+            position: absolute;
+            bottom: -40px;
+            left: -6%;
+            width: 60%;
+            text-align: center;
+            color: #fff;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            border-radius: 10px;
+            padding: 5px 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pause-indicator.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @keyframes contentOut{
+            to{
+                transform: translateY(-150px);
+                filter: blur(20px);
+                opacity: 0;
+            }
+        }
+
+        .carouselFeatures .content a {
+            color: var(--ThemeColor);
+        }
+        .carouselFeatures .content a:hover {
+            color: var(--ThemeColor);
+            text-decoration: none;
+            position: relative;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            }
+            .carouselFeatures .content a:hover:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--ThemeColor);
+            bottom: -2px;
+            left: 0;
+            transform: scaleX(1);
+            transform-origin: left;
+            animation: linkHoverEffect 0.4s ease forwards;
+            box-shadow: 0 0 8px var(--ThemeColor);
+            }
+
+            @keyframes linkHoverEffect {
+            0% { transform: scaleX(0); opacity: 0; }
+            100% { transform: scaleX(1); opacity: 1; }
+        }
+        /* Responsive adjustments */
+        @media screen and (max-width: 1024px) {
+            .carouselFeatures .list .item .content{
+                padding-right: 5%; /* Even less padding on mobile */
+                top: 12%;
+            }
+            .carouselFeatures .list .item .content .title,
+            .carouselFeatures .list .item .content .topic{
+                font-size: 2.25em;
+            }
+            .carouselFeatures .list .item .des {
+                font-size: 16px;
+            }
+            .carouselFeatures .list .item .buttons {
+                grid-template-columns: repeat(2, 110px);
+                grid-template-rows: 40px;
+                font-size: 12px;
+            }
+            .thumbnail{ /* Adjust thumbnail size */
+                bottom: 10px;
+            }
+            .thumbnail .item {
+                width: 100px;
+                height: 150px;
+            }
+            .thumbnail .item .content {
+                font-size: 12px;
+            }
+            .arrows {
+                top: 85%;
+                right: 75%;
+                transform: translateX(50%);
+                width: auto;
+                max-width: none;
+                justify-content: center;
+            }
+            .arrows button, .arrows #pauseplay {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .pause-indicator {
+                bottom: -35px;
+                font-size: 14px;
+                left: -5px;
+                width: 110%;
+            }
+            .carouselFeatures .list .item .author{
+                visibility: hidden;
+            }
+            @keyframes outFrame{
+                to{
+                    width: 100px;
+                    height: 150px;
+                    bottom: 34px;
+                    left: 51%;
+                    border-radius: 20px;
+                }
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .thumbnail .item {
+                visibility: hidden;
+            }
+            .carouselFeatures.prev .list .item:nth-child(2){
+                visibility: hidden;
+            }
+            .arrows {
+                top: 93%;
+                right: 75%;
+                transform: translateX(50%);
+                width: auto;
+                max-width: none;
+                justify-content: center;
+            }
+            .pause-indicator {
+                bottom: -30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header id="masthead" class="site-header site-header-white">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                   
+                    <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
+
+                </div><!-- /.navbar-header -->
+
+                <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="/">Home</a></li>
+                        <li><a class="download-navigation-button" href="/download">Download</a></li>
+                        <li><a href="/support">Preview Versions</a></li>
+                        <li class="active"><a href="/features/">Features</a></li>
+                        <li><a href="/how-to-install">How To Install</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                              <li><a href="/contact">Contact</a></li>
+                              <li><a href="/changelogs">Changelogs</a></li>
+                              <li><a href="/faq">FAQ</a></li>
+                              <li><a href="/credits">Credits</a></li>
+                              <li><a href="/download-count/">Download Count</a></li>
+                              <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+        </nav><!-- /.site-navigation -->
+    </header><!-- /#mastheaed -->
+
+    <!-- carouselFeatures -->
+    <div class="carouselFeatures">
+        <!-- list item -->
+        <div class="list">
+            <div class="item">
+                <img src="/assets/img/Screenshots/104_euphoria_patches.webp">
+                <div class="content">
+                    <div class="author">EUPHORIA PATCHES</div>
+                    <div class="title">MANY NEW</div>
+                    <div class="topic">FEATURES</div>
+                    <div class="des">
+                        Euphoria Patches enhances Complementary Shaders with many new features, all crafted with great attention to detail.<br>
+                        Some are truly unique, like the <ins>Soul Sand Valley Overhaul</ins> or the <ins>Dragon Death Effect</ins>.<br>
+
+                        Many features can completely transform the look, such as <ins>Darkness Desaturation</ins> or <ins>Seasons</ins>, with popular options easily found in the <ins>Popular Settings</ins> menu.<br>
+
+                        Euphoria Patches makes Complementary more dynamic, customizable, and visually stunning than ever!
+                    </div>
+                    <div class="buttons">
+                        <button onclick="window.location.href='/download'">DOWNLOAD</button>
+                        <button onclick="window.location.href='/how-to-install'">HOW TO INSTALL</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/62_euphoria_patches.webp">
+                <div class="content">
+                    <div class="author">EUPHORIA PATCHES</div>
+                    <div class="title">MODDED</div>
+                    <div class="topic">SUPPORT</div>
+                    <div class="des">
+                        Euphoria Patches delivers unmatched mod support with advanced material handling for <ins id="totalProperties"></ins> <ins>modded blocks</ins> - an industry first!<br>
+                        It also enhances <ins>entities</ins> and <ins>items</ins>, ensuring a seamless experience in heavily modded environments.<br>
+
+                        Popular modpacks, like ATM10 and BetterMC, include it in part for this exceptional compatibility.<br>
+
+                        This level of support is only possible thanks to the community's contributions, pushing shader compatibility further than ever!&emsp; <a href="/properties/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill:var(--ThemeColor);vertical-align:middle;font-weight:bold;"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg> Help out!</a>
+                    </div>
+                    <div class="buttons">
+                        <button onclick="window.location.href='/download'">DOWNLOAD</button>
+                        <button onclick="window.location.href='/how-to-install'">HOW TO INSTALL</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/31_euphoria_patches.webp">
+                <div class="content">
+                    <div class="author">EUPHORIA PATCHES</div>
+                    <div class="title">EXTENSIVE</div>
+                    <div class="topic">CUSTOMIZATION</div>
+                    <div class="des">
+                        Euphoria Patches takes Complementary Shaders customization even further, allowing more control over existing effects.<br>
+                        Adjust <ins>Aurora Colors</ins>, tweak <ins>Block Emission Intensity</ins>, and fine-tune many other features with greater precision.<br>
+
+                        With expanded options and deeper customization, Euphoria Patches lets you shape Complementary to your exact vision!
+                    </div>
+                    <div class="buttons">
+                        <button onclick="window.location.href='/download'">DOWNLOAD</button>
+                        <button onclick="window.location.href='/how-to-install'">HOW TO INSTALL</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/95_euphoria_patches.webp">
+                <div class="content">
+                    <div class="author">EUPHORIA PATCHES</div>
+                    <div class="title">A BLANK</div>
+                    <div class="topic">CANVAS</div>
+                    <div class="des">
+                        By default, Euphoria Patches is a <ins>clean canvas</ins>, identical to Complementary Shaders except for mod support.<br>
+                        Users can enable its extensive features and fine-tune options to create a unique experience, changing as much or as little from the original look as they want.<br>
+
+                        For convenience, the mod <ins>automatically imports</ins> existing Complementary or Euphoria Patches settings, even after updates, ensuring a smooth transition.<br>
+                    </div>
+                    <div class="buttons">
+                        <button onclick="window.location.href='/download'">DOWNLOAD</button>
+                        <button onclick="window.location.href='/how-to-install'">HOW TO INSTALL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- list thumnail -->
+        <div class="thumbnail">
+            <div class="item">
+                <img src="/assets/img/Screenshots/104_euphoria_patches.webp">
+                <div class="content">
+                    <div class="title">
+                        Many New Features
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/62_euphoria_patches.webp">
+                <div class="content">
+                    <div class="title">
+                        Modded Support
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/31_euphoria_patches.webp">
+                <div class="content">
+                    <div class="title">
+                        Extensive Customization
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/assets/img/Screenshots/95_euphoria_patches.webp">
+                <div class="content">
+                    <div class="title">
+                        Individual Experience
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- next prev -->
+
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+            <button id="pauseplay" title="Pause slideshow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                </svg>
+            </button>
+            <div id="pause-indicator" class="pause-indicator">Slideshow Paused</div>
+        </div>
+        <!-- time running -->
+        <div class="time"></div>
+
+    </div>
+
+    <!-- Time indicator moved outside carousel -->
+    <!-- <div class="time-indicator"></div> -->
+
+    <footer id="colophon" class="site-footer"></footer>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="social-links">
+                            <a class="discord-bg" href="/discord" target="_blank" alt="Discord Invite"></a>
+                            <a class="patreon-bg" href="/support" target="_blank" alt="Patreon Link"></a>
+                            <a class="github-bg" href="/github" target="_blank" alt="Github Link"></a>
+                            <a class="contact-bg" href="/contact" target="_blank" alt="Contact Page Link">Contact</a>
+                        </div><!-- /.social-links -->
+                    </div>
+                    <div class="col-xs-4 site-title">
+                        <div class="text-right">
+                            <a href="/">Euphoria Patches</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.copyright -->
+    </footer><!-- /#footer -->
+
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap-select.min.js"></script>
+    <script src="/assets/js/jquery.slicknav.min.js"></script>
+    <script src="/assets/js/jquery.countTo.min.js"></script>
+    <script src="/assets/js/jquery.shuffle.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+
+    <script>
+        //step 1: get DOM
+        let nextDom = document.getElementById('next');
+        let prevDom = document.getElementById('prev');
+        let pausePlayDom = document.getElementById('pauseplay');
+        
+        let carouselFeaturesDom = document.querySelector('.carouselFeatures');
+        let SliderDom = carouselFeaturesDom.querySelector('.carouselFeatures .list');
+        let thumbnailBorderDom = document.querySelector('.carouselFeatures .thumbnail');
+        let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
+        let timeDom = document.querySelector('.carouselFeatures .time');
+        
+        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        let timeRunning = 3000;
+        let timeAutoNext = 7000;
+        let isPaused = false;
+        
+        nextDom.onclick = function(){
+            showSlider('next');    
+        }
+        
+        prevDom.onclick = function(){
+            showSlider('prev');    
+        }
+    
+        pausePlayDom.onclick = function(){
+            isPaused = !isPaused;
+            const pauseIndicator = document.getElementById('pause-indicator');
+            
+            if (isPaused) {
+                // Pause auto-advance
+                clearTimeout(runNextAuto);
+                pausePlayDom.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>`;
+                pausePlayDom.title = "Resume slideshow";
+                pauseIndicator.classList.add('visible');
+            } else {
+                // Resume auto-advance
+                runNextAuto = setTimeout(() => {
+                    next.click();
+                }, timeAutoNext);
+                pausePlayDom.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                </svg>`;
+                pausePlayDom.title = "Pause slideshow";
+                pauseIndicator.classList.remove('visible');
+            }
+        }
+        
+        let runTimeOut;
+        let runNextAuto = setTimeout(() => {
+            next.click();
+        }, timeAutoNext)
+        
+        function showSlider(type){
+            let SliderItemsDom = SliderDom.querySelectorAll('.carouselFeatures .list .item');
+            let thumbnailItemsDom = document.querySelectorAll('.carouselFeatures .thumbnail .item');
+            
+            if(type === 'next'){
+                SliderDom.appendChild(SliderItemsDom[0]);
+                thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+                carouselFeaturesDom.classList.add('next');
+            }else{
+                SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
+                thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
+                carouselFeaturesDom.classList.add('prev');
+            }
+            
+            clearTimeout(runTimeOut);
+            runTimeOut = setTimeout(() => {
+                carouselFeaturesDom.classList.remove('next');
+                carouselFeaturesDom.classList.remove('prev');
+            }, timeRunning);
+        
+            clearTimeout(runNextAuto);
+            if (!isPaused) {
+                runNextAuto = setTimeout(() => {
+                    next.click();
+                }, timeAutoNext);
+            }
+        }
+    </script>
+    <script>
+        function formatNumbers(num) {
+            if (num >= 1_000_000) {
+            return (num / 1_000_000).toFixed(2) + 'M';
+            } else if (num >= 1_000) {
+            return (num / 1_000).toFixed(2) + 'K';
+            }
+            return num;
+        }
+
+        async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+            
+            try {
+                const response = await fetch(url, { ...options, signal: controller.signal });
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                return responseType === "json" ? response.json() : response.text();
+            } catch (error) {
+                clearTimeout(timeoutId);
+                throw error;
+            }
+        }
+
+        const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
+        const propertiesRegex = /:(?![a-z_]+=)/g;
+
+        async function countRegexMatches(fileUrl, regex) {
+            try {
+                const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+                const matches = fileContent.match(regex) || [];
+                return matches.length;
+            } catch (error) {
+                console.error("Error during regex matching:", error);
+                return 0;
+            }
+        }
+
+        async function updateTotalProperties() {
+            try {
+                const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
+                const totalPropertiesElement = document.getElementById('totalProperties');
+                if (totalPropertiesElement) {   
+                    totalPropertiesElement.textContent = " " + formatNumbers(count).toString() + " ";
+                    console.log("Total properties:", count);
+                }
+            } catch (error) {
+                console.error("Failed to update total properties:", error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTotalProperties();
+        });
+    </script>
+</body>
+</html>

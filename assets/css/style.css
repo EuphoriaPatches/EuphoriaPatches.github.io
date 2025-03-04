@@ -2156,19 +2156,187 @@ code {
     transition: outline-color 0.25s ease-in-out;
 }
 
-.section-click-box {
-    outline-color: rgb(81, 81, 81);
-    background-color: rgb(26, 26, 35);
-    transition: scale 0.2s ease-in-out;
+.section-what-is-EP.section-click-box {
+    /* Enhanced 3D gradient background with subtle noise texture */
+    background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+        linear-gradient(145deg, rgb(40, 40, 52) 0%, rgb(30, 30, 40) 50%, rgb(25, 25, 33) 100%);
+    
+    /* Enhanced border with bevel effect */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    
+    /* Improved 3D button effect with multi-layered shadows */
+    box-shadow: 
+        /* Outer glow */
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        /* Main drop shadow for elevation */
+        0 6px 10px rgba(0, 0, 0, 0.35),
+        /* Bottom edge shadow */
+        0 8px 0 rgba(0, 0, 0, 0.3),
+        /* Secondary bottom shadow for depth */
+        0 10px 5px rgba(0, 0, 0, 0.15),
+        /* Top highlight bevel */
+        inset 0 1px 2px rgba(255, 255, 255, 0.15),
+        /* Left highlight bevel */
+        inset 1px 0 1px rgba(255, 255, 255, 0.08),
+        /* Bottom inner shadow */
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    
+    /* Gleam effect */
+    position: relative;
+    overflow: hidden;
+    
+    /* Slightly pushed out from background */
+    transform: translateY(-3px);
+    
+    /* Smooth transitions */
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                background 0.3s ease-out,
+                border-color 0.3s ease;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-.section-click-box:hover {
-    outline-color: var(--ThemeColor);
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.55) inset,
-    -8px -8px 8px rgba(255, 255, 255, 0.2) inset;
-    scale: 1.025;
+/* Sheen effect - adds a moving highlight across the button */
+.section-what-is-EP.section-click-box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    opacity: 0;
+    transform: rotate(30deg);
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.15) 77%,
+        rgba(255, 255, 255, 0.0) 92%
+    );
+    animation: sheen-effect 6s infinite;
 }
 
+.section-what-is-EP.section-click-box:hover {
+    /* Enhanced hover state with deeper colors */
+    background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"),
+        linear-gradient(145deg, rgb(45, 45, 60) 0%, rgb(35, 35, 45) 50%, rgb(30, 30, 38) 100%);
+    
+    /* Enhanced glow */
+    outline: 1px solid rgba(255, 80, 223, 0.6);
+    outline-offset: 1px;
+    border-color: rgba(255, 80, 223, 0.3);
+    
+    /* Enhanced 3D hover effect with "about to be pressed" look */
+    box-shadow: 
+        /* Pulsing glow effect */
+        0 0 25px rgba(255, 80, 223, 0.4),
+        /* Larger glow effect */
+        0 5px 15px rgba(0, 0, 0, 0.35),
+        /* Slightly reduced bottom shadow to simulate movement */
+        0 7px 0 rgba(0, 0, 0, 0.3),
+        0 9px 3px rgba(0, 0, 0, 0.15),
+        /* Enhanced top highlight */
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        /* Enhanced side highlight */
+        inset 1px 0 2px rgba(255, 255, 255, 0.1),
+        /* Deeper inner bottom shadow */
+        inset 0 -3px 4px rgba(0, 0, 0, 0.25);
+    
+    /* Slight hover lift effect */
+    transform: translateY(-4px);
+}
+
+/* Enhanced button press animation */
+.section-what-is-EP.section-click-box:active {
+    /* Pressed state - deeper push effect */
+    transform: translateY(2px);
+    box-shadow: 
+        0 0 8px rgba(255, 80, 223, 0.5),
+        0 0 3px rgba(0, 0, 0, 0.4),
+        0 3px 0 rgba(0, 0, 0, 0.3),
+        inset 0 1px 5px rgba(0, 0, 0, 0.4),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.1);
+    
+    /* Compressed gradient when pressed */
+    background: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+        linear-gradient(145deg, rgb(32, 32, 42) 0%, rgb(25, 25, 33) 100%);
+    
+    border-color: rgba(255, 80, 223, 0.5);
+    
+    /* Stop the sheen effect when pressed */
+    overflow: hidden;
+}
+
+.section-what-is-EP.section-click-box:active::after {
+    opacity: 0;
+    animation: none;
+}
+
+.section-what-is-EP.section-click-box h2 {
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 1px 2px rgba(0, 0, 0, 0.8);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    
+    /* Subtle text animation on idle */
+    animation: subtle-pulse 3s infinite ease-in-out;
+}
+
+.section-what-is-EP.section-click-box:hover h2 {
+    /* Subtle text color change on hover */
+    color: var(--EuphoriaMagentaBright);
+    /* Text shadow adjusts slightly on hover */
+    text-shadow: 
+        0 0 8px rgba(255, 80, 223, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.7);
+    
+    /* Stop the pulsing animation on hover */
+    animation: none;
+}
+
+.section-what-is-EP.section-click-box:active h2 {
+    /* Text slightly moves when button is pressed */
+    transform: translateY(1px);
+}
+
+/* Animation keyframes */
+@keyframes sheen-effect {
+    0%, 20%, 100% {
+        opacity: 0;
+        left: -50%;
+    }
+    10% {
+        opacity: 0.3;
+        left: 130%;
+    }
+}
+
+@keyframes subtle-pulse {
+    0%, 100% {
+        text-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.5),
+            0 1px 2px rgba(0, 0, 0, 0.8);
+        color: var(--VeryLightGray);
+    }
+    50% {
+        text-shadow: 
+            0 2px 5px rgba(0, 0, 0, 0.7),
+            0 1px 3px rgba(0, 0, 0, 0.9),
+            0 0 10px rgba(255, 80, 223, 0.6),
+            0 0 15px rgba(255, 80, 223, 0.3);
+        color: rgba(255, 255, 255, 1);
+    }
+}
 
 .donation-redirect-box::before {
     padding: 4.5px;
@@ -2187,21 +2355,14 @@ code {
 }
 
 .section-click-box h2 {
-    font-family: 'monocraft';
-    letter-spacing: -1.5px;
+    font-family: 'graphicpixel';
+    letter-spacing: 0px !important;
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);
     font-size: 35px;
     padding: 0rem;
     line-height: 4;
-    text-shadow:
-        0.5px 1px 0 #000,
-        1px 0.5px 0 #000,
-        1px 1px 0 #000,
-        1px 1.5px 0 #000,
-        1.5px 1px 0 #000,
-        1.5px 1.5px 0 #000;
 }
 
 /* Media query for mobile devices */
@@ -2213,10 +2374,6 @@ code {
     .section-donation-container .section-click-box h2 {
         padding: 2rem;
     }
-}
-
-.section-what-is-EP h2 {
-    letter-spacing:-3.5px;
 }
 
 .section-click-box .btn:focus {
@@ -3555,6 +3712,15 @@ a.contact-bg:before {
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
+}
+
+@media screen and (max-width: 336px) {
+    a.contact-bg {
+        padding: 6px;
+    }
+    a.contact-bg:before {
+        padding: 6px;
+    }
 }
 
 
