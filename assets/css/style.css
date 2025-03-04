@@ -2292,6 +2292,25 @@ code {
     animation: subtle-pulse 3s infinite ease-in-out;
 }
 
+.section-what-is-EP.section-click-box p {
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+    transform: translateY(-160%);
+    text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.5),
+        0 1px 1px rgba(0, 0, 0, 0.7);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    
+    animation: subtle-pulse-p 3s infinite ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .section-what-is-EP.section-click-box p {
+        transform: translateY(60%);
+    }
+}
+
 .section-what-is-EP.section-click-box:hover h2 {
     /* Subtle text color change on hover */
     color: var(--EuphoriaMagentaBright);
@@ -2304,7 +2323,24 @@ code {
     animation: none;
 }
 
+.section-what-is-EP.section-click-box:hover p {
+    /* Subtle text color change on hover */
+    color: var(--EuphoriaMagentaBright);
+    /* Text shadow adjusts slightly on hover */
+    text-shadow: 
+        0 0 6px rgba(255, 80, 223, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.7);
+    
+    /* Stop the pulsing animation on hover */
+    animation: none;
+}
+
 .section-what-is-EP.section-click-box:active h2 {
+    /* Text slightly moves when button is pressed */
+    transform: translateY(1px);
+}
+
+.section-what-is-EP.section-click-box:active p {
     /* Text slightly moves when button is pressed */
     transform: translateY(1px);
 }
@@ -2335,6 +2371,23 @@ code {
             0 0 10px rgba(255, 80, 223, 0.6),
             0 0 15px rgba(255, 80, 223, 0.3);
         color: rgba(255, 255, 255, 1);
+    }
+}
+
+@keyframes subtle-pulse-p {
+    0%, 100% {
+        text-shadow: 
+            0 1px 3px rgba(0, 0, 0, 0.5),
+            0 1px 1px rgba(0, 0, 0, 0.7);
+        color: var(--VeryLightGray);
+    }
+    50% {
+        text-shadow: 
+            0 1px 4px rgba(0, 0, 0, 0.7),
+            0 1px 2px rgba(0, 0, 0, 0.8),
+            0 0 8px rgba(255, 80, 223, 0.4),
+            0 0 12px rgba(255, 80, 223, 0.2);
+        color: rgba(255, 255, 255, 0.95);
     }
 }
 
