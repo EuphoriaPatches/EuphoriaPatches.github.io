@@ -1110,20 +1110,20 @@ html, body {
 }
 
 .hero-text h1 {
-    font-family: 'monocraft';
+    font-family: 'graphicpixel';
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);
-    letter-spacing:-2.5px;
+    /* letter-spacing:-2.5px; */
 }
 
 .hero-text h2 {
-    font-family: 'monocraft';
+    font-family: 'graphicpixel';
     position: relative;
     margin: 0;
     color: var(--VeryLightGray);
     font-size: 40px;
-    letter-spacing:-2.5px;
+    /* letter-spacing:-2.5px; */
 }
 
 .hero-text-multiple-lang h1, h2 {
@@ -1539,8 +1539,7 @@ code {
 }
 
 .section-indented-container h2, h4 {
-    font-family: 'monocraft-multiple-lang';
-    letter-spacing:-2.5px;
+    font-family: 'graphicpixel';
     position: relative;
     margin: 30px;
     color: var(--VeryLightGray);
@@ -4253,6 +4252,7 @@ a.contact-bg:before {
     margin-top: 0;
     color: var(--EuphoriaMagenta);
     font-size: 1.8rem;
+    font-family: 'graphicpixel';
 }
 
 .feature-card p {

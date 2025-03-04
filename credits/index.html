@@ -241,7 +241,18 @@
         async function fetchContributors() {
             try {
                 const response = await fetch(apiUrl);
+                
+                // Check if response is ok
+                if (!response.ok) {
+                    throw new Error(`GitHub API returned ${response.status}: ${response.statusText}`);
+                }
+                
                 const contributorsStats = await response.json();
+                
+                // Check if contributorsStats is an array before sorting
+                if (!Array.isArray(contributorsStats)) {
+                    throw new Error('GitHub API did not return an array of contributors');
+                }
                 
                 // Sort by additions (most to least)
                 contributorsStats.sort((a, b) => {
@@ -253,6 +264,11 @@
                 const contributorsList = document.getElementById("contributors-list");
                 contributorsList.innerHTML = ""; // Clear previous content
 
+                if (contributorsStats.length === 0) {
+                    contributorsList.innerHTML = "<li>No contributors data available at the moment</li>";
+                    return;
+                }
+
                 contributorsStats.forEach(contributor => {
                     const li = document.createElement("li");
                     li.innerHTML = `<strong>${contributor.author.login}</strong>`;
@@ -260,10 +276,15 @@
                 });
             } catch (error) {
                 console.error("Error fetching contributors:", error);
+                const contributorsList = document.getElementById("contributors-list");
+                contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank'>GitHub page</a> directly.</li>";
             }
         }
 
-        fetchContributors();
+        // Add a small delay before fetching to ensure the page loads first
+        window.addEventListener('load', () => {
+            setTimeout(fetchContributors, 500);
+        });
     </script>
   
 </body>
