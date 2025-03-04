@@ -528,12 +528,26 @@
             }
         }
 
-        @media screen and (max-width: 320px) {
+        @media screen and (max-width: 720px) {
+            .carouselFeatures{
+                height: calc(100% + 70px) !important;;
+            }
             .thumbnail .item {
                 visibility: hidden;
             }
             .carouselFeatures.prev .list .item:nth-child(2){
                 visibility: hidden;
+            }
+            .arrows {
+                top: 21%;
+                right: 20%;
+                transform: translateX(50%);
+                width: auto;
+                max-width: none;
+                justify-content: center;
+            }
+            .pause-indicator {
+                bottom: 50px;
             }
         }
 
