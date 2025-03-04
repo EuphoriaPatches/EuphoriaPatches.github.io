@@ -60,7 +60,7 @@
         /* carouselFeatures */
         .carouselFeatures{
             font-family: Poppins;
-            height: calc(100dvh - 30px) !important;
+            height: calc(100% - 30px) !important;
             margin-top: -50px;
             width: 100vw;
             overflow: hidden;
@@ -470,6 +470,9 @@
         }
         /* Responsive adjustments */
         @media screen and (max-width: 1024px) {
+            .carouselFeatures{
+                height: calc(100% + 40px) !important;;
+            }
             .carouselFeatures .list .item .content{
                 padding-right: 5%; /* Even less padding on mobile */
                 top: 12%;
