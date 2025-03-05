@@ -236,48 +236,79 @@
     <script>
         const repoOwner = "EuphoriaPatches";
         const repoName = "propertiesFiles";
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
+        const statsApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
+        const simpleApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 
         async function fetchContributors() {
+            const contributorsList = document.getElementById("contributors-list");
+            
             try {
-                const response = await fetch(apiUrl);
-                
-                // Check if response is ok
-                if (!response.ok) {
-                    throw new Error(`GitHub API returned ${response.status}: ${response.statusText}`);
-                }
-                
-                const contributorsStats = await response.json();
-                
-                // Check if contributorsStats is an array before sorting
-                if (!Array.isArray(contributorsStats)) {
-                    throw new Error('GitHub API did not return an array of contributors');
-                }
-                
-                // Sort by additions (most to least)
-                contributorsStats.sort((a, b) => {
-                    const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
-                    const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
-                    return totalAdditionsB - totalAdditionsA;
-                });
+                // First try the stats API (sorted version)
+                try {
+                    const response = await fetch(statsApiUrl);
+                    
+                    if (!response.ok) {
+                        throw new Error(`GitHub API returned ${response.status}`);
+                    }
+                    
+                    const contributorsStats = await response.json();
+                    
+                    if (!Array.isArray(contributorsStats)) {
+                        throw new Error('Invalid response format');
+                    }
+                    
+                    // Sort by additions
+                    contributorsStats.sort((a, b) => {
+                        const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
+                        const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
+                        return totalAdditionsB - totalAdditionsA;
+                    });
 
-                const contributorsList = document.getElementById("contributors-list");
+                    displayContributors(contributorsStats, true);
+                    console.log("Used stats API successfully");
+                    return;
+                    
+                } catch (statsError) {
+                    // Stats API failed, try simple API as fallback
+                    console.error("Stats API failed:", statsError);
+                    console.log("Trying fallback method...");
+                    
+                    const response = await fetch(simpleApiUrl);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Fallback API failed with status ${response.status}`);
+                    }
+                    
+                    const contributors = await response.json();
+                    
+                    if (!Array.isArray(contributors)) {
+                        throw new Error('Invalid response format from fallback API');
+                    }
+                    
+                    displayContributors(contributors, false);
+                    console.log("Used simple API successfully");
+                }
+            } catch (error) {
+                console.error("All contributor fetch methods failed:", error);
+                contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank'>GitHub page</a> directly.</li>";
+            }
+            
+            // Helper function to display contributors from either API response
+            function displayContributors(data, isStatsApi) {
                 contributorsList.innerHTML = ""; // Clear previous content
-
-                if (contributorsStats.length === 0) {
+                
+                if (data.length === 0) {
                     contributorsList.innerHTML = "<li>No contributors data available at the moment</li>";
                     return;
                 }
-
-                contributorsStats.forEach(contributor => {
+                
+                data.forEach(contributor => {
                     const li = document.createElement("li");
-                    li.innerHTML = `<strong>${contributor.author.login}</strong>`;
+                    // Handle different data structures between APIs
+                    const username = isStatsApi ? contributor.author.login : contributor.login;
+                    li.innerHTML = `<strong>${username}</strong>`;
                     contributorsList.appendChild(li);
                 });
-            } catch (error) {
-                console.error("Error fetching contributors:", error);
-                const contributorsList = document.getElementById("contributors-list");
-                contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank'>GitHub page</a> directly.</li>";
             }
         }
 
