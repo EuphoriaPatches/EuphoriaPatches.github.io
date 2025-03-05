@@ -801,8 +801,34 @@
     <script src="/assets/js/script.js"></script>
 
     <script>
-        // At the very beginning of your carousel script
-        document.body.classList.remove('js-not-loaded');
+        function checkImagesReady() {
+            const carouselImages = document.querySelectorAll('.carouselFeatures .list .item img');
+            let loadedImages = 0;
+            
+            function imageLoaded() {
+                loadedImages++;
+                if (loadedImages === carouselImages.length) {
+                    // All carousel images loaded, now it's safe
+                    document.body.classList.remove('js-not-loaded');
+                }
+            }
+            
+            carouselImages.forEach(img => {
+                if (img.complete) {
+                    imageLoaded();
+                } else {
+                    img.addEventListener('load', imageLoaded);
+                    img.addEventListener('error', imageLoaded); // Count errors as loaded to avoid hanging
+                }
+            });
+            
+            // Fallback in case image loading detection fails
+            setTimeout(() => {
+                document.body.classList.remove('js-not-loaded');
+            }, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', checkImagesReady);
         
         //step 1: get DOM
         let nextDom = document.getElementById('next');
