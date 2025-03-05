@@ -490,10 +490,38 @@
             100% { transform: scaleX(1); opacity: 1; }
         }
         /* Responsive adjustments */
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1920px) {
             .carouselFeatures{
                 height: calc(100% + 40px) !important;;
             }
+            .thumbnail{
+                left: 63%;
+            }
+            .arrows {
+                top: 40%;
+                right: 46%;
+                transform: translateX(50%);
+                width: auto;
+                max-width: none;
+                justify-content: center;
+            }
+            .pause-indicator {
+                bottom: 50px;
+                font-size: 14px;
+                left: -5px;
+                width: 110%;
+            }
+            @keyframes outFrame{
+                to{
+                    width: 150px;
+                    height: 220px;
+                    bottom: 94px;
+                    left: 63.2%;
+                    border-radius: 20px;
+                }
+            }
+        }
+        @media screen and (max-width: 1024px) {
             .carouselFeatures .list .item .content{
                 padding-right: 5%; /* Even less padding on mobile */
                 top: 12%;
@@ -511,8 +539,9 @@
                 grid-template-rows: 40px;
                 font-size: 12px;
             }
-            .thumbnail{ /* Adjust thumbnail size */
+            .thumbnail{
                 bottom: -20px;
+                left: 50%;
             }
             .thumbnail .item {
                 width: 100px;
@@ -524,16 +553,10 @@
             .arrows {
                 top: 93%;
                 right: 75%;
-                transform: translateX(50%);
-                width: auto;
-                max-width: none;
-                justify-content: center;
             }
             .pause-indicator {
                 bottom: -30px;
-                font-size: 14px;
                 left: -5px;
-                width: 110%;
             }
             .carouselFeatures .list .item .author{
                 visibility: hidden;
@@ -562,10 +585,6 @@
             .arrows {
                 top: 21%;
                 right: 20%;
-                transform: translateX(50%);
-                width: auto;
-                max-width: none;
-                justify-content: center;
             }
             .pause-indicator {
                 bottom: 50px;
