@@ -496,7 +496,7 @@
                 width: inherit;
             }
             .thumbnail{
-                left: calc(100dvw - 30%);
+                left: calc(100dvw - 40%);
             }
             .carouselFeatures .list .item .content .title,
             .carouselFeatures .list .item .content .topic{
@@ -515,6 +515,20 @@
                 font-size: 14px;
                 left: -5px;
                 width: 110%;
+            }
+            @keyframes outFrame{
+                to{
+                    width: 150px;
+                    height: 220px;
+                    bottom: 94px;
+                    left: calc(100dvw - 39.8%);
+                    border-radius: 20px;
+                }
+            }
+        }
+        @media screen and (max-width: 1860px) {
+            .thumbnail{
+                left: calc(100dvw - 30%);
             }
             @keyframes outFrame{
                 to{
