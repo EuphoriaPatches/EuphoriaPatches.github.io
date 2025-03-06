@@ -660,6 +660,11 @@
         console.log(`Consent required: ${settings.requireConsent}`);
         console.log(`Show reject button: ${settings.showRejectAll}`);
         console.log(`Cookie expiry days: ${settings.expireDays}`);
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (settings.expireDays * 24 * 60 * 60 * 1000));
+        const today = new Date();
+        const daysRemaining = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+        console.log(`Cookie will expire on: ${expiryDate.toUTCString()} \n(${daysRemaining} days remaining)`);        
         
         if (cookieConsent) {
             // Consent already given, initialize GA with saved preferences
