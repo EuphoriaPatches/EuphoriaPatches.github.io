@@ -568,6 +568,11 @@
 
     // Save user preferences
     function savePreferences(preferences) {
+        // Add expiration date to the saved preferences
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (getRegionSettings().expireDays * 24 * 60 * 60 * 1000));
+        preferences.expires = expiryDate.toISOString();
+        
         setCookie('cookie_consent', JSON.stringify(preferences), getRegionSettings().expireDays);
         
         // Initialize or update GA based on preferences
@@ -660,10 +665,32 @@
         console.log(`Consent required: ${settings.requireConsent}`);
         console.log(`Show reject button: ${settings.showRejectAll}`);
         console.log(`Cookie expiry days: ${settings.expireDays}`);
-        const expiryDate = new Date();
-        expiryDate.setTime(expiryDate.getTime() + (settings.expireDays * 24 * 60 * 60 * 1000));
-        const today = new Date();
-        const daysRemaining = Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24));
+
+        // Calculate expiration date differently based on whether consent exists
+        let expiryDate = new Date();
+        let daysRemaining = settings.expireDays;
+
+        if (cookieConsent) {
+            // Try to extract saved expiration date from cookie if it exists
+            try {
+                const preferences = JSON.parse(cookieConsent);
+                if (preferences.expires) {
+                    expiryDate = new Date(preferences.expires);
+                    const today = new Date();
+                    daysRemaining = Math.max(0, Math.ceil((expiryDate - today) / (1000 * 60 * 60 * 24)));
+                } else {
+                    // Set default expiration since none was stored
+                    expiryDate.setTime(expiryDate.getTime() + (settings.expireDays * 24 * 60 * 60 * 1000));
+                }
+            } catch (e) {
+                // Fallback to default calculation if parsing fails
+                expiryDate.setTime(expiryDate.getTime() + (settings.expireDays * 24 * 60 * 60 * 1000));
+            }
+        } else {
+            // No consent yet, show hypothetical expiration
+            expiryDate.setTime(expiryDate.getTime() + (settings.expireDays * 24 * 60 * 60 * 1000));
+        }
+
         console.log(`Cookie will expire on: ${expiryDate.toUTCString()} \n(${daysRemaining} days remaining)`);        
         
         if (cookieConsent) {
