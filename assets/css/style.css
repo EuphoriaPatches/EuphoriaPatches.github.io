@@ -952,7 +952,6 @@ html, body {
 .navbar-nav .dropdown-menu {
     display: block;
     opacity: 0;
-    font-weight: bold;
     visibility: hidden;
     min-width: 180px;
     border: 0;
@@ -1005,6 +1004,7 @@ html, body {
     transition: all 0.25s ease;
     display: block;
     border-left: 0px solid var(--ThemeColor);
+    font-weight: bold;
 }
 
 .dropdown-menu li a:hover {
