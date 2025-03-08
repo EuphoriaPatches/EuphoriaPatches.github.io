@@ -305,8 +305,9 @@
 	}
 
 	.slicknav_nav {
-		/* background: url(../img/Screenshots/23.webp) no-repeat center / cover; */
-		background-color: rgba(0, 0, 0, 0.85);
+		background-color: rgba(0, 0, 0, 0.25);
+		backdrop-filter: blur(12px);
+    	-webkit-backdrop-filter: blur(12px);
 		padding-left: 0;
 		list-style: none;
 		position: fixed;
