@@ -113,6 +113,15 @@
     
         <div id="gallery-images-overlay" class="gallery-images-overlay">
             <span class="gallery-images-overlay-close">&times;</span>
+
+            <!-- Navigation buttons -->
+            <button class="gallery-nav-btn gallery-prev-btn" aria-label="Previous image">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button class="gallery-nav-btn gallery-next-btn" aria-label="Next image">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+
             <div class="gallery-image-container">
                 <img id="gallery-overlay-image" src="" alt="Overlay Image">
                 <div id="image-description" class="image-description"></div>
@@ -280,6 +289,25 @@
         overlay.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX; // Get the final X position
             handleSwipe(); // Check if a swipe was detected
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the buttons
+            const prevBtn = document.querySelector('.gallery-prev-btn');
+            const nextBtn = document.querySelector('.gallery-next-btn');
+            
+            // Add event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    showImage(currentIndex - 1);
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    showImage(currentIndex + 1);
+                });
+            }
         });
     </script>
 

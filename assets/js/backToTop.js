@@ -19,7 +19,7 @@
             opacity: 0;
             transform: translateX(-50%) translateY(20px) scale(0.9);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;

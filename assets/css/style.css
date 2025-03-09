@@ -3426,7 +3426,9 @@ code {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -3463,10 +3465,10 @@ code {
 
 .gallery-images-overlay-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 3%;
+    right: 7%;
     color: #fff;
-    font-size: 30px;
+    font-size: 50px;
     cursor: pointer;
     z-index: 1010;
 }
@@ -3564,6 +3566,75 @@ code {
     .image-description {
         transform: translateX(-50%) scale(0.3);
         transform-origin: center;
+    }
+}
+
+/* Navigation Buttons for Gallery Overlay */
+.gallery-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 80, 223, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1010;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-images-overlay.show .gallery-nav-btn {
+    opacity: 1;
+}
+
+.gallery-prev-btn {
+    left: 3%;
+}
+
+.gallery-next-btn {
+    right: 3%;
+}
+
+.gallery-nav-btn:hover {
+    background-color: rgba(255, 80, 223, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.gallery-nav-btn i {
+    font-size: 24px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .gallery-nav-btn {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .gallery-prev-btn {
+        left: 15px;
+    }
+    
+    .gallery-next-btn {
+        right: 15px;
+    }
+    
+    .gallery-nav-btn i {
+        font-size: 10px;
     }
 }
 
