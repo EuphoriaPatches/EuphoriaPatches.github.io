@@ -2779,8 +2779,6 @@ code {
     .main-banner-box {
         max-height: 60vh;
     }
-
-
 }
 
 .support-dev-page h3 {
@@ -4640,11 +4638,11 @@ a.contact-bg:before {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .hero-text {
+    .hero-gallery-text {
         padding: 80px 0 20px;
     }
     
-    .hero-text h1 {
+    .hero-gallery-text h1 {
         margin-bottom: 0px;
     }
     
