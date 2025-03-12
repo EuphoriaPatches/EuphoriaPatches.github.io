@@ -1611,10 +1611,274 @@ code {
 #contributors-list, .honrable-credits-list {
     display: flex;
     flex-wrap: wrap;
-    list-style-type: disc;
 }
-#contributors-list li, .honrable-credits-list li {
-    margin-right: -0.5rem;
+
+.hero-subtitle {
+    font-size: 22px !important;
+    margin-top: 15px !important;
+    opacity: 0.95 !important;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeIn 1s ease-in-out;
+    padding: 10px 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.9; transform: translateY(0); }
+}
+
+/* Credits Card Components */
+.credits-card {
+    background-color: rgba(23, 24, 28, 0.6);
+    border-radius: 16px;
+    margin-bottom: 40px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--ThemeColor);
+}
+
+.credits-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.credits-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 80, 223, 0.08) 0%, transparent 70%);
+    border-bottom-left-radius: 100%;
+    pointer-events: none;
+}
+
+.credits-card h2 {
+    color: var(--EuphoriaMagentaBright);
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.credits-card h4 {
+    color: var(--EuphoriaMagentaBright);
+    font-size: 24px;
+    margin: 10px 0 20px 0;
+}
+
+/* List Styling */
+.credits-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.credits-list li {
+    position: relative;
+    padding: 8px 0 8px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, padding-left 0.2s ease;
+    margin-left: 0;
+}
+
+.credits-list li:last-child {
+    border-bottom: none;
+}
+
+.credits-list li:before {
+    content: "•";
+    color: var(--ThemeColor);
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s ease;
+}
+
+.credits-list li:hover {
+    transform: translateX(5px);
+    padding-left: 25px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.credits-list li:hover:before {
+    transform: scale(1.3);
+}
+
+.credits-list li strong {
+    color: var(--VeryLightGray);
+    font-weight: 600;
+}
+
+/* GitHub Link Styling */
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--ThemeColor);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.github-link i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.github-link:hover {
+    background-color: rgba(255, 80, 223, 0.15);
+    transform: translateY(-2px);
+    color: var(--EuphoriaMagentaBright);
+}
+
+/* Contributors Grid */
+.contributors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0px;
+    margin-top: 15px;
+}
+
+.contributors-grid li {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px !important;
+    border: none;
+    transition: all 0.2s ease;
+    list-style-type: none;
+}
+
+.contributors-grid li:before {
+    display: none;
+}
+
+.contributors-grid li:hover {
+    background-color: rgba(255, 80, 223, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Translations Layout */
+.translations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.translation-column {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Translation Notice */
+.translation-notice {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--ThemeColor);
+}
+
+.translation-notice p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+}
+
+.translation-notice i {
+    margin-right: 8px;
+    color: var(--ThemeColor);
+    font-size: 16px;
+}
+
+/* Honorable Mentions Grid */
+.honrable-credits-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: left;
+}
+
+.honrable-credits-list li {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 10px 15px !important;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+}
+
+.honrable-credits-list li:before {
+    display: none;
+}
+
+.honrable-credits-list li:hover {
+    background-color: rgba(255, 80, 223, 0.1);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--ThemeColor);
+}
+
+/* Thank You Message */
+.thank-you-message {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 80, 223, 0.15) 0%, rgba(144, 100, 255, 0.15) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.thank-you-message h3 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--VeryLightGray);
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .credits-card {
+        padding: 20px 15px;
+    }
+    
+    .translations-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .honrable-credits-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .contributors-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .hero-subtitle {
+        font-size: 16px !important;
+        padding: 0 15px;
+    }
 }
 
 /* Default styles for the index */
