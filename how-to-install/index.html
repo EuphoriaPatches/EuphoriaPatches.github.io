@@ -48,8 +48,226 @@
 
     <!-- Cookie Consent Script -->
     <script src="/assets/js/cookie-consent.js" async></script>
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3756100266756497"
-    crossorigin="anonymous"></script> -->
+    <style>
+
+/* Installation instructions styling */
+.section-install-instructions {
+  counter-reset: step-counter;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.section-install-instructions > li {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 20px 25px 20px 70px;
+  background-color: rgba(23, 24, 28, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  counter-increment: step-counter;
+  border-left: 3px solid var(--ThemeColor);
+  list-style-type: none;
+}
+
+.section-install-instructions > li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-install-instructions > li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background-color: var(--ThemeColor);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 3px 8px rgba(255, 80, 223, 0.3);
+}
+
+.section-install-instructions ul {
+  margin-top: 15px;
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+.section-install-instructions ul li {
+  margin-top: 10px;
+  position: relative;
+}
+
+/* Loading indicator styling */
+code:contains("Loading data") {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgba(30, 33, 45, 0.8);
+  border-radius: 6px;
+  color: #ccc;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Section headings */
+.section-indented-container h2 {
+  position: relative;
+  font-size: 36px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  text-align: center;
+  font-family: 'monocraft-multiple-lang';
+  letter-spacing: -3px;
+}
+
+.section-indented-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, var(--ThemeColor), var(--LinkColor));
+  border-radius: 3px;
+}
+
+/* Carousel enhancements */
+.carousel-how-to-install {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+.carousel-inner {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-indicators {
+  bottom: -45px;
+}
+
+.carousel-indicators img {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.carousel-indicators .active img {
+  border-color: var(--ThemeColor);
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 25px;
+  border-radius: 50%;
+  background-size: 20px;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(255, 80, 223, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Footer disclaimer section */
+.larger-text-EP-desc-left-margin {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px 25px;
+  border-radius: 12px;
+  border-left: 3px solid var(--ThemeColor);
+  margin: 30px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.larger-text-EP-desc-left-margin a {
+  padding: 5px 15px;
+  background-color: rgba(255, 80, 223, 0.1);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
+  border: 1px solid rgba(255, 80, 223, 0.2);
+}
+
+.larger-text-EP-desc-left-margin a:hover {
+  background-color: var(--ThemeColor);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 80, 223, 0.3);
+}
+
+/* Container styling */
+.container.section-indented-container {
+    background-color: rgba(23, 24, 28, 0.3);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    width: 1170px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-install-instructions > li {
+    padding-left: 60px;
+  }
+  
+  .section-install-instructions > li::before {
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .section-indented-container h2 {
+    font-size: 28px;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 18px;
+  }
+  
+  .carousel-inner {
+    max-height: 300px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -157,11 +375,16 @@
                 <p id="unsupportedVersions"></p>
                 
 
-                <section class="section-downloads">
-                    <a href="/download" class="btn btn-installer indented-download-button" id="downloadPageButton"></a>
+                <section class="section-downloads text-center">
+                    <div class="d-flex justify-content-center">
+                        <a href="/download" class="btn btn-installer indented-download-button" id="downloadPageButton"></a>
+                    </div>
                 </section><!-- /.section-downloads -->
 
-                <span class="larger-text-EP-desc-left-margin"><ins><strong id="supportDevelopment1"></strong></ins><br><a href="/support" target="_blank" id="supportDevelopment2"></a></span>
+                <div class="larger-text-EP-desc-left-margin text-center">
+                    <ins><strong id="supportDevelopment1"></strong></ins><br>
+                    <a href="/support" target="_blank" id="supportDevelopment2" class="mx-auto d-inline-block"></a>
+                </div>
 
                 <div class="carousel-how-to-install">
                     <div class="carousel slide" id="carouselDemo" data-bs-wrap="true">
