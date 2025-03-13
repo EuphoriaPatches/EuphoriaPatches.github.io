@@ -261,12 +261,6 @@
     }
 }
 
-/* Container layout improvements */
-.container {
-    width: 85%;
-    max-width: 1200px;
-}
-
 @media (max-width: 768px) {
     .aaccordion {
         padding: 18px 20px;
