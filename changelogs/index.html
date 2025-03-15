@@ -167,10 +167,9 @@
     <script src="/assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <!-- Collapse button JavaScript -->
     <script>
-        // Version data for shaders
-        const shaderVersions = [
+        const versions = [
+            // Both versions
             { version: "1.5.2", date: "Jan 29, 2025" },
             { version: "1.5.1", date: "Jan 22, 2025" },
             { version: "1.5.0", date: "Jan 22, 2025" },
@@ -178,51 +177,46 @@
             { version: "1.4.2", date: "Nov 04, 2024" },
             { version: "1.4.1", date: "Sept 25, 2024" },
             { version: "1.4.0", date: "Sept 23, 2024" },
-            { version: "1.3.2", date: "July 6, 2024" },
-            { version: "1.3.1", date: "Jun 07, 2024" },
-            { version: "1.3.0", date: "Jun 06, 2024" },
-            { version: "1.2.0", date: "Jan 08, 2024" },
-            { version: "1.1.0", date: "Nov 30, 2023" },
-            { version: "1.0.1", date: "Oct 02, 2023" },
-            { version: "1.0.0", date: "Sept 10, 2023" },
-            { version: "0.0.0", date: "Aug 07, 2022", displayName: "Overimagined 1.0.0" }
-        ];
-
-        // Version data for mods
-        const modVersions = [
-            { version: "1.5.2", date: "Jan 29, 2025" },
-            { version: "1.5.1", date: "Jan 22, 2025" },
-            { version: "1.5.0", date: "Jan 22, 2025" },
-            { version: "1.4.3", date: "Nov 05, 2024" },
-            { version: "1.4.2", date: "Nov 04, 2024" },
-            { version: "1.4.1", date: "Sept 25, 2024" },
-            { version: "1.4.0", date: "Sept 23, 2024" },
-            { version: "0.3.4", date: "Jul 07, 2024" },
-            { version: "0.3.3", date: "Jun 07, 2024" },
-            { version: "0.3.2", date: "Jun 06, 2024" },
-            { version: "0.3.1", date: "Jun 06, 2024" },
-            { version: "0.3.0", date: "Jan 08, 2024" },
-            { version: "0.2.0", date: "Nov 30, 2023" },
-            { version: "0.1.2", date: "Oct 02, 2023" },
-            { version: "0.1.1", date: "Sept 10, 2023" },
-            { version: "0.1.0", date: "Sept 10, 2023" }
+            // Shader-only versions
+            { version: "1.3.2", date: "July 6, 2024", products: "shader" },
+            { version: "1.3.1", date: "Jun 07, 2024", products: "shader" },
+            { version: "1.3.0", date: "Jun 06, 2024", products: "shader" },
+            { version: "1.2.0", date: "Jan 08, 2024", products: "shader" },
+            { version: "1.1.0", date: "Nov 30, 2023", products: "shader" },
+            { version: "1.0.1", date: "Oct 02, 2023", products: "shader" },
+            { version: "1.0.0", date: "Sept 10, 2023", products: "shader" },
+            { version: "0.0.0", date: "Aug 07, 2022", products: "shader", displayName: "Overimagined 1.0.0" },
+            // Mod-only versions
+            { version: "0.3.4", date: "Jul 07, 2024", products: "mod" },
+            { version: "0.3.3", date: "Jun 07, 2024", products: "mod" },
+            { version: "0.3.2", date: "Jun 06, 2024", products: "mod" },
+            { version: "0.3.1", date: "Jun 06, 2024", products: "mod" },
+            { version: "0.3.0", date: "Jan 08, 2024", products: "mod" },
+            { version: "0.2.0", date: "Nov 30, 2023", products: "mod" },
+            { version: "0.1.2", date: "Oct 02, 2023", products: "mod" },
+            { version: "0.1.1", date: "Sept 10, 2023", products: "mod" },
+            { version: "0.1.0", date: "Sept 10, 2023", products: "mod" }
         ];
 
         // Function to generate version panels
-        function generateVersionPanels(containerId, versions, prefix) {
+        function generateVersionPanels(containerId, productType, prefix) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
+            // Filter versions based on product type
+            const filteredVersions = versions.filter(item => 
+                !item.products || item.products === "both" || item.products === productType
+            );
+            
             let html = '';
-            versions.forEach(item => {
+            filteredVersions.forEach(item => {
                 const formattedVersion = item.version.replace(/\./g, '');
                 const elementId = `${prefix}${formattedVersion}`;
                 const displayText = item.displayName || `${item.version}`;
-                const dateText = item.fixTypo ? "Nov 30, 2023" : item.date; // Fix for the "Now" typo
                 
                 html += `
                     <!-- ${prefix.charAt(0).toUpperCase() + prefix.slice(1)} Version ${item.version} -->
-                    <button class="aaccordion aaversion">${displayText} - ${dateText}</button>
+                    <button class="aaccordion aaversion">${displayText} - ${item.date}</button>
                     <div class="apanel">
                         <p id="${elementId}" class="cen${prefix.charAt(0).toUpperCase() + prefix.slice(1)}" data-version="${item.version}"></p>
                     </div>
@@ -255,11 +249,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Generate version panels (this is the new part)
-            generateVersionPanels("shaderVersionsContainer", shaderVersions, "shader");
-            generateVersionPanels("modVersionsContainer", modVersions, "mod");
+            // Generate version panels with the product type filter
+            generateVersionPanels("shaderVersionsContainer", "shader", "shader");
+            generateVersionPanels("modVersionsContainer", "mod", "mod");
             
-            // Call the function for shader and mod changelogs (kept from your original code)
+            // Call the function for shader and mod changelogs
             loadChangelogs('aaShaderBtn', 'cenShader', 'shader');
             loadChangelogs('aaModBtn', 'cenMod', 'mod');
             
