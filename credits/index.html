@@ -274,8 +274,13 @@
                         throw new Error('Invalid response format');
                     }
                     
+                    // Filter out actions-user before sorting
+                    const filteredContributors = contributorsStats.filter(
+                        contributor => contributor.author.login !== 'actions-user'
+                    );
+                    
                     // Sort by additions
-                    contributorsStats.sort((a, b) => {
+                    filteredContributors.sort((a, b) => {
                         const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
                         const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
                         return totalAdditionsB - totalAdditionsA;
@@ -284,7 +289,7 @@
                     // Add animation effect to the appearing contributors
                     contributorsList.innerHTML = ""; // Clear previous content
                     
-                    contributorsStats.forEach((contributor, index) => {
+                    filteredContributors.forEach((contributor, index) => {
                         const li = document.createElement("li");
                         li.innerHTML = `<strong>${contributor.author.login}</strong>`;
                         li.style.opacity = "0";
@@ -319,7 +324,12 @@
                         throw new Error('Invalid response format from fallback API');
                     }
                     
-                    displayContributors(contributors, false);
+                    // Filter out actions-user before displaying
+                    const filteredContributors = contributors.filter(
+                        contributor => contributor.login !== 'actions-user'
+                    );
+                    
+                    displayContributors(filteredContributors, false);
                     console.log("Used simple API successfully");
                 }
             } catch (error) {
