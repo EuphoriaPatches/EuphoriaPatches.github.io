@@ -260,23 +260,48 @@
             const contributorsList = document.getElementById("contributors-list");
             
             try {
-                // First try the stats API (sorted version)
+                // Plan A: Use Stats API (detailed data with additions/deletions)
+                console.log("Plan A: Trying Stats API...");
+                
                 try {
                     const response = await fetch(statsApiUrl);
                     
-                    if (!response.ok) {
-                        throw new Error(`GitHub API returned ${response.status}`);
+                    // Declare variable outside the conditional blocks
+                    let contributorsStats;
+                    
+                    if (response.status === 202) {
+                        console.log("Stats API returned 202: Data is being calculated");
+                        // Wait longer - 3 seconds instead of 2
+                        await new Promise(resolve => setTimeout(resolve, 3000));
+                        const retryResponse = await fetch(statsApiUrl);
+                        
+                        if (!retryResponse.ok) {
+                            throw new Error(`GitHub Stats API retry returned ${retryResponse.status}`);
+                        }
+                        
+                        contributorsStats = await retryResponse.json();
+                        console.log("After retry, got data:", contributorsStats);
+                    } else if (!response.ok) {
+                        throw new Error(`GitHub Stats API returned ${response.status}`);
+                    } else {
+                        contributorsStats = await response.json();
                     }
                     
-                    const contributorsStats = await response.json();
+                    // More detailed debugging
+                    console.log("Stats API Response type:", Array.isArray(contributorsStats) ? "Array" : typeof contributorsStats);
+                    console.log("Stats API Response length:", Array.isArray(contributorsStats) ? contributorsStats.length : "N/A");
                     
                     if (!Array.isArray(contributorsStats)) {
-                        throw new Error('Invalid response format');
+                        throw new Error(`Invalid response format: expected array, got ${typeof contributorsStats}`);
+                    }
+                    
+                    if (contributorsStats.length === 0) {
+                        throw new Error('Empty response from Stats API - GitHub may still be calculating stats');
                     }
                     
                     // Filter out actions-user before sorting
                     const filteredContributors = contributorsStats.filter(
-                        contributor => contributor.author.login !== 'actions-user'
+                        contributor => contributor.author && contributor.author.login !== 'actions-user'
                     );
                     
                     // Sort by additions
@@ -286,52 +311,84 @@
                         return totalAdditionsB - totalAdditionsA;
                     });
 
-                    // Add animation effect to the appearing contributors
-                    contributorsList.innerHTML = ""; // Clear previous content
-                    
-                    filteredContributors.forEach((contributor, index) => {
-                        const li = document.createElement("li");
-                        li.innerHTML = `<strong>${contributor.author.login}</strong>`;
-                        li.style.opacity = "0";
-                        li.style.transform = "translateY(10px)";
-                        li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-                        contributorsList.appendChild(li);
-                        
-                        // Staggered animation effect
-                        setTimeout(() => {
-                            li.style.opacity = "1";
-                            li.style.transform = "translateY(0)";
-                        }, 50 * index);
-                    });
-                    
-                    console.log("Used stats API successfully");
+                    // Display contributors
+                    displayContributors(filteredContributors, true);
+                    console.log("Plan A successful: Using Stats API data");
                     return;
                     
                 } catch (statsError) {
-                    // Stats API failed, try simple API as fallback
-                    console.error("Stats API failed:", statsError);
-                    console.log("Trying fallback method...");
-                    
+                    console.error("Plan A failed:", statsError);
+                }
+                
+                // Plan B: Use Simple API with contributions-based sorting
+                console.log("Plan B: Using Simple API with contribution-based sorting...");
+                
+                try {
                     const response = await fetch(simpleApiUrl);
                     
                     if (!response.ok) {
-                        throw new Error(`Fallback API failed with status ${response.status}`);
+                        throw new Error(`GitHub Simple API returned ${response.status}`);
                     }
                     
                     const contributors = await response.json();
                     
+                    // Log the full Simple API response to console
+                    console.log("Simple API Response:", contributors);
+                    
                     if (!Array.isArray(contributors)) {
-                        throw new Error('Invalid response format from fallback API');
+                        throw new Error('Invalid response format from Simple API');
                     }
                     
-                    // Filter out actions-user before displaying
+                    // Log a sample contributor to examine available fields
+                    if (contributors.length > 0) {
+                        console.log("Sample contributor fields:", Object.keys(contributors[0]));
+                        console.log("Sample contributor data:", contributors[0]);
+                    }
+                    
+                    // Filter out actions-user
                     const filteredContributors = contributors.filter(
                         contributor => contributor.login !== 'actions-user'
                     );
                     
+                    // Sort by contributions count (best approximation of additions in simple API)
+                    filteredContributors.sort((a, b) => b.contributions - a.contributions);
+                    
+                    // Display contributors
                     displayContributors(filteredContributors, false);
-                    console.log("Used simple API successfully");
+                    console.log("Plan B successful: Using Simple API with contribution-based sorting");
+                    return;
+                    
+                } catch (sortedSimpleError) {
+                    console.error("Plan B failed:", sortedSimpleError);
                 }
+                
+                // Plan C: Use Simple API without sorting (basic fallback)
+                console.log("Plan C: Using Simple API without sorting...");
+                
+                const response = await fetch(simpleApiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`Fallback API failed with status ${response.status}`);
+                }
+                
+                const contributors = await response.json();
+                
+                // Log the fallback response too
+                console.log("Fallback API Response:", contributors);
+                
+                if (!Array.isArray(contributors)) {
+                    throw new Error('Invalid response format from fallback API');
+                }
+                
+                // Filter out actions-user
+                const filteredContributors = contributors.filter(
+                    contributor => contributor.login !== 'actions-user'
+                );
+                
+                // Display contributors without special sorting
+                displayContributors(filteredContributors, false);
+                console.log("Plan C successful: Used Simple API without sorting");
+                
             } catch (error) {
                 console.error("All contributor fetch methods failed:", error);
                 contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank' class='github-link'><i class='fa fa-github'></i> GitHub page</a> directly.</li>";
@@ -346,12 +403,23 @@
                     return;
                 }
                 
-                data.forEach(contributor => {
+                data.forEach((contributor, index) => {
                     const li = document.createElement("li");
                     // Handle different data structures between APIs
                     const username = isStatsApi ? contributor.author.login : contributor.login;
                     li.innerHTML = `<strong>${username}</strong>`;
+                    
+                    // Add the same animation effect for consistency
+                    li.style.opacity = "0";
+                    li.style.transform = "translateY(10px)";
+                    li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
                     contributorsList.appendChild(li);
+                    
+                    // Staggered animation effect
+                    setTimeout(() => {
+                        li.style.opacity = "1";
+                        li.style.transform = "translateY(0)";
+                    }, 50 * index);
                 });
             }
         }
