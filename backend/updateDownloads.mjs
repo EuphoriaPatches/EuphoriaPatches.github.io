@@ -55,9 +55,41 @@ async function fetchCurseforgeDownloads(projectId) {
     }
 }
 
+async function updatePropertiesFile(fileUrl) {
+    try {
+        // Fetch the latest properties file
+        const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+        
+        // Ensure directory exists
+        const dataDir = './assets/data';
+        await fs.mkdir(dataDir, { recursive: true });
+        
+        // Save to local file
+        const localFilePath = path.join(dataDir, 'block.properties');
+        await fs.writeFile(localFilePath, fileContent);
+        
+        console.log("Properties file updated successfully");
+        return fileContent;
+    } catch (error) {
+        console.error("Error updating properties file:", error);
+        
+        // Try to return existing file if available
+        try {
+            const localFilePath = path.join('./assets/data', 'block.properties');
+            return await fs.readFile(localFilePath, 'utf8');
+        } catch (fallbackError) {
+            console.error("Could not read existing properties file:", fallbackError);
+            return "";
+        }
+    }
+}
+
 async function countRegexMatches(fileUrl, regex) {
     try {
-        const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+        // First update the local properties file
+        const fileContent = await updatePropertiesFile(fileUrl);
+        
+        // Then perform regex matching on the content
         const matches = fileContent.match(regex) || [];
         return matches.length;
     } catch (error) {
