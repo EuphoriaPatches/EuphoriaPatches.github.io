@@ -98,11 +98,77 @@ async function countRegexMatches(fileUrl, regex) {
     }
 }
 
+async function countUniqueModdedBlocks(fileUrl) {
+    try {
+        // First update the local properties file
+        const fileContent = await updatePropertiesFile(fileUrl);
+        
+        // Set to store unique modded blocks (mod:block format)
+        const uniqueModdedBlocks = new Set();
+        
+        // Split by lines
+        const lines = fileContent.split('\n');
+        
+        // Process each line
+        for (let line of lines) {
+            line = line.trim();
+            
+            // Skip empty lines, comments, preprocessor directives
+            if (line === '' || line.startsWith('#')) {
+                continue;
+            }
+            
+            // Extract all potential block IDs
+            // First check if we're in a block definition 
+            if (line.startsWith('block.')) {
+                // Extract everything after the equals sign
+                const equalSignIndex = line.indexOf('=');
+                if (equalSignIndex > 0) {
+                    line = line.substring(equalSignIndex + 1).trim();
+                }
+            }
+            
+            // Skip if just a backslash
+            if (line === '\\') {
+                continue;
+            }
+            
+            // Split into potential block IDs
+            const potentialIds = line.split(/\s+/);
+            
+            for (let id of potentialIds) {
+                // Skip empty, backslash, or tag identifiers
+                if (!id || id === '\\' || id.startsWith('%') || id.startsWith('tags_')) {
+                    continue;
+                }
+                
+                // Check if it could be a modded block (contains a colon)
+                if (id.includes(':')) {
+                    // Extract the mod name and block name
+                    const parts = id.split(':');
+                    
+                    // If it has at least 2 parts and the first part isn't a blockstate
+                    if (parts.length >= 2 && !parts[0].includes('=')) {
+                        // Create the base mod:block identifier without blockstate
+                        const modBlockId = parts[0] + ':' + parts[1];
+                        uniqueModdedBlocks.add(modBlockId);
+                    }
+                }
+            }
+        }
+        
+        console.log(`Found ${uniqueModdedBlocks.size} unique modded blocks`);
+        return uniqueModdedBlocks.size;
+    } catch (error) {
+        console.error("Error counting modded blocks:", error);
+        return 0;
+    }
+}
+
 async function updateDownloadStats() {
     const modrinthProjectId = "4H6sumDB";
     const curseforgeProjectId = "915902";
     const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
-    const propertiesRegex = /:(?![a-z_]+=)/g;
     
     console.time("Download Stats Update");
     
@@ -144,7 +210,7 @@ async function updateDownloadStats() {
             const [modrinthDownloads, curseforgeDownloads, matchesLength] = await Promise.all([
                 fetchModrinthDownloads(modrinthProjectId),
                 fetchCurseforgeDownloads(curseforgeProjectId),
-                countRegexMatches(propertiesFileUrl, propertiesRegex),
+                countUniqueModdedBlocks(propertiesFileUrl),
             ]);
             console.timeEnd("Fetch Downloads");
 
@@ -176,7 +242,14 @@ async function updateDownloadStats() {
                 
                 if (attempt < retryWaitTimes.length) {
                     const waitMinutes = retryWaitTimes[attempt];
-                    console.log(`Retrying in ${waitMinutes} minutes...`);
+                    const now = new Date();
+                    const nextRetry = new Date(now.getTime() + waitMinutes * 60 * 1000);
+                    
+                    console.log(
+                        `Current time: ${now.toISOString()}\n` +
+                        `Retrying in ${waitMinutes} minutes at ${nextRetry.toISOString()}...`
+                    );
+                    
                     await new Promise(resolve => setTimeout(resolve, waitMinutes * 60 * 1000));
                 } else {
                     console.error("All retry attempts failed. No updates were made to the stats file.");
