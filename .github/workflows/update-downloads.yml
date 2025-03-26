@@ -8,6 +8,10 @@ on:
     paths:
       - '.github/workflows/update-downloads.yml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-downloads:
     runs-on: ubuntu-latest
@@ -34,8 +38,19 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-      - name: Commit and push if there are changes
+      - name: Commit and push with retry
         run: |
           git add assets/data/download-stats.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update download statistics [skip ci]"
-          git push
+          git diff --quiet && git diff --staged --quiet || {
+            git commit -m "Update download stats data [skip ci]"
+            
+            # Try pushing with retries
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            
+            until git push || [ $RETRY_COUNT -ge $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
+              git pull --rebase
+            done
+          }
