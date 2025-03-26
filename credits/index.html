@@ -289,12 +289,20 @@
                         contributorsStats = await response.json();
                     }
                     
-                    // More detailed debugging
+                    // More detailed debugging for troubleshooting
                     console.log("Stats API Response type:", Array.isArray(contributorsStats) ? "Array" : typeof contributorsStats);
                     console.log("Stats API Response length:", Array.isArray(contributorsStats) ? contributorsStats.length : "N/A");
                     
+                    // If it's not an array, log the object for inspection
                     if (!Array.isArray(contributorsStats)) {
-                        throw new Error(`Invalid response format: expected array, got ${typeof contributorsStats}`);
+                        console.error("Non-array response received:", contributorsStats);
+                        
+                        // Check if it's a GitHub API error message
+                        if (contributorsStats.message) {
+                            throw new Error(`GitHub API Error: ${contributorsStats.message}`);
+                        } else {
+                            throw new Error(`Invalid response format: expected array, got ${typeof contributorsStats}`);
+                        }
                     }
                     
                     if (contributorsStats.length === 0) {
