@@ -258,6 +258,11 @@
         const statsApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
         const simpleApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
 
+        // Add this near the top of your script, before fetchContributors
+        // This will start the stats calculation as early as possible
+        const prefetchStatsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
+        fetch(prefetchStatsUrl).catch(e => console.log("Prefetch triggered, any error is fine:", e));
+
         async function fetchContributors() {
             const contributorsList = document.getElementById("contributors-list");
             
@@ -273,8 +278,8 @@
                     
                     if (response.status === 202) {
                         console.log("Stats API returned 202: Data is being calculated");
-                        // Wait longer - 3 seconds instead of 2
-                        await new Promise(resolve => setTimeout(resolve, 3000));
+                        // Wait longer - 4 seconds instead of 3
+                        await new Promise(resolve => setTimeout(resolve, 4000));
                         const retryResponse = await fetch(statsApiUrl);
                         
                         if (!retryResponse.ok) {
@@ -292,6 +297,13 @@
                     // More detailed debugging for troubleshooting
                     console.log("Stats API Response type:", Array.isArray(contributorsStats) ? "Array" : typeof contributorsStats);
                     console.log("Stats API Response length:", Array.isArray(contributorsStats) ? contributorsStats.length : "N/A");
+                    
+                    // Check for empty object (common on first load)
+                    if (typeof contributorsStats === 'object' && !Array.isArray(contributorsStats) && 
+                        Object.keys(contributorsStats).length === 0) {
+                        console.log("Empty object received from Stats API - likely first calculation");
+                        throw new Error("GitHub is currently calculating stats - try again in a moment");
+                    }
                     
                     // If it's not an array, log the object for inspection
                     if (!Array.isArray(contributorsStats)) {
