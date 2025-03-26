@@ -245,9 +245,21 @@ async function updateDownloadStats() {
                     const now = new Date();
                     const nextRetry = new Date(now.getTime() + waitMinutes * 60 * 1000);
                     
+                    // Format options for human-readable timestamps with 24-hour format
+                    const options = {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        timeZoneName: 'short',
+                        hour12: false
+                    };
+                    
                     console.log(
-                        `Current time: ${now.toISOString()}\n` +
-                        `Retrying in ${waitMinutes} minutes at ${nextRetry.toISOString()}...`
+                        `Current time: ${now.toLocaleString('en-US', options)}\n` +
+                        `Retrying in ${waitMinutes} minutes at ${nextRetry.toLocaleString('en-US', options)}...`
                     );
                     
                     await new Promise(resolve => setTimeout(resolve, waitMinutes * 60 * 1000));
