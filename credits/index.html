@@ -320,19 +320,16 @@
                     const li = document.createElement("li");
                     const username = contributor.login;
                     
-                    // More detailed display with avatar if available
-                    if (contributor.avatar_url && contributor.html_url) {
+                    if (contributor.html_url) {
                         li.innerHTML = `
                             <a href="${contributor.html_url}" target="_blank" class="contributor-link">
-                                <img src="${contributor.avatar_url}" alt="${username}" class="contributor-avatar">
                                 <strong>${username}</strong>
-                                ${contributor.additions ? `<span class="additions">+${contributor.additions}</span>` : ''}
                             </a>`;
                     } else {
                         li.innerHTML = `<strong>${username}</strong>`;
                     }
                     
-                    // Animation for smooth loading
+                    // Animation for smooth loading (keep this unchanged)
                     li.style.opacity = "0";
                     li.style.transform = "translateY(10px)";
                     li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
