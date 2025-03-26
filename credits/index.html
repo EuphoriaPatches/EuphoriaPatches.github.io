@@ -255,18 +255,20 @@
     <script>
         const repoOwner = "EuphoriaPatches";
         const repoName = "propertiesFiles";
-        const statsApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
         const simpleApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
         const cachedDataUrl = "/assets/data/contributors.json";
 
-        // Trigger the stats calculation as early as possible
-        fetch(statsApiUrl).catch(e => console.log("Prefetch triggered, any error is fine:", e));
+        let contributorsData = [];
+        let animationTriggered = false;
 
         async function fetchContributors() {
             const contributorsList = document.getElementById("contributors-list");
             
             try {
                 console.log("Loading contributors data...");
+                // Show a loading indicator
+                contributorsList.innerHTML = "<li>Loading...</li>";
+                
                 const response = await fetch(cachedDataUrl + "?_=" + new Date().getTime());
                 
                 if (!response.ok) {
@@ -279,7 +281,14 @@
                     throw new Error("Invalid data format in contributors.json");
                 }
                 
-                displayContributors(data.contributors);
+                // Store the data but don't display anything yet
+                contributorsData = data.contributors;
+                
+                // Just hide the loading indicator, don't display content yet
+                contributorsList.innerHTML = "";
+                
+                // Set up intersection observer to trigger animation when scrolled into view
+                setupIntersectionObserver();
                 
                 // Only refresh in background if data is stale (more than 2 days old)
                 const generatedDate = new Date(data.generated);
@@ -308,15 +317,39 @@
                 }
             }
             
-            function displayContributors(contributors) {
+            function setupIntersectionObserver() {
+                // Target the actual contributors list element rather than the entire card
+                const contributorsList = document.getElementById("contributors-list");
+                
+                // Create the intersection observer
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // If the list is in view and animation hasn't been triggered yet
+                        if (entry.isIntersecting && !animationTriggered) {
+                            displayContributors(true); // Display with animation
+                            animationTriggered = true;
+                            observer.unobserve(entry.target); // Stop observing after triggering once
+                        }
+                    });
+                }, {
+                    threshold: 0.1, // Trigger when 10% of the list element is visible
+                    rootMargin: "-50px 0px" // Only trigger when element is 50px within the viewport
+                });
+                
+                // Start observing the contributors list itself
+                observer.observe(contributorsList);
+            }
+            
+            function displayContributors(animate) {
+                const contributorsList = document.getElementById("contributors-list");
                 contributorsList.innerHTML = "";
                 
-                if (contributors.length === 0) {
+                if (contributorsData.length === 0) {
                     contributorsList.innerHTML = "<li>No contributors data available</li>";
                     return;
                 }
                 
-                contributors.forEach((contributor, index) => {
+                contributorsData.forEach((contributor, index) => {
                     const li = document.createElement("li");
                     const username = contributor.login;
                     
@@ -329,16 +362,25 @@
                         li.innerHTML = `<strong>${username}</strong>`;
                     }
                     
-                    // Animation for smooth loading (keep this unchanged)
-                    li.style.opacity = "0";
-                    li.style.transform = "translateY(10px)";
+                    // Animation setup
+                    if (animate) {
+                        li.style.opacity = "0";
+                        li.style.transform = "translateY(10px)";
+                    } else {
+                        li.style.opacity = "1";
+                        li.style.transform = "translateY(0)";
+                    }
+                    
                     li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
                     contributorsList.appendChild(li);
                     
-                    setTimeout(() => {
-                        li.style.opacity = "1";
-                        li.style.transform = "translateY(0)";
-                    }, 50 * index);
+                    // Only run animation if requested
+                    if (animate) {
+                        setTimeout(() => {
+                            li.style.opacity = "1";
+                            li.style.transform = "translateY(0)";
+                        }, 50 * index);
+                    }
                 });
             }
         }
