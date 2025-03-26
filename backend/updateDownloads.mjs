@@ -1,18 +1,7 @@
-import admin from "firebase-admin";
 import fetch from "node-fetch";
 import { AbortController } from "node-abort-controller";
-
-// Firebase Admin Service Account credentials from environment variable
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-
-if (!admin.apps.length) {
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: "https://ep-website-backend-default-rtdb.firebaseio.com",
-    });
-}
-
-const db = admin.database();
+import fs from 'fs/promises';
+import path from 'path';
 
 async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
     const controller = new AbortController();
@@ -35,7 +24,6 @@ async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType 
         throw error;
     }
 }
-
 
 async function fetchModrinthDownloads(projectId) {
     const url = `https://api.modrinth.com/v2/project/${projectId}`;
@@ -78,14 +66,14 @@ async function countRegexMatches(fileUrl, regex) {
     }
 }
 
-async function updateDatabase() {
+async function updateDownloadStats() {
     const modrinthProjectId = "4H6sumDB";
     const curseforgeProjectId = "915902";
 
     const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
     const propertiesRegex = /:(?![a-z_]+=)/g;
 
-    console.time("Database Script");
+    console.time("Download Stats Update");
 
     try {
         console.time("Fetch Downloads");
@@ -98,45 +86,69 @@ async function updateDatabase() {
 
         const totalDownloads = modrinthDownloads + curseforgeDownloads;
         const currentTimestamp = Date.now();
+        
+        // Ensure the data directory exists
+        const dataDir = './assets/data';
+        await fs.mkdir(dataDir, { recursive: true });
+        
+        // Path to the JSON stats file
+        const statsFilePath = path.join(dataDir, 'download-stats.json');
+        
+        // Read existing data if available
+        let previousData = { 
+            totalDownloads: 0,
+            modrinthDownloads: 0, 
+            curseforgeDownloads: 0,
+            yesterdayDownloads: 0,
+            timestamp: 0
+        };
+        
+        try {
+            const fileExists = await fs.access(statsFilePath)
+                .then(() => true)
+                .catch(() => false);
+                
+            if (fileExists) {
+                const fileContent = await fs.readFile(statsFilePath, 'utf8');
+                previousData = JSON.parse(fileContent);
+            }
+        } catch (error) {
+            console.error("Error reading previous stats:", error);
+            // Continue with default values if file read fails
+        }
 
-        console.time("Fetch Firebase Data");
-        const ref = db.ref("totals");
-        const snapshot = await ref.once("value");
-        console.timeEnd("Fetch Firebase Data");
-
-        const previousData = snapshot.exists() ? snapshot.val() : { totalDownloads: 0 };
+        // Calculate download difference since last update
         const downloadDifference = totalDownloads - previousData.totalDownloads;
 
-        console.time("Set Firebase Data");
-        await ref.set({
+        // Create new stats object
+        const newStats = {
             timestamp: currentTimestamp,
+            lastUpdated: new Date().toISOString(),
             totalDownloads,
+            modrinthDownloads,
+            curseforgeDownloads,
             yesterdayDownloads: downloadDifference > 0 ? downloadDifference : 0,
-            matchesLength,
-        });
-        console.timeEnd("Set Firebase Data");
+            matchesLength
+        };
 
-        console.log("Download counts updated:", {
-            timestamp: currentTimestamp,
-            totalDownloads,
-            yesterdayDownloads: downloadDifference,
-            matchesLength,
-        });
+        // Write to JSON file
+        await fs.writeFile(statsFilePath, JSON.stringify(newStats, null, 2));
+
+        console.log("Download counts updated:", newStats);
     } catch (error) {
-        console.error("Error updating database:", error);
+        console.error("Error updating download stats:", error);
         throw error;
     }
 
-    console.timeEnd("Database Script");
+    console.timeEnd("Download Stats Update");
 }
 
-updateDatabase()
-    .then(async () => {
+updateDownloadStats()
+    .then(() => {
         console.log("Script completed successfully.");
-        await admin.app().delete(); // Close Firebase connections
         process.exit(0); // Exit cleanly
     })
     .catch((err) => {
-        console.error("Fatal error in updateDatabase:", err);
+        console.error("Fatal error in updateDownloadStats:", err);
         process.exit(1); // Exit with error code
     });

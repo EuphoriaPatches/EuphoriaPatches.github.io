@@ -293,69 +293,38 @@
             return num;
         }
 
-        async function fetchModrinthDownloads(projectId) {
+        async function updateDownloadCounter() {
             try {
-                const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
-                const data = await response.json();
-                return data.downloads || 0;
-            } catch (error) {
-                console.error('Error fetching Modrinth downloads:', error);
-                return 0;
-            }
-        }
-
-        async function fetchCurseforgeDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
-                    }
-                });
-                
+                // Fetch from the JSON file
+                const response = await fetch('/assets/data/download-stats.json');
                 if (!response.ok) {
-                    throw new Error('Curseforge API request failed');
+                    throw new Error('Failed to fetch download stats');
                 }
                 
                 const data = await response.json();
-                return data.data.downloadCount || 0;
-            } catch (error) {
-                console.error('Error fetching Curseforge downloads:', error);
-                return 0;
-            }
-        }
-
-        async function updateDownloadCounter() {
-            const modrinthProjectId = '4H6sumDB';
-            const curseforgeProjectId = '915902';
-            try {
-                // Fetch downloads from both platforms
-                const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
-                const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
-
-                // Calculate total downloads
-                const totalDownloads = modrinthDownloads + curseforgeDownloads;
-
-                // Format and display downloads
-                const formattedDownloads = await formatDownloads(totalDownloads);
                 
-                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
-                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
-                console.log(`Total Downloads: ${totalDownloads}`);
+                // Format and display downloads
+                const formattedDownloads = await formatDownloads(data.totalDownloads);
+                
+                console.log(`Modrinth Downloads: ${data.modrinthDownloads}`);
+                console.log(`Curseforge Downloads: ${data.curseforgeDownloads}`);
+                console.log(`Total Downloads: ${data.totalDownloads}`);
 
                 // Update the download counter element
                 const downloadCounter = document.getElementById('download-counter');
                 downloadCounter.innerText = formattedDownloads;
                 
-                // Set the tooltip with exact number
-                downloadCounter.setAttribute('data-tooltip', "Modrinth Downloads: " + modrinthDownloads.toLocaleString() + "\n" 
-                + "CurseForge Downloads: " + curseforgeDownloads.toLocaleString() + "\n" 
-                + "Total Downloads: " + totalDownloads.toLocaleString());
+                // Set the tooltip with exact number and last updated time
+                const lastUpdated = new Date(data.lastUpdated).toLocaleString();
+                downloadCounter.setAttribute('data-tooltip', 
+                    "Modrinth Downloads: " + data.modrinthDownloads.toLocaleString() + "\n" 
+                    + "CurseForge Downloads: " + data.curseforgeDownloads.toLocaleString() + "\n" 
+                    + "Total Downloads: " + data.totalDownloads.toLocaleString() + "\n"
+                    + "Last Updated: " + lastUpdated);
 
-                return totalDownloads;
             } catch (error) {
                 console.error('Error updating download counter:', error);
-                document.getElementById('download-counter').innerText = 'Error';
+                document.getElementById('download-counter').innerText = 'many';
             }
         }
 

@@ -48,8 +48,6 @@
     <!-- Cookie Consent Script -->
     <script src="/assets/js/cookie-consent.js" async></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
 <div id="custom-cursor"></div> <!-- Custom Cursor -->
@@ -146,149 +144,91 @@
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
 
-    <script type="module">
-        // Import Firebase SDK
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
-    
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBheyXP71wW38Pr1Pz7td5fA1ceNF7I-4U",
-            authDomain: "ep-website-backend.firebaseapp.com",
-            databaseURL: "https://ep-website-backend-default-rtdb.firebaseio.com",
-            projectId: "ep-website-backend",
-            storageBucket: "ep-website-backend.appspot.com",
-            messagingSenderId: "527249989649",
-            appId: "1:527249989649:web:7c4913be47d320cbb891b0",
-            measurementId: "G-W72RZF1WBJ"
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-    
-        // Fetch Modrinth Downloads
-        async function fetchModrinthDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
-                const data = await response.json();
-                return data.downloads || 0;
-            } catch (error) {
-                console.error('Error fetching Modrinth downloads:', error);
-                return 0;
+    <script>
+    async function updateDownloadCounter() {
+        try {
+            // Fetch the data from the JSON file
+            const response = await fetch('/assets/data/download-stats.json');
+            if (!response.ok) {
+                throw new Error('Failed to fetch download stats');
             }
+            
+            const data = await response.json();
+            
+            console.log('Stats data:', data);
+            
+            // Calculate today's downloads (today so far)
+            const todaySoFar = calculateTodayDownloads(data);
+            
+            // Update DOM
+            const downloadCounter = document.getElementById('download-counter');
+            downloadCounter.innerText = data.totalDownloads.toLocaleString();
+
+            const typedOutElement = document.getElementById('typed-out');
+            typedOutElement.classList.add('animate');
+
+            // Update additional DOM elements
+            const dailyAvgElement = document.getElementById('daily-avg');
+            const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
+            const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
+
+            dailyAvgElement.innerText = `Yesterday's Downloads: ${data.yesterdayDownloads.toLocaleString()}`;
+            modrinthDownloadsElement.innerText = `Modrinth Downloads: ${data.modrinthDownloads.toLocaleString()}`;
+            curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${data.curseforgeDownloads.toLocaleString()}`;
+
+            dailyAvgElement.style.transition = "opacity 0.2s ease"; // Add transition to the element
+
+            dailyAvgElement.addEventListener('mouseenter', () => {
+                dailyAvgElement.style.opacity = "0"; // Fade out
+                setTimeout(() => {
+                    const updateDate = new Date(data.lastUpdated);
+                    const day = updateDate.getDate();
+                    const month = updateDate.toLocaleString('en-US', { month: 'short' });
+                    const time = updateDate.toLocaleString('en-US', { 
+                        hour: '2-digit', 
+                        minute: '2-digit',
+                        hour12: false 
+                    });
+
+                    const compactDate = `${month} ${day}, ${time}`;
+                    dailyAvgElement.innerText = `Last updated: ${compactDate}`;
+                    dailyAvgElement.style.opacity = "1"; // Fade back in
+                }, 200); // Match the transition duration
+            });
+
+            dailyAvgElement.addEventListener('mouseleave', () => {
+                dailyAvgElement.style.opacity = "0"; // Fade out
+                setTimeout(() => {
+                    dailyAvgElement.innerText = `Yesterday's Downloads: ${data.yesterdayDownloads.toLocaleString()}`;
+                    dailyAvgElement.style.opacity = "1"; // Fade back in
+                }, 200); // Match the transition duration
+            });
+            
+        } catch (error) {
+            console.error('Error updating download counter:', error);
+            document.getElementById('download-counter').innerText = 'Error';
         }
+    }
     
-        // Fetch CurseForge Downloads
-        async function fetchCurseforgeDownloads(projectId) {
-            try {
-                const response = await fetch(`https://api.curseforge.com/v1/mods/${projectId}`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'x-api-key': '$2a$10$izPaCsTGxUGv.3h62ZixYelNErqfLizoCjVJphyCNFs00riMLc5wK'
-                    }
-                });                
-                const data = await response.json();
-                return data.data.downloadCount || 0;
-            } catch (error) {
-                console.error('Error fetching Curseforge downloads:', error);
-                return 0;
-            }
-        }
+    // This is a simple estimation function - it uses the time of day to estimate today's downloads
+    // This is just an approximation but gives users a sense of "live" data
+    function calculateTodayDownloads(data) {
+        const now = new Date();
+        const yesterdayDownloads = data.yesterdayDownloads || 0;
+        
+        // Calculate what percentage of the day has passed (0.0 to 1.0)
+        const hourOfDay = now.getHours();
+        const minuteOfHour = now.getMinutes();
+        const percentOfDay = (hourOfDay * 60 + minuteOfHour) / (24 * 60);
+        
+        // Estimate today's downloads based on what percentage of the day has passed
+        // This assumes downloads occur evenly throughout the day
+        return Math.round(yesterdayDownloads * percentOfDay);
+    }
 
-        function timeUntilTransfer() {
-            const now = new Date(), utcOffset = 1;
-            let msUntilTarget = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), utcOffset) - now.getTime();
-            if (msUntilTarget < 0) msUntilTarget += 86400000; // Add 24 hours in milliseconds if the target is in the past
-            return {
-                hours: Math.floor(msUntilTarget / 3600000),
-                minutes: Math.floor((msUntilTarget % 3600000) / 60000),
-                seconds: Math.floor((msUntilTarget % 60000) / 1000)
-            };
-        }
-
-        const { hours, minutes, seconds } = timeUntilTransfer();
-        console.log(`Time until data transfer: ${hours}h ${minutes}m ${seconds}s`);
-
-        async function updateDownloadCounter() {
-            const modrinthProjectId = '4H6sumDB';
-            const curseforgeProjectId = '915902';
-
-            try {
-                const modrinthDownloads = await fetchModrinthDownloads(modrinthProjectId);
-                const curseforgeDownloads = await fetchCurseforgeDownloads(curseforgeProjectId);
-                const totalDownloads = modrinthDownloads + curseforgeDownloads;
-
-                console.log(`Modrinth Downloads: ${modrinthDownloads}`);
-                console.log(`Curseforge Downloads: ${curseforgeDownloads}`);
-                console.log(`Total Downloads: ${totalDownloads}`);
-
-                // Update DOM
-                const downloadCounter = document.getElementById('download-counter');
-                downloadCounter.innerText = totalDownloads.toLocaleString();
-
-                const typedOutElement = document.getElementById('typed-out');
-                typedOutElement.classList.add('animate');
-
-                const currentTimestamp = Date.now();
-                const dbRef = ref(database, 'totals');
-
-                // Fetch previous data from the database
-                const snapshot = await get(dbRef);
-                const previousData = snapshot.exists() ? snapshot.val() : { 
-                    timestamp: currentTimestamp, 
-                    totalDownloads: totalDownloads, 
-                    yesterdayDownloads: 0,
-                    matchesLength: 0,
-                };
-
-                console.log('Previous Data:', previousData);
-                console.log('Current Timestamp:', Date.now());
-                const readableTimestamp = new Date(previousData.timestamp).toLocaleString();
-                console.log('Previous Timestamp (Readable):', readableTimestamp);
-
-                const daysPassed = (currentTimestamp - previousData.timestamp) / (1000 * 60 * 60 * 24);
-                let newYesterdayDownloads = previousData.yesterdayDownloads;
-
-                console.log(`Time since last update: ${Math.floor(daysPassed * 24)} hours and ${Math.floor((daysPassed * 24 * 60) % 60)} minutes`);
-
-                const downloadDifference = totalDownloads - previousData.totalDownloads;
-
-                // Update additional DOM elements
-                const dailyAvgElement = document.getElementById('daily-avg');
-                const modrinthDownloadsElement = document.getElementById('modrinth-downloads');
-                const curseforgeDownloadsElement = document.getElementById('curseforge-downloads');
-
-                dailyAvgElement.innerText = `Yesterday's Downloads: ${newYesterdayDownloads.toLocaleString()}`;
-                modrinthDownloadsElement.innerText = `Modrinth Downloads: ${modrinthDownloads.toLocaleString()}`;
-                curseforgeDownloadsElement.innerText = `CurseForge Downloads: ${curseforgeDownloads.toLocaleString()}`;
-
-                dailyAvgElement.style.transition = "opacity 0.2s ease"; // Add transition to the element
-
-                dailyAvgElement.addEventListener('mouseenter', () => {
-                    dailyAvgElement.style.opacity = "0"; // Fade out
-                    setTimeout(() => {
-                        dailyAvgElement.innerText = "Today's Downloads: " + downloadDifference.toLocaleString();
-                        dailyAvgElement.style.opacity = "1"; // Fade back in
-                    }, 200); // Match the transition duration
-                });
-
-                dailyAvgElement.addEventListener('mouseleave', () => {
-                    dailyAvgElement.style.opacity = "0"; // Fade out
-                    setTimeout(() => {
-                        dailyAvgElement.innerText = "Yesterday's Downloads: " + newYesterdayDownloads.toLocaleString();
-                        dailyAvgElement.style.opacity = "1"; // Fade back in
-                    }, 200); // Match the transition duration
-                });
-            } catch (error) {
-                console.error('Error updating download counter:', error);
-                document.getElementById('download-counter').innerText = 'Error';
-            }
-        }
-
-        // Call the function
-        updateDownloadCounter();
-    </script>
+    // Call the function
+    updateDownloadCounter();
+</script>
     <script>
         const cursor = document.getElementById('custom-cursor');
         const navFooters = document.querySelectorAll('.download-count-nav-footer');
@@ -322,7 +262,7 @@
             }
             
             timeoutId = setTimeout(() => {
-                cursor.classList.add('idle');
+                cursor.classList.add('idle');z
                 if (!isMobile) {
                     navFooters.forEach(element => {
                         element.style.opacity = '0';
@@ -488,10 +428,6 @@
 
 
 </script>
-
-
-
-    
 
 </body>
 </html>
