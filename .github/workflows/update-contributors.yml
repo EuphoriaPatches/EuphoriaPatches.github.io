@@ -141,7 +141,7 @@ jobs:
               console.log("Successfully created contributors.json from Stats API");
             } catch (error) {
               console.error("Error processing Stats API data:", error);
-              // Don\'t fail the workflow, just keep the existing file
+              // Do not fail the workflow, just keep the existing file
               process.exit(0);
             }
           '
@@ -198,7 +198,7 @@ jobs:
               console.log("Successfully created contributors.json from Simple API");
             } catch (error) {
               console.error("Error processing Simple API data:", error);
-              // Don\'t fail the workflow, just keep the existing file
+              // Do not fail the workflow, just keep the existing file
               process.exit(0);
             }
           '
