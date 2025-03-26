@@ -214,6 +214,11 @@ jobs:
       - name: Cleanup temporary files
         run: rm -f stats_response.json simple_response.json
       
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
       - name: Commit and push with retry
         run: |
           git add assets/data/contributors.json
