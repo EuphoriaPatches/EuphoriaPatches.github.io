@@ -993,9 +993,19 @@
             }
         }
 
+        // Replace the current updateTotalProperties function with this one:
+
         async function updateTotalProperties() {
             try {
-                const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
+                // Fetch from the JSON file instead of making a direct API call
+                const response = await fetch('/assets/data/download-stats.json');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch stats data');
+                }
+                
+                const data = await response.json();
+                const count = data.matchesLength || 0;
+                
                 const totalPropertiesElement = document.getElementById('totalProperties');
                 if (totalPropertiesElement) {   
                     totalPropertiesElement.textContent = " " + formatNumbers(count).toString() + " ";
@@ -1003,6 +1013,16 @@
                 }
             } catch (error) {
                 console.error("Failed to update total properties:", error);
+                // Fallback to direct API call if JSON fetch fails
+                try {
+                    const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
+                    const totalPropertiesElement = document.getElementById('totalProperties');
+                    if (totalPropertiesElement) {   
+                        totalPropertiesElement.textContent = " " + formatNumbers(count).toString() + " ";
+                    }
+                } catch (e) {
+                    console.error("Fallback also failed:", e);
+                }
             }
         }
         document.addEventListener('DOMContentLoaded', () => {
