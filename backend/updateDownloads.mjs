@@ -69,86 +69,104 @@ async function countRegexMatches(fileUrl, regex) {
 async function updateDownloadStats() {
     const modrinthProjectId = "4H6sumDB";
     const curseforgeProjectId = "915902";
-
     const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
     const propertiesRegex = /:(?![a-z_]+=)/g;
-
+    
     console.time("Download Stats Update");
-
+    
+    // Retry wait times in minutes
+    const retryWaitTimes = [10, 15, 20, 25, 30];
+    let attempt = 0;
+    let valid = false;
+    
+    // Load existing data first
+    const dataDir = './assets/data';
+    await fs.mkdir(dataDir, { recursive: true });
+    const statsFilePath = path.join(dataDir, 'download-stats.json');
+    
+    let previousData = { 
+        totalDownloads: 0,
+        modrinthDownloads: 0, 
+        curseforgeDownloads: 0,
+        yesterdayDownloads: 0,
+        timestamp: 0
+    };
+    
     try {
-        console.time("Fetch Downloads");
-        const [modrinthDownloads, curseforgeDownloads, matchesLength] = await Promise.all([
-            fetchModrinthDownloads(modrinthProjectId),
-            fetchCurseforgeDownloads(curseforgeProjectId),
-            countRegexMatches(propertiesFileUrl, propertiesRegex),
-        ]);
-        console.timeEnd("Fetch Downloads");
-
-        const totalDownloads = modrinthDownloads + curseforgeDownloads;
-        const currentTimestamp = Date.now();
-        
-        // Ensure the data directory exists
-        const dataDir = './assets/data';
-        await fs.mkdir(dataDir, { recursive: true });
-        
-        // Path to the JSON stats file
-        const statsFilePath = path.join(dataDir, 'download-stats.json');
-        
-        // Read existing data if available
-        let previousData = { 
-            totalDownloads: 0,
-            modrinthDownloads: 0, 
-            curseforgeDownloads: 0,
-            yesterdayDownloads: 0,
-            timestamp: 0
-        };
-        
+        const fileExists = await fs.access(statsFilePath)
+            .then(() => true)
+            .catch(() => false);
+            
+        if (fileExists) {
+            const fileContent = await fs.readFile(statsFilePath, 'utf8');
+            previousData = JSON.parse(fileContent);
+        }
+    } catch (error) {
+        console.error("Error reading previous stats:", error);
+    }
+    
+    // Try fetching data with retries
+    while (attempt <= retryWaitTimes.length && !valid) {
         try {
-            const fileExists = await fs.access(statsFilePath)
-                .then(() => true)
-                .catch(() => false);
+            console.time("Fetch Downloads");
+            const [modrinthDownloads, curseforgeDownloads, matchesLength] = await Promise.all([
+                fetchModrinthDownloads(modrinthProjectId),
+                fetchCurseforgeDownloads(curseforgeProjectId),
+                countRegexMatches(propertiesFileUrl, propertiesRegex),
+            ]);
+            console.timeEnd("Fetch Downloads");
+
+            const totalDownloads = modrinthDownloads + curseforgeDownloads;
+            const downloadDifference = totalDownloads - previousData.totalDownloads;
+            
+            // Check if we have valid data (download count increased)
+            if (downloadDifference > 0) {
+                const currentTimestamp = Date.now();
                 
-            if (fileExists) {
-                const fileContent = await fs.readFile(statsFilePath, 'utf8');
-                previousData = JSON.parse(fileContent);
+                // Create new stats object
+                const newStats = {
+                    timestamp: currentTimestamp,
+                    lastUpdated: new Date().toISOString(),
+                    totalDownloads,
+                    modrinthDownloads,
+                    curseforgeDownloads,
+                    yesterdayDownloads: downloadDifference,
+                    matchesLength
+                };
+
+                // Write to JSON file
+                await fs.writeFile(statsFilePath, JSON.stringify(newStats, null, 2));
+                console.log("Download counts updated:", newStats);
+                valid = true;
+                break;
+            } else {
+                console.warn(`Invalid download difference: ${downloadDifference}. API may be down.`);
+                
+                if (attempt < retryWaitTimes.length) {
+                    const waitMinutes = retryWaitTimes[attempt];
+                    console.log(`Retrying in ${waitMinutes} minutes...`);
+                    await new Promise(resolve => setTimeout(resolve, waitMinutes * 60 * 1000));
+                } else {
+                    console.error("All retry attempts failed. No updates were made to the stats file.");
+                }
             }
         } catch (error) {
-            console.error("Error reading previous stats:", error);
-            // Continue with default values if file read fails
+            console.error(`Error during attempt ${attempt + 1}:`, error);
         }
-
-        // Calculate download difference since last update
-        const downloadDifference = totalDownloads - previousData.totalDownloads;
-
-        // Create new stats object
-        const newStats = {
-            timestamp: currentTimestamp,
-            lastUpdated: new Date().toISOString(),
-            totalDownloads,
-            modrinthDownloads,
-            curseforgeDownloads,
-            yesterdayDownloads: downloadDifference > 0 ? downloadDifference : 0,
-            matchesLength
-        };
-
-        // Write to JSON file
-        await fs.writeFile(statsFilePath, JSON.stringify(newStats, null, 2));
-
-        console.log("Download counts updated:", newStats);
-    } catch (error) {
-        console.error("Error updating download stats:", error);
-        throw error;
+        
+        attempt++;
     }
-
+    
     console.timeEnd("Download Stats Update");
+    return valid;
 }
 
 updateDownloadStats()
-    .then(() => {
-        console.log("Script completed successfully.");
-        process.exit(0); // Exit cleanly
+    .then((success) => {
+        console.log(success ? "Script completed successfully." : "Script completed but no updates were made.");
+        process.exit(success ? 0 : 1);
     })
     .catch((err) => {
         console.error("Fatal error in updateDownloadStats:", err);
-        process.exit(1); // Exit with error code
+        process.exit(1);
     });
