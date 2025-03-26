@@ -50,18 +50,46 @@ jobs:
             echo "Waiting $sleep_time seconds..."
             sleep $sleep_time
             
-            # Try the Stats API
+            # Try the Stats API with more verbose output
             echo "Fetching from Stats API..."
             STATUS_CODE=$(curl -s -o stats_response.json -w "%{http_code}" https://api.github.com/repos/EuphoriaPatches/propertiesFiles/stats/contributors)
             
+            echo "API response status code: $STATUS_CODE"
+            echo "File size: $(wc -c < stats_response.json) bytes"
+            echo "First 100 characters of response:"
+            head -c 100 stats_response.json
+            
+            # Check if file is empty
+            if [ ! -s stats_response.json ]; then
+              echo "Warning: stats_response.json is empty!"
+              continue
+            fi
+            
+            # Try to validate JSON without piping (which causes the broken pipe)
             if [ "$STATUS_CODE" = "200" ]; then
-              # Verify we got an array with content
-              if [ "$(cat stats_response.json | node -e "try { const data = JSON.parse(process.stdin.read()); console.log(Array.isArray(data) && data.length > 0 ? 'true' : 'false'); } catch(e) { console.log('false'); }")" = "true" ]; then
+              node -e "
+                try {
+                  const fs = require('fs');
+                  const data = JSON.parse(fs.readFileSync('stats_response.json', 'utf8'));
+                  if (Array.isArray(data) && data.length > 0) {
+                    console.log('Valid array data with ' + data.length + ' items');
+                    process.exit(0);
+                  } else {
+                    console.log('Not a valid array or empty array');
+                    process.exit(1);
+                  }
+                } catch(e) {
+                  console.error('Error parsing JSON:', e.message);
+                  process.exit(1);
+                }
+              "
+              
+              if [ $? -eq 0 ]; then
                 STATS_API_SUCCESS=true
                 echo "Stats API returned valid data on attempt $attempt!"
                 break
               else
-                echo "Stats API returned empty or non-array data on attempt $attempt"
+                echo "Stats API returned invalid data format on attempt $attempt"
               fi
             else
               echo "Stats API returned status code: $STATUS_CODE on attempt $attempt"
