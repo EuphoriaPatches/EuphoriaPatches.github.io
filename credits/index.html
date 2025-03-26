@@ -257,187 +257,87 @@
         const repoName = "propertiesFiles";
         const statsApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
         const simpleApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`;
+        const cachedDataUrl = "/assets/data/contributors.json";
 
-        // Add this near the top of your script, before fetchContributors
-        // This will start the stats calculation as early as possible
-        const prefetchStatsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/stats/contributors`;
-        fetch(prefetchStatsUrl).catch(e => console.log("Prefetch triggered, any error is fine:", e));
+        // Trigger the stats calculation as early as possible
+        fetch(statsApiUrl).catch(e => console.log("Prefetch triggered, any error is fine:", e));
 
         async function fetchContributors() {
             const contributorsList = document.getElementById("contributors-list");
             
             try {
-                // Plan A: Use Stats API (detailed data with additions/deletions)
-                console.log("Plan A: Trying Stats API...");
-                
-                try {
-                    const response = await fetch(statsApiUrl);
-                    
-                    // Declare variable outside the conditional blocks
-                    let contributorsStats;
-                    
-                    if (response.status === 202) {
-                        console.log("Stats API returned 202: Data is being calculated");
-                        // Wait longer - 4 seconds instead of 3
-                        await new Promise(resolve => setTimeout(resolve, 4000));
-                        const retryResponse = await fetch(statsApiUrl);
-                        
-                        if (!retryResponse.ok) {
-                            throw new Error(`GitHub Stats API retry returned ${retryResponse.status}`);
-                        }
-                        
-                        contributorsStats = await retryResponse.json();
-                        console.log("After retry, got data:", contributorsStats);
-                    } else if (!response.ok) {
-                        throw new Error(`GitHub Stats API returned ${response.status}`);
-                    } else {
-                        contributorsStats = await response.json();
-                    }
-                    
-                    // More detailed debugging for troubleshooting
-                    console.log("Stats API Response type:", Array.isArray(contributorsStats) ? "Array" : typeof contributorsStats);
-                    console.log("Stats API Response length:", Array.isArray(contributorsStats) ? contributorsStats.length : "N/A");
-                    
-                    // Check for empty object (common on first load)
-                    if (typeof contributorsStats === 'object' && !Array.isArray(contributorsStats) && 
-                        Object.keys(contributorsStats).length === 0) {
-                        console.log("Empty object received from Stats API - likely first calculation");
-                        throw new Error("GitHub is currently calculating stats - try again in a moment");
-                    }
-                    
-                    // If it's not an array, log the object for inspection
-                    if (!Array.isArray(contributorsStats)) {
-                        console.error("Non-array response received:", contributorsStats);
-                        
-                        // Check if it's a GitHub API error message
-                        if (contributorsStats.message) {
-                            throw new Error(`GitHub API Error: ${contributorsStats.message}`);
-                        } else {
-                            throw new Error(`Invalid response format: expected array, got ${typeof contributorsStats}`);
-                        }
-                    }
-                    
-                    if (contributorsStats.length === 0) {
-                        throw new Error('Empty response from Stats API - GitHub may still be calculating stats');
-                    }
-                    
-                    // Filter out actions-user before sorting
-                    const filteredContributors = contributorsStats.filter(
-                        contributor => contributor.author && contributor.author.login !== 'actions-user'
-                    );
-                    
-                    // Sort by additions
-                    filteredContributors.sort((a, b) => {
-                        const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
-                        const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
-                        return totalAdditionsB - totalAdditionsA;
-                    });
-
-                    // Display contributors
-                    displayContributors(filteredContributors, true);
-                    console.log("Plan A successful: Using Stats API data");
-                    return;
-                    
-                } catch (statsError) {
-                    console.error("Plan A failed:", statsError);
-                }
-                
-                // Plan B: Use Simple API with contributions-based sorting
-                console.log("Plan B: Using Simple API with contribution-based sorting...");
-                
-                try {
-                    const response = await fetch(simpleApiUrl);
-                    
-                    if (!response.ok) {
-                        throw new Error(`GitHub Simple API returned ${response.status}`);
-                    }
-                    
-                    const contributors = await response.json();
-                    
-                    // Log the full Simple API response to console
-                    console.log("Simple API Response:", contributors);
-                    
-                    if (!Array.isArray(contributors)) {
-                        throw new Error('Invalid response format from Simple API');
-                    }
-                    
-                    // Log a sample contributor to examine available fields
-                    if (contributors.length > 0) {
-                        console.log("Sample contributor fields:", Object.keys(contributors[0]));
-                        console.log("Sample contributor data:", contributors[0]);
-                    }
-                    
-                    // Filter out actions-user
-                    const filteredContributors = contributors.filter(
-                        contributor => contributor.login !== 'actions-user'
-                    );
-                    
-                    // Sort by contributions count (best approximation of additions in simple API)
-                    filteredContributors.sort((a, b) => b.contributions - a.contributions);
-                    
-                    // Display contributors
-                    displayContributors(filteredContributors, false);
-                    console.log("Plan B successful: Using Simple API with contribution-based sorting");
-                    return;
-                    
-                } catch (sortedSimpleError) {
-                    console.error("Plan B failed:", sortedSimpleError);
-                }
-                
-                // Plan C: Use Simple API without sorting (basic fallback)
-                console.log("Plan C: Using Simple API without sorting...");
-                
-                const response = await fetch(simpleApiUrl);
+                console.log("Loading contributors data...");
+                const response = await fetch(cachedDataUrl + "?_=" + new Date().getTime());
                 
                 if (!response.ok) {
-                    throw new Error(`Fallback API failed with status ${response.status}`);
+                    throw new Error(`Failed to load contributors data: ${response.status}`);
                 }
                 
-                const contributors = await response.json();
+                const data = await response.json();
                 
-                // Log the fallback response too
-                console.log("Fallback API Response:", contributors);
-                
-                if (!Array.isArray(contributors)) {
-                    throw new Error('Invalid response format from fallback API');
+                if (!data || !data.contributors || !Array.isArray(data.contributors)) {
+                    throw new Error("Invalid data format in contributors.json");
                 }
                 
-                // Filter out actions-user
-                const filteredContributors = contributors.filter(
-                    contributor => contributor.login !== 'actions-user'
-                );
+                displayContributors(data.contributors);
                 
-                // Display contributors without special sorting
-                displayContributors(filteredContributors, false);
-                console.log("Plan C successful: Used Simple API without sorting");
+                // Only refresh in background if data is stale (more than 2 days old)
+                const generatedDate = new Date(data.generated);
+                const now = new Date();
+                const hoursDifference = (now - generatedDate) / (1000 * 60 * 60);
+                
+                if (hoursDifference > 48) {
+                    console.log("Data is stale (>48 hours), fetching fresh data in background");
+                    setTimeout(fetchFreshDataInBackground, 3000);
+                }
                 
             } catch (error) {
-                console.error("All contributor fetch methods failed:", error);
+                console.error("Failed to load contributors:", error);
                 contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank' class='github-link'><i class='fa fa-github'></i> GitHub page</a> directly.</li>";
             }
             
-            // Helper function to display contributors from either API response
-            function displayContributors(data, isStatsApi) {
-                contributorsList.innerHTML = ""; // Clear previous content
+            // Simplified function to only fetch when necessary
+            async function fetchFreshDataInBackground() {
+                try {
+                    const response = await fetch(simpleApiUrl);
+                    if (response.ok) {
+                        console.log("Refreshed contributors data in background");
+                    }
+                } catch (e) {
+                    console.log("Background refresh attempt failed, not critical");
+                }
+            }
+            
+            function displayContributors(contributors) {
+                contributorsList.innerHTML = "";
                 
-                if (data.length === 0) {
-                    contributorsList.innerHTML = "<li>No contributors data available at the moment</li>";
+                if (contributors.length === 0) {
+                    contributorsList.innerHTML = "<li>No contributors data available</li>";
                     return;
                 }
                 
-                data.forEach((contributor, index) => {
+                contributors.forEach((contributor, index) => {
                     const li = document.createElement("li");
-                    // Handle different data structures between APIs
-                    const username = isStatsApi ? contributor.author.login : contributor.login;
-                    li.innerHTML = `<strong>${username}</strong>`;
+                    const username = contributor.login;
                     
-                    // Add the same animation effect for consistency
+                    // More detailed display with avatar if available
+                    if (contributor.avatar_url && contributor.html_url) {
+                        li.innerHTML = `
+                            <a href="${contributor.html_url}" target="_blank" class="contributor-link">
+                                <img src="${contributor.avatar_url}" alt="${username}" class="contributor-avatar">
+                                <strong>${username}</strong>
+                                ${contributor.additions ? `<span class="additions">+${contributor.additions}</span>` : ''}
+                            </a>`;
+                    } else {
+                        li.innerHTML = `<strong>${username}</strong>`;
+                    }
+                    
+                    // Animation for smooth loading
                     li.style.opacity = "0";
                     li.style.transform = "translateY(10px)";
                     li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
                     contributorsList.appendChild(li);
                     
-                    // Staggered animation effect
                     setTimeout(() => {
                         li.style.opacity = "1";
                         li.style.transform = "translateY(0)";
@@ -446,10 +346,8 @@
             }
         }
 
-        // Add a small delay before fetching to ensure the page loads first
-        window.addEventListener('load', () => {
-            setTimeout(fetchContributors, 500);
-        });
+        // Start the process when the page loads
+        window.addEventListener('load', fetchContributors);
     </script>
   
 </body>

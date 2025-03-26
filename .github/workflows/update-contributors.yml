@@ -1,0 +1,191 @@
+# .github/workflows/update-contributors.yml
+name: Update Contributors Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:     # Allow manual trigger
+  push:
+    paths:
+      - '.github/workflows/update-contributors.yml'
+
+jobs:
+  update-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Create assets directories
+        run: mkdir -p assets/data
+          
+      - name: Initialize JSON file if needed
+        run: |
+          if [ ! -f assets/data/contributors.json ]; then
+            echo '{"generated":"'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'","source":"initial","contributors":[]}' > assets/data/contributors.json
+          fi
+          
+      - name: Trigger initial stats calculation
+        run: |
+          echo "Triggering initial stats calculation..."
+          curl -s https://api.github.com/repos/EuphoriaPatches/propertiesFiles/stats/contributors || true
+          
+      - name: Attempt to fetch Stats API data
+        id: stats-api
+        run: |
+          # Set up retry mechanism with exponential backoff
+          STATS_API_SUCCESS=false
+          
+          # Try multiple times with increasing delays
+          for attempt in {1..5}; do
+            echo "Stats API attempt $attempt of 5..."
+            
+            # Exponential backoff: 15s, 30s, 60s, 120s, 240s
+            sleep_time=$((15 * (2 ** (attempt - 1))))
+            echo "Waiting $sleep_time seconds..."
+            sleep $sleep_time
+            
+            # Try the Stats API
+            echo "Fetching from Stats API..."
+            STATUS_CODE=$(curl -s -o stats_response.json -w "%{http_code}" https://api.github.com/repos/EuphoriaPatches/propertiesFiles/stats/contributors)
+            
+            if [ "$STATUS_CODE" = "200" ]; then
+              # Verify we got an array with content
+              if [ "$(cat stats_response.json | node -e "try { const data = JSON.parse(process.stdin.read()); console.log(Array.isArray(data) && data.length > 0 ? 'true' : 'false'); } catch(e) { console.log('false'); }")" = "true" ]; then
+                STATS_API_SUCCESS=true
+                echo "Stats API returned valid data on attempt $attempt!"
+                break
+              else
+                echo "Stats API returned empty or non-array data on attempt $attempt"
+              fi
+            else
+              echo "Stats API returned status code: $STATUS_CODE on attempt $attempt"
+            fi
+          done
+          
+          # Set output variable to indicate success or failure
+          echo "success=$STATS_API_SUCCESS" >> $GITHUB_OUTPUT
+          
+      - name: Process Stats API data
+        if: steps.stats-api.outputs.success == 'true'
+        run: |
+          echo "Processing Stats API data..."
+          node -e '
+            try {
+              const fs = require("fs");
+              const data = JSON.parse(fs.readFileSync("stats_response.json", "utf8"));
+              
+              // Filter out actions-user
+              const filteredData = data.filter(
+                contributor => contributor.author && contributor.author.login !== "actions-user"
+              );
+              
+              // Sort by additions
+              filteredData.sort((a, b) => {
+                const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
+                const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
+                return totalAdditionsB - totalAdditionsA;
+              });
+              
+              // Simplify the data structure
+              const processedData = filteredData.map(contributor => ({
+                login: contributor.author.login,
+                additions: contributor.weeks.reduce((sum, week) => sum + week.a, 0),
+                deletions: contributor.weeks.reduce((sum, week) => sum + week.d, 0),
+                commits: contributor.total,
+                avatar_url: contributor.author.avatar_url,
+                html_url: contributor.author.html_url
+              }));
+              
+              // Add timestamp
+              const result = {
+                generated: new Date().toISOString(),
+                source: "stats_api",
+                contributors: processedData
+              };
+              
+              fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
+              console.log("Successfully created contributors.json from Stats API");
+            } catch (error) {
+              console.error("Error processing Stats API data:", error);
+              // Don\'t fail the workflow, just keep the existing file
+              process.exit(0);
+            }
+          '
+          
+      - name: Fetch Simple API data
+        if: steps.stats-api.outputs.success != 'true'
+        id: simple-api
+        run: |
+          echo "Stats API failed. Using Simple API as fallback..."
+          curl -s https://api.github.com/repos/EuphoriaPatches/propertiesFiles/contributors > simple_response.json
+          
+          # Check if Simple API returned valid data
+          SIMPLE_API_SUCCESS=false
+          if [ "$(cat simple_response.json | node -e "try { const data = JSON.parse(process.stdin.read()); console.log(Array.isArray(data) && data.length > 0 ? 'true' : 'false'); } catch(e) { console.log('false'); }")" = "true" ]; then
+            echo "Simple API returned valid data"
+            SIMPLE_API_SUCCESS=true
+          else
+            echo "Simple API failed to return valid data"
+          fi
+          
+          # Set output variable
+          echo "success=$SIMPLE_API_SUCCESS" >> $GITHUB_OUTPUT
+      
+      - name: Process Simple API data
+        if: steps.stats-api.outputs.success != 'true' && steps.simple-api.outputs.success == 'true'
+        run: |
+          node -e '
+            try {
+              const fs = require("fs");
+              const data = JSON.parse(fs.readFileSync("simple_response.json", "utf8"));
+              
+              // Filter out actions-user
+              const filteredData = data.filter(contributor => contributor.login !== "actions-user");
+              
+              // Sort by contributions
+              filteredData.sort((a, b) => b.contributions - a.contributions);
+              
+              // Simplify the data structure
+              const processedData = filteredData.map(contributor => ({
+                login: contributor.login,
+                contributions: contributor.contributions,
+                avatar_url: contributor.avatar_url,
+                html_url: contributor.html_url
+              }));
+              
+              // Add timestamp
+              const result = {
+                generated: new Date().toISOString(),
+                source: "simple_api",
+                contributors: processedData
+              };
+              
+              fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
+              console.log("Successfully created contributors.json from Simple API");
+            } catch (error) {
+              console.error("Error processing Simple API data:", error);
+              // Don\'t fail the workflow, just keep the existing file
+              process.exit(0);
+            }
+          '
+      
+      - name: Fallback notification
+        if: steps.stats-api.outputs.success != 'true' && steps.simple-api.outputs.success != 'true'
+        run: echo "Both APIs failed. Keeping existing contributors file."
+          
+      - name: Cleanup temporary files
+        run: rm -f stats_response.json simple_response.json
+      
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add assets/data/contributors.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update contributors data [skip ci]"
+          git push || echo "No changes to push or push failed"
