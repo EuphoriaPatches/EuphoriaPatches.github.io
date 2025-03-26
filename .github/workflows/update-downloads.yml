@@ -40,9 +40,9 @@ jobs:
           
       - name: Commit and push with retry
         run: |
-          git add assets/data/download-stats.json
+          git add assets/data/download-stats.json assets/data/block.properties
           git diff --quiet && git diff --staged --quiet || {
-            git commit -m "Update download stats data [skip ci]"
+            git commit -m "Update download stats and properties data [skip ci]"
             
             # Try pushing with retries
             MAX_RETRIES=3
