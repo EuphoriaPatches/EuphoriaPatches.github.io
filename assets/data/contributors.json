@@ -1,0 +1,262 @@
+{
+  "generated": "2025-03-26T01:18:51.139Z",
+  "source": "stats_api",
+  "contributors": [
+    {
+      "login": "Eclipse-Sol",
+      "additions": 11666,
+      "deletions": 4153,
+      "commits": 102,
+      "avatar_url": "https://avatars.githubusercontent.com/u/35643551?v=4",
+      "html_url": "https://github.com/Eclipse-Sol"
+    },
+    {
+      "login": "SpacEagle17",
+      "additions": 8924,
+      "deletions": 5405,
+      "commits": 211,
+      "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
+      "html_url": "https://github.com/SpacEagle17"
+    },
+    {
+      "login": "djmrFunnyMan",
+      "additions": 1183,
+      "deletions": 535,
+      "commits": 23,
+      "avatar_url": "https://avatars.githubusercontent.com/u/68905776?v=4",
+      "html_url": "https://github.com/djmrFunnyMan"
+    },
+    {
+      "login": "Pepelespooder",
+      "additions": 1072,
+      "deletions": 439,
+      "commits": 41,
+      "avatar_url": "https://avatars.githubusercontent.com/u/54486615?v=4",
+      "html_url": "https://github.com/Pepelespooder"
+    },
+    {
+      "login": "serenyadev",
+      "additions": 939,
+      "deletions": 2402,
+      "commits": 19,
+      "avatar_url": "https://avatars.githubusercontent.com/u/166204436?v=4",
+      "html_url": "https://github.com/serenyadev"
+    },
+    {
+      "login": "EnragedPotato",
+      "additions": 628,
+      "deletions": 145,
+      "commits": 9,
+      "avatar_url": "https://avatars.githubusercontent.com/u/173880583?v=4",
+      "html_url": "https://github.com/EnragedPotato"
+    },
+    {
+      "login": "ThatJadenXgamer",
+      "additions": 513,
+      "deletions": 511,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/114387521?v=4",
+      "html_url": "https://github.com/ThatJadenXgamer"
+    },
+    {
+      "login": "ADreadedKing",
+      "additions": 408,
+      "deletions": 197,
+      "commits": 17,
+      "avatar_url": "https://avatars.githubusercontent.com/u/56577742?v=4",
+      "html_url": "https://github.com/ADreadedKing"
+    },
+    {
+      "login": "DearreeD",
+      "additions": 337,
+      "deletions": 136,
+      "commits": 17,
+      "avatar_url": "https://avatars.githubusercontent.com/u/110697661?v=4",
+      "html_url": "https://github.com/DearreeD"
+    },
+    {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
+    },
+    {
+      "login": "Jupitor87",
+      "additions": 176,
+      "deletions": 97,
+      "commits": 25,
+      "avatar_url": "https://avatars.githubusercontent.com/u/150310872?v=4",
+      "html_url": "https://github.com/Jupitor87"
+    },
+    {
+      "login": "spaghettube",
+      "additions": 155,
+      "deletions": 58,
+      "commits": 6,
+      "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
+      "html_url": "https://github.com/spaghettube"
+    },
+    {
+      "login": "Simple205",
+      "additions": 120,
+      "deletions": 10,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
+      "html_url": "https://github.com/Simple205"
+    },
+    {
+      "login": "Priority-6",
+      "additions": 119,
+      "deletions": 51,
+      "commits": 12,
+      "avatar_url": "https://avatars.githubusercontent.com/u/21269104?v=4",
+      "html_url": "https://github.com/Priority-6"
+    },
+    {
+      "login": "Mervius",
+      "additions": 116,
+      "deletions": 106,
+      "commits": 14,
+      "avatar_url": "https://avatars.githubusercontent.com/u/11022926?v=4",
+      "html_url": "https://github.com/Mervius"
+    },
+    {
+      "login": "CoderRuq",
+      "additions": 113,
+      "deletions": 37,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
+      "html_url": "https://github.com/CoderRuq"
+    },
+    {
+      "login": "tylergames42",
+      "additions": 100,
+      "deletions": 31,
+      "commits": 9,
+      "avatar_url": "https://avatars.githubusercontent.com/u/51301871?v=4",
+      "html_url": "https://github.com/tylergames42"
+    },
+    {
+      "login": "Niklars",
+      "additions": 89,
+      "deletions": 28,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
+      "html_url": "https://github.com/Niklars"
+    },
+    {
+      "login": "SCAFprivate",
+      "additions": 80,
+      "deletions": 43,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
+      "html_url": "https://github.com/SCAFprivate"
+    },
+    {
+      "login": "Eclipse-Ilx",
+      "additions": 62,
+      "deletions": 26,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
+      "html_url": "https://github.com/Eclipse-Ilx"
+    },
+    {
+      "login": "SheriphDroplet",
+      "additions": 62,
+      "deletions": 43,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/168616329?v=4",
+      "html_url": "https://github.com/SheriphDroplet"
+    },
+    {
+      "login": "TheMysticalBard",
+      "additions": 61,
+      "deletions": 15,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/26950614?v=4",
+      "html_url": "https://github.com/TheMysticalBard"
+    },
+    {
+      "login": "kaporli",
+      "additions": 57,
+      "deletions": 19,
+      "commits": 8,
+      "avatar_url": "https://avatars.githubusercontent.com/u/52631424?v=4",
+      "html_url": "https://github.com/kaporli"
+    },
+    {
+      "login": "Satherov",
+      "additions": 47,
+      "deletions": 14,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/63814891?v=4",
+      "html_url": "https://github.com/Satherov"
+    },
+    {
+      "login": "milosworks",
+      "additions": 45,
+      "deletions": 14,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
+      "html_url": "https://github.com/milosworks"
+    },
+    {
+      "login": "haloTT100",
+      "additions": 27,
+      "deletions": 21,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
+      "html_url": "https://github.com/haloTT100"
+    },
+    {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
+    },
+    {
+      "login": "Hammerhud",
+      "additions": 23,
+      "deletions": 6,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/74509374?v=4",
+      "html_url": "https://github.com/Hammerhud"
+    },
+    {
+      "login": "irisfofs",
+      "additions": 13,
+      "deletions": 5,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/4063719?v=4",
+      "html_url": "https://github.com/irisfofs"
+    },
+    {
+      "login": "JrDemiurg",
+      "additions": 8,
+      "deletions": 3,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
+      "html_url": "https://github.com/JrDemiurg"
+    },
+    {
+      "login": "Flakxo",
+      "additions": 5,
+      "deletions": 3,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/135031240?v=4",
+      "html_url": "https://github.com/Flakxo"
+    },
+    {
+      "login": "Agentley",
+      "additions": 4,
+      "deletions": 2,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/62411612?v=4",
+      "html_url": "https://github.com/Agentley"
+    }
+  ]
+}
