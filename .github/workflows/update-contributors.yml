@@ -46,7 +46,7 @@ jobs:
           STATS_API_SUCCESS=false
           
           # Try multiple times with increasing delays
-          for attempt in {1..5}; do
+          for attempt in {1..10}; do
             echo "Stats API attempt $attempt of 5..."
             
             # Exponential backoff: 15s, 30s, 60s, 120s, 240s
