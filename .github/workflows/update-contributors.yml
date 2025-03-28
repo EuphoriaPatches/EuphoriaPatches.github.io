@@ -105,11 +105,20 @@ jobs:
           
       - name: Process Stats API data
         if: steps.stats-api.outputs.success == 'true'
+        id: stats-process
         run: |
           echo "Processing Stats API data..."
           node -e '
             try {
               const fs = require("fs");
+              
+              // Read the existing file if it exists
+              let hasChanges = true;
+              let existingData = { contributors: [] };
+              if (fs.existsSync("assets/data/contributors.json")) {
+                existingData = JSON.parse(fs.readFileSync("assets/data/contributors.json", "utf8"));
+              }
+              
               const data = JSON.parse(fs.readFileSync("stats_response.json", "utf8"));
               
               // Filter out actions-user
@@ -134,18 +143,30 @@ jobs:
                 html_url: contributor.author.html_url
               }));
               
-              // Add timestamp
-              const result = {
-                generated: new Date().toISOString(),
-                source: "stats_api",
-                contributors: processedData
-              };
+              // Compare with existing data (ignoring timestamp)
+              if (existingData.source === "stats_api" && 
+                  JSON.stringify(existingData.contributors) === JSON.stringify(processedData)) {
+                console.log("No changes to contributor data detected");
+                hasChanges = false;
+              } else {
+                console.log("Changes detected in contributor data");
+                // Add timestamp
+                const result = {
+                  generated: new Date().toISOString(),
+                  source: "stats_api",
+                  contributors: processedData
+                };
+                
+                fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
+                console.log("Successfully created contributors.json from Stats API");
+              }
               
-              fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
-              console.log("Successfully created contributors.json from Stats API");
+              // Set the output for the GitHub Action
+              fs.writeFileSync(process.env.GITHUB_OUTPUT, `has_changes=${hasChanges}`);
             } catch (error) {
               console.error("Error processing Stats API data:", error);
               // Do not fail the workflow, just keep the existing file
+              fs.writeFileSync(process.env.GITHUB_OUTPUT, "has_changes=false");
               process.exit(0);
             }
           '
@@ -171,10 +192,19 @@ jobs:
       
       - name: Process Simple API data
         if: steps.stats-api.outputs.success != 'true' && steps.simple-api.outputs.success == 'true'
+        id: simple-process
         run: |
           node -e '
             try {
               const fs = require("fs");
+              
+              // Read the existing file if it exists
+              let hasChanges = true;
+              let existingData = { contributors: [] };
+              if (fs.existsSync("assets/data/contributors.json")) {
+                existingData = JSON.parse(fs.readFileSync("assets/data/contributors.json", "utf8"));
+              }
+              
               const data = JSON.parse(fs.readFileSync("simple_response.json", "utf8"));
               
               // Filter out actions-user
@@ -191,18 +221,30 @@ jobs:
                 html_url: contributor.html_url
               }));
               
-              // Add timestamp
-              const result = {
-                generated: new Date().toISOString(),
-                source: "simple_api",
-                contributors: processedData
-              };
+              // Compare with existing data (ignoring timestamp)
+              if (existingData.source === "simple_api" && 
+                  JSON.stringify(existingData.contributors) === JSON.stringify(processedData)) {
+                console.log("No changes to contributor data detected");
+                hasChanges = false;
+              } else {
+                console.log("Changes detected in contributor data");
+                // Add timestamp
+                const result = {
+                  generated: new Date().toISOString(),
+                  source: "simple_api",
+                  contributors: processedData
+                };
+                
+                fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
+                console.log("Successfully created contributors.json from Simple API");
+              }
               
-              fs.writeFileSync("assets/data/contributors.json", JSON.stringify(result, null, 2));
-              console.log("Successfully created contributors.json from Simple API");
+              // Set the output for the GitHub Action
+              fs.writeFileSync(process.env.GITHUB_OUTPUT, `has_changes=${hasChanges}`);
             } catch (error) {
               console.error("Error processing Simple API data:", error);
               // Do not fail the workflow, just keep the existing file
+              fs.writeFileSync(process.env.GITHUB_OUTPUT, "has_changes=false");
               process.exit(0);
             }
           '
@@ -220,18 +262,17 @@ jobs:
           git config --local user.name "GitHub Action"
       
       - name: Commit and push with retry
+        if: steps.stats-process.outputs.has_changes == 'true' || steps.simple-process.outputs.has_changes == 'true'
         run: |
           git add assets/data/contributors.json
-          git diff --quiet && git diff --staged --quiet || {
-            git commit -m "Update contributors data [skip ci]"
+          git commit -m "Update contributors data [skip ci]"
             
-            # Try pushing with retries
-            MAX_RETRIES=3
-            RETRY_COUNT=0
+          # Try pushing with retries
+          MAX_RETRIES=3
+          RETRY_COUNT=0
             
-            until git push || [ $RETRY_COUNT -ge $MAX_RETRIES ]; do
-              RETRY_COUNT=$((RETRY_COUNT + 1))
-              echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
-              git pull --rebase
-            done
-          }
+          until git push || [ $RETRY_COUNT -ge $MAX_RETRIES ]; do
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
+            git pull --rebase
+          done
