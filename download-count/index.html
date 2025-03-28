@@ -246,7 +246,7 @@
 
         function updateCursor(e) {
             requestAnimationFrame(() => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
             });
             
             cursor.classList.remove('idle');
@@ -262,7 +262,7 @@
             }
             
             timeoutId = setTimeout(() => {
-                cursor.classList.add('idle');z
+                cursor.classList.add('idle');
                 if (!isMobile) {
                     navFooters.forEach(element => {
                         element.style.opacity = '0';
