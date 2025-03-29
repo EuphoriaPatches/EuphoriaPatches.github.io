@@ -47,7 +47,7 @@ jobs:
           
           # Try multiple times with increasing delays
           for attempt in {1..10}; do
-            echo "Stats API attempt $attempt of 5..."
+            echo "Stats API attempt $attempt of 10..."
             
             # Exponential backoff: 15s, 30s, 60s, 120s, 240s
             sleep_time=$((15 * (2 ** (attempt - 1))))
