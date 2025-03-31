@@ -372,7 +372,7 @@ code:contains("Loading data") {
                         <span id="step4"></span>
                     </li>
                 </ol>
-                <p id="unsupportedVersions"></p>
+                <p id="discordContact"></p>
                 
 
                 <section class="section-downloads text-center">
@@ -488,10 +488,11 @@ code:contains("Loading data") {
         const lowerCaseBaseLanguage = baseLanguage.toLowerCase();
         const upperCaseVariant = variant ? variant.toUpperCase() : '';
 
+        // Load the requested language + always load English as fallback
         const translationFiles = [
             `${lowerCaseBaseLanguage}-${upperCaseVariant}.json`,
             `${lowerCaseBaseLanguage}.json`,
-            'en.json'
+            'en.json' // Always include English as fallback
         ];
 
         let currentTranslation = {};
@@ -504,6 +505,7 @@ code:contains("Loading data") {
             }
 
             const filePath = `translations/${translationFiles[index]}`;
+            const isEnglishFile = translationFiles[index] === 'en.json';
 
             fetch(filePath)
                 .then(response => {
@@ -513,8 +515,8 @@ code:contains("Loading data") {
                     return response.json();
                 })
                 .then(data => {
-                    if (index === translationFiles.length - 1) {
-                        // This is the English fallback
+                    if (isEnglishFile) {
+                        // Always store English translations separately for fallback
                         englishTranslation = data;
                     } else if (Object.keys(currentTranslation).length === 0) {
                         // This is the first successful non-English translation
@@ -532,7 +534,7 @@ code:contains("Loading data") {
             const elementsToUpdate = [
                 'pageTitle', 'modMethodTitle', 'step1', 'step1After', 
                 'substep1_1', 'or', 'step2Before', 'step2After', 
-                'step3', 'step4', 'unsupportedVersions', 'downloadPageButton',
+                'step3', 'step4', 'discordContact', 'downloadPageButton',
                 'supportDevelopment1', 'supportDevelopment2',
                 'installerMethodTitle', 'installerStep1Before', 'installerStep1After', 
                 'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5'
@@ -545,6 +547,15 @@ code:contains("Loading data") {
                     element.textContent = currentTranslation[id] || englishTranslation[id] || '';
                 }
             });
+            
+            // Special handling for discord contact element with link
+            const discordElement = document.getElementById('discordContact');
+            if (discordElement) {
+                const discordText = currentTranslation['discordContact'] || englishTranslation['discordContact'] || 'Having trouble with installation?';
+                const discordLinkText = currentTranslation['discordContactLink'] || englishTranslation['discordContactLink'] || 'Join our Discord community';
+                discordElement.innerHTML = `<img src="/assets/img/logos/discord200x.webp" alt="Discord" class="discord-icon" style="height: 20px; width: auto; vertical-align: middle; margin-right: 6px;"> ${discordText} <a href="/discord" target="_blank" class="discord-link">${discordLinkText}</a>`;
+                discordElement.className = "text-center mb-4";
+            }
 
             // Handle RTL
             if (currentTranslation.isRightToLeft) {
