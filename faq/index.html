@@ -215,9 +215,52 @@
 
                 <h2 id="license">License notice:</h2>
                 <p>Most of the code in this project is subject to the Complementary License Agreement by EminGT (check License file) and also by the Euphoria Patches license extension and is therefore NOT allowed to be redistributed.</p>
-    
+
                 <h2 id="shader-loader">Best Shader Loader</h2>
-                <p>Euphoria Patches and also Complementary Shaders use iris-exclusive features which don't work on optifine. For the optimal experience, Iris is recommended on Fabric and Neoforge. On Forge Oculus is for now recommended as it seems to support most iris-exclusive features.</p>
+                <p>Euphoria Patches works on Iris, Oculus, OptiFine, and Angelica shader loaders.</p>
+
+                <h4>What is a shader loader? Which one should I use?</h4>
+                <p>A shader loader is a mod for Minecraft Java Edition that allows third-party shaderpacks like Complementary and Euphoria Patches to be loaded into the game. Here are the recommended options (from most to least recommended):</p>
+
+                <div class="shader-loader-list">
+                    <div class="shader-loader-item">
+                        <h4>Iris Shaders</h4>
+                        <ul>
+                            <li><strong>Platforms:</strong> Fabric and Quilt (1.16.5 to latest), NeoForge (1.21.1 to latest)</li>
+                            <li><strong>Most recommended</strong></li>
+                            <li>Stable, supports the most shader features, and offers good performance</li>
+                            <li>Requires the Sodium mod</li>
+                        </ul>
+                    </div>
+
+                    <div class="shader-loader-item">
+                        <h4>Oculus</h4>
+                        <ul>
+                            <li><strong>Platforms:</strong> Forge (1.16.5 to 1.20.1)</li>
+                            <li>Unofficial Forge port of Iris</li>
+                            <li>More recommended than OptiFine</li>
+                            <li>Requires the Embeddium mod</li>
+                        </ul>
+                    </div>
+
+                    <div class="shader-loader-item">
+                        <h4>OptiFine</h4>
+                        <ul>
+                            <li><strong>Platforms:</strong> Forge or standalone (1.7.2 to latest)</li>
+                            <li>Less recommended</li>
+                            <li>Fewer shader features, worse performance, more unstable, and incompatible with many mods</li>
+                        </ul>
+                    </div>
+
+                    <div class="shader-loader-item">
+                        <h4>Angelica</h4>
+                        <ul>
+                            <li><strong>Platforms:</strong> Forge (1.7.10)</li>
+                            <li>Unofficial backport of Iris and Sodium to 1.7.10</li>
+                            <li>Early development, unstable, and does not currently have full parity with modern Iris</li>
+                        </ul>
+                    </div>
+                </div>
     
                 <h2 id="iris-exclusive">Iris Exclusive Features</h2>
                 <ul>
@@ -324,39 +367,6 @@
             return num;
         }
 
-        async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), timeout);
-            
-            try {
-                const response = await fetch(url, { ...options, signal: controller.signal });
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                return responseType === "json" ? response.json() : response.text();
-            } catch (error) {
-                clearTimeout(timeoutId);
-                throw error;
-            }
-        }
-
-        const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
-        const propertiesRegex = /:(?![a-z_]+=)/g;
-
-        async function countRegexMatches(fileUrl, regex) {
-            try {
-                const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
-                const matches = fileContent.match(regex) || [];
-                return matches.length;
-            } catch (error) {
-                console.error("Error during regex matching:", error);
-                return 0;
-            }
-        }
-
         async function updateTotalProperties() {
             try {
                 // Fetch from the JSON file instead of making a direct API call
@@ -375,16 +385,6 @@
                 }
             } catch (error) {
                 console.error("Failed to update total properties:", error);
-                // Fallback to direct API call if JSON fetch fails
-                try {
-                    const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
-                    const totalPropertiesElement = document.getElementById('totalProperties');
-                    if (totalPropertiesElement) {   
-                        totalPropertiesElement.textContent = "(Around " + formatNumbers(count).toString() + " modded blocks in total)";
-                    }
-                } catch (e) {
-                    console.error("Fallback also failed:", e);
-                }
             }
         }
 
@@ -392,7 +392,6 @@
             updateTotalProperties();
             updateDimensions();
             makeIndexSticky();
-            // waitForAdLoad();
 
             index.addEventListener('scroll', checkScrollIndicator);
             window.addEventListener('resize', () => {
