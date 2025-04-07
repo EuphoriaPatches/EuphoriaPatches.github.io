@@ -2633,20 +2633,34 @@ code {
 .section-what-is-EP.section-click-box::after {
     content: '';
     position: absolute;
-    top: -50%;
+    top: -150%;
     left: -60%;
     width: 20%;
     height: 200%;
     opacity: 0;
     transform: rotate(30deg);
-    background: rgba(255, 255, 255, 0.13);
     background: linear-gradient(
         to right, 
         rgba(255, 255, 255, 0.05) 0%,
         rgba(255, 255, 255, 0.15) 77%,
         rgba(255, 255, 255, 0.0) 92%
     );
-    animation: sheen-effect 6s infinite;
+    /* Use will-change to help browser optimize */
+    will-change: transform, opacity;
+    animation: sheen-effect-fixed 6s infinite;
+    pointer-events: none; /* Prevent interfering with clicks */
+}
+
+/* Animation keyframes */
+@keyframes sheen-effect-fixed {
+    0%, 20%, 100% {
+        opacity: 0;
+        transform: rotate(30deg) translateX(-100%);
+    }
+    10% {
+        opacity: 0.5;
+        transform: rotate(30deg) translateX(1000%);
+    }
 }
 
 .section-what-is-EP.section-click-box:hover {
@@ -2765,17 +2779,6 @@ code {
     transform: translateY(1px);
 }
 
-/* Animation keyframes */
-@keyframes sheen-effect {
-    0%, 20%, 100% {
-        opacity: 0;
-        left: -50%;
-    }
-    10% {
-        opacity: 0.3;
-        left: 130%;
-    }
-}
 
 @keyframes subtle-pulse {
     0%, 100% {
