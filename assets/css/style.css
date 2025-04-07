@@ -1512,10 +1512,12 @@ code {
 }
 
 .download-count-home-page {
-    color:var(--ThemeColor);
+    color: var(--ThemeColor);
     font-weight: bold;
     transition: color 0.3s ease-in-out;
     margin: 5px;
+    display: inline-block;
+    min-width: 50px; /* Reserve space for counter */
 }
 
 .version-container {
@@ -2444,7 +2446,9 @@ code {
 }
 
 .section-what-is-EP-desc {
-    width: 55%; /* Ensure this matches the box's width */
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+    width: 55%;
     float: left;
     margin-left: 20px;
 }
@@ -3014,11 +3018,10 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto; /* Auto margins center horizontally */
-    transform: translateY(-10px); /* Instead of top: -10px */
+    margin: 20px auto;
+    transform: translateY(-10px);
     width: fit-content;
-    max-width: 90%; /* Prevent overflow on small screens */
-  }
+}
 
 .main-banner-box {
     position: relative;
@@ -3113,7 +3116,7 @@ code {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -80px; /* Fixed position instead of dynamic */
+    bottom: -80px;
     background-color: rgba(0, 0, 0, 0.15);
     color: white;
     padding: 15px 20px;
@@ -3127,6 +3130,8 @@ code {
     border: white 3px solid;
     width: auto;
     box-sizing: border-box;
+    height: 80px; /* Add explicit height */
+    min-width: 300px; /* Add minimum width */
 }
 
 .main-banner-box-container:hover .popup-container {
@@ -3152,6 +3157,7 @@ code {
         pointer-events: all;
         transform: translateX(-50%) scale(0.5);
         bottom: -84px;
+        height: 110px;
     }
 }
 
@@ -4143,6 +4149,8 @@ code {
 /* FOOTER
 ================================================== */
 .site-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 300px;
     background-color: var(--VeryDarkGray);
 }
 

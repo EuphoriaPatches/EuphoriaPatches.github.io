@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 
-
     <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -29,17 +28,11 @@
 
     <meta name="application-name" content="Euphoria Patches">
     <meta itemprop="name" content="Euphoria Patches">
-    <meta name="apple-mobile-web-app-title" content="Euphoria Patches">
-
-    <!-- Resource Hints - add after other meta tags -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://ajax.googleapis.com">
+    <meta name="apple-mobile-web-app-title" content="Euphoria Patches"> 
 
     <!-- Preload critical resources -->
     <link rel="preload" href="/assets/css/style.min.css" as="style">
-    <link rel="preload" href="/assets/img/backgrounds/mainBackground-768w.webp" as="image" type="image/webp">
+    <link rel="preload" href="/assets/fonts/graphicpixel/graphicpixel.ttf" as="font" type="font/ttf" crossorigin>
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -48,7 +41,6 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700&display=swap&font-display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -67,12 +59,6 @@
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/responsive.min.css" media="print" onload="this.media='all'">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
     <!-- Structured Data Script for Site Name -->
     <script type="application/ld+json">
@@ -148,21 +134,42 @@
     </header><!-- /#mastheaed -->
 
     <div id="hero" class="hero subpage-hero home-page-hero">
-        <img 
-            src="/assets/img/backgrounds/mainBackground.webp"
-            srcset="
-                /assets/img/backgrounds/mainBackground-480w.webp 480w,
-                /assets/img/backgrounds/mainBackground-540w.webp 540w,
-                /assets/img/backgrounds/mainBackground-768w.webp 768w,
-                /assets/img/backgrounds/mainBackground-780w.webp 780w,
-                /assets/img/backgrounds/mainBackground-991w.webp 991w,
-                /assets/img/backgrounds/mainBackground-1280w.webp 1280w,
-                /assets/img/backgrounds/mainBackground.webp"
-            sizes="100vw"
-            alt="Euphoria Patches: Enhanced Minecraft Shaders background"
-            class="hero-image"
-            fetchpriority="high"
-        >
+        <picture>
+            <!-- AVIF format (best compression, first choice) -->
+            <source 
+                srcset="
+                    /assets/img/backgrounds/mainBackground-480w.avif 480w,
+                    /assets/img/backgrounds/mainBackground-540w.avif 540w,
+                    /assets/img/backgrounds/mainBackground-768w.avif 768w,
+                    /assets/img/backgrounds/mainBackground-780w.avif 780w,
+                    /assets/img/backgrounds/mainBackground-991w.avif 991w,
+                    /assets/img/backgrounds/mainBackground-1280w.avif 1280w,
+                    /assets/img/backgrounds/mainBackground.avif"
+                sizes="100vw"
+                type="image/avif">
+            
+            <!-- WebP format (second choice) -->
+            <source 
+                srcset="
+                    /assets/img/backgrounds/mainBackground-480w.webp 480w,
+                    /assets/img/backgrounds/mainBackground-540w.webp 540w,
+                    /assets/img/backgrounds/mainBackground-768w.webp 768w,
+                    /assets/img/backgrounds/mainBackground-780w.webp 780w,
+                    /assets/img/backgrounds/mainBackground-991w.webp 991w,
+                    /assets/img/backgrounds/mainBackground-1280w.webp 1280w,
+                    /assets/img/backgrounds/mainBackground.webp"
+                sizes="100vw"
+                type="image/webp">
+            
+            <!-- Final fallback - PNG (universally supported) -->
+            <img 
+                src="/assets/img/backgrounds/mainBackground.png"
+                alt="Euphoria Patches: Enhanced Minecraft Shaders background"
+                class="hero-image"
+                fetchpriority="high"
+                width="1920" 
+                height="1080">
+        </picture>
         <div class="hero-content">
             <div class="hero-text main-page-text">
                 <h1>Euphoria Patches</h1>
@@ -228,11 +235,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
-    <script src="/assets/js/bootstrap.min.js" defer></script>
-    <script src="/assets/js/bootstrap-select.min.js" defer></script>
     <script src="/assets/js/jquery.slicknav.min.js" defer></script>
-    <script src="/assets/js/jquery.countTo.min.js" defer></script>
-    <script src="/assets/js/jquery.shuffle.min.js" defer></script>
     <script src="/assets/js/script.js" defer></script>
     
     <!-- Banner Image JavaScript -->
