@@ -31,6 +31,16 @@
     <meta itemprop="name" content="Euphoria Patches">
     <meta name="apple-mobile-web-app-title" content="Euphoria Patches">
 
+    <!-- Resource Hints - add after other meta tags -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://ajax.googleapis.com">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/assets/css/style.min.css" as="style">
+    <link rel="preload" href="/assets/img/backgrounds/mainBackground-768w.webp" as="image" type="image/webp">
+
     <!-- Mobile Specific Metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0">
@@ -39,7 +49,10 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700&display=swap&font-display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    </noscript>
 
     <!-- Favicon
     ================================================== -->
@@ -145,9 +158,10 @@
                 /assets/img/backgrounds/mainBackground-991w.webp 991w,
                 /assets/img/backgrounds/mainBackground-1280w.webp 1280w,
                 /assets/img/backgrounds/mainBackground.webp"
+            sizes="100vw"
             alt="Euphoria Patches: Enhanced Minecraft Shaders background"
             class="hero-image"
-            loading="lazy"
+            fetchpriority="high"
         >
         <div class="hero-content">
             <div class="hero-text main-page-text">
@@ -156,7 +170,7 @@
             <div class="main-banner-box-container" onclick="navigateToDownload();">
                 <a href="/download"></a>
                 <div class="main-banner-box">
-                    <img src="/assets/img/other/euphoria_patches_banner.svg" alt="Euphoria Patches Minecraft shader banner which leads to the download page" loading="lazy">
+                    <img src="/assets/img/other/euphoria_patches_banner.svg" alt="Euphoria Patches Minecraft shader banner which leads to the download page">
                 </div>
                 <div class="popup-container">
                     <div class="hero-text">
@@ -213,7 +227,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
     <script src="/assets/js/bootstrap.min.js" defer></script>
     <script src="/assets/js/bootstrap-select.min.js" defer></script>
     <script src="/assets/js/jquery.slicknav.min.js" defer></script>
@@ -223,59 +237,6 @@
     
     <!-- Banner Image JavaScript -->
     <script>
-        window.onload = function() {
-            const boxContainer = document.querySelector('.main-banner-box-container');
-            const popupContainer = document.querySelector('.popup-container');
-            
-            let containerWidth, viewportWidth, offsetX;
-            let ticking = false;
-
-            function updateDimensions() {
-            containerWidth = boxContainer.offsetWidth;
-            viewportWidth = window.innerWidth;
-            offsetX = (viewportWidth - containerWidth) / 2;
-            }
-
-            function adjustPosition() {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                    boxContainer.style.cssText = `left: ${offsetX}px; transform: rotate(0deg);`;
-                    if (window.innerWidth <= 768) {
-                        popupContainer.style.transform = 'translateX(-50%) scale(0.5)';
-                        popupContainer.style.bottom = `-${popupContainer.offsetHeight - 20}px`;
-                    } else {
-                        popupContainer.style.transform = 'translateX(-50%) scale(1.0)';
-                        popupContainer.style.bottom = `-${popupContainer.offsetHeight + 25}px`;
-                    }
-                    ticking = false;
-                    });
-                    ticking = true;
-                }
-            }
-            
-            // Initial load without delay
-            updateDimensions();
-            adjustPosition();
-
-            // Resize with debounce
-            window.addEventListener('resize', debounce(() => {
-            updateDimensions();
-            adjustPosition();
-            }, 500));
-        };
-
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            };
-        }
-
         function navigateToDownload() {
             // Store the target location
             sessionStorage.setItem('scrollTarget', 'down-section');
