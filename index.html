@@ -38,7 +38,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700&display=swap&font-display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Favicon
@@ -49,11 +49,11 @@
     <!-- Stylesheets
     ================================================== -->
     <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="print" onload="this.media='all'">
 
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.min.css" rel="stylesheet">
-    <link href="/assets/css/responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/responsive.min.css" media="print" onload="this.media='all'">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -147,6 +147,7 @@
                 /assets/img/backgrounds/mainBackground.webp"
             alt="Euphoria Patches: Enhanced Minecraft Shaders background"
             class="hero-image"
+            loading="lazy"
         >
         <div class="hero-content">
             <div class="hero-text main-page-text">
@@ -155,7 +156,7 @@
             <div class="main-banner-box-container" onclick="navigateToDownload();">
                 <a href="/download"></a>
                 <div class="main-banner-box">
-                    <img src="/assets/img/other/euphoria_patches_banner.svg" alt="Euphoria Patches Minecraft shader banner which leads to the download page">
+                    <img src="/assets/img/other/euphoria_patches_banner.svg" alt="Euphoria Patches Minecraft shader banner which leads to the download page" loading="lazy">
                 </div>
                 <div class="popup-container">
                     <div class="hero-text">
@@ -213,12 +214,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/bootstrap-select.min.js"></script>
-    <script src="/assets/js/jquery.slicknav.min.js"></script>
-    <script src="/assets/js/jquery.countTo.min.js"></script>
-    <script src="/assets/js/jquery.shuffle.min.js"></script>
-    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/bootstrap.min.js" defer></script>
+    <script src="/assets/js/bootstrap-select.min.js" defer></script>
+    <script src="/assets/js/jquery.slicknav.min.js" defer></script>
+    <script src="/assets/js/jquery.countTo.min.js" defer></script>
+    <script src="/assets/js/jquery.shuffle.min.js" defer></script>
+    <script src="/assets/js/script.js" defer></script>
     
     <!-- Banner Image JavaScript -->
     <script>
@@ -284,46 +285,24 @@
     </script>
 
     <script>
-        async function formatDownloads(num) {
-            if (num >= 1_000_000) {
-                return (num / 1_000_000).toFixed(2) + 'M';
-            } else if (num >= 1_000) {
-                return (num / 1_000).toFixed(2) + 'K';
-            }
-            return num;
-        }
-
         async function updateDownloadCounter() {
             try {
-                // Fetch from the JSON file
-                const response = await fetch('/assets/data/download-stats.json');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch download stats');
-                }
+                const response = await fetch('/assets/data/download-stats.json', {
+                    cache: 'force-cache' // Use browser cache when possible
+                });
+                if (!response.ok) throw new Error('Failed to fetch');
                 
                 const data = await response.json();
+                const counter = document.getElementById('download-counter');
+                counter.innerText = data.totalDownloads >= 1e6 ? 
+                    (data.totalDownloads/1e6).toFixed(2)+'M' : 
+                    data.totalDownloads >= 1e3 ? 
+                        (data.totalDownloads/1e3).toFixed(2)+'K' : 
+                        data.totalDownloads;
                 
-                // Format and display downloads
-                const formattedDownloads = await formatDownloads(data.totalDownloads);
-                
-                console.log(`Modrinth Downloads: ${data.modrinthDownloads}`);
-                console.log(`Curseforge Downloads: ${data.curseforgeDownloads}`);
-                console.log(`Total Downloads: ${data.totalDownloads}`);
-
-                // Update the download counter element
-                const downloadCounter = document.getElementById('download-counter');
-                downloadCounter.innerText = formattedDownloads;
-                
-                // Set the tooltip with exact number and last updated time
-                const lastUpdated = new Date(data.lastUpdated).toLocaleString();
-                downloadCounter.setAttribute('data-tooltip', 
-                    "Modrinth Downloads: " + data.modrinthDownloads.toLocaleString() + "\n" 
-                    + "CurseForge Downloads: " + data.curseforgeDownloads.toLocaleString() + "\n" 
-                    + "Total Downloads: " + data.totalDownloads.toLocaleString() + "\n"
-                    + "Last Updated: " + lastUpdated);
-
-            } catch (error) {
-                console.error('Error updating download counter:', error);
+                // Set tooltip data
+                counter.setAttribute('data-tooltip', `Modrinth: ${data.modrinthDownloads.toLocaleString()}\nCurseForge: ${data.curseforgeDownloads.toLocaleString()}\nTotal: ${data.totalDownloads.toLocaleString()}`);
+            } catch (e) {
                 document.getElementById('download-counter').innerText = 'many';
             }
         }
