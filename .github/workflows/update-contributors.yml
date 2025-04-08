@@ -126,11 +126,9 @@ jobs:
                 contributor => contributor.author && contributor.author.login !== "actions-user"
               );
               
-              // Sort by additions
+              // Sort by commit count
               filteredData.sort((a, b) => {
-                const totalAdditionsA = a.weeks.reduce((sum, week) => sum + week.a, 0);
-                const totalAdditionsB = b.weeks.reduce((sum, week) => sum + week.a, 0);
-                return totalAdditionsB - totalAdditionsA;
+                return b.total - a.total;
               });
               
               // Simplify the data structure

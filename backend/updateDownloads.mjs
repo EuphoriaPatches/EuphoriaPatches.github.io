@@ -84,20 +84,6 @@ async function updatePropertiesFile(fileUrl) {
     }
 }
 
-async function countRegexMatches(fileUrl, regex) {
-    try {
-        // First update the local properties file
-        const fileContent = await updatePropertiesFile(fileUrl);
-        
-        // Then perform regex matching on the content
-        const matches = fileContent.match(regex) || [];
-        return matches.length;
-    } catch (error) {
-        console.error("Error during regex matching:", error);
-        return 0;
-    }
-}
-
 async function countUniqueModdedBlocks(fileUrl) {
     try {
         // First update the local properties file
