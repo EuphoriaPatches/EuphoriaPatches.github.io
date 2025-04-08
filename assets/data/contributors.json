@@ -1,7 +1,15 @@
 {
-  "generated": "2025-04-05T12:42:54.951Z",
+  "generated": "2025-04-08T12:51:38.815Z",
   "source": "stats_api",
   "contributors": [
+    {
+      "login": "EnragedPotato",
+      "additions": 14915,
+      "deletions": 14321,
+      "commits": 13,
+      "avatar_url": "https://avatars.githubusercontent.com/u/173880583?v=4",
+      "html_url": "https://github.com/EnragedPotato"
+    },
     {
       "login": "SpacEagle17",
       "additions": 13443,
@@ -41,14 +49,6 @@
       "commits": 19,
       "avatar_url": "https://avatars.githubusercontent.com/u/166204436?v=4",
       "html_url": "https://github.com/serenyadev"
-    },
-    {
-      "login": "EnragedPotato",
-      "additions": 628,
-      "deletions": 145,
-      "commits": 9,
-      "avatar_url": "https://avatars.githubusercontent.com/u/173880583?v=4",
-      "html_url": "https://github.com/EnragedPotato"
     },
     {
       "login": "ThatJadenXgamer",
