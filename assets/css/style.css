@@ -837,6 +837,7 @@ html, body {
 ================================================== */
 .site-header {
     position: absolute;
+    height: 80px;
     padding: 20px 0 20px;
     background-image: linear-gradient(
         to bottom, 
