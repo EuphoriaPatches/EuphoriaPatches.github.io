@@ -131,6 +131,14 @@
         </section><!-- /.section-features -->
     </main><!-- /#main -->
 
+    <!-- Image Overlay -->
+    <div id="image-overlay" class="gallery-images-overlay">
+        <span class="gallery-images-overlay-close">&times;</span>
+        <div class="gallery-image-container">
+            <img id="overlay-image" src="" alt="Fullscreen Image">
+        </div>
+    </div>
+
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
             <div class="container">
@@ -170,6 +178,7 @@
     <script>
         const versions = [
             // Both versions
+            //{ version: "1.6.0", date: "Apr 29, 2025" },
             { version: "1.5.2", date: "Jan 29, 2025" },
             { version: "1.5.1", date: "Jan 22, 2025" },
             { version: "1.5.0", date: "Jan 22, 2025" },
@@ -283,6 +292,40 @@
         });
     </script>
     
-  
+    <script>
+        // Image overlay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('image-overlay');
+            const overlayImage = document.getElementById('overlay-image');
+            const overlayClose = document.querySelector('.gallery-images-overlay-close');
+            
+            // Add click event to all changelog images
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('changelog-image')) {
+                    overlayImage.src = e.target.src;
+                    overlay.classList.add('show');
+                }
+            });
+            
+            // Close overlay when clicking the X button
+            overlayClose.addEventListener('click', () => {
+                overlay.classList.remove('show');
+            });
+            
+            // Close overlay when clicking outside the image
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                }
+            });
+            
+            // Close overlay when pressing Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('show')) {
+                    overlay.classList.remove('show');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

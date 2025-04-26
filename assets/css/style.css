@@ -619,6 +619,7 @@ select {
     margin-left: 15px;
     max-width: 100% !important;
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .apanel {
