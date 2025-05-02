@@ -14,8 +14,14 @@
     "step4": "agora aparecerão na sua pasta de shaders.",
 
     "unsupportedVersions": "Para versões não suportadas do Minecraft, use o patcher com uma versão mais recente do Minecraft, gere os Euphoria Patches e copie a pasta shaderpack gerada para a instância não suportada.",
+    
+    "discordContact": "Está tendo problema com a instalação?",
+    "discordContactLink": "Junte-se á nossa comunidade do Discord",
 
     "downloadPageButton": "Ir para a página de Download",
+
+    "supportDevelopment1": "Ajude no desenvolvimento e tenha acesso antecipado a atualizações exclusivas?",
+    "supportDevelopment2": "Adquira as versões Preview nesse exato momento!",
 
     "installerMethodTitle": "Método de Instalação via Instalador",
     "installerStep1Before": "Acesse",
