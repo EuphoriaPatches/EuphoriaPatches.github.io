@@ -1,5 +1,5 @@
 {
-  "generated": "2025-05-02T12:50:00.532Z",
+  "generated": "2025-05-03T12:46:05.664Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -163,6 +163,14 @@
       "html_url": "https://github.com/SheriphDroplet"
     },
     {
+      "login": "JrDemiurg",
+      "additions": 8,
+      "deletions": 3,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
+      "html_url": "https://github.com/JrDemiurg"
+    },
+    {
       "login": "Eclipse-Ilx",
       "additions": 62,
       "deletions": 26,
@@ -177,14 +185,6 @@
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/24559268?v=4",
       "html_url": "https://github.com/Ryyyyyylie"
-    },
-    {
-      "login": "JrDemiurg",
-      "additions": 8,
-      "deletions": 3,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
-      "html_url": "https://github.com/JrDemiurg"
     },
     {
       "login": "haloTT100",
@@ -243,6 +243,14 @@
       "html_url": "https://github.com/ThatJadenXgamer"
     },
     {
+      "login": "digitalvagrant",
+      "additions": 30,
+      "deletions": 2,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
+      "html_url": "https://github.com/digitalvagrant"
+    },
+    {
       "login": "mpustovoi",
       "additions": 15,
       "deletions": 0,
@@ -259,12 +267,12 @@
       "html_url": "https://github.com/Apothicon02"
     },
     {
-      "login": "digitalvagrant",
-      "additions": 27,
-      "deletions": 1,
+      "login": "milosworks",
+      "additions": 45,
+      "deletions": 14,
       "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
-      "html_url": "https://github.com/digitalvagrant"
+      "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
+      "html_url": "https://github.com/milosworks"
     },
     {
       "login": "Dizzy-Eevee",
@@ -273,14 +281,6 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/179107951?v=4",
       "html_url": "https://github.com/Dizzy-Eevee"
-    },
-    {
-      "login": "milosworks",
-      "additions": 45,
-      "deletions": 14,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
-      "html_url": "https://github.com/milosworks"
     },
     {
       "login": "CoderRuq",
