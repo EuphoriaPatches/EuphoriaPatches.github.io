@@ -1515,7 +1515,7 @@ code {
 
 .download-count-home-page {
     color: var(--ThemeColor);
-    font-weight: bold;
+    font-weight: 800;
     transition: color 0.3s ease-in-out;
     margin: 5px;
     display: inline-block;
@@ -2485,11 +2485,11 @@ code {
     font-weight: bold;
     position: relative;
     transition: all 0.3s ease;
-    background-color: var(--LinkColor);
+    background-color: transparent;
     color: white;
-    padding: 0 4px;
+    padding: 2px 4px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 1000px rgb(173, 50, 167), 0 0 8px 2px rgba(173, 50, 167, 0.7);
 }
 
 .section-what-is-EP-desc a[href="/download"]::after {
@@ -2505,9 +2505,10 @@ code {
 }
 
 .section-what-is-EP-desc a[href="/download"]:hover {
-    background-color: var(--VeryDarkGray);
+    background-color: transparent;
     color: var(--EuphoriaMagenta);
     transform: scale(1.05);
+    box-shadow: inset 0 0 0 1000px var(--VeryDarkGray), 0 0 12px 3px rgba(173, 50, 167, 0.9);
 }
 
 .section-what-is-EP-desc a[href="/download"]:hover::after {
@@ -2909,10 +2910,14 @@ code {
     position: relative;
     cursor: pointer;
     text-decoration: underline dotted;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
 
 .dynamic-hover-element:hover {
     text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
 
 .dynamic-hover-element::after {
