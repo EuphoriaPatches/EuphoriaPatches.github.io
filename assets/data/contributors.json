@@ -1,12 +1,12 @@
 {
-  "generated": "2025-05-15T12:52:27.647Z",
+  "generated": "2025-05-16T12:52:08.616Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14304,
-      "deletions": 9715,
-      "commits": 278,
+      "additions": 14306,
+      "deletions": 9721,
+      "commits": 279,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -123,6 +123,14 @@
       "html_url": "https://github.com/irisfofs"
     },
     {
+      "login": "EyaeM",
+      "additions": 14,
+      "deletions": 8,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/100169384?v=4",
+      "html_url": "https://github.com/EyaeM"
+    },
+    {
       "login": "Flakxo",
       "additions": 5,
       "deletions": 3,
@@ -161,14 +169,6 @@
       "commits": 4,
       "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
       "html_url": "https://github.com/Simple205"
-    },
-    {
-      "login": "EyaeM",
-      "additions": 11,
-      "deletions": 7,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/100169384?v=4",
-      "html_url": "https://github.com/EyaeM"
     },
     {
       "login": "JrDemiurg",
