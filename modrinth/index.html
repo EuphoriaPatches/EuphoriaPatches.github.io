@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://www.euphoriapatches.com/kofi/"/>
+    <link rel="canonical" href="https://www.euphoriapatches.com/modrinth/"/>
 
     <title>Modrinth | Euphoria Patches</title>
 
@@ -77,42 +77,39 @@
         
         .redirect-link {
             margin-top: 30px;
+            margin-bottom: 20px;
             display: inline-block;
-            padding: 14px 28px;
-            background-color: rgb(196, 102, 47); /* Blue instead of green */
-            color: white;
+            padding: 12px 24px;
+            background-color: rgba(60, 60, 70, 0.8);
+            color: var(--VeryLightGray);
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(219, 161, 52, 0.3);
-            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 80, 223, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
         }
-        
-        .redirect-link:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            z-index: 1;
+
+        .redirect-link::before {
+            content: "";
+            margin-right: 8px;
+            font-size: 14px;
+            opacity: 0.9;
         }
-        
+
         .redirect-link:hover {
-            background-color: #5f3310;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(185, 127, 41, 0.4);
+            background-color: rgba(70, 70, 80, 0.9);
+            border-color: rgba(255, 80, 223, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
-        
+
         .redirect-link:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(185, 118, 41, 0.3);
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
         
         /* Minecraft animation container */
@@ -159,7 +156,7 @@
             <img src="/assets/img/other/ember_host_ep.png" alt="Ember Minecraft Server" class="banner">
         </a>
         
-        <p><a href="https://modrinth.com/mod/euphoria-patches" class="redirect-link" rel="noopener noreferrer nofollow">Click here to download now</a></p>
+        <p><a href="https://modrinth.com/mod/euphoria-patches#download" class="redirect-link" rel="noopener noreferrer nofollow">Skip and Download now</a></p>
     </center>
     
     <script>
@@ -168,7 +165,7 @@
     let currentStage = 0;
     let countdownTimeout;
     let animationTimeout;
-    let redirectURL = "https://modrinth.com/mod/euphoria-patches";
+    let redirectURL = "https://modrinth.com/mod/euphoria-patches#download";
     var loadingPageText = Math.random() <= 0.01 ? 'Potato...' : 'Loading page...'; // 1% chance of Easter egg
     
     // Countdown timer
