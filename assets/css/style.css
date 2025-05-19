@@ -622,6 +622,27 @@ select {
     cursor: pointer;
 }
 
+.changelog-description {
+    background-color: rgba(255, 80, 223, 0.05);
+    border-left: 4px solid var(--ThemeColor);
+    padding: 15px 20px;
+    margin: 0 0 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.changelog-description p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--VeryLightGray);
+    margin: 0;
+}
+
+.changelog-description strong {
+    color: var(--EuphoriaMagentaBright);
+}
+
 .apanel {
     padding: 0px 3%;
     background-color: var(--VeryDarkGray);

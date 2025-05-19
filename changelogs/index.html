@@ -114,7 +114,7 @@
                         <!-- Shader Section -->
                         <p></p>
                         <p></p>
-                        <button class="aaccordion" id="aaShaderBtn">Euphoria Patches</button>
+                        <button class="aaccordion" id="aaShaderBtn">Euphoria Patches Shader</button>
                         <div class="apanel panel-changelogs" id="shaderVersionsContainer">
                             <!-- Version panels will be generated here -->
                         </div>
@@ -216,10 +216,25 @@
             
             // Filter versions based on product type
             const filteredVersions = versions.filter(item => 
-                !item.products || item.products === "both" || item.products === productType
+                !item.products || item.products === productType
             );
             
             let html = '';
+            if (productType === 'shader') {
+                html += `
+                    <div class="changelog-description">
+                        <p>These changelogs show updates to the generated <strong>Euphoria Patches Shaderpack</strong> that you use in-game.</p>
+                    </div>
+                `;
+            } else if (productType === 'mod') {
+                html += `
+                    <div class="changelog-description">
+                        <p>These changelogs show updates to the <strong>Euphoria Patcher Mod</strong> - the tool that generates and patches the shader.</p>
+                    </div>
+                `;
+            }
+            
+            // Continue with version panels as before
             filteredVersions.forEach(item => {
                 const formattedVersion = item.version.replace(/\./g, '');
                 const elementId = `${prefix}${formattedVersion}`;
