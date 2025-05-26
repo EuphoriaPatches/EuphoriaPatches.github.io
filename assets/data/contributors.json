@@ -1,5 +1,5 @@
 {
-  "generated": "2025-05-25T12:48:47.173Z",
+  "generated": "2025-05-26T12:51:17.482Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -131,14 +131,6 @@
       "html_url": "https://github.com/EyaeM"
     },
     {
-      "login": "Simple205",
-      "additions": 124,
-      "deletions": 10,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
-      "html_url": "https://github.com/Simple205"
-    },
-    {
       "login": "SheriphDroplet",
       "additions": 62,
       "deletions": 43,
@@ -171,28 +163,20 @@
       "html_url": "https://github.com/Niklars"
     },
     {
-      "login": "Ryyyyyylie",
-      "additions": 46,
-      "deletions": 32,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/24559268?v=4",
-      "html_url": "https://github.com/Ryyyyyylie"
+      "login": "Simple205",
+      "additions": 124,
+      "deletions": 10,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
+      "html_url": "https://github.com/Simple205"
     },
     {
-      "login": "Eclipse-Ilx",
-      "additions": 62,
-      "deletions": 26,
+      "login": "JrDemiurg",
+      "additions": 8,
+      "deletions": 3,
       "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
-      "html_url": "https://github.com/Eclipse-Ilx"
-    },
-    {
-      "login": "haloTT100",
-      "additions": 27,
-      "deletions": 21,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
-      "html_url": "https://github.com/haloTT100"
+      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
+      "html_url": "https://github.com/JrDemiurg"
     },
     {
       "login": "GregS98",
@@ -203,12 +187,36 @@
       "html_url": "https://github.com/GregS98"
     },
     {
-      "login": "JrDemiurg",
-      "additions": 8,
-      "deletions": 3,
+      "login": "haloTT100",
+      "additions": 27,
+      "deletions": 21,
       "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
-      "html_url": "https://github.com/JrDemiurg"
+      "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
+      "html_url": "https://github.com/haloTT100"
+    },
+    {
+      "login": "Milan4ikdudewtf",
+      "additions": 39,
+      "deletions": 12,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/157549423?v=4",
+      "html_url": "https://github.com/Milan4ikdudewtf"
+    },
+    {
+      "login": "Eclipse-Ilx",
+      "additions": 62,
+      "deletions": 26,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
+      "html_url": "https://github.com/Eclipse-Ilx"
+    },
+    {
+      "login": "Ryyyyyylie",
+      "additions": 46,
+      "deletions": 32,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/24559268?v=4",
+      "html_url": "https://github.com/Ryyyyyylie"
     },
     {
       "login": "TheMysticalBard",
@@ -259,20 +267,20 @@
       "html_url": "https://github.com/FelisMoon"
     },
     {
-      "login": "digitalvagrant",
-      "additions": 30,
-      "deletions": 2,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
-      "html_url": "https://github.com/digitalvagrant"
-    },
-    {
       "login": "mpustovoi",
       "additions": 15,
       "deletions": 0,
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/92390626?v=4",
       "html_url": "https://github.com/mpustovoi"
+    },
+    {
+      "login": "digitalvagrant",
+      "additions": 30,
+      "deletions": 2,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
+      "html_url": "https://github.com/digitalvagrant"
     },
     {
       "login": "Apothicon02",
