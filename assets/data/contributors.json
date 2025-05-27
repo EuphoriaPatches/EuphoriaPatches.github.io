@@ -1,5 +1,5 @@
 {
-  "generated": "2025-05-26T12:51:17.482Z",
+  "generated": "2025-05-27T12:55:06.480Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -147,20 +147,20 @@
       "html_url": "https://github.com/Flakxo"
     },
     {
-      "login": "SCAFprivate",
-      "additions": 80,
-      "deletions": 43,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
-      "html_url": "https://github.com/SCAFprivate"
-    },
-    {
       "login": "Niklars",
       "additions": 89,
       "deletions": 28,
       "commits": 4,
       "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
       "html_url": "https://github.com/Niklars"
+    },
+    {
+      "login": "SCAFprivate",
+      "additions": 80,
+      "deletions": 43,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
+      "html_url": "https://github.com/SCAFprivate"
     },
     {
       "login": "Simple205",
@@ -179,12 +179,12 @@
       "html_url": "https://github.com/JrDemiurg"
     },
     {
-      "login": "GregS98",
-      "additions": 149,
-      "deletions": 32,
+      "login": "Cozary",
+      "additions": 79,
+      "deletions": 26,
       "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/211936576?v=4",
-      "html_url": "https://github.com/GregS98"
+      "avatar_url": "https://avatars.githubusercontent.com/u/69899934?v=4",
+      "html_url": "https://github.com/Cozary"
     },
     {
       "login": "haloTT100",
@@ -209,6 +209,14 @@
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
       "html_url": "https://github.com/Eclipse-Ilx"
+    },
+    {
+      "login": "GregS98",
+      "additions": 149,
+      "deletions": 32,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/211936576?v=4",
+      "html_url": "https://github.com/GregS98"
     },
     {
       "login": "Ryyyyyylie",
@@ -251,22 +259,6 @@
       "html_url": "https://github.com/Hammerhud"
     },
     {
-      "login": "Agentley",
-      "additions": 4,
-      "deletions": 2,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/62411612?v=4",
-      "html_url": "https://github.com/Agentley"
-    },
-    {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
-    },
-    {
       "login": "mpustovoi",
       "additions": 15,
       "deletions": 0,
@@ -283,12 +275,36 @@
       "html_url": "https://github.com/digitalvagrant"
     },
     {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
+    },
+    {
+      "login": "Agentley",
+      "additions": 4,
+      "deletions": 2,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/62411612?v=4",
+      "html_url": "https://github.com/Agentley"
+    },
+    {
       "login": "Apothicon02",
       "additions": 24,
       "deletions": 2,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
       "html_url": "https://github.com/Apothicon02"
+    },
+    {
+      "login": "CoderRuq",
+      "additions": 113,
+      "deletions": 37,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
+      "html_url": "https://github.com/CoderRuq"
     },
     {
       "login": "FloorIsTired",
@@ -305,14 +321,6 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/89976060?v=4",
       "html_url": "https://github.com/xiader-45"
-    },
-    {
-      "login": "CoderRuq",
-      "additions": 113,
-      "deletions": 37,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
-      "html_url": "https://github.com/CoderRuq"
     },
     {
       "login": "milosworks",
