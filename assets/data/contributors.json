@@ -1,12 +1,12 @@
 {
-  "generated": "2025-05-28T13:24:54.804Z",
+  "generated": "2025-05-29T12:53:32.250Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
       "additions": 14378,
-      "deletions": 9803,
-      "commits": 289,
+      "deletions": 9805,
+      "commits": 291,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -115,6 +115,14 @@
       "html_url": "https://github.com/spaghettube"
     },
     {
+      "login": "Milan4ikdudewtf",
+      "additions": 50,
+      "deletions": 16,
+      "commits": 6,
+      "avatar_url": "https://avatars.githubusercontent.com/u/157549423?v=4",
+      "html_url": "https://github.com/Milan4ikdudewtf"
+    },
+    {
       "login": "irisfofs",
       "additions": 13,
       "deletions": 5,
@@ -179,14 +187,6 @@
       "html_url": "https://github.com/JrDemiurg"
     },
     {
-      "login": "Cozary",
-      "additions": 79,
-      "deletions": 26,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/69899934?v=4",
-      "html_url": "https://github.com/Cozary"
-    },
-    {
       "login": "haloTT100",
       "additions": 27,
       "deletions": 21,
@@ -195,12 +195,12 @@
       "html_url": "https://github.com/haloTT100"
     },
     {
-      "login": "Milan4ikdudewtf",
-      "additions": 39,
-      "deletions": 12,
+      "login": "Cozary",
+      "additions": 79,
+      "deletions": 26,
       "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/157549423?v=4",
-      "html_url": "https://github.com/Milan4ikdudewtf"
+      "avatar_url": "https://avatars.githubusercontent.com/u/69899934?v=4",
+      "html_url": "https://github.com/Cozary"
     },
     {
       "login": "Eclipse-Ilx",
