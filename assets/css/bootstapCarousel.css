@@ -76,7 +76,7 @@
   justify-content: center;
   padding: 0;
   margin-right: 15%;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   margin-left: 15%;
   list-style: none;
 }
@@ -84,8 +84,8 @@
 .carousel-indicators [data-bs-target] {
   width: 30px;
   height: 3px;
-  margin-right: 3px;
-  margin-left: 3px;
+  margin-right: 0px;
+  margin-left: 0px;
   background-color: #fff;
   opacity: .5;
   transition: opacity .6s ease;
@@ -113,6 +113,19 @@
   padding-bottom: 1.25rem;
   color: #fff;
   text-align: center;
+}
+
+.carousel-caption h5 {
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (max-width: 480px){
+  .carousel-caption h5 {
+    font-size: 1rem !important;
+  }
+  
 }
 
 /* Essential utilities */

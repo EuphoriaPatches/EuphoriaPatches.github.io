@@ -47,7 +47,7 @@
     <![endif]-->
 
     <!-- Cookie Consent Script -->
-    <script src="/assets/js/cookie-consent.js" async></script>
+    <div src="/assets/js/cookie-consent.js" async></script>
     <style>
 
 /* Installation instructions styling */
@@ -267,6 +267,207 @@ code:contains("Loading data") {
     max-height: 300px;
   }
 }
+
+.installation-methods-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.method-card {
+    background: linear-gradient(135deg, rgba(23, 24, 28, 0.8) 0%, rgba(30, 32, 38, 0.6) 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0; /* Allow flex items to shrink */
+}
+
+.method-header {
+    padding: 25px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 80, 223, 0.1) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.method-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background-color: var(--ThemeColor);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.method-title {
+    margin: 0;
+    color: var(--VeryLightGray);
+    font-size: 24px;
+    font-weight: bold;
+    padding-right: 60px;
+    line-height: 1.2;
+}
+
+.method-content {
+    padding: 15px;
+}
+
+/* Adjust carousel for smaller container */
+.method-card .carousel-how-to-install {
+    margin: 30px 0;
+    width: 100%;
+}
+
+.method-card .carousel-inner {
+    max-height: 250px;
+}
+
+/* Instructions styling within cards */
+.method-card .section-install-instructions {
+    counter-reset: step-counter;
+}
+
+.method-card .section-install-instructions > li {
+    margin-bottom: 20px;
+    padding: 15px 20px 15px 50px;
+    font-size: 18px;
+}
+
+.method-card .section-install-instructions > li::before {
+    width: 28px;
+    height: 28px;
+    left: 15px;
+    font-size: 14px;
+}
+
+.common-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .installation-methods-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .method-title {
+        font-size: 20px;
+        padding-right: 50px;
+    }
+    
+    .method-badge {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .method-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container.section-indented-container {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px 15px;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        margin-bottom: 30px;
+    }
+    
+    /* Adjust method cards for full width on mobile */
+    .installation-methods-container {
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .method-card {
+        border-radius: 12px;
+        margin: 0 10px;
+    }
+    
+    .method-content {
+        padding: 15px;
+    }
+    
+    /* Adjust carousel for mobile */
+    .method-card .carousel-how-to-install {
+        margin: 20px 0;
+    }
+    
+    /* Footer adjustments */
+    .common-footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .larger-text-EP-desc-left-margin {
+        margin: 20px 10px;
+        padding: 15px 20px;
+    }
+}
+
+/* Tablet-specific adjustments */
+@media (max-width: 992px) and (min-width: 769px) {
+    .container.section-indented-container {
+        max-width: 95%;
+        padding: 30px 25px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .container.section-indented-container {
+        padding: 15px 10px;
+    }
+    
+    .method-card {
+        margin: 0 5px;
+        border-radius: 8px;
+    }
+    
+    .method-header {
+        padding: 20px 15px;
+    }
+    
+    .method-content {
+        padding: 10px;
+    }
+    
+    .method-card .section-install-instructions > li {
+        padding: 12px 15px 12px 45px;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .method-card .section-install-instructions > li::before {
+        width: 24px;
+        height: 24px;
+        left: 12px;
+        font-size: 12px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -331,92 +532,98 @@ code:contains("Loading data") {
     </div><!-- /.hero -->
 
     <main id="main" class="site-main">
-        <section class="site-section gray-bg">
-            <!-- ad-how-to-install -->
-            <!-- <div align="center">
-                <ins class="adsbygoogle"
-                    style="display:inline-block;width:99%;"
-                    data-ad-client="ca-pub-3756100266756497"
-                    data-ad-slot="1208027151"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div> -->
-            <div class="container section-indented-container">
-                <h2 id="modMethodTitle"></h2>
-                <ol class="section-install-instructions">
-                    <li>
-                        <span id="step1"></span>
-                        <strong id="step1After"></strong>
-                        <ul>
+    <section class="site-section gray-bg">
+        <div class="container section-indented-container">           
+            <div class="installation-methods-container">
+                <!-- Method 1: Mod Installation -->
+                <div class="method-card" id="mod-method-card">
+                    <div class="method-header">
+                        <div class="method-badge">1</div>
+                        <h3 id="modMethodTitle" class="method-title"></h3>
+                    </div>
+                    
+                    <div class="method-content">
+                        <ol class="section-install-instructions">
                             <li>
-                                <span id="substep1_1"></span>
-                                <span id="version-number"><code>Loading data from Modrinth...</code></span>
-                                <span>(</span><a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a>
-                                <span id="or"></span>
-                                <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
+                                <span id="step1"></span>
+                                <strong id="step1After"></strong>
+                                <ul>
+                                    <li>
+                                        <span id="substep1_1"></span>
+                                        <span id="version-number"><code>Loading data from Modrinth...</code></span>
+                                        <span>(</span><a href="https://modrinth.com/shader/complementary-reimagined" target="_blank">Reimagined</a>
+                                        <span id="or"></span>
+                                        <a href="https://modrinth.com/shader/complementary-unbound" target="_blank">Unbound</a><span>)</span>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span id="step2Before"></span>
-                        <a href="/modrinth" target="_blank">EuphoriaPatcher</a>
-                        <span id="version-number3"><code>Loading data from Modrinth...</code></span><span>)</span>
-                        <span id="step2After"></span>
-                    </li>
-                    <li id="step3"></li>
-                    <li>
-                        <span id="version-number2"><code>Loading data from Modrinth...</code></span>
-                        <span id="step4"></span>
-                    </li>
-                </ol>
-                <p id="discordContact"></p>
-                
+                            <li>
+                                <span id="step2Before"></span>
+                                <a href="/modrinth" target="_blank">EuphoriaPatcher</a>
+                                <span id="version-number3"><code>Loading data from Modrinth...</code></span><span>)</span>
+                                <span id="step2After"></span>
+                            </li>
+                            <li id="step3"></li>
+                            <li>
+                                <span id="version-number2"><code>Loading data from Modrinth...</code></span>
+                                <span id="step4"></span>
+                            </li>
+                        </ol>
 
+                        <div class="carousel-how-to-install">
+                            <div class="carousel slide" id="carouselDemo" data-bs-wrap="true">
+                                <div class="carousel-inner"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                                <div class="carousel-indicators"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Method 2: Installer Installation -->
+                <div class="method-card" id="installer-method-card">
+                    <div class="method-header">
+                        <div class="method-badge">2</div>
+                        <h3 id="installerMethodTitle" class="method-title"></h3>
+                    </div>
+                    
+                    <div class="method-content">
+                        <ol class="section-install-instructions">
+                            <li id="installerStep1">
+                                <span id="installerStep1Before"></span>
+                                <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders</a>
+                                <span id="installerStep1After"></span>
+                            </li>
+                            <li id="installerStep2"></li>
+                            <li id="installerStep3"></li>
+                            <li id="installerStep4"></li>
+                            <li id="installerStep5"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Footer Content -->
+            <div class="common-footer">
+                <p id="discordContact"></p>
                 <section class="section-downloads text-center">
                     <div class="d-flex justify-content-center">
                         <a href="/download" class="btn btn-installer indented-download-button" id="downloadPageButton"></a>
                     </div>
-                </section><!-- /.section-downloads -->
-
+                </section>
                 <div class="larger-text-EP-desc-left-margin text-center">
                     <ins><strong id="supportDevelopment1"></strong></ins><br>
                     <a href="/support" target="_blank" id="supportDevelopment2" class="mx-auto d-inline-block"></a>
                 </div>
-
-                <div class="carousel-how-to-install">
-                    <div class="carousel slide" id="carouselDemo" data-bs-wrap="true">
-                        <div class="carousel-inner"></div>
-                    
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    
-                        <div class="carousel-indicators"></div>
-                    </div>
-                </div>
-                <div class="Installer-Method-Title" >
-                    <h2 id="installerMethodTitle"></h2>
-                </div>
-                <ol class="section-install-instructions">
-                    <li id="installerStep1">
-                        <span id="installerStep1Before"></span>
-                        <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders</a>
-                        <span id="installerStep1After"></span>
-                    </li>
-                    <li id="installerStep2"></li>
-                    <li id="installerStep3"></li>
-                    <li id="installerStep4"></li>
-                    <li id="installerStep5"></li>
-                </ol>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -553,7 +760,7 @@ code:contains("Loading data") {
             if (discordElement) {
                 const discordText = currentTranslation['discordContact'] || englishTranslation['discordContact'] || 'Having trouble with installation?';
                 const discordLinkText = currentTranslation['discordContactLink'] || englishTranslation['discordContactLink'] || 'Join our Discord community';
-                discordElement.innerHTML = `<img src="/assets/img/logos/discord200x.webp" alt="Discord" class="discord-icon" style="height: 20px; width: auto; vertical-align: middle; margin-right: 6px;"> ${discordText} <a href="/discord" target="_blank" class="discord-link">${discordLinkText}</a>`;
+                discordElement.innerHTML = `<img src="/assets/img/logos/discord200x.webp" alt="Discord" class="discord-icon" style="height: 35px; width: auto; vertical-align: middle; margin-right: 6px; padding-bottom:10px;"> ${discordText} <a href="/discord" target="_blank" class="discord-link">${discordLinkText}</a>`;
                 discordElement.className = "text-center mb-4";
             }
 
