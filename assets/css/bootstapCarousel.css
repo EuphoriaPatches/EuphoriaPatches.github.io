@@ -105,9 +105,9 @@
 
 /* Captions */
 .carousel-caption {
-  position: absolute;
+  position: sticky;
   right: 15%;
-  bottom: 1.25rem;
+  bottom: -0.5rem;
   left: 15%;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -121,7 +121,10 @@
   line-height: 1.2;
 }
 
-@media (max-width: 480px){
+@media (max-width: 770px){
+  .carousel-caption {
+    bottom: 1rem !important;
+  }
   .carousel-caption h5 {
     font-size: 1rem !important;
   }

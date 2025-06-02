@@ -52,121 +52,128 @@
 
 /* Installation instructions styling */
 .section-install-instructions {
-  counter-reset: step-counter;
-  margin-left: 0;
-  padding-left: 0;
+    counter-reset: step-counter;
+    margin-left: 0;
+    padding-left: 0;
+    flex: 0 0 auto; /* Don't grow instructions */
+    margin-bottom: -40px; /* Add consistent margin */
+}
+
+.carousel-spacer {
+    flex: 1 1 auto;
 }
 
 .section-install-instructions > li {
-  position: relative;
-  margin-bottom: 30px;
-  padding: 20px 25px 20px 70px;
-  background-color: rgba(23, 24, 28, 0.4);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  counter-increment: step-counter;
-  border-left: 3px solid var(--ThemeColor);
-  list-style-type: none;
+    position: relative;
+    margin-bottom: 30px;
+    padding: 20px 25px 20px 70px;
+    background-color: rgba(23, 24, 28, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    counter-increment: step-counter;
+    border-left: 3px solid var(--ThemeColor);
+    list-style-type: none;
 }
 
 .section-install-instructions > li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .section-install-instructions > li::before {
-  content: counter(step-counter);
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  background-color: var(--ThemeColor);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0 3px 8px rgba(255, 80, 223, 0.3);
+    content: counter(step-counter);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background-color: var(--ThemeColor);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 3px 8px rgba(255, 80, 223, 0.3);
 }
 
 .section-install-instructions ul {
-  margin-top: 15px;
-  margin-left: 0;
-  padding-left: 20px;
+    margin-top: 15px;
+    margin-left: 0;
+    padding-left: 20px;
 }
 
 .section-install-instructions ul li {
-  margin-top: 10px;
-  position: relative;
+    margin-top: 10px;
+    position: relative;
 }
 
 /* Loading indicator styling */
 code:contains("Loading data") {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: rgba(30, 33, 45, 0.8);
-  border-radius: 6px;
-  color: #ccc;
-  animation: pulse 1.5s infinite;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: rgba(30, 33, 45, 0.8);
+    border-radius: 6px;
+    color: #ccc;
+    animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 
 /* Section headings */
 .section-indented-container h2 {
-  position: relative;
-  font-size: 36px;
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  text-align: center;
-  font-family: 'monocraft-multiple-lang';
-  letter-spacing: -3px;
+    position: relative;
+    font-size: 36px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-family: 'monocraft-multiple-lang';
+    letter-spacing: -3px;
 }
 
 .section-indented-container h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(to right, var(--ThemeColor), var(--LinkColor));
-  border-radius: 3px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--ThemeColor), var(--LinkColor));
+    border-radius: 3px;
 }
 
 /* Carousel enhancements */
 .carousel-how-to-install {
+    flex: 0 0 auto; /* Don't grow carousel */
     margin: 50px auto;
     width: 90%;
     max-width: 800px;
 }
 
 .carousel-inner {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .carousel-indicators {
-  bottom: -45px;
+    bottom: -45px;
 }
 
 .carousel-indicators img {
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-  opacity: 0.7;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    opacity: 0.7;
 }
 
 .carousel-indicators .active img {
@@ -176,11 +183,11 @@ code:contains("Loading data") {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  padding: 25px;
-  border-radius: 50%;
-  background-size: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+    border-radius: 50%;
+    background-size: 20px;
 }
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
@@ -191,29 +198,29 @@ code:contains("Loading data") {
 
 /* Footer disclaimer section */
 .larger-text-EP-desc-left-margin {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 20px 25px;
-  border-radius: 12px;
-  border-left: 3px solid var(--ThemeColor);
-  margin: 30px 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px 25px;
+    border-radius: 12px;
+    border-left: 3px solid var(--ThemeColor);
+    margin: 30px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .larger-text-EP-desc-left-margin a {
-  padding: 5px 15px;
-  background-color: rgba(255, 80, 223, 0.1);
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  display: inline-block;
-  margin-top: 10px;
-  border: 1px solid rgba(255, 80, 223, 0.2);
+    padding: 5px 15px;
+    background-color: rgba(255, 80, 223, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 80, 223, 0.2);
 }
 
 .larger-text-EP-desc-left-margin a:hover {
-  background-color: var(--ThemeColor);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 80, 223, 0.3);
+    background-color: var(--ThemeColor);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 80, 223, 0.3);
 }
 
 /* Container styling */
@@ -272,6 +279,7 @@ code:contains("Loading data") {
     display: flex;
     gap: 30px;
     margin-bottom: 40px;
+    align-items: stretch; /* Stretch cards to same height */
 }
 
 .method-card {
@@ -280,6 +288,8 @@ code:contains("Loading data") {
     border: 2px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     flex: 1;
     min-width: 0; /* Allow flex items to shrink */
 }
@@ -317,6 +327,9 @@ code:contains("Loading data") {
 }
 
 .method-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 15px;
 }
 
@@ -699,13 +712,15 @@ code:contains("Loading data") {
                             </li>
                         </ol>
 
+                        <div class="carousel-spacer"></div>
+
                         <div class="carousel-how-to-install">
-                            <div class="carousel slide" id="carouselDemo" data-bs-wrap="true">
+                            <div class="carousel slide" id="modCarousel" data-bs-wrap="true">
                                 <div class="carousel-inner"></div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+                                <button class="carousel-control-prev" type="button" data-bs-target="#modCarousel" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon"></span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
+                                <button class="carousel-control-next" type="button" data-bs-target="#modCarousel" data-bs-slide="next">
                                     <span class="carousel-control-next-icon"></span>
                                 </button>
                                 <div class="carousel-indicators"></div>
@@ -733,6 +748,22 @@ code:contains("Loading data") {
                             <li id="installerStep4"></li>
                             <li id="installerStep5"></li>
                         </ol>
+
+                        <div class="carousel-spacer"></div>
+
+                        <div class="carousel-how-to-install">
+                            <div class="carousel slide" id="installerCarousel" data-bs-wrap="true">
+                                <div class="carousel-inner"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#installerCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#installerCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+                                <div class="carousel-indicators"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1118,19 +1149,44 @@ code:contains("Loading data") {
     });
     </script>
     <script>
-        const config = {
-            basePath: '/assets/img/howToInstallCarousel/', totalSlides: 5,
-            titles: ['1/5 Download Complementary', '2/5 Download Euphoria Patches', '3/5 Add Files To Folders', '4/5 Launch Minecraft', '5/5 Euphoria Patches Is Ready!'],
+        document.addEventListener('DOMContentLoaded', () => {
+        const modCarouselConfig = {
+            basePath: '/assets/img/howToInstallCarousel/modCarousel/',
+            totalSlides: 5,
+            titles: [
+                '1/5 Download Complementary', 
+                '2/5 Download Euphoria Patches', 
+                '3/5 Add Files To Folders', 
+                '4/5 Launch Minecraft', 
+                '5/5 Euphoria Patches Is Ready!'
+            ],
         };
         
-        document.addEventListener('DOMContentLoaded', () => {
-            const carouselInner = document.querySelector('.carousel-inner');
-            const indicators = document.querySelector('.carousel-indicators');
-            const carousel = document.getElementById('carouselDemo');
+        const installerCarouselConfig = {
+            basePath: '/assets/img/howToInstallCarousel/installerCarousel/',
+            totalSlides: 5,
+            titles: [
+                '1/5 Download Installer', 
+                '2/5 Open The Installer', 
+                '3/5 Click Advanced Settings', 
+                '4/5 Select Install Euphoria Patches',
+                '5/5 Launch the Game!'
+            ],
+        };
+        
+        function initializeCarousel(carouselId, config) {
+            const carousel = document.getElementById(carouselId);
             
-            // Initialize Bootstrap carousel
+            if (!carousel) return;
+            
+            const carouselInner = carousel.querySelector('.carousel-inner');
+            const indicators = carousel.querySelector('.carousel-indicators');
+            
+            carouselInner.innerHTML = '';
+            indicators.innerHTML = '';
+            
             const bsCarousel = new bootstrap.Carousel(carousel);
-
+            
             // Touch handling variables
             let touchStartX = 0;
             let touchEndX = 0;
@@ -1160,7 +1216,7 @@ code:contains("Loading data") {
                     }
                 }
             }
-
+            
             // Create carousel items
             for(let i = 1; i <= config.totalSlides; i++) {
                 const imgUrl = `${config.basePath}${i}.webp`;
@@ -1174,17 +1230,22 @@ code:contains("Loading data") {
                     </div>
                 `;
                 carouselInner.appendChild(carouselItem);
-
+                
                 const indicator = document.createElement('button');
                 indicator.type = 'button';
                 indicator.className = i === 1 ? 'active' : '';
-                indicator.setAttribute('data-bs-target', '#carouselDemo');
+                indicator.setAttribute('data-bs-target', `#${carouselId}`);
                 indicator.setAttribute('data-bs-slide-to', i-1);
                 indicator.innerHTML = `<img src="${imgUrl}">`;
                 indicators.appendChild(indicator);
             }
-        });
-        </script>
+        }
+        
+        // Initialize each carousel with its specific config
+        initializeCarousel('modCarousel', modCarouselConfig);
+        initializeCarousel('installerCarousel', installerCarouselConfig);
+    });
+</script>
   
 </body>
 </html>
