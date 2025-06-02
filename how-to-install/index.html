@@ -468,13 +468,23 @@ code:contains("Loading data") {
     }
 }
 
+.download-buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 15px 0;
+    width: 100%;
+}
+
 .complementary-download-btn {
     border: 4px solid var(--ThemeColor);
     color: var(--VeryLightGray);
     background-color: var(--VeryDarkGray);
-    width: 100%; /* Use percentage width instead of min-width */
-    max-width: 300px; /* Cap the maximum width */
-    padding: 16px 20px;
+    width: 100%;
+    padding: 10px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -482,40 +492,22 @@ code:contains("Loading data") {
     text-align: center;
     font-weight: 600;
     border-radius: 50px;
-    margin: 10px auto; /* Center the button */
+    margin: 10px 0;
     cursor: pointer;
     box-shadow: 0 0 0 transparent;
     transition: all 0.3s ease;
+    min-width: 160px;
+    max-width: fit-content;
+    font-size: 14px;
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .complementary-download-btn {
-        padding: 12px 15px;
-        border-width: 3px;
-        max-width: 100%; /* Full width on small screens */
-        margin: 5px 0;
-    }
-    
-    .complementary-download-btn .download-text {
-        font-size: 14px;
-    }
-    
-    .complementary-download-btn .download-version {
-        font-size: 11px;
-    }
-}
-
-/* Very small screens */
-@media (max-width: 480px) {
-    .complementary-download-btn {
-        padding: 10px 12px;
-        border-width: 2px;
-    }
-    
-    .complementary-download-btn .download-text {
-        font-size: 13px;
-    }
+.complementary-download-btn .download-text {
+    font-size: 14px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    max-width: 100%;
+    margin-bottom: 4px;
 }
 
 .complementary-download-btn:hover {
@@ -528,17 +520,6 @@ code:contains("Loading data") {
 
 .complementary-download-btn:active {
     transform: translateY(0);
-}
-
-.complementary-download-btn .download-text {
-    font-size: 16px;
-    margin-bottom: 4px;
-}
-
-.complementary-download-btn .download-version {
-    font-size: 13px;
-    color: var(--ThemeColor);
-    opacity: 0.9;
 }
 
 .complementary-download-btn:disabled {
@@ -554,70 +535,12 @@ code:contains("Loading data") {
     color: var(--VeryLightGray);
 }
 
-.download-buttons-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap; /* Prevent wrapping by default */
-    gap: 10px;
-    margin: 15px 0;
-    width: 100%;
-}
-
-/* Make the buttons more compact */
-.complementary-download-btn {
-    max-width: 160px; /* Even smaller max-width */
-    padding: 10px 16px; /* Reduced padding */
-    flex: 0 1 auto; /* Don't force equal width */
-    font-size: 14px; /* Smaller font size */
-    margin: 5px 0;
-    min-width: 0; /* Allow button to shrink below its content size */
-}
-
-.complementary-download-btn .download-text {
-    font-size: 14px;
-    white-space: nowrap; /* Prevent text wrapping inside button */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
-}
-
-/* Update the divider for horizontal layout */
 .download-divider {
     font-size: 16px;
     color: var(--VeryLightGray);
     opacity: 0.7;
     margin: 0 5px;
     padding: 0 5px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .download-buttons-container {
-        flex-wrap: wrap; /* Allow wrapping on medium screens */
-    }
-    
-    .complementary-download-btn {
-        max-width: 140px;
-        padding: 8px 12px;
-        border-width: 3px;
-    }
-}
-
-/* Very small screens */
-@media (max-width: 576px) {
-    .download-buttons-container {
-        flex-direction: column;
-    }
-    
-    .complementary-download-btn {
-        max-width: 100%;
-        width: 100%;
-    }
-    
-    .download-divider {
-        margin: 5px 0;
-    }
 }
 
 .windows-button {
@@ -641,10 +564,35 @@ code:contains("Loading data") {
     box-shadow: 0 0 20px rgba(248, 152, 32, 0.5), 0 0 40px rgba(248, 152, 32, 0.3), 0 0 60px rgba(248, 152, 32, 0.1);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
+    .complementary-download-btn {
+        padding: 12px 15px;
+        border-width: 3px;
+        max-width: 100%;
+        margin: 5px 0;
+    }
+    
+    .complementary-download-btn .download-text {
+        font-size: 14px;
+    }
+    
+    .complementary-download-btn .download-version {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
     .download-buttons-container {
-        gap: 15px;
+        flex-direction: column;
+    }
+
+    .complementary-download-btn {
+        padding: 10px 12px;
+        border-width: 2px;
+    }
+    
+    .complementary-download-btn .download-text {
+        font-size: 13px;
     }
 }
 
@@ -742,6 +690,7 @@ code:contains("Loading data") {
                                 <a href="/modrinth" target="_blank">EuphoriaPatcher</a>
                                 <span id="version-number3"><code>Loading data from Modrinth...</code></span><span>)</span>
                                 <span id="step2After"></span>
+                                <a href="/modrinth" target="_blank" class="btn btn-installer indented-download-button complementary-download-btn" id="downloadPageButton"></a>
                             </li>
                             <li id="step3"></li>
                             <li>
@@ -791,11 +740,6 @@ code:contains("Loading data") {
             <!-- Common Footer Content -->
             <div class="common-footer">
                 <p id="discordContact"></p>
-                <section class="section-downloads text-center">
-                    <div class="d-flex justify-content-center">
-                        <a href="/download" class="btn btn-installer indented-download-button" id="downloadPageButton"></a>
-                    </div>
-                </section>
                 <div class="larger-text-EP-desc-left-margin text-center">
                     <ins><strong id="supportDevelopment1"></strong></ins><br>
                     <a href="/support" target="_blank" id="supportDevelopment2" class="mx-auto d-inline-block"></a>
