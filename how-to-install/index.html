@@ -468,6 +468,186 @@ code:contains("Loading data") {
     }
 }
 
+.complementary-download-btn {
+    border: 4px solid var(--ThemeColor);
+    color: var(--VeryLightGray);
+    background-color: var(--VeryDarkGray);
+    width: 100%; /* Use percentage width instead of min-width */
+    max-width: 300px; /* Cap the maximum width */
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 50px;
+    margin: 10px auto; /* Center the button */
+    cursor: pointer;
+    box-shadow: 0 0 0 transparent;
+    transition: all 0.3s ease;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .complementary-download-btn {
+        padding: 12px 15px;
+        border-width: 3px;
+        max-width: 100%; /* Full width on small screens */
+        margin: 5px 0;
+    }
+    
+    .complementary-download-btn .download-text {
+        font-size: 14px;
+    }
+    
+    .complementary-download-btn .download-version {
+        font-size: 11px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .complementary-download-btn {
+        padding: 10px 12px;
+        border-width: 2px;
+    }
+    
+    .complementary-download-btn .download-text {
+        font-size: 13px;
+    }
+}
+
+.complementary-download-btn:hover {
+    color: var(--ThemeColor);
+    border-color: white;
+    background-color: var(--DarkGray);
+    box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
+    transform: translateY(-2px);
+}
+
+.complementary-download-btn:active {
+    transform: translateY(0);
+}
+
+.complementary-download-btn .download-text {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.complementary-download-btn .download-version {
+    font-size: 13px;
+    color: var(--ThemeColor);
+    opacity: 0.9;
+}
+
+.complementary-download-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.complementary-download-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--VeryDarkGray);
+    border-color: var(--ThemeColor);
+    color: var(--VeryLightGray);
+}
+
+.download-buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap; /* Prevent wrapping by default */
+    gap: 10px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Make the buttons more compact */
+.complementary-download-btn {
+    max-width: 160px; /* Even smaller max-width */
+    padding: 10px 16px; /* Reduced padding */
+    flex: 0 1 auto; /* Don't force equal width */
+    font-size: 14px; /* Smaller font size */
+    margin: 5px 0;
+    min-width: 0; /* Allow button to shrink below its content size */
+}
+
+.complementary-download-btn .download-text {
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text wrapping inside button */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+}
+
+/* Update the divider for horizontal layout */
+.download-divider {
+    font-size: 16px;
+    color: var(--VeryLightGray);
+    opacity: 0.7;
+    margin: 0 5px;
+    padding: 0 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .download-buttons-container {
+        flex-wrap: wrap; /* Allow wrapping on medium screens */
+    }
+    
+    .complementary-download-btn {
+        max-width: 140px;
+        padding: 8px 12px;
+        border-width: 3px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 576px) {
+    .download-buttons-container {
+        flex-direction: column;
+    }
+    
+    .complementary-download-btn {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .download-divider {
+        margin: 5px 0;
+    }
+}
+
+.windows-button {
+    border-color: #0078d7; /* Windows blue */
+}
+
+.windows-button:hover {
+    color: #0078d7;
+    box-shadow: 0 0 20px rgba(0, 120, 215, 0.5), 0 0 40px rgba(0, 120, 215, 0.3), 0 0 60px rgba(0, 120, 215, 0.1);
+}
+
+.jar-button {
+    border-color: #f89820; /* Java orange */
+    background-color: var(--VeryDarkGray);
+}
+
+.jar-button:hover {
+    color: #f89820;
+    border-color: white;
+    background-color: var(--DarkGray);
+    box-shadow: 0 0 20px rgba(248, 152, 32, 0.5), 0 0 40px rgba(248, 152, 32, 0.3), 0 0 60px rgba(248, 152, 32, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .download-buttons-container {
+        gap: 15px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -595,9 +775,9 @@ code:contains("Loading data") {
                     <div class="method-content">
                         <ol class="section-install-instructions">
                             <li id="installerStep1">
-                                <span id="installerStep1Before"></span>
-                                <a href="https://www.complementary.dev/shaders/" target="_blank">https://www.complementary.dev/shaders</a>
                                 <span id="installerStep1After"></span>
+                                <button id="complementary-download-btn" disabled>
+                                </button>
                             </li>
                             <li id="installerStep2"></li>
                             <li id="installerStep3"></li>
@@ -662,6 +842,214 @@ code:contains("Loading data") {
 
     <script>
 
+    let complementaryDownloadUrl = null;
+
+    let currentTranslation = {};
+    let englishTranslation = {};
+
+    async function isWindowsOS() {
+        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+            try {
+            const data = await navigator.userAgentData.getHighEntropyValues(["platform"]);
+            if (data.platform === "Windows") return true;
+            } catch (e) {
+            console.warn("userAgentData error:", e);
+            }
+        }
+
+        if (navigator.platform && navigator.platform.startsWith("Win")) {
+            return true;
+        }
+
+        if (navigator.userAgent && /Windows/i.test(navigator.userAgent)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    async function fetchComplementaryInstaller() {
+        try {
+            const response = await fetch('https://api.github.com/repos/ComplementaryDevelopment/Complementary-Installer/releases');
+            const releases = await response.json();
+            
+            // Get the first release (there's only one)
+            const release = releases[0];
+            
+            console.log("Release:", release.tag_name);
+            console.log("Available assets:", release.assets.map(a => a.name).join(", "));
+            
+            // Find installer jar and exe files
+            const jarAssets = release.assets.filter(asset => 
+                asset.name.endsWith('.jar') && 
+                asset.name.toLowerCase().includes('installer')
+            );
+            
+            const exeAssets = release.assets.filter(asset => 
+                asset.name.endsWith('.exe') && 
+                asset.name.toLowerCase().includes('installer')
+            );
+            
+            // Sort assets by version
+            const sortByVersion = (assets) => {
+                if (assets.length > 0) {
+                    assets.sort((a, b) => {
+                        const versionA = extractVersionFromFilename(a.name);
+                        const versionB = extractVersionFromFilename(b.name);
+                        
+                        if (versionA && versionB) {
+                            const partsA = versionA.split('.').map(Number);
+                            const partsB = versionB.split('.').map(Number);
+                            
+                            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+                                const partA = partsA[i] || 0;
+                                const partB = partsB[i] || 0;
+                                if (partA !== partB) {
+                                    return partB - partA; // Descending order
+                                }
+                            }
+                        }
+                        
+                        // Fallback to upload date
+                        return new Date(b.updated_at) - new Date(a.updated_at);
+                    });
+                }
+            };
+            
+            sortByVersion(jarAssets);
+            sortByVersion(exeAssets);
+            
+            // Get the latest versions
+            const latestJarAsset = jarAssets.length > 0 ? jarAssets[0] : null;
+            const latestExeAsset = exeAssets.length > 0 ? exeAssets[0] : null;
+            
+            // Update UI based on OS and available downloads
+            const installerStep = document.getElementById('installerStep1');
+            if (!installerStep) return;
+            
+            // Create a new container for the step content
+            const stepContent = document.createElement('div');
+            stepContent.className = 'installer-step-content';
+            
+            // Add the instructional text first - IMPORTANT: Get text from translation system
+            const instructionText = document.createElement('span');
+            instructionText.id = 'installerStep1After';
+            instructionText.textContent = currentTranslation['installerStep1After'] || englishTranslation['installerStep1After'] || '';
+            stepContent.appendChild(instructionText);
+            
+            // Create download buttons container
+            const downloadContainer = document.createElement('div');
+            downloadContainer.id = 'complementary-download-container';
+            downloadContainer.className = 'download-buttons-container';
+            
+            const isWindows = await isWindowsOS();
+            
+            // Create download buttons based on OS detection
+            if (isWindows && latestExeAsset) {
+                // Windows EXE button
+                const exeButton = document.createElement('button');
+                exeButton.className = 'complementary-download-btn windows-button';
+                exeButton.onclick = () => downloadFile(latestExeAsset.browser_download_url);
+                
+                const exeVersion = extractVersionFromFilename(latestExeAsset.name);
+                
+                // Use translation for button text
+                const windowsButtonText = currentTranslation['windowsInstallerButton'] || englishTranslation['windowsInstallerButton'] || 'Windows EXE';
+                
+                exeButton.innerHTML = `<span class="download-text">${windowsButtonText}</span>`;
+                downloadContainer.appendChild(exeButton);
+                
+                // If JAR also available, add it as alternative
+                if (latestJarAsset) {
+                    const divider = document.createElement('div');
+                    divider.className = 'download-divider';
+                    divider.textContent =    '|';
+                    downloadContainer.appendChild(divider);
+                    
+                    const jarButton = document.createElement('button');
+                    jarButton.className = 'complementary-download-btn jar-button';
+                    jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
+                                        
+                    // Use translation for button text
+                    const javaButtonText = currentTranslation['javaInstallerButton'] || englishTranslation['javaInstallerButton'] || 'Java JAR';
+                    
+                    jarButton.innerHTML = `
+                        <span class="download-text">${javaButtonText}</span>`;
+                    downloadContainer.appendChild(jarButton);
+                }
+            } else if (latestJarAsset) {
+                // Non-Windows or only JAR available
+                const jarButton = document.createElement('button');
+                jarButton.className = 'complementary-download-btn';
+                jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
+                                
+                // Use translation for button text
+                const genericButtonText = currentTranslation['complementaryInstallerButton'] || englishTranslation['complementaryInstallerButton'] || 'Download Installer';
+                
+                jarButton.innerHTML = `<span class="download-text">${genericButtonText}</span>`;
+                downloadContainer.appendChild(jarButton);
+            } else {
+                // Fallback if nothing available
+                const fallbackButton = document.createElement('button');
+                fallbackButton.className = 'complementary-download-btn';
+                fallbackButton.onclick = () => window.open('https://www.complementary.dev/shaders/', '_blank');
+                
+                // Use translation for button text
+                const websiteButtonText = currentTranslation['complementaryWebsiteButton'] || englishTranslation['complementaryWebsiteButton'] || 'Visit Complementary Website';
+                
+                fallbackButton.innerHTML = `<span class="download-text">${websiteButtonText}</span>`;
+                downloadContainer.appendChild(fallbackButton);
+            }
+            
+            // Add download container after the instruction text
+            stepContent.appendChild(downloadContainer);
+            
+            // Replace current content with new content
+            while (installerStep.firstChild) {
+                installerStep.removeChild(installerStep.firstChild);
+            }
+            installerStep.appendChild(stepContent);
+            
+        } catch (error) {
+            console.error('Error fetching Complementary Installer:', error);
+            // Fallback handling
+        }
+    }
+
+    // Helper function to download a file
+    function downloadFile(url) {
+        if (!url) return;
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = '';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Helper function to extract version from filename
+    function extractVersionFromFilename(filename) {
+        // Match patterns like "Complementary-Installer-1.3.0.jar"
+        const match = filename.match(/[^\d]+(\d+\.\d+\.\d+)\.jar$/i);
+        return match ? match[1] : null;
+    }
+
+    function downloadComplementaryInstaller() {
+        if (complementaryDownloadUrl) {
+            // Create a temporary link and click it to trigger download
+            const link = document.createElement('a');
+            link.href = complementaryDownloadUrl;
+            link.download = '';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            // Fallback to website
+            window.open('https://www.complementary.dev/shaders/', '_blank');
+        }
+    }
+
     function extractVersion(versionString, isMain) {
         return isMain ? versionString.split('-')[0] : versionString.split('-')[1]; // Extract version before the first dash
     }
@@ -702,9 +1090,6 @@ code:contains("Loading data") {
             'en.json' // Always include English as fallback
         ];
 
-        let currentTranslation = {};
-        let englishTranslation = {};
-
         function loadTranslations(index) {
             if (index >= translationFiles.length) {
                 applyTranslations();
@@ -743,8 +1128,10 @@ code:contains("Loading data") {
                 'substep1_1', 'or', 'step2Before', 'step2After', 
                 'step3', 'step4', 'discordContact', 'downloadPageButton',
                 'supportDevelopment1', 'supportDevelopment2',
-                'installerMethodTitle', 'installerStep1Before', 'installerStep1After', 
-                'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5'
+                'installerMethodTitle', 'installerStep1After', 
+                'installerStep2', 'installerStep3', 'installerStep4', 'installerStep5',
+                'windowsInstallerButton', 'javaInstallerButton', 
+                'complementaryInstallerButton', 'complementaryWebsiteButton', 'orDivider'
             ];
 
             elementsToUpdate.forEach(id => {
@@ -772,13 +1159,19 @@ code:contains("Loading data") {
                 document.getElementById('main').dir = 'ltr';
                 document.getElementById('main').classList.remove('rtl');
             }
+
+            fetchComplementaryInstaller();
+
         }
 
         loadTranslations(0);
     }
 
     // Call the function when the page loads
-    document.addEventListener('DOMContentLoaded', updateMainContent);
+    document.addEventListener('DOMContentLoaded', () => {
+        updateDownloadCounter();
+        updateMainContent();
+    });
     </script>
     <script>
         const config = {
