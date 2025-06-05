@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.euphoriapatches.com/download-installer-jar/"/>
+    <title>Downloading Java Installer | Euphoria Patches</title>
+    
+    <!-- Cookie Consent Script -->
+    <script src="/assets/js/cookie-consent.js" async></script>
+    
+    <!-- Include the installer utilities -->
+    <script src="/assets/js/installer-utils.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+    <style>
+        body {
+            background-color: #171819;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .download-container {
+            max-width: 600px;
+            padding: 30px;
+        }
+        .progress-indicator {
+            margin: 30px 0;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(248, 152, 32, 0.3); /* Using Java orange */
+            border-top: 4px solid rgba(248, 152, 32, 1); /* Using Java orange */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Manual download button */
+        .manual-btn-container {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .manual-btn-container.visible {
+            opacity: 1;
+        }
+        .download-manual-btn {
+            background-color: #f89820; /* Java orange */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-manual-btn:hover {
+            background-color: #ffa532;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(248, 152, 32, 0.4);
+        }
+        .fallback-message {
+            color: #ffcc00;
+            margin-top: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .fallback-message.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <h1>Downloading Java Installer</h1>
+        <div class="progress-indicator">
+            <div class="spinner"></div>
+            <p>Your download is starting automatically...</p>
+            <p>This window will close in a few seconds.</p>
+        </div>
+        
+        <!-- Manual download button (initially hidden) -->
+        <div id="manual-btn-container" class="manual-btn-container">
+            <p>If your download doesn't start automatically:</p>
+            <button id="manual-download" class="download-manual-btn">
+                <i class="fa fa-download"></i> Download Manually
+            </button>
+        </div>
+        
+        <!-- Fallback message -->
+        <div id="fallback-message" class="fallback-message">
+            <p>Attempting to fetch the latest installer...</p>
+        </div>
+    </div>
+
+    <script>
+        let downloadUrl = null;
+        
+        // Show the manual button after a delay
+        setTimeout(() => {
+            document.getElementById('manual-btn-container').classList.add('visible');
+        }, 2000);
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            // First try to get the URL from session storage
+            downloadUrl = sessionStorage.getItem('installerDownloadUrl');
+            
+            if (downloadUrl) {
+                // Clear the session storage
+                sessionStorage.removeItem('installerDownloadUrl');
+                attemptDownload(downloadUrl);
+                
+                // Set the manual button action
+                document.getElementById('manual-download').onclick = () => {
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.download = '';
+                    link.click();
+                };
+                
+            } else {
+                // Session storage failed, try to fetch the installer directly
+                document.getElementById('fallback-message').classList.add('visible');
+                
+                try {
+                    const installerData = await fetchInstallerData();
+                    if (installerData && installerData.latestJarAsset) {
+                        downloadUrl = installerData.latestJarAsset.browser_download_url;
+                        attemptDownload(downloadUrl);
+                        
+                        // Update the manual button
+                        document.getElementById('manual-download').onclick = () => {
+                            const link = document.createElement('a');
+                            link.href = downloadUrl;
+                            link.download = '';
+                            link.click();
+                        };
+                        
+                    } else {
+                        // No installer found, redirect
+                        window.location.href = '/download';
+                    }
+                } catch (error) {
+                    console.error("Failed to fetch installer data:", error);
+                    window.location.href = '/download';
+                }
+            }
+        });
+        
+        function attemptDownload(url) {
+            // Create a hidden link and click it to start the download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = '';
+            document.body.appendChild(link);
+            
+            // Immediate click to start the download
+            link.click();
+            document.body.removeChild(link);
+            
+            // Close window after a short delay - just enough time for the download to register
+            setTimeout(() => {
+                try {
+                    window.close();
+                } catch (e) {
+                    // Update message if window can't be closed
+                    document.querySelector('.progress-indicator p:last-child').textContent = 
+                        "Download started! You can close this window now.";
+                }
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

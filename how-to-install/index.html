@@ -818,89 +818,17 @@ code:contains("Loading data") {
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/installer-utils.js"></script>
 
     <script>
 
     let complementaryDownloadUrl = null;
-
     let currentTranslation = {};
     let englishTranslation = {};
 
-    async function isWindowsOS() {
-        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-            try {
-            const data = await navigator.userAgentData.getHighEntropyValues(["platform"]);
-            if (data.platform === "Windows") return true;
-            } catch (e) {
-            console.warn("userAgentData error:", e);
-            }
-        }
-
-        if (navigator.platform && navigator.platform.startsWith("Win")) {
-            return true;
-        }
-
-        if (navigator.userAgent && /Windows/i.test(navigator.userAgent)) {
-            return true;
-        }
-
-        return false;
-    }
-
     async function fetchComplementaryInstaller() {
         try {
-            const response = await fetch('https://api.github.com/repos/ComplementaryDevelopment/Complementary-Installer/releases');
-            const releases = await response.json();
-            
-            // Get the first release (there's only one)
-            const release = releases[0];
-            
-            console.log("Release:", release.tag_name);
-            console.log("Available assets:", release.assets.map(a => a.name).join(", "));
-            
-            // Find installer jar and exe files
-            const jarAssets = release.assets.filter(asset => 
-                asset.name.endsWith('.jar') && 
-                asset.name.toLowerCase().includes('installer')
-            );
-            
-            const exeAssets = release.assets.filter(asset => 
-                asset.name.endsWith('.exe') && 
-                asset.name.toLowerCase().includes('installer')
-            );
-            
-            // Sort assets by version
-            const sortByVersion = (assets) => {
-                if (assets.length > 0) {
-                    assets.sort((a, b) => {
-                        const versionA = extractVersionFromFilename(a.name);
-                        const versionB = extractVersionFromFilename(b.name);
-                        
-                        if (versionA && versionB) {
-                            const partsA = versionA.split('.').map(Number);
-                            const partsB = versionB.split('.').map(Number);
-                            
-                            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-                                const partA = partsA[i] || 0;
-                                const partB = partsB[i] || 0;
-                                if (partA !== partB) {
-                                    return partB - partA; // Descending order
-                                }
-                            }
-                        }
-                        
-                        // Fallback to upload date
-                        return new Date(b.updated_at) - new Date(a.updated_at);
-                    });
-                }
-            };
-            
-            sortByVersion(jarAssets);
-            sortByVersion(exeAssets);
-            
-            // Get the latest versions
-            const latestJarAsset = jarAssets.length > 0 ? jarAssets[0] : null;
-            const latestExeAsset = exeAssets.length > 0 ? exeAssets[0] : null;
+            const installerData = await fetchInstallerData();
             
             // Update UI based on OS and available downloads
             const installerStep = document.getElementById('installerStep1');
@@ -910,7 +838,6 @@ code:contains("Loading data") {
             const stepContent = document.createElement('div');
             stepContent.className = 'installer-step-content';
             
-            // Add the instructional text first - IMPORTANT: Get text from translation system
             const instructionText = document.createElement('span');
             instructionText.id = 'installerStep1After';
             instructionText.textContent = currentTranslation['installerStep1After'] || englishTranslation['installerStep1After'] || '';
@@ -921,7 +848,7 @@ code:contains("Loading data") {
             downloadContainer.id = 'complementary-download-container';
             downloadContainer.className = 'download-buttons-container';
             
-            const isWindows = await isWindowsOS();
+            const { latestJarAsset, latestExeAsset, isWindows } = installerData;
             
             // Create download buttons based on OS detection
             if (isWindows && latestExeAsset) {
@@ -929,8 +856,6 @@ code:contains("Loading data") {
                 const exeButton = document.createElement('button');
                 exeButton.className = 'complementary-download-btn windows-button';
                 exeButton.onclick = () => downloadFile(latestExeAsset.browser_download_url);
-                
-                const exeVersion = extractVersionFromFilename(latestExeAsset.name);
                 
                 // Use translation for button text
                 const windowsButtonText = currentTranslation['windowsInstallerButton'] || englishTranslation['windowsInstallerButton'] || 'Windows EXE';
@@ -952,8 +877,7 @@ code:contains("Loading data") {
                     // Use translation for button text
                     const javaButtonText = currentTranslation['javaInstallerButton'] || englishTranslation['javaInstallerButton'] || 'Java JAR';
                     
-                    jarButton.innerHTML = `
-                        <span class="download-text">${javaButtonText}</span>`;
+                    jarButton.innerHTML = `<span class="download-text">${javaButtonText}</span>`;
                     downloadContainer.appendChild(jarButton);
                 }
             } else if (latestJarAsset) {
@@ -961,7 +885,7 @@ code:contains("Loading data") {
                 const jarButton = document.createElement('button');
                 jarButton.className = 'complementary-download-btn';
                 jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
-                                
+                            
                 // Use translation for button text
                 const genericButtonText = currentTranslation['complementaryInstallerButton'] || englishTranslation['complementaryInstallerButton'] || 'Download Installer';
                 
@@ -991,27 +915,7 @@ code:contains("Loading data") {
             
         } catch (error) {
             console.error('Error fetching Complementary Installer:', error);
-            // Fallback handling
         }
-    }
-
-    // Helper function to download a file
-    function downloadFile(url) {
-        if (!url) return;
-        
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = '';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    // Helper function to extract version from filename
-    function extractVersionFromFilename(filename) {
-        // Match patterns like "Complementary-Installer-1.3.0.jar"
-        const match = filename.match(/[^\d]+(\d+\.\d+\.\d+)\.jar$/i);
-        return match ? match[1] : null;
     }
 
     function extractVersion(versionString, isMain) {
@@ -1034,8 +938,6 @@ code:contains("Loading data") {
 
         document.getElementById("version-number3").innerHTML = "</span>(<span class='version-style'>" + extractVersion(latest.version_number, true) + "</span>";
     }
-
-    updateDownloadCounter();
 
     function getBrowserLanguage() {
         return navigator.language || navigator.userLanguage;

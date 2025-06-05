@@ -736,6 +736,7 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/installer-utils.js"></script>
 
     <!-- Carousel JavaScript -->
     <script>
@@ -811,87 +812,24 @@ document.addEventListener('DOMContentLoaded', function() {
             versionDate.innerText = date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
         }
 
-        async function isWindowsOS() {
-        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-            try {
-                const data = await navigator.userAgentData.getHighEntropyValues(["platform"]);
-                if (data.platform === "Windows") return true;
-            } catch (e) {
-                console.warn("userAgentData error:", e);
-            }
-        }
-
-        if (navigator.platform && navigator.platform.startsWith("Win")) {
-            return true;
-        }
-
-        if (navigator.userAgent && /Windows/i.test(navigator.userAgent)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    async function fetchInstallerDownloads() {
-        try {
-            const response = await fetch('https://api.github.com/repos/ComplementaryDevelopment/Complementary-Installer/releases');
-            const releases = await response.json();
-            
-            // Get the first release
-            const release = releases[0];
-            
-            // Find installer jar and exe files
-            const jarAssets = release.assets.filter(asset => 
-                asset.name.endsWith('.jar') && 
-                asset.name.toLowerCase().includes('installer')
-            );
-            
-            const exeAssets = release.assets.filter(asset => 
-                asset.name.endsWith('.exe') && 
-                asset.name.toLowerCase().includes('installer')
-            );
-            
-            // Sort assets by version - important for getting the latest version
-            const sortByVersion = (assets) => {
-                if (assets.length > 0) {
-                    assets.sort((a, b) => {
-                        const versionA = extractVersionFromFilename(a.name);
-                        const versionB = extractVersionFromFilename(b.name);
-                        
-                        if (versionA && versionB) {
-                            const partsA = versionA.split('.').map(Number);
-                            const partsB = versionB.split('.').map(Number);
-                            
-                            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-                                const partA = partsA[i] || 0;
-                                const partB = partsB[i] || 0;
-                                if (partA !== partB) {
-                                    return partB - partA; // Descending order
-                                }
-                            }
-                        }
-                        
-                        // Fallback to upload date
-                        return new Date(b.updated_at) - new Date(a.updated_at);
-                    });
-                }
-            };
-            
-            sortByVersion(jarAssets);
-            sortByVersion(exeAssets);
-            
-            // Get the latest versions
-            const latestJarAsset = jarAssets.length > 0 ? jarAssets[0] : null;
-            const latestExeAsset = exeAssets.length > 0 ? exeAssets[0] : null;
-            
-            // Update the installer buttons container
+        async function setupInstallerButtons() {
+            const installerData = await fetchInstallerData();
             const buttonsContainer = document.getElementById('installer-buttons');
-            if (!buttonsContainer) return;
             
-            // Clear any existing content
+            if (!buttonsContainer) return;
             buttonsContainer.innerHTML = '';
             
-            const isWindows = await isWindowsOS();
+            if (installerData.error) {
+                // Show error state
+                buttonsContainer.innerHTML = `
+                    <button class="complementary-download-btn" onclick="window.open('https://www.complementary.dev/shaders/', '_blank')">
+                        <span class="download-text">Visit Complementary Website</span>
+                    </button>
+                `;
+                return;
+            }
+            
+            const { latestJarAsset, latestExeAsset, isWindows } = installerData;
             
             if (isWindows && latestExeAsset) {
                 // Windows EXE button
@@ -929,43 +867,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 fallbackButton.innerHTML = `<span class="download-text">Visit Complementary Website</span>`;
                 buttonsContainer.appendChild(fallbackButton);
             }
-        } catch (error) {
-            console.error('Error fetching installers:', error);
-            
-            // Show fallback button on error
-            const buttonsContainer = document.getElementById('installer-buttons');
-            if (buttonsContainer) {
-                buttonsContainer.innerHTML = `
-                    <button class="complementary-download-btn" onclick="window.open('https://www.complementary.dev/shaders/', '_blank')">
-                        <span class="download-text">Visit Complementary Website</span>
-                    </button>
-                `;
-            }
         }
-    }
-
-    // Add the helper functions
-    function downloadFile(url) {
-        if (!url) return;
-        
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = ''; // This is key - it tells the browser to download rather than navigate
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    function extractVersionFromFilename(filename) {
-        // Match patterns like "Complementary-Installer-1.3.0.jar"
-        const match = filename.match(/[^\d]+(\d+\.\d+\.\d+)\.jar$/i);
-        return match ? match[1] : null;
-    }
 
     // Call when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-        updateDownloadCounter(); // Your existing function
-        fetchInstallerDownloads(); // New function for installer buttons
+        updateDownloadCounter();
+        setupInstallerButtons();
     });
     </script>
     <script>
