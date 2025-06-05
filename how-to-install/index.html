@@ -607,6 +607,10 @@ code:contains("Loading data") {
     .complementary-download-btn .download-text {
         font-size: 13px;
     }
+
+    .download-divider {
+            display: none; /* Hide divider on small screens */
+        }
 }
 
 </style>
@@ -1008,21 +1012,6 @@ code:contains("Loading data") {
         // Match patterns like "Complementary-Installer-1.3.0.jar"
         const match = filename.match(/[^\d]+(\d+\.\d+\.\d+)\.jar$/i);
         return match ? match[1] : null;
-    }
-
-    function downloadComplementaryInstaller() {
-        if (complementaryDownloadUrl) {
-            // Create a temporary link and click it to trigger download
-            const link = document.createElement('a');
-            link.href = complementaryDownloadUrl;
-            link.download = '';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        } else {
-            // Fallback to website
-            window.open('https://www.complementary.dev/shaders/', '_blank');
-        }
     }
 
     function extractVersion(versionString, isMain) {

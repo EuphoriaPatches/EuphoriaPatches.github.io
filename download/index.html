@@ -49,6 +49,277 @@
     <script src="/assets/js/cookie-consent.js" async></script>
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3756100266756497"
     crossorigin="anonymous"></script> -->
+    <style>
+    /* Download methods container */
+    .download-methods-container {
+        display: flex;
+        gap: 30px;
+        margin: 30px 0;
+    }
+    
+    /* Download card styling */
+    .download-card {
+        flex: 1;
+        min-width: 0;
+        background: rgba(23, 24, 28, 0.6);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .download-title {
+        line-height: 1;
+    }
+
+    .download-card .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .download-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, rgba(255, 80, 223, 0.15) 0%, rgba(30, 32, 38, 0) 100%);
+        padding: 20px 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-header h3 {
+        margin: 0;
+        color: var(--ThemeColor);
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .card-body {
+        padding: 25px;
+    }
+    
+    /* Installer buttons container */
+    .download-buttons-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin: 20px 0;
+        width: 100%;
+    }
+    
+    /* Note styling */
+    .installer-note {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        border-left: 3px solid var(--ThemeColor);
+    }
+    
+    .note-badge {
+        background: var(--ThemeColor);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    
+    /* Instructions link */
+    .instructions-link-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    .instructions-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--VeryLightGray);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .instructions-link:hover {
+        background-color: var(--ThemeColor);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 80, 223, 0.3);
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .download-methods-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .download-card {
+            width: 100%;
+        }
+        
+        .download-buttons-container {
+            flex-direction: column;
+        }
+        .download-divider {
+            display: none; /* Hide divider on small screens */
+        }
+    }
+
+    .complementary-download-btn {
+        border: 4px solid var(--ThemeColor);
+        color: var(--VeryLightGray);
+        background-color: var(--VeryDarkGray);
+        padding: 12px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 600;
+        border-radius: 50px;
+        margin: 0;
+        cursor: pointer;
+        box-shadow: 0 0 0 transparent;
+        transition: all 0.3s ease;
+        min-width: 180px;
+        max-width: fit-content;
+        font-size: 16px;
+        border-width: 4px;
+    }
+
+    .complementary-download-btn:hover {
+        color: var(--ThemeColor);
+        border-color: white;
+        background-color: var(--DarkGray);
+        box-shadow: 0 0 20px rgba(255, 80, 223, 0.5), 0 0 40px rgba(255, 80, 223, 0.3), 0 0 60px rgba(255, 80, 223, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Windows button styling */
+    .windows-button {
+        border-color: #0078d7; /* Windows blue */
+    }
+
+    .windows-button:hover {
+        color: #0078d7;
+        box-shadow: 0 0 20px rgba(0, 120, 215, 0.5), 0 0 40px rgba(0, 120, 215, 0.3), 0 0 60px rgba(0, 120, 215, 0.1);
+    }
+
+    /* JAR button styling */
+    .jar-button {
+        border-color: #f89820; /* Java orange */
+        background-color: var(--VeryDarkGray);
+    }
+
+    .jar-button:hover {
+        color: #f89820;
+        border-color: white;
+        background-color: var(--DarkGray);
+        box-shadow: 0 0 20px rgba(248, 152, 32, 0.5), 0 0 40px rgba(248, 152, 32, 0.3), 0 0 60px rgba(248, 152, 32, 0.1);
+    }
+
+    .download-buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px auto;
+        width: 100%;
+    }
+
+    #installer-buttons .download-text {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    #installer-buttons .download-divider {
+        font-size: 24px;
+    }
+
+
+    .instructions-section {
+    background: rgba(23, 24, 28, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+    /* Compact horizontal instructions section */
+    .instructions-section {
+        background: rgba(23, 24, 28, 0.6);
+        border-radius: 12px;
+        padding: 15px 25px;
+        margin: 30px auto; /* Center horizontally with auto margins */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 630px; /* Make section narrower than cards above */
+    }
+
+    .instructions-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start; /* Align items to start instead of space-between */
+        gap: 15px; /* Maintain spacing between elements */
+    }
+
+    .instructions-icon {
+        font-size: 28px;
+        color: var(--ThemeColor);
+        flex: 0 0 auto;
+    }
+
+    .instructions-text {
+        margin-right: 20px; /* Add space between text and button */
+        flex: 0 1 auto; /* Don't let text grow or push button away */
+    }
+
+    .instructions-text h3 {
+        color: var(--VeryLightGray);
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .instructions-link {
+        white-space: nowrap;
+        flex: 0 0 auto;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .instructions-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+        
+        .instructions-text {
+            text-align: center;
+        }
+        
+        .instructions-link {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -127,30 +398,77 @@
         </div> -->
         
         <section id="download-section" class="site-section section-downloads">
-            <div class="hero-text download-modrinth-part">
-                <h1>Downloads</h1>
-                <p class="download-title">Modrinth Download</p>
-                <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
-                <br>Note to download the correct version for your mod loader</p>
-                <a id="down-section" href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn animated-download-btn" style="width: 300px; --ThemeColor: var(--EuphoriaMagenta);">
-                    <span class="download-icon-wrapper">
-                        <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
-                    </span>
-                    <span class="download-text">Download on Modrinth |&nbsp;</span>
-                    <span id="download-counter" class="download-count"><code>...</code></span>
-                </a>
-                <div class="version-container">
-                    <div class="version-banner">
-                      <span>Latest Version:</span>
-                      <div class="data-background" id="version-number"><code>Loading data from Modrinth...</code></div>
+            <div class="container">
+                <div class="download-methods-container">
+                    <!-- Card 1: Modrinth Download -->
+                    <div class="download-card">
+                        <div class="card-header">
+                            <h3>Mod Method</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="download-title">Download as a Mod</p>
+                            <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
+                            <br>Note to download the correct version for your mod loader</p>
+                            <a id="down-section" href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn animated-download-btn">
+                                <span class="download-icon-wrapper">
+                                    <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
+                                </span>
+                                <span class="download-text">Download on Modrinth |&nbsp;</span>
+                                <span id="download-counter" class="download-count"><code>...</code></span>
+                            </a>
+                            <div class="version-container">
+                                <div class="version-banner">
+                                <span>Latest Version:</span>
+                                <div class="data-background" id="version-number"><code>Loading data from Modrinth...</code></div>
+                                </div>
+                                <div class="version-banner">
+                                <span>Released:</span>
+                                <div class="data-background" id="version-date"><code>Loading data from Modrinth...</code></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="version-banner">
-                      <span>Released:</span>
-                      <div class="data-background" id="version-date"><code>Loading data from Modrinth...</code></div>
+                    
+                    <!-- Card 2: Installer Method -->
+                    <div class="download-card">
+                        <div class="card-header">
+                            <h3>Installer Method</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="download-title">Complementary Installer</p>
+                            <p>Download the Complementary Installer and select Euphoria Patches in Advanced Settings.</p>
+                            
+                            <div id="installer-buttons" class="download-buttons-container">
+                                <button class="complementary-download-btn" disabled>
+                                    <span class="download-text">Loading installers...</span>
+                                </button>
+                            </div>
+                            
+                            <div class="installer-note">
+                                <span class="note-badge">Note</span>
+                                Euphoria Patches is available under the "Advanced Settings" in the installer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Installation guide link -->
+                <div class="instructions-section">
+                    <div class="instructions-content">
+                        <div class="instructions-icon">
+                            <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="instructions-text">
+                            <h3>Don't know how to install?</h3>
+                        </div>
+                        <a href="/how-to-install" target="_blank" class="instructions-link">
+                            <i class="fa fa-book"></i> View Installation Instructions
+                        </a>
                     </div>
                 </div>
             </div>
-        </section><!-- /.section-downloads -->
+        </section>
+
         <section class="preview-banner">
             <div class="container">
                 <div class="preview-content">
@@ -336,26 +654,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-md-5">
-                        <div class="feature-card installer-method" onclick="window.open('https://www.complementary.dev/shaders/', '_blank');">
-                            <h2 style="text-align: center; color: var(--EuphoriaMagenta);">Installer Method</h2>
-                            <p>Euphoria Patches can also be obtained through the Complementary Installer.
-                            <br>Note Euphoria Patches is hidden under the Advanced Setting</p>
-                            <div class="card-button">Download via the Installer method</div>
-                            <a href="https://www.complementary.dev/shaders/" target="_blank"></a>
-                        </div>
-                    </div>
-                    
-                    <!-- Second row with install guide and gallery -->
-                    <div class="col-md-6">
-                        <div class="feature-card section-how-install" onclick="window.open('/how-to-install', '_blank');">
-                            <h2>How to install Euphoria Patches?</h2>
-                            <p>Get step-by-step instructions for setting up Euphoria Patches with your favorite mod loader.</p>
-                            <div class="card-button">Learn More</div>
-                            <a href="/how-to-install" target="_blank"></a>
-                        </div>
-                    </div>
 
                     <div class="col-md-4">
                         <div class="feature-card section-how-install" onclick="window.open('/features', '_blank');">
@@ -513,7 +811,162 @@ document.addEventListener('DOMContentLoaded', function() {
             versionDate.innerText = date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
         }
 
-        updateDownloadCounter();
+        async function isWindowsOS() {
+        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+            try {
+                const data = await navigator.userAgentData.getHighEntropyValues(["platform"]);
+                if (data.platform === "Windows") return true;
+            } catch (e) {
+                console.warn("userAgentData error:", e);
+            }
+        }
+
+        if (navigator.platform && navigator.platform.startsWith("Win")) {
+            return true;
+        }
+
+        if (navigator.userAgent && /Windows/i.test(navigator.userAgent)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    async function fetchInstallerDownloads() {
+        try {
+            const response = await fetch('https://api.github.com/repos/ComplementaryDevelopment/Complementary-Installer/releases');
+            const releases = await response.json();
+            
+            // Get the first release
+            const release = releases[0];
+            
+            // Find installer jar and exe files
+            const jarAssets = release.assets.filter(asset => 
+                asset.name.endsWith('.jar') && 
+                asset.name.toLowerCase().includes('installer')
+            );
+            
+            const exeAssets = release.assets.filter(asset => 
+                asset.name.endsWith('.exe') && 
+                asset.name.toLowerCase().includes('installer')
+            );
+            
+            // Sort assets by version - important for getting the latest version
+            const sortByVersion = (assets) => {
+                if (assets.length > 0) {
+                    assets.sort((a, b) => {
+                        const versionA = extractVersionFromFilename(a.name);
+                        const versionB = extractVersionFromFilename(b.name);
+                        
+                        if (versionA && versionB) {
+                            const partsA = versionA.split('.').map(Number);
+                            const partsB = versionB.split('.').map(Number);
+                            
+                            for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+                                const partA = partsA[i] || 0;
+                                const partB = partsB[i] || 0;
+                                if (partA !== partB) {
+                                    return partB - partA; // Descending order
+                                }
+                            }
+                        }
+                        
+                        // Fallback to upload date
+                        return new Date(b.updated_at) - new Date(a.updated_at);
+                    });
+                }
+            };
+            
+            sortByVersion(jarAssets);
+            sortByVersion(exeAssets);
+            
+            // Get the latest versions
+            const latestJarAsset = jarAssets.length > 0 ? jarAssets[0] : null;
+            const latestExeAsset = exeAssets.length > 0 ? exeAssets[0] : null;
+            
+            // Update the installer buttons container
+            const buttonsContainer = document.getElementById('installer-buttons');
+            if (!buttonsContainer) return;
+            
+            // Clear any existing content
+            buttonsContainer.innerHTML = '';
+            
+            const isWindows = await isWindowsOS();
+            
+            if (isWindows && latestExeAsset) {
+                // Windows EXE button
+                const exeButton = document.createElement('button');
+                exeButton.className = 'complementary-download-btn windows-button';
+                exeButton.onclick = () => downloadFile(latestExeAsset.browser_download_url);
+                exeButton.innerHTML = `<span class="download-text">Windows EXE</span>`;
+                buttonsContainer.appendChild(exeButton);
+                
+                // If JAR also available, add it as alternative
+                if (latestJarAsset) {
+                    const divider = document.createElement('div');
+                    divider.className = 'download-divider';
+                    divider.textContent = '|';
+                    buttonsContainer.appendChild(divider);
+                    
+                    const jarButton = document.createElement('button');
+                    jarButton.className = 'complementary-download-btn jar-button';
+                    jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
+                    jarButton.innerHTML = `<span class="download-text">Java JAR</span>`;
+                    buttonsContainer.appendChild(jarButton);
+                }
+            } else if (latestJarAsset) {
+                // Non-Windows or only JAR available
+                const jarButton = document.createElement('button');
+                jarButton.className = 'complementary-download-btn';
+                jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
+                jarButton.innerHTML = `<span class="download-text">Download Installer</span>`;
+                buttonsContainer.appendChild(jarButton);
+            } else {
+                // Fallback if nothing available
+                const fallbackButton = document.createElement('button');
+                fallbackButton.className = 'complementary-download-btn';
+                fallbackButton.onclick = () => window.open('https://www.complementary.dev/shaders/', '_blank');
+                fallbackButton.innerHTML = `<span class="download-text">Visit Complementary Website</span>`;
+                buttonsContainer.appendChild(fallbackButton);
+            }
+        } catch (error) {
+            console.error('Error fetching installers:', error);
+            
+            // Show fallback button on error
+            const buttonsContainer = document.getElementById('installer-buttons');
+            if (buttonsContainer) {
+                buttonsContainer.innerHTML = `
+                    <button class="complementary-download-btn" onclick="window.open('https://www.complementary.dev/shaders/', '_blank')">
+                        <span class="download-text">Visit Complementary Website</span>
+                    </button>
+                `;
+            }
+        }
+    }
+
+    // Add the helper functions
+    function downloadFile(url) {
+        if (!url) return;
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = ''; // This is key - it tells the browser to download rather than navigate
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function extractVersionFromFilename(filename) {
+        // Match patterns like "Complementary-Installer-1.3.0.jar"
+        const match = filename.match(/[^\d]+(\d+\.\d+\.\d+)\.jar$/i);
+        return match ? match[1] : null;
+    }
+
+    // Call when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        updateDownloadCounter(); // Your existing function
+        fetchInstallerDownloads(); // New function for installer buttons
+    });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
