@@ -3685,11 +3685,6 @@ code {
     transition: outline-color 0.25s ease-in-out, scale 0.25s ease-in-out;
 }
 
-.gallery-box:hover {
-    outline-color: var(--ThemeColor);
-    scale: 1.025;
-}
-
 .gallery-title {
     font-family: 'graphicpixel';
     letter-spacing:-0.5px;
