@@ -252,24 +252,23 @@
 
 
     .instructions-section {
-    background: rgba(23, 24, 28, 0.6);
-    border-radius: 12px;
-    padding: 20px;
-    margin: 30px 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-    /* Compact horizontal instructions section */
-    .instructions-section {
-        background: rgba(23, 24, 28, 0.6);
+        background: linear-gradient(135deg, rgba(23, 24, 28, 0.8), rgba(33, 34, 38, 0.8));
+        border: 1px solid rgba(255, 80, 223, 0.3);
         border-radius: 12px;
-        padding: 15px 25px;
+        padding: 18px 28px;
         margin: 30px auto -20px auto;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        max-width: 630px;
+        max-width: 700px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 80, 223, 0.2);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        animation: pulse-subtle 3s infinite;
+        text-align: center;
+    }
+
+    .instructions-section:hover {
+        transform: translateY(-3px);
+        border: 1px solid rgba(255, 80, 223, 0.5);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 80, 223, 0.3);
     }
 
     .instructions-content {
@@ -281,10 +280,11 @@
     }
 
     .instructions-icon {
-        font-size: 28px;
+        font-size: 40px;
         color: var(--ThemeColor);
-        flex: 0 0 auto;
+        animation: bounce-subtle 2s infinite;
     }
+
 
     .instructions-text {
         margin-right: 20px; 
@@ -293,13 +293,35 @@
 
     .instructions-text h3 {
         color: var(--VeryLightGray);
-        font-size: 18px;
+        font-size: 20px;
         margin: 0;
+        font-weight: 600;
+
     }
 
     .instructions-link {
         white-space: nowrap;
         flex: 0 0 auto;
+        background-color: rgba(255, 80, 223, 0.15);
+        border: 1px solid rgba(255, 80, 223, 0.3);
+        padding: 14px 26px;
+    }
+
+    .instructions-link:hover {
+        background-color: rgba(255, 80, 223, 0.8);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(255, 80, 223, 0.4);
+    }
+
+    @keyframes pulse-subtle {
+        0% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 80, 223, 0.2); }
+        50% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 80, 223, 0.4); }
+        100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 80, 223, 0.2); }
+    }
+
+    @keyframes bounce-subtle {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
     }
 
     /* Responsive adjustments */
@@ -318,6 +340,16 @@
             width: 100%;
             justify-content: center;
         }
+    }
+
+    .installer-note.warning {
+        border-left: 3px solid #f89820;
+        margin-top: 10px;
+        background: rgba(248, 152, 32, 0.1);
+    }
+
+    .warning-badge {
+        background: #f89820;
     }
 </style>
 </head>
@@ -407,8 +439,7 @@
                         </div>
                         <div class="card-body">
                             <p class="download-title">Download as a Mod</p>
-                            <p>Download Euphoria Patches on Modrinth, an open-source modding platform!
-                            <br>Note to download the correct version for your mod loader</p>
+                            <p>Download Euphoria Patches on Modrinth, an open-source modding platform!</p>
                             <a id="down-section" href="/modrinth" target="_blank" class="btn btn-installer download-modrinth-btn animated-download-btn">
                                 <span class="download-icon-wrapper">
                                     <img src="/assets/img/other/download_icon.svg" class="download-icon" alt="Download Icon"/>
@@ -416,6 +447,10 @@
                                 <span class="download-text">Download on Modrinth |&nbsp;</span>
                                 <span id="download-counter" class="download-count"><code>...</code></span>
                             </a>
+                            <div class="installer-note">
+                                <span class="note-badge">Note</span>
+                                Download the version compatible with your mod loader
+                            </div>
                             <div class="version-container">
                                 <div class="version-banner">
                                 <span>Latest Version:</span>
@@ -436,7 +471,7 @@
                         </div>
                         <div class="card-body">
                             <p class="download-title">Complementary Installer</p>
-                            <p>Download the Complementary Installer and select Euphoria Patches in Advanced Settings.</p>
+                            <p>Use the Installer and select Euphoria Patches in Advanced Settings.</p>
                             
                             <div id="installer-buttons" class="download-buttons-container">
                                 <button class="complementary-download-btn" disabled>
@@ -447,6 +482,10 @@
                             <div class="installer-note">
                                 <span class="note-badge">Note</span>
                                 Euphoria Patches is available under the "Advanced Settings" in the installer
+                            </div>
+                            <div class="installer-note warning">
+                                <span class="note-badge warning-badge">Important</span>
+                                This installer only works with the <strong>vanilla Minecraft launcher</strong>
                             </div>
                         </div>
                     </div>
