@@ -54,6 +54,118 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     <!-- Cookie Consent Script -->
     <script src="/assets/js/cookie-consent.js" async></script>
 
+    <style>
+        .footer-action-reminder {
+            background: linear-gradient(to right, rgba(255, 80, 223, 0.2), rgba(144, 100, 255, 0.2));
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .footer-action-reminder p {
+            font-size: 16px;
+        }
+
+        .patreon-link {
+            color: var(--ThemeColor);
+            text-decoration: none;
+        }
+
+        .patreon-link:hover {
+            text-decoration: underline;
+        }
+
+        .benefit-card {
+            background: rgba(255, 80, 223, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border-left-color: var(--ThemeColor);
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            color: var(--ThemeColor);
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 24px;
+            background: rgba(255, 80, 223, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .benefit-content {
+            flex: 1;
+            text-align: left;
+        }
+
+
+        .benefits-list {
+            list-style-type: none !important;
+        }
+
+
+        @media (max-width: 768px) {
+            .see-more-container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .see-more-content {
+                overflow: hidden;
+                position: relative;
+                padding-left: 10px;
+                transition: max-height 0.3s ease-out;
+            }
+
+            .benefit-icon {
+                font-size: 24px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .benefits-list {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .benefit-card {
+                padding: 12px 10px;
+                margin-bottom: 12px;
+                border-left-width: 2px;
+            }
+            
+            .benefit-icon {
+                font-size: 20px;
+                margin-right: 10px;
+                min-width: 20px;
+            }
+            
+            .benefit-content p {
+                margin: 0;
+                font-size: 15px;
+            }
+        }
+
+    </style>
+
 </head>
 <body class="support-page">
 <div id="support-counter-all-page">
@@ -123,13 +235,40 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     <h3 class="support-heading">Join the Euphoria Patches Development Journey!</h3>
                     <p class="support-subheading">Support the project and unlock these exclusive benefits:</p>
                     <ul align="left" class="benefits-list">
-                        <li><p class="big-text-donation-page highlight-benefit"><strong>🚀 Exclusive Preview Versions</strong> - Get early access to new features and updates before they're publicly released!</p></li>
+                        <li>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🚀</div>
+                                <div class="benefit-content">
+                                    <p class="big-text-donation-page highlight-benefit"><strong>Exclusive Preview Versions</strong> - Get early access to new features and updates before they're publicly released!</p>
+                                </div>
+                            </div>
+                        </li>
                         <div class="see-more-container" align="center">
                             <div class="see-more-content" id="morePerks" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;" align="left">
-                                <li><p class="benefit-item"><strong>💬 Exclusive Discord Access</strong> - Join special channels with behind-the-scenes development talk and feature showcases and get the <strong>Discord Supporter Role</strong></p></li>
-                                <li><p class="benefit-item"><strong>🔍 Behind-the-scenes Content</strong> - See how features are developed and influence future updates</p></li>
-                                <li><p class="benefit-item"><strong>📝 To-do List Access</strong> - See what features and tweaks are planned for the future</p></li>
-
+                                <li>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">💬</div>
+                                        <div class="benefit-content">
+                                            <p class="benefit-item"><strong>Exclusive Discord Access</strong> - Join special channels with behind-the-scenes development talk and feature showcases and get the <strong>Discord Supporter Role</strong></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">🔍</div>
+                                        <div class="benefit-content">
+                                            <p class="benefit-item"><strong>Behind-the-scenes Content</strong> - See how features are developed and influence future updates</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">📝</div>
+                                        <div class="benefit-content">
+                                            <p class="benefit-item"><strong>To-do List Access</strong> - See what features and tweaks are planned for the future</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </div>
                             <button onclick="togglePerks()" class="see-more-btn" id="seeMoreBtn">See More ▼</button>
                         </div>
@@ -200,6 +339,9 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 </div>
             </div>
         </div><!-- /.copyright -->
+        <div class="footer-action-reminder">
+            <p>Don't miss out on Early Access! <a href="/patreon" target="_blank" class="patreon-link">Support Euphoria Patches Today</a></p>
+        </div>
     </footer><!-- /#footer -->
 </div>
 
