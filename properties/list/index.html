@@ -336,19 +336,20 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            gap: 15px;
         }
 
         .mod-count-display .count-item {
             display: flex;
             align-items: center;
-            white-space: nowrap;
             flex-wrap: wrap;
-            min-width: 240px;
+            gap: 8px;
         }
 
         .mod-count-display span {
             color: rgba(255, 255, 255, 0.8);
-            margin-right: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .mod-count-display strong {
@@ -371,7 +372,7 @@
             flex: 1;
             padding: 10px 40px 10px 15px;
             border: 2px solid rgba(141, 45, 125, 0.4);
-            border-radius: 8px;
+            border-radius: 12px;
             background-color: rgba(25, 26, 31, 0.6);
             color: #fff;
             font-size: 16px;
@@ -458,8 +459,26 @@
                 visibility: hidden;
             }
 
-            .mod-count-display{
-                padding: 12px 15px;
+            .mod-count-display {
+                padding: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .mod-count-display .count-item {
+                margin-bottom: 5px;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            
+            .mod-count-display span {
+                margin-right: 0;
+                width: 100%;
+            }
+            
+            .mod-count-display strong {
+                margin-top: 4px;
             }
 
             .search-container {
