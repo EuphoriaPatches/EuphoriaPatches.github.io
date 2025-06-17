@@ -1261,6 +1261,10 @@ html, body {
     height: 120px;
 }
 
+.modlist-hero .hero-image {
+    object-position: center 25%;
+}
+
 .how-to-install-hero,
 .faq-hero {
     height: 500px;

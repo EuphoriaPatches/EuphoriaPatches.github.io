@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="canonical" href="https://www.euphoriapatches.com/properties/list/"/>
+
+    <title>Mod List | Euphoria Patches</title>
+
+    <meta name="description" content="List of all Supported Mods in Euphoria Patches">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/EuphoriaPatchesLogo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/EuphoriaPatchesLogo16x.png">
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/css/responsive.min.css" rel="stylesheet">
+    
+    <!-- Add custom styles for the mod list table -->
+    <style>
+        .mod-list-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .mod-list-container h1, 
+        .mod-list-container h2, 
+        .mod-list-container h3 {
+            font-family: 'graphicpixel';
+            color: var(--ThemeColor);
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .mod-list-container h2 {
+            margin-bottom: -25px;
+        }   
+        
+        /* Responsive table container */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1em;
+        }
+        
+        .mod-list-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: rgba(25, 26, 31, 0.6);
+            table-layout: auto;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 1em;
+            border: none !important;  /* Remove any default border */
+            background-color: transparent !important;  /* Ensure transparent background */
+            border-radius: 8px;  /* Match the table's border-radius */
+        }
+
+        /* Ensure the table maintains its styling inside the responsive wrapper */
+        .mod-list-container .table-responsive table {
+            border-radius: 8px;
+            overflow: hidden;  /* Keep this to maintain rounded corners */
+            width: 100%;  /* Ensure full width */
+        }
+        
+        .mod-list-container th {
+            background-color: rgb(141, 45, 125);
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            word-wrap: break-word;
+            overflow-wrap: break-word
+        }
+        
+        .mod-list-container td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .mod-list-container tr:hover {
+            background-color: rgba(255, 80, 223, 0.1);
+        }
+        
+        .mod-list-container a {
+            color: var(--ThemeColor);
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .mod-list-container a:hover {
+            color: var(--EuphoriaMagentaBright);
+            text-decoration: underline;
+        }
+        
+        .mod-list-container p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .mod-list-container ul, .mod-list-container ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .mod-list-container li {
+            margin-bottom: 8px;
+        }
+        
+        .mod-list-container blockquote {
+            border-left: 4px solid var(--ThemeColor);
+            padding-left: 15px;
+            margin-left: 0;
+            margin-right: 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 80, 223, 0.05);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .loading-spinner::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 80, 223, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--ThemeColor);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .alert {
+            background-color: rgba(255, 80, 223, 0.1);
+            color: var(--ThemeColor);
+            border: 1px solid rgba(255, 80, 223, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Status styling */
+        .status-full {
+            background-color: rgba(50, 205, 50, 0.2);
+            color: #80ff80;
+            border: 1px solid rgba(50, 205, 50, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-partial {
+            background-color: rgba(255, 165, 0, 0.2);
+            color: #ffcc80;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-foliage {
+            background-color: rgba(144, 238, 144, 0.2);
+            color: #a0e6a0;
+            border: 1px solid rgba(144, 238, 144, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-miniscule {
+            background-color: rgba(169, 169, 169, 0.2);
+            color: #d0d0d0;
+            border: 1px solid rgba(169, 169, 169, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-autogen {
+            background-color: rgba(100, 149, 237, 0.2);
+            color: #a0c0ff;
+            border: 1px solid rgba(100, 149, 237, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-testing {
+            background-color: rgba(255, 99, 71, 0.2);
+            color: #ff9e8a;
+            border: 1px solid rgba(255, 99, 71, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-blocks {
+            background-color: rgba(192, 192, 192, 0.2);
+            color: #d0d0d0;
+            border: 1px solid rgba(192, 192, 192, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-planned {
+            background-color: rgba(100, 100, 170, 0.2);
+            color: #a0a0d0;
+            border: 1px solid rgba(100, 100, 170, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status-unknown {
+            background-color: rgba(128, 0, 128, 0.2);
+            color: #d0a0d0;
+            border: 1px solid rgba(128, 0, 128, 0.3);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .status-tooltip {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .status-tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(25, 26, 31, 0.25);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: normal;
+            max-width: 300px;
+            width: max-content;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(255, 80, 223, 0.4);
+            border: 1px solid var(--ThemeColor);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .status-tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .mod-list-container td:first-child {
+                min-width: 180px;
+            }
+
+            .mod-list-container table {
+                table-layout: fixed;
+            }
+
+            .mod-list-container th:nth-child(1),
+            .mod-list-container td:nth-child(1),
+            .mod-list-container th:nth-child(2),
+            .mod-list-container td:nth-child(2),
+            .mod-list-container th:nth-child(3),
+            .mod-list-container td:nth-child(3) {
+                width: 33.33%;
+            }
+            
+            .mod-list-container td {
+                padding: 8px 6px; /* Smaller padding on mobile */
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .mod-list-container td:first-child {
+                min-width: unset;
+            }
+
+            .mod-list-container h2 {
+                margin-bottom: -10px;
+            }
+
+            .status-tooltip::after {
+                visibility: hidden; /* Hide tooltips on mobile */
+            }
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Cookie Consent Script -->
+    <script src="/assets/js/cookie-consent.js" async></script>
+</head>
+<body>
+
+    <header id="masthead" class="site-header site-header-white">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                   
+                    <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
+
+                </div><!-- /.navbar-header -->
+
+                <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="/">Home</a></li>
+                        <li><a class="download-navigation-button" href="/download">Download</a></li>
+                        <li><a href="/support">Preview Versions</a></li>
+                        <li><a href="/features/">Features</a></li>
+                        <li><a href="/how-to-install">How To Install</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                              <li><a href="/contact">Contact</a></li>
+                              <li><a href="/changelogs">Changelogs</a></li>
+                              <li><a href="/faq">FAQ</a></li>
+                              <li><a href="/gallery/">Gallery</a></li>
+                              <li><a href="/credits">Credits</a></li>
+                              <li><a href="/download-count/">Download Count</a></li>
+                              <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+        </nav><!-- /.site-navigation -->
+    </header><!-- /#mastheaed -->
+
+    <div id="hero" class="hero overlay support-hero modlist-hero">
+        <img 
+            src="/assets/img/Screenshots/112_euphoria_patches.webp" class="hero-image">
+    </div><!-- /.hero -->
+
+    <main id="main" class="site-main">
+        <section class="site-section section-features">
+            <div class="container">
+                <div class="mod-list-container">
+                    <!-- Loading spinner that will be replaced with content -->
+                    <div id="loading-spinner" class="loading-spinner"></div>
+                    
+                    <!-- Content will be injected here -->
+                    <div id="mod-list-content"></div>
+                </div>
+            </div>
+        </section><!-- /.section-features -->
+    </main><!-- /#main -->
+    
+    <footer id="colophon" class="site-footer"></footer>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="social-links">
+                            <a class="discord-bg" href="/discord" target="_blank" alt="Discord Invite"></a>
+                            <a class="patreon-bg" href="/support" target="_blank" alt="Patreon Link"></a>
+                            <a class="github-bg" href="/github" target="_blank" alt="Github Link"></a>
+                            <a class="contact-bg" href="/contact" target="_blank" alt="Contact Page Link">Contact</a>
+                        </div><!-- /.social-links -->
+                    </div>
+                    <div class="col-xs-4 site-title">
+                        <div class="text-right">
+                            <a href="/">Euphoria Patches</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.copyright -->
+    </footer><!-- /#footer -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap-select.min.js"></script>
+    <script src="/assets/js/jquery.slicknav.min.js"></script>
+    <script src="/assets/js/jquery.countTo.min.js"></script>
+    <script src="/assets/js/jquery.shuffle.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            async function loadModList() {
+                try {
+                    // Fetch the addedMods.md file
+                    const response = await fetch('/assets/data/addedMods.md');
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to load mod list: ${response.status} ${response.statusText}`);
+                    }
+                    
+                    // Get markdown content and make basic adjustments
+                    let markdownContent = await response.text();
+                    
+                    // Extract comments BEFORE making text replacements
+                    const modComments = {};
+                    
+                    // Split content into lines for more reliable processing
+                    const lines = markdownContent.split('\n');
+                    for (const line of lines) {
+                        // Check if this line is a table row with a comment
+                        if (line.includes('|') && line.includes('#')) {
+                            // Regular expression to extract mod name and comment
+                            const tableRowMatch = line.match(/\|\s*\[(.*?)\].*?\|.*?\|.*?\|(.*?#(.*))/);
+                            
+                            if (tableRowMatch) {
+                                const modName = tableRowMatch[1].trim();
+                                const comment = tableRowMatch[3].trim();
+                                
+                                modComments[modName] = comment;
+                            }
+                        }
+                    }
+                    
+                    console.log(`Found ${Object.keys(modComments).length} comments total`);
+                    
+                    // Now make text replacements
+                    markdownContent = markdownContent
+                        .replace(/Whenever a new mod is added, _?please_? include it here for future reference!!\.?/g, '')
+                        .replace(/What is this file\?/g, 'What is this table?')
+                        .replace(/## Template[\s\S]*?`\|.*?#Optional Comment`[\r\n]*/g, '');
+                    
+                    // Convert markdown to HTML
+                    const htmlContent = marked.parse(markdownContent);
+                    
+                    // Insert the HTML into the container
+                    document.getElementById('mod-list-content').innerHTML = htmlContent;
+                    document.getElementById('loading-spinner').style.display = 'none';
+
+                    const updateTableHeaders = () => {
+                        const tables = document.querySelectorAll('#mod-list-content table');
+                        tables.forEach(table => {
+                            const headers = table.querySelectorAll('thead th');
+                            if (headers.length >= 3) {
+                            const statusHeader = headers[2]; // Third column header
+                            
+                            if (window.innerWidth > 768) {
+                                // For desktop: show the hint about hovering
+                                statusHeader.textContent = 'Status (Hover for comments)';
+                            } else {
+                                // For mobile: just show 'Status'
+                                statusHeader.textContent = 'Status';
+                            }
+                            }
+                        });
+                    };
+                                        
+                    // Process the tables and add styling
+                    const tables = document.querySelectorAll('#mod-list-content table');
+                    console.log(`Found ${tables.length} tables to process`);
+                    
+                    tables.forEach(table => {
+                        // Make table responsive
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'table-responsive';
+                        table.parentNode.insertBefore(wrapper, table);
+                        wrapper.appendChild(table);
+                        
+                        // Process table rows
+                        const rows = table.querySelectorAll('tbody tr');
+                        console.log(`Processing ${rows.length} rows in table`);
+                        
+                        rows.forEach(row => {
+                            const cells = row.querySelectorAll('td');
+                            if (cells.length >= 3) {
+                                // First cell contains mod name with link
+                                const modCell = cells[0];
+                                const modLink = modCell.querySelector('a');
+                                
+                                if (!modLink) return;
+                                
+                                // Get the mod name from the link text - remove brackets
+                                const displayedModName = modLink.textContent;
+                                const cleanModName = displayedModName.replace(/^\[|\]$/g, '');
+                                
+                                // Process the status cell
+                                const statusCell = cells[2];
+                                const statusText = statusCell.textContent.trim().toLowerCase();
+                                
+                                let statusClass = 'status-unknown';
+                                
+                                if (statusText.includes('full')) {
+                                    statusClass = 'status-full';
+                                } else if (statusText.includes('partial')) {
+                                    statusClass = 'status-partial';
+                                } else if (statusText.includes('foliage')) {
+                                    statusClass = 'status-foliage';
+                                } else if (statusText.includes('miniscule')) {
+                                    statusClass = 'status-miniscule';
+                                } else if (statusText.includes('autogen')) {
+                                    statusClass = 'status-autogen';
+                                } else if (statusText.includes('testing')) {
+                                    statusClass = 'status-testing';
+                                } else if (statusText.includes('blocks')) {
+                                    statusClass = 'status-blocks';
+                                } else if (statusText.includes('planned')) {
+                                    statusClass = 'status-planned';
+                                }
+                                
+                                // Create the status span
+                                const statusSpan = document.createElement('span');
+                                statusSpan.className = statusClass;
+                                statusSpan.textContent = statusCell.textContent;
+                                
+                                // Check if we have a comment for this mod
+                                if (modComments[cleanModName]) {
+                                    statusSpan.classList.add('status-tooltip');
+                                    statusSpan.setAttribute('data-tooltip', modComments[cleanModName]);
+                                }
+                                
+                                // Clear and append the status span
+                                statusCell.textContent = '';
+                                statusCell.appendChild(statusSpan);
+                            }
+                        });
+                    });
+                    
+                    // PROCESS STATUS DEFINITIONS
+                    const definitionSection = document.querySelector('#mod-list-content h2:last-of-type');
+                    if (definitionSection && definitionSection.textContent.includes('Status Definitions')) {
+                        // Find the unordered list that follows the heading
+                        let list = definitionSection.nextElementSibling;
+                        while (list && list.tagName !== 'UL') {
+                            list = list.nextElementSibling;
+                        }
+                        
+                        if (list && list.tagName === 'UL') {
+                            // Process each list item
+                            const items = list.querySelectorAll('li');
+                            items.forEach(item => {
+                                // Find the bold text (status name)
+                                const strongTag = item.querySelector('strong');
+                                if (strongTag) {
+                                    const statusName = strongTag.textContent.toLowerCase();
+                                    let statusClass = 'status-unknown';
+                                    
+                                    // Assign the appropriate class
+                                    if (statusName.includes('full')) {
+                                        statusClass = 'status-full';
+                                    } else if (statusName.includes('partial')) {
+                                        statusClass = 'status-partial';
+                                    } else if (statusName.includes('foliage')) {
+                                        statusClass = 'status-foliage';
+                                    } else if (statusName.includes('miniscule')) {
+                                        statusClass = 'status-miniscule';
+                                    } else if (statusName.includes('autogen')) {
+                                        statusClass = 'status-autogen';
+                                    } else if (statusName.includes('testing')) {
+                                        statusClass = 'status-testing';
+                                    } else if (statusName.includes('blocks')) {
+                                        statusClass = 'status-blocks';
+                                    } else if (statusName.includes('planned')) {
+                                        statusClass = 'status-planned';
+                                    } else if (statusName.includes('entity') || 
+                                            statusName.includes('item') || 
+                                            statusName.includes('ore')) {
+                                        statusClass = 'status-miniscule';
+                                    }
+                                    
+                                    // Apply the class directly to the strong element
+                                    strongTag.className = statusClass;
+                                }
+                            });
+                        }
+                    }
+                    
+                    // Add target="_blank" to all external links
+                    document.querySelectorAll('#mod-list-content a').forEach(link => {
+                        if (link.hostname !== window.location.hostname) {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        }
+                    });
+
+                    // Run once when page loads
+                    updateTableHeaders();
+
+                    // Also update on window resize
+                    window.addEventListener('resize', updateTableHeaders);
+                    
+                } catch (error) {
+                    console.error('Error loading mod list:', error);
+                    document.getElementById('mod-list-content').innerHTML = `
+                        <div class="alert alert-danger">
+                            <h3>Error Loading Mod List</h3>
+                            <p>Sorry, there was a problem loading the mod list. Please try refreshing the page or check back later.</p>
+                            <p>Technical details: ${error.message}</p>
+                        </div>
+                    `;
+                    document.getElementById('loading-spinner').style.display = 'none';
+                }
+            }
+            
+            // Load the mod list when the page loads
+            loadModList();
+        });
+    </script>
+</body>
+</html>
