@@ -84,6 +84,35 @@ async function updatePropertiesFile(fileUrl) {
     }
 }
 
+async function updateAddedModsFile(fileUrl) {
+    try {
+        // Fetch the latest addedMods.md file
+        const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
+        
+        // Ensure directory exists
+        const dataDir = './assets/data';
+        await fs.mkdir(dataDir, { recursive: true });
+        
+        // Save to local file
+        const localFilePath = path.join(dataDir, 'addedMods.md');
+        await fs.writeFile(localFilePath, fileContent);
+        
+        console.log("Added mods file updated successfully");
+        return fileContent;
+    } catch (error) {
+        console.error("Error updating added mods file:", error);
+        
+        // Try to return existing file if available
+        try {
+            const localFilePath = path.join('./assets/data', 'addedMods.md');
+            return await fs.readFile(localFilePath, 'utf8');
+        } catch (fallbackError) {
+            console.error("Could not read existing added mods file:", fallbackError);
+            return "";
+        }
+    }
+}
+
 async function countUniqueModdedBlocks(fileUrl) {
     try {
         // First update the local properties file
@@ -155,6 +184,7 @@ async function updateDownloadStats() {
     const modrinthProjectId = "4H6sumDB";
     const curseforgeProjectId = "915902";
     const propertiesFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/block.properties";
+    const addedModsFileUrl = "https://raw.githubusercontent.com/EuphoriaPatches/propertiesFiles/main/addedMods.md";
     
     console.time("Download Stats Update");
     
@@ -193,10 +223,11 @@ async function updateDownloadStats() {
     while (attempt <= retryWaitTimes.length && !valid) {
         try {
             console.time("Fetch Downloads");
-            const [modrinthDownloads, curseforgeDownloads, matchesLength] = await Promise.all([
+            const [modrinthDownloads, curseforgeDownloads, matchesLength, _] = await Promise.all([
                 fetchModrinthDownloads(modrinthProjectId),
                 fetchCurseforgeDownloads(curseforgeProjectId),
                 countUniqueModdedBlocks(propertiesFileUrl),
+                updateAddedModsFile(addedModsFileUrl),
             ]);
             console.timeEnd("Fetch Downloads");
 
