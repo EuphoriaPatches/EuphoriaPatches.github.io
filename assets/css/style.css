@@ -1708,6 +1708,13 @@ code {
     margin: 10px 0 20px 0;
 }
 
+.credits-card p {
+    color: var(--VeryLightGray);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
 /* List Styling */
 .credits-list {
     list-style-type: none;
