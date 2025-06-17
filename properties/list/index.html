@@ -320,6 +320,106 @@
             opacity: 1;
             visibility: visible;
         }
+
+        .mod-count-display {
+            background-color: rgba(141, 45, 125, 0.1);
+            border-left: 4px solid rgb(141, 45, 125);
+            color: #fff;
+            padding: 12px 55px;
+            border-radius: 12px;
+            margin: 20px 0 -15px 0;
+            font-size: 1.1em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .mod-count-display .count-item {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            flex-wrap: wrap;
+            min-width: 240px;
+        }
+
+        .mod-count-display span {
+            color: rgba(255, 255, 255, 0.8);
+            margin-right: 10px;
+        }
+
+        .mod-count-display strong {
+            font-size: 1.2em;
+            color: var(--ThemeColor);
+            min-width: 60px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0 10px;
+            position: relative;
+            max-width: 100%;
+        }
+
+        #mod-search {
+            flex: 1;
+            padding: 10px 40px 10px 15px;
+            border: 2px solid rgba(141, 45, 125, 0.4);
+            border-radius: 8px;
+            background-color: rgba(25, 26, 31, 0.6);
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+            margin-top: -20px;
+            transition: all 0.3s ease;
+            outline: none;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        #mod-search:focus {
+            border-color: rgb(141, 45, 125);
+            box-shadow: 0 0 8px rgba(255, 80, 223, 0.4);
+        }
+
+        #mod-search::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #clear-search {
+            position: absolute;
+            right: 10px;
+            bottom: 26px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 40px;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        #clear-search:hover {
+            color: rgba(255, 80, 223, 0.8);
+        }
+
+        .filtered-count {
+            font-size: 0.8em;
+            opacity: 0.8;
+            position: relative;
+            bottom: 2px;
+        }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -341,7 +441,7 @@
             }
             
             .mod-list-container td {
-                padding: 8px 6px; /* Smaller padding on mobile */
+                padding: 8px 6px;
                 word-break: break-word;
                 hyphens: auto;
             }
@@ -355,7 +455,27 @@
             }
 
             .status-tooltip::after {
-                visibility: hidden; /* Hide tooltips on mobile */
+                visibility: hidden;
+            }
+
+            .mod-count-display{
+                padding: 12px 15px;
+            }
+
+            .search-container {
+                margin: 15px 0;
+            }
+            
+            #mod-search {
+                padding: 8px 35px 8px 12px;
+                font-size: 14px;
+                margin-top: -10px;
+            }
+
+            #clear-search {
+                right: 8px;
+                bottom: 16px;
+                font-size: 30px;
             }
         }
     </style>
@@ -511,6 +631,75 @@
                     document.getElementById('mod-list-content').innerHTML = htmlContent;
                     document.getElementById('loading-spinner').style.display = 'none';
 
+                    const modListHeading = Array.from(document.querySelectorAll('#mod-list-content h2')).find(
+                        heading => heading.textContent.trim() === 'Mod List'
+                    );
+
+                    if (modListHeading) {
+                        const tables = document.querySelectorAll('#mod-list-content table');
+                        if (tables.length > 0) {
+                            // Get the count of mods from the first table rows
+                            const rowCount = tables[0].querySelectorAll('tbody tr').length;
+                            
+                            // Create count element with both mod count and blocks count
+                            const countElement = document.createElement('div');
+                            countElement.className = 'mod-count-display';
+                            countElement.innerHTML = `
+                                <div class="count-item">
+                                    <span>Total supported documented mods:</span> <strong>${rowCount}</strong>
+                                </div>
+                                <div class="count-item">
+                                    <span>Total modded blocks supported:</span> <strong id="totalProperties">Loading...</strong>
+                                </div>
+                            `;
+                            
+                            // Insert after heading
+                            if (modListHeading.nextSibling) {
+                                modListHeading.parentNode.insertBefore(countElement, modListHeading.nextSibling);
+                            } else {
+                                modListHeading.parentNode.appendChild(countElement);
+                            }
+                            
+                            // Add search functionality (add this line)
+                            addSearchFunctionality(modListHeading);
+                            
+                            // Now fetch and update the total properties count
+                            (async function fetchBlockCount() {
+                                function formatNumbers(num) {
+                                    if (num >= 1_000_000) {
+                                        return (num / 1_000_000).toFixed(2) + 'M';
+                                    } else if (num >= 1_000) {
+                                        return (num / 1_000).toFixed(2) + 'K';
+                                    }
+                                    return num;
+                                }
+
+                                try {
+                                    // Fetch from the JSON file
+                                    const response = await fetch('/assets/data/download-stats.json');
+                                    if (!response.ok) {
+                                        throw new Error('Failed to fetch stats data');
+                                    }
+                                    
+                                    const data = await response.json();
+                                    const count = data.matchesLength || 0;
+                                    
+                                    const totalPropertiesElement = document.getElementById('totalProperties');
+                                    if (totalPropertiesElement) {   
+                                        totalPropertiesElement.textContent = formatNumbers(count).toString();
+                                        console.log("Total properties:", count);
+                                    }
+                                } catch (error) {
+                                    console.error('Error fetching block count:', error);
+                                    const totalPropertiesElement = document.getElementById('totalProperties');
+                                    if (totalPropertiesElement) {
+                                        totalPropertiesElement.textContent = "Unknown";
+                                    }
+                                }
+                            })();
+                        }
+                    }
+
                     const updateTableHeaders = () => {
                         const tables = document.querySelectorAll('#mod-list-content table');
                         tables.forEach(table => {
@@ -649,6 +838,83 @@
                                 }
                             });
                         }
+                    }
+
+                    function addSearchFunctionality(modListHeading) {
+                        // Create search container
+                        const searchContainer = document.createElement('div');
+                        searchContainer.className = 'search-container';
+                        
+                        // Create search input
+                        const searchInput = document.createElement('input');
+                        searchInput.type = 'text';
+                        searchInput.id = 'mod-search';
+                        searchInput.placeholder = 'Search mods or status...';
+                        searchInput.setAttribute('aria-label', 'Filter mods');
+                        
+                        // Create clear button
+                        const clearButton = document.createElement('button');
+                        clearButton.id = 'clear-search';
+                        clearButton.innerHTML = '&times;';
+                        clearButton.title = 'Clear search';
+                        clearButton.style.display = 'none';
+                        
+                        // Add elements to container
+                        searchContainer.appendChild(searchInput);
+                        searchContainer.appendChild(clearButton);
+                        
+                        // Insert search container before the count display
+                        const countDisplay = modListHeading.nextElementSibling;
+                        if (countDisplay && countDisplay.className === 'mod-count-display') {
+                            modListHeading.parentNode.insertBefore(searchContainer, countDisplay);
+                        } else {
+                            modListHeading.parentNode.insertBefore(searchContainer, modListHeading.nextSibling);
+                        }
+                        
+                        // Function to filter table rows
+                        function filterTable() {
+                            const filterValue = searchInput.value.toLowerCase();
+                            const table = document.querySelector('#mod-list-content table');
+                            let visibleCount = 0;
+                            
+                            if (table) {
+                                const rows = table.querySelectorAll('tbody tr');
+                                
+                                rows.forEach(row => {
+                                    const modName = row.querySelector('td:first-child').textContent.toLowerCase();
+                                    const status = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                                    
+                                    if (modName.includes(filterValue) || status.includes(filterValue)) {
+                                        row.style.display = '';
+                                        visibleCount++;
+                                    } else {
+                                        row.style.display = 'none';
+                                    }
+                                });
+                                
+                                // Update the count to show filtered results
+                                const countElement = document.querySelector('.mod-count-display .count-item:first-child strong');
+                                if (countElement) {
+                                    const totalCount = rows.length;
+                                    if (filterValue) {
+                                        countElement.innerHTML = `${visibleCount} <span class="filtered-count">(of ${totalCount})</span>`;
+                                    } else {
+                                        countElement.textContent = totalCount;
+                                    }
+                                }
+                                
+                                // Show/hide clear button
+                                clearButton.style.display = filterValue ? 'block' : 'none';
+                            }
+                        }
+                        
+                        // Add event listeners
+                        searchInput.addEventListener('input', filterTable);
+                        clearButton.addEventListener('click', () => {
+                            searchInput.value = '';
+                            filterTable();
+                            searchInput.focus();
+                        });
                     }
                     
                     document.querySelectorAll('#mod-list-content a').forEach(link => {
