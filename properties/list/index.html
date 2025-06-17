@@ -547,15 +547,18 @@
                         rows.forEach(row => {
                             const cells = row.querySelectorAll('td');
                             if (cells.length >= 3) {
-                                // First cell contains mod name with link
+                                // First cell contains mod name
                                 const modCell = cells[0];
                                 const modLink = modCell.querySelector('a');
                                 
-                                if (!modLink) return;
-                                
-                                // Get the mod name from the link text - remove brackets
-                                const displayedModName = modLink.textContent;
-                                const cleanModName = displayedModName.replace(/^\[|\]$/g, '');
+                                // Get mod name
+                                let cleanModName = '';
+                                if (modLink) {
+                                    const displayedModName = modLink.textContent;
+                                    cleanModName = displayedModName.replace(/^\[|\]$/g, '');
+                                } else {
+                                    cleanModName = modCell.textContent.trim();
+                                }
                                 
                                 // Process the status cell
                                 const statusCell = cells[2];
@@ -586,7 +589,7 @@
                                 statusSpan.className = statusClass;
                                 statusSpan.textContent = statusCell.textContent;
                                 
-                                // Check if we have a comment for this mod
+                                // Only add tooltip if we have a comment for this mod
                                 if (modComments[cleanModName]) {
                                     statusSpan.classList.add('status-tooltip');
                                     statusSpan.setAttribute('data-tooltip', modComments[cleanModName]);
