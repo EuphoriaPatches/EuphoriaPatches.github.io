@@ -368,9 +368,21 @@
             max-width: 100%;
         }
 
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 47%;
+            transform: translateY(-50%);
+            color: rgba(255, 51, 187, 0.842);
+            font-size: 16px;
+            z-index: 5;
+            margin-top: -10px;
+            pointer-events: none;
+        }
+
         #mod-search {
             flex: 1;
-            padding: 10px 40px 10px 15px;
+            padding: 10px 40px 10px 40px;
             border: 2px solid rgba(141, 45, 125, 0.4);
             border-radius: 12px;
             background-color: rgba(25, 26, 31, 0.6);
@@ -484,9 +496,15 @@
             .search-container {
                 margin: 15px 0;
             }
+
+            .search-icon {
+                font-size: 14px;
+                left: 12px;
+                margin-top: -5px;
+            }
             
             #mod-search {
-                padding: 8px 35px 8px 12px;
+                padding: 8px 35px 8px 35px;
                 font-size: 14px;
                 margin-top: -10px;
             }
@@ -865,6 +883,10 @@
                         const searchContainer = document.createElement('div');
                         searchContainer.className = 'search-container';
                         
+                        // Create search icon element
+                        const searchIcon = document.createElement('i');
+                        searchIcon.className = 'fa fa-search search-icon';
+                        
                         // Create search input
                         const searchInput = document.createElement('input');
                         searchInput.type = 'text';
@@ -879,7 +901,8 @@
                         clearButton.title = 'Clear search';
                         clearButton.style.display = 'none';
                         
-                        // Add elements to container
+                        // Add elements to container (add search icon first)
+                        searchContainer.appendChild(searchIcon);
                         searchContainer.appendChild(searchInput);
                         searchContainer.appendChild(clearButton);
                         
