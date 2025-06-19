@@ -1,4 +1,4 @@
-### Last updated: June 14, 2025, 17:17 UTC
+### Last updated: June 18, 2025, 05:14 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -6,7 +6,7 @@ If you want to contribute to the Euphoria Patches modded support library, please
 
 ---
 ### What is this file?
-Here we can keep track of what mods has been added and what version a contributor used to add said mod. Whenever a new mod is added, _please_ include it here for future reference!!
+Here we can keep track of what mods have been added and what version a contributor used to add said mod. Whenever a new mod is added, _please_ include it here for future reference!!
 
 ---
 ## Mod List
