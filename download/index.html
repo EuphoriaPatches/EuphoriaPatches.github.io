@@ -486,7 +486,7 @@
                             </div>
                             <div class="installer-note warning">
                                 <span class="note-badge warning-badge">Important</span>
-                                This installer only works with the <strong>vanilla Minecraft launcher</strong>
+                                This installer only works with the <strong>Official Minecraft Launcher</strong>
                             </div>
                         </div>
                     </div>
@@ -513,7 +513,7 @@
             <div class="container">
                 <div class="preview-content">
                     <div class="preview-text">
-                        <h2><i class="fa fa-star"></i> Want Early Access?</h2>
+                        <h2><i class="fa fa-star rotating-star"></i> Want Early Access?</h2>
                         <p>Support development and get access to exclusive early updates with cutting-edge features!</p>
                     </div>
                     <a href="/support" target="_blank" class="btn btn-preview">
@@ -526,6 +526,40 @@
         </section>
 
         <style>
+            @keyframes rotateStar {
+                0%, 5% { transform: rotate(0deg); }  
+                25% { transform: rotate(360deg); } /* Initial rotation */
+                
+                /* First bounce - larger amplitude */
+                30% { transform: rotate(375deg); } /* Overshoot */
+                35% { transform: rotate(355deg); } /* Undershoot */
+                
+                /* Second bounce - medium amplitude, faster */
+                37% { transform: rotate(365deg); } /* Smaller overshoot */
+                39% { transform: rotate(357deg); } /* Smaller undershoot */
+                
+                /* Third bounce - small amplitude, even faster */
+                40% { transform: rotate(362deg); } /* Tiny overshoot */
+                41% { transform: rotate(359deg); } /* Tiny undershoot */
+                
+                /* Final settle */
+                42% { transform: rotate(360deg); } /* Perfect alignment */
+                100% { transform: rotate(360deg); } /* Hold position until next animation cycle */
+                /*Yes copilot made this easier was lazy to do all bounces myself*/
+            }
+
+            .rotating-star {
+                display: inline-block;
+                transform-origin: center;
+                animation: rotateStar 3s cubic-bezier(0.2, 0.8, 0.3, 1) infinite;
+            }
+
+            @media (prefers-reduced-motion) {
+                .rotating-star {
+                    animation: none;
+                }
+            }
+
             .preview-banner {
                 background: linear-gradient(45deg, #8a2be2, #ff69b4);
                 padding: 2rem 0;

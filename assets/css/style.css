@@ -35,8 +35,8 @@
 /* 
 ================================================== */
 :root {
-    --EuphoriaMagenta: rgb(255, 80, 223);
-    --EuphoriaMagentaBright: rgb(246, 142, 241);
+    --EuphoriaMagenta: rgb(226, 71, 198);
+    --EuphoriaMagentaBright: rgb(247, 124, 240);
 
     --IndexColor: var(--EuphoriaMagenta);
 
