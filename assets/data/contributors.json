@@ -1,5 +1,5 @@
 {
-  "generated": "2025-06-24T12:55:02.265Z",
+  "generated": "2025-06-27T12:53:38.183Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -35,20 +35,20 @@
       "html_url": "https://github.com/Jupitor87"
     },
     {
+      "login": "DearreeD",
+      "additions": 492,
+      "deletions": 146,
+      "commits": 24,
+      "avatar_url": "https://avatars.githubusercontent.com/u/110697661?v=4",
+      "html_url": "https://github.com/DearreeD"
+    },
+    {
       "login": "djmrFunnyMan",
       "additions": 1183,
       "deletions": 535,
       "commits": 23,
       "avatar_url": "https://avatars.githubusercontent.com/u/68905776?v=4",
       "html_url": "https://github.com/djmrFunnyMan"
-    },
-    {
-      "login": "DearreeD",
-      "additions": 446,
-      "deletions": 138,
-      "commits": 20,
-      "avatar_url": "https://avatars.githubusercontent.com/u/110697661?v=4",
-      "html_url": "https://github.com/DearreeD"
     },
     {
       "login": "serenyadev",
@@ -275,14 +275,6 @@
       "html_url": "https://github.com/Agentley"
     },
     {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
-    },
-    {
       "login": "Hippopipo",
       "additions": 3,
       "deletions": 1,
@@ -291,12 +283,28 @@
       "html_url": "https://github.com/Hippopipo"
     },
     {
+      "login": "FijiAura",
+      "additions": 23,
+      "deletions": 11,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/177214233?v=4",
+      "html_url": "https://github.com/FijiAura"
+    },
+    {
       "login": "Hammerhud",
       "additions": 23,
       "deletions": 6,
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/74509374?v=4",
       "html_url": "https://github.com/Hammerhud"
+    },
+    {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
     },
     {
       "login": "Apothicon02",
@@ -315,20 +323,20 @@
       "html_url": "https://github.com/CoderRuq"
     },
     {
-      "login": "embeddedt",
-      "additions": 0,
-      "deletions": 2,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/42941056?v=4",
-      "html_url": "https://github.com/embeddedt"
-    },
-    {
       "login": "milosworks",
       "additions": 45,
       "deletions": 14,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
       "html_url": "https://github.com/milosworks"
+    },
+    {
+      "login": "embeddedt",
+      "additions": 0,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/42941056?v=4",
+      "html_url": "https://github.com/embeddedt"
     },
     {
       "login": "Dizzy-Eevee",
