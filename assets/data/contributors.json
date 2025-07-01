@@ -1,5 +1,5 @@
 {
-  "generated": "2025-06-27T12:53:38.183Z",
+  "generated": "2025-07-01T12:54:35.183Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -27,20 +27,20 @@
       "html_url": "https://github.com/Pepelespooder"
     },
     {
+      "login": "DearreeD",
+      "additions": 652,
+      "deletions": 192,
+      "commits": 30,
+      "avatar_url": "https://avatars.githubusercontent.com/u/110697661?v=4",
+      "html_url": "https://github.com/DearreeD"
+    },
+    {
       "login": "Jupitor87",
       "additions": 176,
       "deletions": 97,
       "commits": 25,
       "avatar_url": "https://avatars.githubusercontent.com/u/150310872?v=4",
       "html_url": "https://github.com/Jupitor87"
-    },
-    {
-      "login": "DearreeD",
-      "additions": 492,
-      "deletions": 146,
-      "commits": 24,
-      "avatar_url": "https://avatars.githubusercontent.com/u/110697661?v=4",
-      "html_url": "https://github.com/DearreeD"
     },
     {
       "login": "djmrFunnyMan",
