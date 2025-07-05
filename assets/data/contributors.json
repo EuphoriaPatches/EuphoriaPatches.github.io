@@ -1,12 +1,12 @@
 {
-  "generated": "2025-07-02T12:54:36.810Z",
+  "generated": "2025-07-05T12:51:01.163Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14379,
-      "deletions": 9806,
-      "commits": 292,
+      "additions": 14380,
+      "deletions": 9807,
+      "commits": 293,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -283,12 +283,12 @@
       "html_url": "https://github.com/Hippopipo"
     },
     {
-      "login": "FijiAura",
-      "additions": 23,
-      "deletions": 11,
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
       "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/177214233?v=4",
-      "html_url": "https://github.com/FijiAura"
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
     },
     {
       "login": "Hammerhud",
@@ -299,12 +299,12 @@
       "html_url": "https://github.com/Hammerhud"
     },
     {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
+      "login": "FijiAura",
+      "additions": 23,
+      "deletions": 11,
       "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
+      "avatar_url": "https://avatars.githubusercontent.com/u/177214233?v=4",
+      "html_url": "https://github.com/FijiAura"
     },
     {
       "login": "Apothicon02",
