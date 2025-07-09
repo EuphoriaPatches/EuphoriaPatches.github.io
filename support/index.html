@@ -301,6 +301,44 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     .youtube-container:hover .youtube-play-button-bg {
         fill: #f00;
     }
+
+
+    .cycling-image {
+        position: relative;
+        transition: background-image 1s ease-in-out;
+    }
+
+    .image-indicator {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+        background-color: white;
+    }
+
+    /* Animation for smoother transitions */
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    .fade-in {
+        animation: fadeIn 1s ease-out;
+    }
     
     /* Responsive adjustments */
     @media (max-width: 991px) {
@@ -644,11 +682,11 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         
         const title = extractTitle(doc);
         const { youtubeVideoId, youtubeElement } = extractYouTubeInfo(doc);
-        const { mediaSrc, isVideo } = extractMediaInfo(doc, youtubeElement);
+        const { mediaSrc, isVideo, multipleImages } = extractMediaInfo(doc, youtubeElement);
         const description = extractDescription(doc, youtubeElement);
         
         // Create HTML for media content
-        const mediaContent = createMediaContent(youtubeVideoId, isVideo, mediaSrc);
+        const mediaContent = createMediaContent(youtubeVideoId, isVideo, mediaSrc, multipleImages);
         
         // Create card content
         card.innerHTML = `
@@ -701,12 +739,36 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     }
 
     function extractMediaInfo(doc, youtubeElement) {
-        // Only look for standard image/video elements if no YouTube link was found
-        const img = youtubeElement ? null : doc.querySelector('img');
-        const mediaSrc = img ? img.getAttribute('src') : '';
-        const isVideo = mediaSrc && (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov'));
+        // If YouTube element exists, don't look for images
+        if (youtubeElement) {
+            return { mediaSrc: '', isVideo: false, multipleImages: [] };
+        }
         
-        return { mediaSrc, isVideo };
+        // Check for multiple images
+        const allImages = doc.querySelectorAll('img');
+        const multipleImages = [];
+        
+        if (allImages.length > 1) {
+            // We have multiple images, collect all sources
+            allImages.forEach(img => {
+                multipleImages.push(img.getAttribute('src'));
+            });
+            
+            // First image is still our main mediaSrc
+            return { 
+                mediaSrc: allImages[0].getAttribute('src'), 
+                isVideo: false, 
+                multipleImages 
+            };
+        } else if (allImages.length === 1) {
+            // Single image case
+            const mediaSrc = allImages[0].getAttribute('src');
+            const isVideo = mediaSrc && (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov'));
+            return { mediaSrc, isVideo, multipleImages: [] };
+        }
+        
+        // No media
+        return { mediaSrc: '', isVideo: false, multipleImages: [] };
     }
 
     function extractDescription(doc, youtubeElement) {
@@ -773,9 +835,9 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         return description;
     }
 
-    function createMediaContent(youtubeVideoId, isVideo, mediaSrc) {
+    function createMediaContent(youtubeVideoId, isVideo, mediaSrc, multipleImages = []) {
         if (youtubeVideoId) {
-            // Use YouTube's high-quality thumbnail instead of the default embed
+            // YouTube embed code (unchanged)
             return `
                 <div class="feature-card-media youtube-container">
                     <div class="youtube-thumbnail" data-youtube-id="${youtubeVideoId}">
@@ -791,6 +853,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 </div>
             `;
         } else if (isVideo) {
+            // Video element (unchanged)
             return `
                 <div class="feature-card-media">
                     <video controls class="feature-video">
@@ -799,12 +862,31 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     </video>
                 </div>
             `;
+        } else if (multipleImages && multipleImages.length > 1) {
+            // Create a slideshow container for multiple images
+            const imageIds = Date.now() + Math.floor(Math.random() * 1000); // Generate unique ID
+            const allImageUrls = JSON.stringify(multipleImages).replace(/"/g, '&quot;');
+            
+            return `
+                <div class="feature-card-image cycling-image" 
+                    style="background-image: url('${mediaSrc}')"
+                    data-cycle-id="${imageIds}"
+                    data-images='${allImageUrls}'
+                    data-current-index="0">
+                    <div class="image-indicator">
+                        ${multipleImages.map((_, index) => 
+                            `<span class="dot ${index === 0 ? 'active' : ''}"></span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `;
         } else if (mediaSrc) {
+            // Single image (unchanged)
             return `
                 <div class="feature-card-image" style="background-image: url('${mediaSrc}')"></div>
             `;
         } else {
-            // Fallback for no media
+            // Fallback for no media (unchanged)
             return `<div class="feature-card-no-media"></div>`;
         }
     }
@@ -875,6 +957,78 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 }
             });
         });
+    </script>
+
+    <script>
+    // Image cycling functionality - Fixed version
+    document.addEventListener('DOMContentLoaded', function() {
+        // Start all image cycling with a slight delay to ensure DOM is ready
+        setTimeout(initImageCycling, 500);
+        
+        function initImageCycling() {
+            console.log('Initializing image cycling');
+            const cyclingImages = document.querySelectorAll('.cycling-image');
+            console.log('Found cycling images:', cyclingImages.length);
+            
+            cyclingImages.forEach(imgContainer => {
+                // Clear any existing interval
+                if (imgContainer.dataset.intervalId) {
+                    clearInterval(parseInt(imgContainer.dataset.intervalId));
+                }
+                
+                try {
+                    // Parse the stringified JSON array of image URLs
+                    const imagesAttr = imgContainer.getAttribute('data-images');
+                    console.log('Image data attribute:', imagesAttr);
+                    const images = JSON.parse(imagesAttr || '[]');
+                    console.log('Parsed images:', images);
+                    
+                    if (images.length > 1) {
+                        console.log('Setting up cycling for', images.length, 'images');
+                        // Set interval for this specific image container
+                        const intervalId = setInterval(() => {
+                            cycleImage(imgContainer, images);
+                        }, 5000);
+                        
+                        // Store the interval ID as a data attribute
+                        imgContainer.dataset.intervalId = intervalId;
+                    }
+                } catch (e) {
+                    console.error('Error parsing image data:', e);
+                }
+            });
+        }
+        
+        function cycleImage(container, images) {
+            try {
+                // Get current index and update it
+                let currentIndex = parseInt(container.dataset.currentIndex || 0);
+                const nextIndex = (currentIndex + 1) % images.length;
+                console.log('Cycling from image', currentIndex, 'to', nextIndex);
+                
+                // Apply fade effect
+                container.classList.remove('fade-in');
+                void container.offsetWidth; // Force reflow to restart animation
+                container.classList.add('fade-in');
+                
+                // Update the background image
+                container.style.backgroundImage = `url('${images[nextIndex]}')`;
+                container.dataset.currentIndex = nextIndex;
+                
+                // Update indicator dots
+                const dots = container.querySelectorAll('.dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === nextIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            } catch (e) {
+                console.error('Error during image cycling:', e);
+            }
+        }
+    });
     </script>
   
 </body>
