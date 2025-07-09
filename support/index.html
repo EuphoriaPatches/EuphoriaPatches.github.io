@@ -581,54 +581,53 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
     async function loadFeatureFiles() {
         try {
-            // We'll need to check for files that might exist
             const featuresSection = document.getElementById('featuresSection');
             const featuresContainer = document.getElementById('featuresContainer');
             let foundFeatures = false;
             let versionNumber = "X.Y.Z"; // Default version
             
-            // Get list of all files in the directory
-            const response = await fetch('/support/features/');
-            const html = await response.text();
+            // Get list of files from the index.json instead of trying to fetch directory
+            const response = await fetch('/support/features/index.json');
             
-            // Parse HTML directory listing to find markdown files
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // Find all links to .md files that aren't template.md
-            const mdLinks = Array.from(doc.querySelectorAll('a'))
-                .filter(a => a.href.endsWith('.md') && !a.href.includes('template.md'))
-                .map(a => a.getAttribute('href'));
-            
-            if (mdLinks.length > 0) {
-                featuresSection.style.display = 'block';
+            if (response.ok) {
+                const data = await response.json();
                 
-                // Process each markdown file
-                for (const link of mdLinks) {
-                    const fileName = link.split('/').pop();
-                    const fileResponse = await fetch(`/support/features/${fileName}`);
+                if (data.files && data.files.length > 0) {
+                    featuresSection.style.display = 'block';
                     
-                    if (fileResponse.ok) {
-                        const markdown = await fileResponse.text();
+                    // If version is provided in the index file, use it
+                    if (data.version) {
+                        versionNumber = data.version;
+                    }
+                    
+                    // Process each markdown file
+                    for (const fileName of data.files) {
+                        const fileResponse = await fetch(`/support/features/${fileName}`);
                         
-                        // Extract version from the first line if available
-                        const lines = markdown.split('\n');
-                        if (lines.length > 0 && /^\d+\.\d+\.\d+$/.test(lines[0].trim())) {
-                            versionNumber = lines[0].trim();
+                        if (fileResponse.ok) {
+                            const markdown = await fileResponse.text();
+                            
+                            // Extract version from the first line if available
+                            const lines = markdown.split('\n');
+                            if (lines.length > 0 && /^\d+\.\d+\.\d+$/.test(lines[0].trim())) {
+                                versionNumber = lines[0].trim();
+                            }
+                            
+                            const html = marked.parse(markdown);
+                            const card = createFeatureCard(html);
+                            featuresContainer.appendChild(card);
+                            foundFeatures = true;
                         }
-                        
-                        const html = marked.parse(markdown);
-                        const card = createFeatureCard(html);
-                        featuresContainer.appendChild(card);
-                        foundFeatures = true;
+                    }
+                    
+                    // Update the version in the subheading
+                    const versionSubheading = document.querySelector('.features-section-content .support-subheading');
+                    if (versionSubheading) {
+                        versionSubheading.textContent = `New in Euphoria Patches ${versionNumber}`;
                     }
                 }
-                
-                // Update the version in the subheading
-                const versionSubheading = document.querySelector('.features-section-content .support-subheading');
-                if (versionSubheading) {
-                    versionSubheading.textContent = `New in Euphoria Patches ${versionNumber}`;
-                }
+            } else {
+                console.error('Could not load feature index file');
             }
         } catch (error) {
             console.error('Error loading feature files:', error);
@@ -717,15 +716,9 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         // Check if the first paragraph is just a version number
         if (paragraphs.length > 0) {
             const firstParagraphText = paragraphs[0].textContent.trim();
-            const isVersionParagraph = /^\d+\.\d+\.\d+$/.test(firstParagraphText);
             
             // Try to find a paragraph with description content
-            for (const p of paragraphs) {
-                // Skip version paragraph
-                if (p.textContent.trim() === firstParagraphText && isVersionParagraph) {
-                    continue;
-                }
-                
+            for (const p of paragraphs) {                
                 // If this paragraph contains the YouTube link but also has other text
                 if (youtubeElement && p.contains(youtubeElement)) {
                     // Get the text before the YouTube link
