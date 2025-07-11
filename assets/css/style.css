@@ -2436,6 +2436,7 @@ code {
 
 .section-donation-container {
     display: block;
+    margin-top: -35px;
 }
 
 .section-donation-container ins {
@@ -4570,7 +4571,11 @@ a.contact-bg:before {
     height: 220px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 10px 20px rgba(100, 100, 100, 0.25),
+        0 4px 8px rgba(100, 100, 100, 0.15),
+        0 0 15px rgba(50, 50, 50, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

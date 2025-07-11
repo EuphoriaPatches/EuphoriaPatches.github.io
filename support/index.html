@@ -117,6 +117,11 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
     .benefits-list {
         list-style-type: none !important;
+        padding: 10px !important;
+    }
+
+    .footnote {
+        margin-bottom: -10px;
     }
 
 
@@ -352,7 +357,6 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
         width: 100%;
         max-height: 0;
         overflow: hidden;
@@ -375,7 +379,11 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     .see-more-container {
         width: 100%;
         text-align: center;
-        margin: 20px 0;
+        margin: 0;
+    }
+
+    .see-more-container-features {
+        height: 0px;
     }
 
     .see-more-btn {
@@ -401,6 +409,8 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
     .features-see-more-btn {
         margin-top: -50px !important;
+        position: relative; 
+        top: -20px;
     }
 
     .carousel-container {
@@ -737,13 +747,13 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
                     // Create "See More" button container
                     const btnContainer = document.createElement('div');
-                    btnContainer.className = 'see-more-container';
+                    btnContainer.className = 'see-more-container-features';
                     btnContainer.style.textAlign = 'center';
                     btnContainer.style.margin = '20px 0';
                     
                     const seeMoreBtn = document.createElement('button');
                     seeMoreBtn.id = 'seeMoreFeaturesBtn'; // Unique ID
-                    seeMoreBtn.className = 'see-more-btn features-see-more-btn';
+                    seeMoreBtn.className = 'see-more-btn features-see-more-btn collapsed';
                     seeMoreBtn.innerText = 'See More Features ▼';
                     seeMoreBtn.style.backgroundColor = 'rgba(255, 80, 223, 0.1)';
                     seeMoreBtn.onclick = toggleFeatures;
@@ -832,12 +842,14 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             
             btn.innerHTML = "See Less Features ▲";
             btn.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            btn.classList.remove('collapsed'); // Add activated class
         } else {
             // Original collapse code
             hiddenFeatures.style.maxHeight = "0";
             btn.innerHTML = "See More Features ▼";
             btn.style.backgroundColor = "rgba(255, 80, 223, 0.1)";
             hiddenFeatures.style.opacity = '0';
+            btn.classList.add('collapsed'); // Remove activated class
         }
     }
 
