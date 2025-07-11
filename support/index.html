@@ -302,43 +302,6 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         fill: #f00;
     }
 
-
-    .cycling-image {
-        position: relative;
-        transition: background-image 1s ease-in-out;
-    }
-
-    .image-indicator {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 6px;
-    }
-
-    .dot {
-        width: 8px;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.3s ease;
-    }
-
-    .dot.active {
-        background-color: white;
-    }
-
-    /* Animation for smoother transitions */
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-
-    .fade-in {
-        animation: fadeIn 1s ease-out;
-    }
     
     /* Responsive adjustments */
     @media (max-width: 991px) {
@@ -351,6 +314,10 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         /* Card sizing - maintain full width */
         .feature-card {
             width: 100%; /* 1 card per row on small screens */
+        }
+
+        .support-heading {
+            margin-top: 0px !important;
         }
         
         /* Media element fixes - prevent cropping and ensure proper sizing */
@@ -371,6 +338,124 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             object-fit: contain;
             flex-shrink: 0; /* Prevent video from shrinking */
         }
+    }
+
+    .visible-features, .hidden-features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .hidden-features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.8s ease-out, opacity 0.4s ease-out;
+        align-items: flex-start; /* Prevent vertical stretching */
+    }
+
+    .feature-card {
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .feature-card-content {
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+    }
+
+    .see-more-container {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .see-more-btn {
+        background-color: rgba(255, 80, 223, 0.1);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: 600;
+    }
+
+    .see-more-btn:hover {
+        background-color: rgba(255, 80, 223, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .see-more-btn:active {
+        transform: translateY(0);
+    }
+
+
+    .features-see-more-btn {
+        margin-top: -50px !important;
+    }
+
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .carousel {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .carousel-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+
+    .carousel-image.active {
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .carousel-indicator {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 3;
+    }
+
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .indicator-dot.active {
+        background-color: white;
     }
 
     </style>
@@ -638,8 +723,35 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                         versionNumber = data.version;
                     }
                     
+                    // Create container for hidden cards
+                    const visibleContainer = document.createElement('div');
+                    visibleContainer.className = 'visible-features';
+                    featuresContainer.appendChild(visibleContainer);
+                    
+                    const hiddenContainer = document.createElement('div');
+                    hiddenContainer.className = 'hidden-features';
+                    hiddenContainer.style.maxHeight = '0';
+                    hiddenContainer.style.overflow = 'hidden';
+                    hiddenContainer.style.transition = 'max-height 0.5s ease-out';
+                    featuresContainer.appendChild(hiddenContainer);
+
+                    // Create "See More" button container
+                    const btnContainer = document.createElement('div');
+                    btnContainer.className = 'see-more-container';
+                    btnContainer.style.textAlign = 'center';
+                    btnContainer.style.margin = '20px 0';
+                    
+                    const seeMoreBtn = document.createElement('button');
+                    seeMoreBtn.id = 'seeMoreFeaturesBtn'; // Unique ID
+                    seeMoreBtn.className = 'see-more-btn features-see-more-btn';
+                    seeMoreBtn.innerText = 'See More Features ▼';
+                    seeMoreBtn.style.backgroundColor = 'rgba(255, 80, 223, 0.1)';
+                    seeMoreBtn.onclick = toggleFeatures;
+                    btnContainer.appendChild(seeMoreBtn);
+                    
                     // Process each markdown file
-                    for (const fileName of data.files) {
+                    for (let i = 0; i < data.files.length; i++) {
+                        const fileName = data.files[i];
                         const fileResponse = await fetch(`/support/features/${fileName}`);
                         
                         if (fileResponse.ok) {
@@ -653,7 +765,20 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                             
                             const html = marked.parse(markdown);
                             const card = createFeatureCard(html);
-                            featuresContainer.appendChild(card);
+                            
+                            // Add to visible or hidden container
+                            if (i < 3) {
+                                visibleContainer.appendChild(card);
+                            } else {
+                                hiddenContainer.appendChild(card);
+                                
+                                // If this is the first hidden card, add the "See More" button
+                                if (i === 3) {
+                                    featuresContainer.appendChild(hiddenContainer);
+                                    featuresContainer.appendChild(btnContainer); // Button after all content
+                                }
+                            }
+                            
                             foundFeatures = true;
                         }
                     }
@@ -663,12 +788,56 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     if (versionSubheading) {
                         versionSubheading.textContent = `New in Euphoria Patches ${versionNumber}`;
                     }
+                    
+                    // Initialize carousels for visible cards
+                    setTimeout(() => {
+                        initCarousels();
+                    }, 100);
                 }
             } else {
                 console.error('Could not load feature index file');
             }
         } catch (error) {
             console.error('Error loading feature files:', error);
+        }
+    }
+
+    function toggleFeatures() {
+        const hiddenFeatures = document.querySelector('.hidden-features');
+        const btn = document.getElementById('seeMoreFeaturesBtn');
+        
+        if (hiddenFeatures.style.maxHeight === '0px' || !hiddenFeatures.style.maxHeight) {
+            // Set opacity first for smoother appearance
+            hiddenFeatures.style.opacity = '1';
+            
+            // Temporarily remove transition for accurate measurement
+            hiddenFeatures.style.transition = 'none';
+            hiddenFeatures.style.maxHeight = 'none';
+            
+            // Initialize carousels immediately
+            initCarousels();
+            
+            // Measure full height including all rows of cards
+            const totalHeight = hiddenFeatures.scrollHeight;
+            
+            // Reset and prepare for animation
+            hiddenFeatures.style.maxHeight = '0px';
+            
+            // Force browser to recognize the change
+            hiddenFeatures.offsetHeight;
+            
+            // Restore transition and animate to full height
+            hiddenFeatures.style.transition = 'max-height 0.5s ease-out, opacity 0.4s ease-out';
+            hiddenFeatures.style.maxHeight = totalHeight + 'px';
+            
+            btn.innerHTML = "See Less Features ▲";
+            btn.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+        } else {
+            // Original collapse code
+            hiddenFeatures.style.maxHeight = "0";
+            btn.innerHTML = "See More Features ▼";
+            btn.style.backgroundColor = "rgba(255, 80, 223, 0.1)";
+            hiddenFeatures.style.opacity = '0';
         }
     }
 
@@ -863,20 +1032,20 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 </div>
             `;
         } else if (multipleImages && multipleImages.length > 1) {
-            // Create a slideshow container for multiple images
-            const imageIds = Date.now() + Math.floor(Math.random() * 1000); // Generate unique ID
-            const allImageUrls = JSON.stringify(multipleImages).replace(/"/g, '&quot;');
-            
+            // Updated carousel implementation to match the example
             return `
-                <div class="feature-card-image cycling-image" 
-                    style="background-image: url('${mediaSrc}')"
-                    data-cycle-id="${imageIds}"
-                    data-images='${allImageUrls}'
-                    data-current-index="0">
-                    <div class="image-indicator">
-                        ${multipleImages.map((_, index) => 
-                            `<span class="dot ${index === 0 ? 'active' : ''}"></span>`
-                        ).join('')}
+                <div class="feature-card-media">
+                    <div class="carousel-container">
+                        <div class="carousel">
+                            ${multipleImages.map((imgSrc, index) => 
+                                `<img src="${imgSrc}" loading="lazy" class="carousel-image ${index === 0 ? 'active' : ''}" alt="Feature image ${index+1}">`
+                            ).join('')}
+                        </div>
+                        <div class="carousel-indicator">
+                            ${multipleImages.map((_, index) => 
+                                `<span class="indicator-dot ${index === 0 ? 'active' : ''}"></span>`
+                            ).join('')}
+                        </div>
                     </div>
                 </div>
             `;
@@ -915,6 +1084,81 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         }
     });
 
+    // Initialize carousels after they're created
+    function initCarousels() {
+        const carouselContainers = document.querySelectorAll('.carousel-container');
+        
+        carouselContainers.forEach(container => {
+            let currentImageIndex = 0;
+            const images = container.querySelectorAll('.carousel-image');
+            const dots = container.querySelectorAll('.indicator-dot');
+            
+            // Skip if this carousel was already initialized
+            if (container.dataset.initialized === 'true') return;
+            
+            function showImage(index) {
+                // Hide current image and deactivate dot
+                images[currentImageIndex].classList.remove('active');
+                dots[currentImageIndex].classList.remove('active');
+                
+                // Show new image and activate dot
+                currentImageIndex = index;
+                images[currentImageIndex].classList.add('active');
+                dots[currentImageIndex].classList.add('active');
+            }
+            
+            function showNextImage() {
+                let nextIndex = (currentImageIndex + 1) % images.length;
+                showImage(nextIndex);
+            }
+            
+            // Add click handlers to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent triggering the card's onclick
+                    showImage(index);
+                });
+            });
+            
+            // Auto-rotate images
+            const intervalId = setInterval(showNextImage, 5000);
+            
+            // Mark as initialized
+            container.dataset.initialized = 'true';
+            
+            // Store interval ID for cleanup if needed
+            container.dataset.intervalId = intervalId;
+        });
+    }
+
+    // Modify the createFeatureCard function to initialize carousel after adding card
+    const originalCreateFeatureCard = createFeatureCard;
+    createFeatureCard = function(html) {
+        const card = originalCreateFeatureCard(html);
+        
+        // Wait for DOM update then initialize any carousels in this card
+        setTimeout(() => {
+            const carousels = card.querySelectorAll('.carousel-container');
+            if (carousels.length > 0) {
+                initCarousels();
+            }
+        }, 0);
+        
+        return card;
+    };
+
+    // Also call initCarousels after all feature cards are loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const featuresContainer = document.getElementById('featuresContainer');
+        if (featuresContainer) {
+            // Use MutationObserver to detect when cards are added
+            const observer = new MutationObserver(function(mutations) {
+                initCarousels();
+            });
+            
+            observer.observe(featuresContainer, { childList: true });
+        }
+    });
     </script>
 
     <script>
@@ -924,16 +1168,27 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             const overlayImage = document.getElementById('overlay-image');
             const overlayClose = document.querySelector('.gallery-images-overlay-close');
             
-            // Add click event to feature card images (not videos)
+            // Add click event to both feature card images and carousel images
             document.addEventListener('click', function(e) {
-                // Only handle clicks on feature-card-image elements
+                // Handle single images (feature-card-image)
                 if (e.target && e.target.classList.contains('feature-card-image')) {
-                    // Extract the background image URL
                     const bgUrl = window.getComputedStyle(e.target).backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
                     
                     if (bgUrl) {
                         overlayImage.src = bgUrl;
                         overlay.classList.add('show');
+                    }
+                }
+                // Handle carousel images
+                else if (e.target && e.target.classList.contains('carousel-image')) {
+                    // Only respond to the active image in the carousel
+                    if (e.target.classList.contains('active')) {
+                        const imgSrc = e.target.getAttribute('src');
+                        
+                        if (imgSrc) {
+                            overlayImage.src = imgSrc;
+                            overlay.classList.add('show');
+                        }
                     }
                 }
             });
@@ -957,78 +1212,6 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 }
             });
         });
-    </script>
-
-    <script>
-    // Image cycling functionality - Fixed version
-    document.addEventListener('DOMContentLoaded', function() {
-        // Start all image cycling with a slight delay to ensure DOM is ready
-        setTimeout(initImageCycling, 500);
-        
-        function initImageCycling() {
-            console.log('Initializing image cycling');
-            const cyclingImages = document.querySelectorAll('.cycling-image');
-            console.log('Found cycling images:', cyclingImages.length);
-            
-            cyclingImages.forEach(imgContainer => {
-                // Clear any existing interval
-                if (imgContainer.dataset.intervalId) {
-                    clearInterval(parseInt(imgContainer.dataset.intervalId));
-                }
-                
-                try {
-                    // Parse the stringified JSON array of image URLs
-                    const imagesAttr = imgContainer.getAttribute('data-images');
-                    console.log('Image data attribute:', imagesAttr);
-                    const images = JSON.parse(imagesAttr || '[]');
-                    console.log('Parsed images:', images);
-                    
-                    if (images.length > 1) {
-                        console.log('Setting up cycling for', images.length, 'images');
-                        // Set interval for this specific image container
-                        const intervalId = setInterval(() => {
-                            cycleImage(imgContainer, images);
-                        }, 5000);
-                        
-                        // Store the interval ID as a data attribute
-                        imgContainer.dataset.intervalId = intervalId;
-                    }
-                } catch (e) {
-                    console.error('Error parsing image data:', e);
-                }
-            });
-        }
-        
-        function cycleImage(container, images) {
-            try {
-                // Get current index and update it
-                let currentIndex = parseInt(container.dataset.currentIndex || 0);
-                const nextIndex = (currentIndex + 1) % images.length;
-                console.log('Cycling from image', currentIndex, 'to', nextIndex);
-                
-                // Apply fade effect
-                container.classList.remove('fade-in');
-                void container.offsetWidth; // Force reflow to restart animation
-                container.classList.add('fade-in');
-                
-                // Update the background image
-                container.style.backgroundImage = `url('${images[nextIndex]}')`;
-                container.dataset.currentIndex = nextIndex;
-                
-                // Update indicator dots
-                const dots = container.querySelectorAll('.dot');
-                dots.forEach((dot, idx) => {
-                    if (idx === nextIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            } catch (e) {
-                console.error('Error during image cycling:', e);
-            }
-        }
-    });
     </script>
   
 </body>

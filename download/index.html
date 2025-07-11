@@ -865,39 +865,38 @@
 
     <!-- Carousel JavaScript -->
     <script>
-        /* Add to your script section or update the existing carousel script */
-document.addEventListener('DOMContentLoaded', function() {
-    let currentImageIndex = 0;
-    const images = document.querySelectorAll('.carousel-image');
-    const dots = document.querySelectorAll('.indicator-dot');
-    
-    function showImage(index) {
-        // Hide current image and deactivate dot
-        images[currentImageIndex].classList.remove('active');
-        dots[currentImageIndex].classList.remove('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.carousel-image');
+        const dots = document.querySelectorAll('.indicator-dot');
         
-        // Show new image and activate dot
-        currentImageIndex = index;
-        images[currentImageIndex].classList.add('active');
-        dots[currentImageIndex].classList.add('active');
-    }
-    
-    function showNextImage() {
-        let nextIndex = (currentImageIndex + 1) % images.length;
-        showImage(nextIndex);
-    }
-    
-    // Add click handlers to dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent triggering the card's onclick
-            showImage(index);
+        function showImage(index) {
+            // Hide current image and deactivate dot
+            images[currentImageIndex].classList.remove('active');
+            dots[currentImageIndex].classList.remove('active');
+            
+            // Show new image and activate dot
+            currentImageIndex = index;
+            images[currentImageIndex].classList.add('active');
+            dots[currentImageIndex].classList.add('active');
+        }
+        
+        function showNextImage() {
+            let nextIndex = (currentImageIndex + 1) % images.length;
+            showImage(nextIndex);
+        }
+        
+        // Add click handlers to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent triggering the card's onclick
+                showImage(index);
+            });
         });
+        
+        // Auto-rotate images
+        setInterval(showNextImage, 5000);
     });
-    
-    // Auto-rotate images
-    setInterval(showNextImage, 5000);
-});
     
     </script>
     <script>
