@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>404 - Page Not Found | Euphoria Patches</title>
+
+    <meta name="description" content="The page you were looking for could not be found - Euphoria Patches">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/assets/css/style.min.css" as="style">
+    <link rel="preload" href="/assets/fonts/graphicpixel/graphicpixel.ttf" as="font" type="font/ttf" crossorigin>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    </noscript>
+
+    <!-- Favicon
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/assets/img/EuphoriaPatchesLogo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/EuphoriaPatchesLogo16x.png">
+
+    <!-- Cookie Consent Script -->
+    <script src="/assets/js/cookie-consent.js" async></script>
+
+    <!-- Stylesheets
+    ================================================== -->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="print" onload="this.media='all'">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/responsive.min.css" media="print" onload="this.media='all'">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .site-header {
+            flex-shrink: 0; /* Prevent header from shrinking */
+        }
+        .site-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(18, 18, 24);
+            background-image: radial-gradient(transparent 0.6em, rgb(22, 20, 30) 0.6em), 
+                            conic-gradient(at 1em 1em, transparent 270deg, rgba(255, 80, 223, 0.3) 270deg), 
+                            conic-gradient(at 1em 1em, transparent 270deg, rgba(255, 80, 223, 0.4) 270deg), 
+                            conic-gradient(at 1em 1em, transparent 270deg, rgba(255, 80, 223, 0.5) 270deg), 
+                            conic-gradient(at 1em 1em, transparent 270deg, rgba(255, 80, 223, 0.6) 270deg);
+            background-size: 1em 1em, 4em 4em, 4em 4em, 4em 4em, 4em 4em;
+            animation: bpx 12s infinite, bpy 12s -3.75s infinite;
+            position: relative;
+        }
+
+        .site-main::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.33);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 1;
+            pointer-events: none; /* Allows clicks to pass through to elements below */
+        }
+
+        .site-main > * {
+            position: relative;
+            z-index: 2; /* Ensures content appears above the blur filter */
+        }
+
+        @keyframes bpx { /* Background by Amit Sheen https://codepen.io/amit_sheen/pen/zYJzLoy */
+            0%, 7.5%, 100% {
+                background-position-x: 0, 0, 1em, 2em, 3em;
+            }
+            12.5%, 20% {
+                background-position-x: 0, 1em, 0, 3em, 2em;
+            }
+            25%, 32.5% {
+                background-position-x: 0, -1em, -2em, 5em, 4em;
+            }
+            37.5%, 45% {
+                background-position-x: 0, 1em, -4em, 7em, 2em;
+            }
+            50%, 57.5% {
+                background-position-x: 0, -2em, -5em, 8em, 5em;
+            }
+            62.5%, 70% {
+                background-position-x: 0, -3em, -4em, 7em, 6em;
+            }
+            75%, 82.5% {
+                background-position-x: 0, -1em, -2em, 5em, 4em;
+            }
+            87.5%, 95% {
+                background-position-x: 0, -3em, 0, 3em, 6em;
+            }
+        }
+
+        @keyframes bpy {
+            0%, 7.5%, 100% {
+                background-position-y: 0, 0, 1em, 2em, 3em;
+            }
+            12.5%, 20% {
+                background-position-y: 0, 1em, 0, 3em, 2em;
+            }
+            25%, 32.5% {
+                background-position-y: 0, -1em, -2em, 5em, 4em;
+            }
+            37.5%, 45% {
+                background-position-y: 0, 1em, -4em, 7em, 2em;
+            }
+            50%, 57.5% {
+                background-position-y: 0, -2em, -5em, 8em, 5em;
+            }
+            62.5%, 70% {
+                background-position-y: 0, -3em, -4em, 7em, 6em;
+            }
+            75%, 82.5% {
+                background-position-y: 0, -1em, -2em, 5em, 4em;
+            }
+            87.5%, 95% {
+                background-position-y: 0, -3em, 0, 3em, 6em;
+            }
+        }
+        
+        .site-footer {
+            flex-shrink: 0; /* Prevent footer from shrinking */
+            margin-top: auto; /* Push footer to bottom when content is short */
+        }
+
+        .site-section {
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden; /* Keep the pseudo-element within the rounded corners */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: transparent; /* Remove the existing background */
+        }
+
+        .site-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                        rgba(18, 18, 24, 1.0) 45%, 
+                        rgba(18, 18, 24, 0.7) 70%,
+                        transparent 100%);
+            z-index: -1; /* Place behind the content */
+        }
+
+        .not-found-container {
+            text-align: center;
+            padding: 30px 20px;
+            width: 100%;
+        }
+        
+        .not-found-title {
+            font-family: 'graphicpixel';
+            font-size: 6rem;
+            color: var(--ThemeColor);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 80, 223, 0.7);
+        }
+        
+        .not-found-subtitle {
+            font-family: 'graphicpixel';
+            font-size: 2rem;
+            color: var(--VeryLightGray);
+            margin-bottom: 2rem;
+        }
+        
+        .not-found-text {
+            font-size: 1.2rem;
+            color: var(--VeryLightGray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .home-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--ThemeColor);
+            color: white;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 80, 223, 0.4);
+        }
+        
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 80, 223, 0.6);
+            background-color: white;
+            color: var(--ThemeColor);
+        }
+        
+        .not-found-suggestions {
+            margin-top: 3rem;
+            padding: 20px;
+        }
+        
+        .not-found-suggestions h3 {
+            font-family: 'graphicpixel';
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--VeryLightGray);
+        }
+        
+        .suggestion-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+        
+        .suggestion-link {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: var(--VeryLightGray);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .suggestion-link:hover {
+            background-color: rgba(255, 80, 223, 0.15);
+            transform: translateY(-2px);
+            border-color: var(--ThemeColor);
+            color: var(--ThemeColor);
+        }
+        
+        .not-found-image {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .not-found-title {
+                font-size: 4rem;
+            }
+            
+            .not-found-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .suggestion-links {
+                gap: 10px;
+            }
+            
+            .suggestion-link {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .site-section {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="masthead" class="site-header">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
+                </div><!-- /.navbar-header -->
+                
+                <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/" aria-label="Home Page">Home</a></li>
+                        <li><a class="download-navigation-button" href="/download" aria-label="Download Page">Download</a></li>
+                        <li><a href="/support" aria-label="Preview Versions Page">Preview Versions</a></li>   
+                        <li><a href="/features/" aria-label="Features Page which show the most important Euphoria Patches Features">Features</a></li>
+                        <li><a href="/how-to-install" aria-label="How to Install Guide">How To Install</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Information<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li><a href="/contact" aria-label="Contact Information">Contact</a></li>
+                                <li><a href="/changelogs" aria-label="Changelogs Page">Changelogs</a></li>
+                                <li><a href="/faq" aria-label="Frequently Asked Questions Page">FAQ</a></li>
+                                <li><a href="/gallery/" aria-label="Gallery Page where screenshots with Euphoria Patches are">Gallery</a></li>
+                                <li><a href="/credits" aria-label="Credits Page">Credits</a></li>
+                                <li><a href="/download-count/" aria-label="Download Count Page">Download Count</a></li>
+                                <li><a href="/properties/list/" aria-label="List of Supported Mods">Supported Mod List</a></li>
+                                <li><a href="/privacy-policy" aria-label="Privacy Policy Page">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /.container -->
+        </nav><!-- /.site-navigation -->
+    </header><!-- /#mastheaed -->
+
+
+    <main id="main" class="site-main">
+        <section class="site-section">
+            <div class="container">
+                <div class="not-found-container">
+                    <h1 class="not-found-title">404</h1>
+                    <h2 class="not-found-subtitle">Page Not Found</h2>
+                    
+                    <p class="not-found-text">
+                        The page you're looking for seems to have disappeared.
+                    </p>
+                    
+                    <a href="/" class="home-button">Return to Home</a>
+                    
+                    <div class="not-found-suggestions">
+                        <h3>Maybe try one of these instead?</h3>
+                        <div class="suggestion-links">
+                            <a href="/download" class="suggestion-link">Download</a>
+                            <a href="/features/" class="suggestion-link">Features</a>
+                            <a href="/how-to-install" class="suggestion-link">How To Install</a>
+                            <a href="/faq" class="suggestion-link">FAQ</a>
+                            <a href="/gallery/" class="suggestion-link">Gallery</a>
+                            <a href="/contact" class="suggestion-link">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="colophon" class="site-footer"></footer>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="social-links">
+                            <a class="discord-bg" href="/discord" target="_blank" alt="Discord Invite"></a>
+                            <a class="patreon-bg" href="/support" target="_blank" alt="Patreon Link"></a>
+                            <a class="github-bg" href="/github" target="_blank" alt="Github Link"></a>
+                            <a class="contact-bg" href="/contact" target="_blank" alt="Contact Page Link">Contact</a>
+                        </div><!-- /.social-links -->
+                    </div>
+                    <div class="col-xs-4 site-title">
+                        <div class="text-right">
+                            <a href="/">Euphoria Patches</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.copyright -->
+    </footer><!-- /#footer -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
+    <script src="/assets/js/jquery.slicknav.min.js" defer></script>
+    <script src="/assets/js/script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorMessages = [
+                "This page failed to load. A broken shader line caused the whole pipeline to collapse.",
+                "Rendering halted. A NaN value infected the output and forced a full reset.",
+                "Chunk Not Rendered. This section of the world never finished loading. Nothing to see here.",
+                "The page was removed in a creeper explosion. No data remains.",
+                "Page not generated. The world seed couldn't produce this structure at these coordinates.",
+                "Biome not found. You've wandered too far into unloaded territory.",
+                "Redstone connection broken. The signal to this page never arrived.",
+                "Void detected. You've fallen through a hole in the website's bedrock.",
+                "Shader compilation error: Too many recursive for loops caused the page to collapse.",
+                "Block state invalid. The requested page exists in a quantum superposition of 404.",
+                "Framebuffer lost. The output was redirected into the void. No visuals were recovered.",
+                "Missing uniform. A key value wasn’t passed to the shader. Output undefined.",
+                "Geometry crashed into itself. The triangles gave up. So did the page.",
+                "This area was marked for generation, but the noise function returned only silence.",
+                "This was supposed to be a valid location, but the structure never spawned. Maybe the RNG rolled too low. Maybe it decided the world would be better without this page.",
+                "The page was lost in the multiverse. It exists somewhere, but not here.",
+                "The page was never meant to be. It was a glitch in the matrix",
+                "The page was deleted by a rogue script. It never had a chance to exist.",
+                "The page was never created. It was a figment of your imagination.",
+            ];
+            
+            // Select a random message
+            const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+            
+            // Update the text content
+            const notFoundText = document.querySelector('.not-found-text');
+            if (notFoundText) {
+                notFoundText.textContent = randomMessage;
+            }
+        });
+    </script>
+</body>
+</html>
