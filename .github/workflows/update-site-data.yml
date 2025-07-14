@@ -1,8 +1,12 @@
-# .github/workflows/update-contributors.yml
-name: Update Contributors Data
+name: Update Site Data
 
 on:
+  schedule:
+    - cron: "0 0 * * *" # Every UTC midnight
   workflow_dispatch:     # Allow manual trigger
+  push:
+    paths:
+      - '.github/workflows/update-site-data.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -269,3 +273,45 @@ jobs:
             echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
             git pull --rebase
           done
+
+  update-downloads:
+    runs-on: ubuntu-latest
+    needs: update-contributors
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install node-fetch node-abort-controller
+
+      - name: Run download update script
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+        run: node --trace-exit backend/updateDownloads.mjs
+        
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+      - name: Commit and push with retry
+        run: |
+          git add assets/data/download-stats.json assets/data/block.properties assets/data/addedMods.md
+          git diff --quiet && git diff --staged --quiet || {
+            git commit -m "Update download stats and properties data [skip ci]"
+            
+            # Try pushing with retries
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            
+            until git push || [ $RETRY_COUNT -ge $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
+              git pull --rebase
+            done
+          }

@@ -1,12 +1,7 @@
 name: Update Downloads
 
 on:
-  schedule:
-    - cron: "0 0 * * *" # Every UTC midnight 
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/update-downloads.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
