@@ -15,7 +15,6 @@ concurrency:
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes || 'false' }}
     steps:
@@ -50,7 +49,6 @@ jobs:
           
       - name: Attempt to fetch Stats API data
         id: stats-api
-        timeout-minutes: 5  # Limit time spent on this step
         run: |
           # Set up retry mechanism with exponential backoff
           STATS_API_SUCCESS=false
@@ -178,7 +176,6 @@ jobs:
       - name: Fetch Simple API data
         if: steps.stats-api.outputs.success != 'true'
         id: simple-api
-        timeout-minutes: 2  # Short timeout for simple API
         run: |
           echo "Stats API failed. Using Simple API as fallback..."
           curl -s https://api.github.com/repos/EuphoriaPatches/propertiesFiles/contributors > simple_response.json
@@ -287,7 +284,6 @@ jobs:
     # Continue even if contributors job fails
     needs: update-contributors
     continue-on-error: true
-    timeout-minutes: 10
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes }}
     steps:
@@ -334,7 +330,6 @@ jobs:
     # Make translations depend on downloads job
     needs: update-downloads
     continue-on-error: true  # Continue even if this job fails
-    timeout-minutes: 5
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes }}
     steps:
@@ -386,7 +381,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [update-contributors, update-downloads, update-translations]
     if: always() && (needs.update-contributors.result == 'success' || needs.update-downloads.result == 'success' || needs.update-translations.result == 'success')
-    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
