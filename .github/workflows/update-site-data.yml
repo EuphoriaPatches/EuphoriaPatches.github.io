@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15  # Prevent indefinite hanging
     outputs:
-      contributor_changes: ${{ steps.check-changes.outputs.has_changes }}
+      has_changes: ${{ steps.check-changes.outputs.has_changes }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -265,10 +265,23 @@ jobs:
           fi
           echo "Contributors changes: $(git status --porcelain assets/data/contributors.json | wc -l)"
 
+      # Upload contributors.json as an artifact if changed
+      - name: Upload contributors data artifact
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: contributors-data
+          path: assets/data/contributors.json
+          retention-days: 1
+
   update-downloads:
     runs-on: ubuntu-latest
-    needs: update-contributors  # Still depend on the contributors job
-    timeout-minutes: 10  # Prevent indefinite hanging
+    # Continue even if contributors job fails
+    needs: update-contributors
+    continue-on-error: true
+    timeout-minutes: 10
+    outputs:
+      has_changes: ${{ steps.check-changes.outputs.has_changes }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -296,26 +309,129 @@ jobs:
           fi
           echo "Download changes: $(git status --porcelain assets/data/download-stats.json assets/data/block.properties assets/data/addedMods.md | wc -l)"
 
+      # Upload download data artifacts if changed
+      - name: Upload download data artifacts
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: download-data
+          path: |
+            assets/data/download-stats.json
+            assets/data/block.properties
+            assets/data/addedMods.md
+          retention-days: 1
+
+  update-translations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      has_changes: ${{ steps.check-changes.outputs.has_changes }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Create translations directory if needed
+        run: mkdir -p how-to-install/translations
+        
+      - name: Fetch latest translation files
+        run: |
+          # Create temp dir for language files
+          mkdir -p temp_lang
+          
+          # Clone only the needed directory from the langFiles repository
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/EuphoriaPatches/langFiles.git temp_lang
+          cd temp_lang
+          git sparse-checkout set website
+          cd ..
+          
+          # Copy all json files to the translations directory
+          cp -f temp_lang/website/*.json how-to-install/translations/
+          
+          # Clean up
+          rm -rf temp_lang
+      
+      # Check if there were changes to any translation files
+      - name: Check for translation changes
+        id: check-changes
+        run: |
+          if [ "$(git status --porcelain how-to-install/translations/ | wc -l)" -gt "0" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Translation changes detected: $(git status --porcelain how-to-install/translations/ | wc -l) files"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No translation changes detected"
+          fi
+      
+      # Upload translation files as an artifact if changed
+      - name: Upload translation data artifacts
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: translation-data
+          path: how-to-install/translations/
+          retention-days: 1
+
+  commit-and-push:
+    runs-on: ubuntu-latest
+    needs: [update-contributors, update-downloads, update-translations]
+    if: always() && (needs.update-contributors.result == 'success' || needs.update-downloads.result == 'success' || needs.update-translations.result == 'success')
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      # Download contributor data if it was changed
+      - name: Download contributor data
+        if: needs.update-contributors.outputs.has_changes == 'true'
+        uses: actions/download-artifact@v3
+        with:
+          name: contributors-data
+          path: assets/data/
+      
+      # Download download data if it was changed
+      - name: Download download data
+        if: needs.update-downloads.outputs.has_changes == 'true'
+        uses: actions/download-artifact@v3
+        with:
+          name: download-data
+          path: assets/data/
+      
+      # Download translation data if it was changed
+      - name: Download translation data
+        if: needs.update-translations.outputs.has_changes == 'true'
+        uses: actions/download-artifact@v3
+        with:
+          name: translation-data
+          path: how-to-install/translations/
+      
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
-      - name: Apply contributor changes if any
-        if: needs.update-contributors.outputs.contributor_changes == 'true'
+      
+      - name: Stage contributors file if changed
+        if: needs.update-contributors.outputs.has_changes == 'true'
         run: |
-          echo "Applying contributor changes"
+          echo "Staging contributor changes"
           git add assets/data/contributors.json
-          
+      
+      - name: Stage download files if changed
+        if: needs.update-downloads.outputs.has_changes == 'true'
+        run: |
+          echo "Staging download changes"
+          git add assets/data/download-stats.json assets/data/block.properties assets/data/addedMods.md
+      
+      - name: Stage translation files if changed
+        if: needs.update-translations.outputs.has_changes == 'true'
+        run: |
+          echo "Staging translation changes"
+          git add how-to-install/translations/*.json
+      
       - name: Commit and push all changes
         run: |
-          # Add download files if they changed
-          if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
-            git add assets/data/download-stats.json assets/data/block.properties assets/data/addedMods.md
-          fi
-          
           # Only commit if there are staged changes
           git diff --quiet --staged || {
+            echo "Committing changes to the repository"
             git commit -m "Update site data [skip ci]"
             
             # Try pushing with retries
@@ -327,4 +443,6 @@ jobs:
               echo "Push failed, retrying (Attempt $RETRY_COUNT/$MAX_RETRIES)..."
               git pull --rebase
             done
+            
+            echo "Successfully pushed changes"
           }
