@@ -15,10 +15,17 @@ concurrency:
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
-    timeout-minutes: 15  # Prevent indefinite hanging
+    timeout-minutes: 15
     outputs:
-      has_changes: ${{ steps.check-changes.outputs.has_changes }}
+      has_changes: ${{ steps.check-changes.outputs.has_changes || 'false' }}
     steps:
+      - name: Debug Job Start
+        run: |
+          echo "Job starting at $(date)"
+          echo "GitHub runner: ${{ runner.os }}"
+          echo "GitHub Actions version: ${{ github.action }}"
+          echo "Event name: ${{ github.event_name }}"
+          
       - name: Checkout repository
         uses: actions/checkout@v3
         
@@ -258,10 +265,11 @@ jobs:
       - name: Check for contributor changes
         id: check-changes
         run: |
+          # Default to false in case this step doesn't run
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+          
           if [ "$(git status --porcelain assets/data/contributors.json | wc -l)" -gt "0" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
           echo "Contributors changes: $(git status --porcelain assets/data/contributors.json | wc -l)"
 
@@ -385,8 +393,10 @@ jobs:
         
       # Download contributor data if it was changed
       - name: Download contributor data
-        if: needs.update-contributors.outputs.has_changes == 'true' && needs.update-contributors.result == 'success'
-        uses: actions/download-artifact@v4  # Updated from v3 to v4
+        if: |
+          needs.update-contributors.result == 'success' && 
+          needs.update-contributors.outputs.has_changes == 'true'
+        uses: actions/download-artifact@v4
         with:
           name: contributors-data
           path: assets/data/
