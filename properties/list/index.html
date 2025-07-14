@@ -433,7 +433,36 @@
             position: relative;
             bottom: 2px;
         }
-        
+
+        @media (max-width: 1000px) {
+            .status-tooltip::after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                max-width: 95vw;
+            }
+            
+            /* Handle tooltips near screen edges */
+            .status-tooltip:nth-child(1)::after {
+                left: 0;
+                transform: translateX(0);
+            }
+            
+            /* For tooltips in last column/right side */
+            td:last-child .status-tooltip::after {
+                left: auto;
+                right: 0;
+                transform: translateX(0);
+            }
+            
+            /* Make tooltip visible on tap for mobile */
+            .status-tooltip:focus::after,
+            .status-tooltip:active::after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+            
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .mod-list-container td:first-child {
