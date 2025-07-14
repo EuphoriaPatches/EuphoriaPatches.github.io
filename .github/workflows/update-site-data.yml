@@ -268,7 +268,7 @@ jobs:
       # Upload contributors.json as an artifact if changed
       - name: Upload contributors data artifact
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: contributors-data
           path: assets/data/contributors.json
@@ -312,7 +312,7 @@ jobs:
       # Upload download data artifacts if changed
       - name: Upload download data artifacts
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: download-data
           path: |
@@ -323,6 +323,9 @@ jobs:
 
   update-translations:
     runs-on: ubuntu-latest
+    # Make translations depend on downloads job
+    needs: update-downloads
+    continue-on-error: true  # Continue even if this job fails
     timeout-minutes: 5
     outputs:
       has_changes: ${{ steps.check-changes.outputs.has_changes }}
@@ -365,7 +368,7 @@ jobs:
       # Upload translation files as an artifact if changed
       - name: Upload translation data artifacts
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: translation-data
           path: how-to-install/translations/
@@ -382,24 +385,24 @@ jobs:
         
       # Download contributor data if it was changed
       - name: Download contributor data
-        if: needs.update-contributors.outputs.has_changes == 'true'
-        uses: actions/download-artifact@v3
+        if: needs.update-contributors.outputs.has_changes == 'true' && needs.update-contributors.result == 'success'
+        uses: actions/download-artifact@v4  # Updated from v3 to v4
         with:
           name: contributors-data
           path: assets/data/
       
       # Download download data if it was changed
       - name: Download download data
-        if: needs.update-downloads.outputs.has_changes == 'true'
-        uses: actions/download-artifact@v3
+        if: needs.update-downloads.outputs.has_changes == 'true' && needs.update-downloads.result == 'success'
+        uses: actions/download-artifact@v4  # Updated from v3 to v4
         with:
           name: download-data
           path: assets/data/
       
       # Download translation data if it was changed
       - name: Download translation data
-        if: needs.update-translations.outputs.has_changes == 'true'
-        uses: actions/download-artifact@v3
+        if: needs.update-translations.outputs.has_changes == 'true' && needs.update-translations.result == 'success'
+        uses: actions/download-artifact@v4  # Updated from v3 to v4
         with:
           name: translation-data
           path: how-to-install/translations/
