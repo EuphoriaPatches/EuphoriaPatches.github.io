@@ -10,7 +10,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true  # Cancel old runs to prevent queueing
+  cancel-in-progress: true
 
 jobs:
   update-contributors:
@@ -262,7 +262,6 @@ jobs:
       - name: Check for contributor changes
         id: check-changes
         run: |
-          # Default to false in case this step doesn't run
           echo "has_changes=false" >> $GITHUB_OUTPUT
           
           if [ "$(git status --porcelain assets/data/contributors.json | wc -l)" -gt "0" ]; then
@@ -270,10 +269,10 @@ jobs:
           fi
           echo "Contributors changes: $(git status --porcelain assets/data/contributors.json | wc -l)"
 
-      # Upload contributors.json as an artifact if changed
+      # Upload contributors data artifact if changed
       - name: Upload contributors data artifact
         if: steps.check-changes.outputs.has_changes == 'true'
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: contributors-data
           path: assets/data/contributors.json
@@ -281,11 +280,9 @@ jobs:
 
   update-downloads:
     runs-on: ubuntu-latest
-    # Continue even if contributors job fails
-    needs: update-contributors
-    continue-on-error: true
+    # Remove dependency on update-contributors
     outputs:
-      has_changes: ${{ steps.check-changes.outputs.has_changes }}
+      has_changes: ${{ steps.check-changes.outputs.has_changes || 'false' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -327,11 +324,9 @@ jobs:
 
   update-translations:
     runs-on: ubuntu-latest
-    # Make translations depend on downloads job
-    needs: update-downloads
-    continue-on-error: true  # Continue even if this job fails
+    # Remove dependency on update-downloads
     outputs:
-      has_changes: ${{ steps.check-changes.outputs.has_changes }}
+      has_changes: ${{ steps.check-changes.outputs.has_changes || 'false' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -380,16 +375,19 @@ jobs:
   commit-and-push:
     runs-on: ubuntu-latest
     needs: [update-contributors, update-downloads, update-translations]
-    if: always() && (needs.update-contributors.result == 'success' || needs.update-downloads.result == 'success' || needs.update-translations.result == 'success')
+    # Only run if at least one job has changes
+    if: |
+      always() && 
+      (needs.update-contributors.outputs.has_changes == 'true' || 
+       needs.update-downloads.outputs.has_changes == 'true' ||
+       needs.update-translations.outputs.has_changes == 'true')
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         
       # Download contributor data if it was changed
       - name: Download contributor data
-        if: |
-          needs.update-contributors.result == 'success' && 
-          needs.update-contributors.outputs.has_changes == 'true'
+        if: needs.update-contributors.outputs.has_changes == 'true'
         uses: actions/download-artifact@v4
         with:
           name: contributors-data
