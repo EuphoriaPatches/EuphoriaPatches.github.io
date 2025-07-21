@@ -1,5 +1,5 @@
 {
-  "generated": "2025-07-18T01:29:16.644Z",
+  "generated": "2025-07-21T01:43:41.506Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -20,9 +20,9 @@
     },
     {
       "login": "Pepelespooder",
-      "additions": 1088,
-      "deletions": 441,
-      "commits": 48,
+      "additions": 1136,
+      "deletions": 446,
+      "commits": 52,
       "avatar_url": "https://avatars.githubusercontent.com/u/54486615?v=4",
       "html_url": "https://github.com/Pepelespooder"
     },
@@ -187,20 +187,20 @@
       "html_url": "https://github.com/JrDemiurg"
     },
     {
-      "login": "haloTT100",
-      "additions": 27,
-      "deletions": 21,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
-      "html_url": "https://github.com/haloTT100"
-    },
-    {
       "login": "Eclipse-Ilx",
       "additions": 62,
       "deletions": 26,
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
       "html_url": "https://github.com/Eclipse-Ilx"
+    },
+    {
+      "login": "haloTT100",
+      "additions": 27,
+      "deletions": 21,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
+      "html_url": "https://github.com/haloTT100"
     },
     {
       "login": "Ryyyyyylie",

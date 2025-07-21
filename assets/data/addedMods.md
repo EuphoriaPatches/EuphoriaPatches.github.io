@@ -1,4 +1,4 @@
-### Last updated: July 16, 2025, 21:59 UTC
+### Last updated: July 20, 2025, 16:16 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -66,6 +66,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Bedrockify](https://modrinth.com/mod/bedrockify) | 1.9.1 | Fully Added | # This mod only adds 2 types of cauldrons
 | [Better End Ore](https://modrinth.com/mod/better-end-ore) | 1.0.3 | Fully Added |
 | [Better Tridents](https://modrinth.com/mod/better-tridents) | 8.0.1 | Fully Added | # This mod only adds a single item
+| [BetterArcheology](https://www.curseforge.com/minecraft/mc-mods/better-archeology) | 1.2.1 | Blocks Only |
 | [BetterEnd](https://modrinth.com/mod/betterend) | 4.0.11 | Fully Added |
 | [BetterNether](https://modrinth.com/mod/betternether) | 9.0.10 | Fully Added |
 | [BiblioCraft](https://www.curseforge.com/minecraft/mc-mods/bibliocraft) | 2.4.6 | Partial Support | # Lots of block entities in this mod
