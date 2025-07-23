@@ -1,4 +1,4 @@
-### Last updated: July 16, 2025, 21:59 UTC
+### Last updated: July 21, 2025, 06:19 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -66,6 +66,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Bedrockify](https://modrinth.com/mod/bedrockify) | 1.9.1 | Fully Added | # This mod only adds 2 types of cauldrons
 | [Better End Ore](https://modrinth.com/mod/better-end-ore) | 1.0.3 | Fully Added |
 | [Better Tridents](https://modrinth.com/mod/better-tridents) | 8.0.1 | Fully Added | # This mod only adds a single item
+| [BetterArcheology](https://www.curseforge.com/minecraft/mc-mods/better-archeology) | 1.2.1 | Blocks Only |
 | [BetterEnd](https://modrinth.com/mod/betterend) | 4.0.11 | Fully Added |
 | [BetterNether](https://modrinth.com/mod/betternether) | 9.0.10 | Fully Added |
 | [BiblioCraft](https://www.curseforge.com/minecraft/mc-mods/bibliocraft) | 2.4.6 | Partial Support | # Lots of block entities in this mod
@@ -130,7 +131,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Create: Steam 'n' Rails](https://modrinth.com/mod/create-steam-n-rails) | 1.6.9 | Fully Added |
 | [Create: The Factory Must Grow](https://www.curseforge.com/minecraft/mc-mods/create-industry) | 0.9.3-1.20.1 | Partial Support | #Only touched block.properties here; most blocks besides the concrete, cinderblocks, bauxit, and galena were added
 | [Created Metallurgy](https://www.curseforge.com/minecraft/mc-mods/create-metallurgy) | 0.0.6-1.20.1 | Partial Support | #The lightbulbs should have their respected color
-| [Croptopia](https://www.curseforge.com/minecraft/mc-mods/croptopia) | | Fully Added |
+| [Croptopia](https://www.curseforge.com/minecraft/mc-mods/croptopia) | 3.0.4 | Fully Added |
 | [Cuisine Delight](https://www.curseforge.com/minecraft/mc-mods/cuisine-delight) | 1.1.14 | Fully Added |
 | [Culinary Construct](https://www.curseforge.com/minecraft/mc-mods/culinary-construct) | 1.3.4 | Miniscule |
 | [Cultural Delights](https://modrinth.com/mod/cultural-delights) | 0.16.3 | Partial Support |
@@ -285,6 +286,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [More Slabs Stairs & Walls](https://modrinth.com/mod/more-slabs-stairs-and-walls) | | In Testing | # A lot of these blocks were added before the partial block ID's were added and needs to be fixed.
 | [MoreOres+](https://modrinth.com/mod/moreores+) | | Partial Support |
 | [Mowzie's Mobs](https://www.curseforge.com/minecraft/mc-mods/mowzies-mobs) | 1.5.8 | Blocks Only |
+| [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod) | 7.0.0 | Blocks Only | Block Entities are needing to be done
 | [Mutant Monsters](https://modrinth.com/mod/mutant-monsters) | v21.1.0 | Fully Added |
 | [Mystical Agradditions](https://modrinth.com/mod/mystical-agradditions) | | Partial Support |
 | [Mystical Agriculture](https://modrinth.com/mod/mystical-agriculture) | | Miniscule |
