@@ -1,4 +1,3 @@
-# Nebula Customization!
-New Nebula Customization including pixelation, colors changing, size... 
-![Nebula](/assets/img/Screenshots/130_euphoria_patches.webp)
-![Nebula Pixelated](/assets/img/Screenshots/129_euphoria_patches.webp)
+# World Reflections!
+Up-to-date with Complementary dev versions including World-Space Reflections!
+![WSR](/assets/img/Screenshots/131_euphoria_patches.webp)

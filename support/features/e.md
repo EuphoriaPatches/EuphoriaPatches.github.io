@@ -1,3 +1,3 @@
-# Portal Lighting!
-Directional lighting and fog at the exit portal in the End with fake artistic caustics!
-![Portal](/assets/img/Screenshots/133_euphoria_patches.webp)
+# Distant Horizons!
+Much Smoother Chunk Transitions and Ambient Occlusion make DH look better than ever!
+https://www.youtube.com/watch?v=kdYmjh2ebtU

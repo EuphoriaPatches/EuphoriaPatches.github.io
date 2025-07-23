@@ -1,3 +1,3 @@
-# World Reflections!
-Up-to-date with Complementary dev versions including World-Space Reflections!
-![WSR](/assets/img/Screenshots/131_euphoria_patches.webp)
+# Portal Lighting!
+Directional lighting and fog at the exit portal in the End with fake artistic caustics!
+![Portal](/assets/img/Screenshots/133_euphoria_patches.webp)

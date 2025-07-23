@@ -1,3 +1,3 @@
-# Distant Horizons!
-Much Smoother Chunk Transitions and Ambient Occlusion make DH look better than ever!
-https://www.youtube.com/watch?v=kdYmjh2ebtU
+# Blocklight Caustics
+Improve underwater scenes with Blocklight Caustics and make lights feel more alive!
+![Caustics](/assets/video/blocklightCaustics.mp4)
