@@ -2465,11 +2465,8 @@ code {
 
 .section-what-is-EP {
     width: 45%;
-    float: left;
     min-width: fit-content;
     margin-bottom: 50px;
-    margin-left: -20px;
-    margin-right: -20px;
     margin-top: 5px;
     padding: 50px 15px;
     text-align: center;
@@ -2478,14 +2475,6 @@ code {
     border-radius: 10px;
     outline: 2px solid rgba(0, 0, 0, 0);
     transition: outline-color 0.25s ease-in-out;
-}
-
-.section-what-is-EP-desc {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 500px;
-    width: 55%;
-    float: left;
-    margin-left: 20px;
 }
 
 .section-what-is-EP-desc p {
@@ -2504,12 +2493,48 @@ code {
     white-space: normal; /* Ensure text wraps */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+
+.section-what-is-EP-flexwrap {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.section-what-is-EP,
+.section-what-is-EP-desc {
+    float: none !important;
+    margin: 0 !important;
+    min-height: 140px; /* Reserve space to prevent shift */
+    box-sizing: border-box;
+}
+
+.section-what-is-EP {
+    max-height: 300px;
+}
+
+.section-what-is-EP-desc {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+    width: 55%;
+}
+
+@media (max-width: 900px) {
+    .section-what-is-EP-flexwrap {
+        flex-direction: column;
+    }
+    .section-what-is-EP,
     .section-what-is-EP-desc {
-        width: 90%;
-        margin: 0 auto;
-        float: none;
+        width: 100%;
+        min-height: unset;
+    }
+
+    .section-what-is-EP-desc{
+        margin-top: 20px !important;
+        margin-left: -10px !important;
     }
 }
 
@@ -3034,24 +3059,6 @@ code {
 
 /*Download Image Click*/
 
-@keyframes pulse-desktop {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.015);
-    }
-}
-
-@keyframes pulse-mobile {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.035);
-    }
-}
-
 .main-banner-box-container {
     position: relative;
     cursor: pointer;
@@ -3073,14 +3080,7 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: pulse-mobile 2s infinite ease-in-out;
-}
-
-/* Media query for desktop screens */
-@media screen and (min-width: 1024px) {
-    .main-banner-box {
-        animation: pulse-desktop 2s infinite ease-in-out;
-    }
+    transition: transform 0.7s cubic-bezier(.25,.46,.45,.94), border-color 0.3s;
 }
 
 @property --angle {
@@ -3119,11 +3119,6 @@ code {
     background: transparent;
 }
 
-.main-banner-box:hover {
-    border-color: var(--ThemeColor);
-    animation: hover 0.3s forwards;
-}
-
 .main-banner-box:hover::before {
     opacity: 1.0;
     animation: 1.5s spin linear infinite;
@@ -3137,12 +3132,6 @@ code {
     to{
       --angle: 405deg;
       opacity: 0.7;
-    }
-  }
-
-@keyframes hover {
-    to {
-        transform: scale(1.05);
     }
 }
 
@@ -3161,9 +3150,8 @@ code {
     color: white;
     padding: 15px 20px;
     border-radius: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    opacity: 1;
+    transition: transform 0.5s cubic-bezier(.25,.46,.45,.94);
     white-space: nowrap;
     text-align: center;
     backdrop-filter: blur(7px);
@@ -3174,8 +3162,30 @@ code {
     min-width: 300px; /* Add minimum width */
 }
 
-.main-banner-box-container:hover .popup-container {
-    opacity: 1;
+.main-banner-box-container:hover .main-banner-box,
+.main-banner-box-container:focus-within .main-banner-box,
+.popup-container:hover ~ .main-banner-box,
+.main-banner-box:hover ~ .popup-container,
+.popup-container:hover,
+.main-banner-box-container:hover .popup-container,
+.main-banner-box:focus ~ .popup-container,
+.popup-container:focus {
+    /* Both grow together */
+    z-index: 2;
+}
+
+.main-banner-box-container:hover .main-banner-box,
+.popup-container:hover ~ .main-banner-box {
+    transform: scale(1.01);
+    transition: transform 0.5s cubic-bezier(.25,.46,.45,.94);
+    border-color: var(--ThemeColor);
+}
+
+.main-banner-box-container:hover .popup-container,
+.popup-container:hover {
+    /* Popup grows by 1.05 */
+    transform: translateX(-50%) scale(1.05);
+    transition: transform 0.3s cubic-bezier(.25,.46,.45,.94);
 }
 
 @media (max-width: 768px) {
@@ -3198,6 +3208,11 @@ code {
         transform: translateX(-50%) scale(0.5);
         bottom: -84px;
         height: 110px;
+    }
+
+    .main-banner-box-container:hover .popup-container,
+    .popup-container:hover {
+        transform: translateX(-50%) scale(0.55);
     }
 }
 
