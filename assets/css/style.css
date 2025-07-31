@@ -59,6 +59,7 @@
          url('../fonts/monocraft/Monocraft-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: auto;
     letter-spacing:2px;
 }
 
@@ -68,6 +69,7 @@
          url('../fonts/monocraft/Monocraft-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: auto;
     letter-spacing:2px;
 }
 
@@ -76,6 +78,7 @@
     src: url('/assets/fonts/graphicpixel/graphicpixel.ttf');
     font-weight: normal;
     font-style: normal;
+    font-display: auto;
 }
 
 /* CUSTOM RESETS
