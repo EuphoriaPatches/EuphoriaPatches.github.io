@@ -332,7 +332,7 @@ input[type=radio] {
 .checkbox [type="checkbox"]:not(:checked) + label:after,
 .checkbox [type="checkbox"]:checked + label:after {
     content: '\f00c';
-    font-family: 'FontAwesome';
+    /* font-family: 'FontAwesome'; */
     position: absolute;
     top: 50%;
     left: 0;
@@ -756,7 +756,7 @@ select {
 }
 
 .accordion .panel-heading a::after {
-    font-family: "FontAwesome";
+    /* font-family: "FontAwesome"; */
     content: "\f106";
     position: absolute;
     top: 50%;
