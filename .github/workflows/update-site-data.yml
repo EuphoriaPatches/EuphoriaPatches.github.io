@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: "0 0 * * *" # Every UTC midnight
   workflow_dispatch:     # Allow manual trigger
-  push:
-    paths:
-      - '.github/workflows/update-site-data.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -345,8 +342,8 @@ jobs:
           git sparse-checkout set website
           cd ..
           
-          # Copy all json files to the translations directory
-          cp -f temp_lang/website/*.json how-to-install/translations/
+          # Copy all json files except en.json to the translations directory
+          find temp_lang/website -name "*.json" -not -name "en.json" -exec cp -v {} how-to-install/translations/ \;
           
           # Clean up
           rm -rf temp_lang
