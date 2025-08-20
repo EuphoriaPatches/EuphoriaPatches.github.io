@@ -1,5 +1,5 @@
 {
-  "generated": "2025-08-18T01:39:59.067Z",
+  "generated": "2025-08-20T01:21:19.598Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -307,6 +307,14 @@
       "html_url": "https://github.com/FelisMoon"
     },
     {
+      "login": "NaKeRNarolino",
+      "additions": 846,
+      "deletions": 805,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/122722654?v=4",
+      "html_url": "https://github.com/NaKeRNarolino"
+    },
+    {
       "login": "Agentley",
       "additions": 4,
       "deletions": 2,
@@ -339,20 +347,20 @@
       "html_url": "https://github.com/Dizzy-Eevee"
     },
     {
-      "login": "milosworks",
-      "additions": 45,
-      "deletions": 14,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
-      "html_url": "https://github.com/milosworks"
-    },
-    {
       "login": "xiader-45",
       "additions": 7,
       "deletions": 0,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/89976060?v=4",
       "html_url": "https://github.com/xiader-45"
+    },
+    {
+      "login": "milosworks",
+      "additions": 45,
+      "deletions": 14,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/65917996?v=4",
+      "html_url": "https://github.com/milosworks"
     },
     {
       "login": "FloorIsTired",
