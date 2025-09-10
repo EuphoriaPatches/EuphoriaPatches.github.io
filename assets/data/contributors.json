@@ -1,12 +1,12 @@
 {
-  "generated": "2025-09-04T01:14:34.782Z",
+  "generated": "2025-09-10T01:15:29.674Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14575,
-      "deletions": 9956,
-      "commits": 305,
+      "additions": 14593,
+      "deletions": 9963,
+      "commits": 307,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -339,6 +339,14 @@
       "html_url": "https://github.com/CoderRuq"
     },
     {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
+    },
+    {
       "login": "hazzuk",
       "additions": 3,
       "deletions": 0,
@@ -353,14 +361,6 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/104259106?v=4",
       "html_url": "https://github.com/N1ghtWare"
-    },
-    {
-      "login": "Apothicon02",
-      "additions": 24,
-      "deletions": 2,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
-      "html_url": "https://github.com/Apothicon02"
     },
     {
       "login": "Dizzy-Eevee",
