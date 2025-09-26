@@ -1,5 +1,5 @@
 {
-  "generated": "2025-09-21T01:24:10.123Z",
+  "generated": "2025-09-26T01:18:43.338Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -91,12 +91,12 @@
       "html_url": "https://github.com/EnragedPotato"
     },
     {
-      "login": "tylergames42",
+      "login": "emshellabarger",
       "additions": 100,
       "deletions": 31,
       "commits": 9,
       "avatar_url": "https://avatars.githubusercontent.com/u/51301871?v=4",
-      "html_url": "https://github.com/tylergames42"
+      "html_url": "https://github.com/emshellabarger"
     },
     {
       "login": "kaporli",
@@ -337,6 +337,14 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
       "html_url": "https://github.com/CoderRuq"
+    },
+    {
+      "login": "icha-senpai",
+      "additions": 2,
+      "deletions": 1,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/10746379?v=4",
+      "html_url": "https://github.com/icha-senpai"
     },
     {
       "login": "Apothicon02",
