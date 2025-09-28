@@ -1,12 +1,12 @@
 {
-  "generated": "2025-09-26T01:18:43.338Z",
+  "generated": "2025-09-28T01:24:54.274Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14663,
-      "deletions": 10004,
-      "commits": 315,
+      "additions": 14694,
+      "deletions": 10031,
+      "commits": 316,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -339,20 +339,20 @@
       "html_url": "https://github.com/CoderRuq"
     },
     {
-      "login": "icha-senpai",
-      "additions": 2,
-      "deletions": 1,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/10746379?v=4",
-      "html_url": "https://github.com/icha-senpai"
-    },
-    {
       "login": "Apothicon02",
       "additions": 24,
       "deletions": 2,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
       "html_url": "https://github.com/Apothicon02"
+    },
+    {
+      "login": "icha-senpai",
+      "additions": 2,
+      "deletions": 1,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/10746379?v=4",
+      "html_url": "https://github.com/icha-senpai"
     },
     {
       "login": "hazzuk",
