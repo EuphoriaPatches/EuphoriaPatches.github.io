@@ -273,7 +273,17 @@
                         .then(data => {
                             let formattedData = marked.parse(data);
                             formattedData = formattedData.replace(/<img/g, '<img class="changelog-image"');
-                            document.getElementById(elementId).innerHTML = formattedData;
+
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = formattedData;
+
+                            // Modify all <a> tags
+                            tempDiv.querySelectorAll('a').forEach(a => {
+                                a.setAttribute('target', '_blank');
+                                a.setAttribute('rel', 'noopener noreferrer');
+                            });
+
+                            document.getElementById(elementId).innerHTML = tempDiv.innerHTML;
                         })
                         .catch(error => {
                             document.getElementById(elementId).innerHTML = "Error loading changelog.";
