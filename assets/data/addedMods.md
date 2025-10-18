@@ -1,4 +1,4 @@
-### Last updated: October 13, 2025, 17:32 UTC
+### Last updated: October 17, 2025, 21:49 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -328,6 +328,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Productive Trees](https://modrinth.com/mod/productivetrees) | | Foliage Only |
 | [Profile Blocks](https://modrinth.com/mod/profile-blocks) | | Miniscule |
 | [Project: Vibrant Journeys](https://modrinth.com/mod/project-vibrant-journeys) | 1.6.4 | Fully Added |
+| [ProjectE](https://www.curseforge.com/minecraft/mc-mods/projecte) | 1.0.1 | Miniscule | #Only the interdiction_torch
 | [Prominent](https://www.curseforge.com/minecraft/mc-mods/prominent) | | Miniscule |
 | [Pure Ores](https://modrinth.com/mod/pureores) | | Partial Support |
 | [Quark](https://modrinth.com/mod/quark) | r1.6-180| Fully Added | # Some stuff from 1.12.2 has to be added in addition to modern versions
@@ -342,6 +343,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Redstone Lamps Plus](https://www.curseforge.com/minecraft/mc-mods/redstone-lamps-plus) | 1.5.4 | Fully Added |
 | [Regions Unexplored](https://modrinth.com/mod/regions-unexplored) | 0.5.6 | Partial Support |
 | [Reliquary Reincarnations](https://www.curseforge.com/minecraft/mc-mods/reliquary-reincarnations) | 1.3.4.796 | Blocks Only |
+| [Reliquary Reincarnations](https://www.curseforge.com/minecraft/mc-mods/reliquary-reincarnations) | 2.052.1299 | Miniscule | #Only the interdiction_torch
 | [Resource Cracker](https://modrinth.com/mod/resource-cracker) | 2.5.0 | Blocks Only |
 | [Ribbits](https://modrinth.com/mod/ribbits) | | Foliage Only |
 | [Rounded](https://modrinth.com/mod/rounded_mod) | | Miniscule | # Light sources only
