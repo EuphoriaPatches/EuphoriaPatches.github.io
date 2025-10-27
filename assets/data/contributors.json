@@ -1,5 +1,5 @@
 {
-  "generated": "2025-10-26T01:24:07.688Z",
+  "generated": "2025-10-27T01:28:08.206Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -91,20 +91,20 @@
       "html_url": "https://github.com/EnragedPotato"
     },
     {
+      "login": "EyaeM",
+      "additions": 25,
+      "deletions": 12,
+      "commits": 10,
+      "avatar_url": "https://avatars.githubusercontent.com/u/100169384?v=4",
+      "html_url": "https://github.com/EyaeM"
+    },
+    {
       "login": "emshellabarger",
       "additions": 100,
       "deletions": 31,
       "commits": 9,
       "avatar_url": "https://avatars.githubusercontent.com/u/51301871?v=4",
       "html_url": "https://github.com/emshellabarger"
-    },
-    {
-      "login": "EyaeM",
-      "additions": 24,
-      "deletions": 11,
-      "commits": 9,
-      "avatar_url": "https://avatars.githubusercontent.com/u/100169384?v=4",
-      "html_url": "https://github.com/EyaeM"
     },
     {
       "login": "kaporli",
@@ -419,20 +419,20 @@
       "html_url": "https://github.com/hessian-mat"
     },
     {
-      "login": "Apothicon02",
-      "additions": 24,
-      "deletions": 2,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
-      "html_url": "https://github.com/Apothicon02"
-    },
-    {
       "login": "Waulk",
       "additions": 55,
       "deletions": 0,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/28793977?v=4",
       "html_url": "https://github.com/Waulk"
+    },
+    {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
     }
   ]
 }
