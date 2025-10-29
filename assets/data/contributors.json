@@ -1,5 +1,5 @@
 {
-  "generated": "2025-10-28T01:18:34.826Z",
+  "generated": "2025-10-29T01:24:52.341Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -243,6 +243,14 @@
       "html_url": "https://github.com/Hammerhud"
     },
     {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
+    },
+    {
       "login": "TheMysticalBard",
       "additions": 61,
       "deletions": 15,
@@ -265,14 +273,6 @@
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/114387521?v=4",
       "html_url": "https://github.com/ThatJadenXgamer"
-    },
-    {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
     },
     {
       "login": "mpustovoi",
@@ -441,6 +441,14 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/77152778?v=4",
       "html_url": "https://github.com/Alexthw46"
+    },
+    {
+      "login": "Lakuar",
+      "additions": 7,
+      "deletions": 0,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/35079681?v=4",
+      "html_url": "https://github.com/Lakuar"
     }
   ]
 }
