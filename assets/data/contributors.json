@@ -1,12 +1,12 @@
 {
-  "generated": "2025-10-29T01:24:52.341Z",
+  "generated": "2025-10-31T01:20:50.244Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14714,
-      "deletions": 10042,
-      "commits": 322,
+      "additions": 14715,
+      "deletions": 10043,
+      "commits": 323,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -243,14 +243,6 @@
       "html_url": "https://github.com/Hammerhud"
     },
     {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
-    },
-    {
       "login": "TheMysticalBard",
       "additions": 61,
       "deletions": 15,
@@ -273,6 +265,14 @@
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/114387521?v=4",
       "html_url": "https://github.com/ThatJadenXgamer"
+    },
+    {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
     },
     {
       "login": "mpustovoi",
@@ -427,14 +427,6 @@
       "html_url": "https://github.com/Waulk"
     },
     {
-      "login": "Apothicon02",
-      "additions": 24,
-      "deletions": 2,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
-      "html_url": "https://github.com/Apothicon02"
-    },
-    {
       "login": "Alexthw46",
       "additions": 13,
       "deletions": 1,
@@ -449,6 +441,14 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/35079681?v=4",
       "html_url": "https://github.com/Lakuar"
+    },
+    {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
     }
   ]
 }
