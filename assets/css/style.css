@@ -3762,6 +3762,7 @@ code {
     padding: 20px;
     min-width: 300px;
     min-height: 250px;
+    align-items: center;
 }
 
 .gallery-images-item {
@@ -3955,14 +3956,19 @@ code {
 }
 
 .contest-card {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;           /* let the grid/row determine the final height */
+    min-height: 250px;      /* match gallery's visual minimum */
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     background: linear-gradient(135deg, var(--ThemeColor) 0%, #3a0647 100%);
     border-radius: 30px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 auto;         /* behave like a grid item (shrink/grow) */
 }
 
 .contest-card:hover {
@@ -3971,11 +3977,15 @@ code {
 }
 
 .contest-card .contest-card-inner {
-    padding: 30px;
+    padding: clamp(16px, 4vw, 80px); /* responsive padding instead of fixed 80px */
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center content like images */
     text-align: center;
+    box-sizing: border-box;
 }
-
 .contest-card h2 {
     font-size: 38px;
     margin-bottom: 15px;
