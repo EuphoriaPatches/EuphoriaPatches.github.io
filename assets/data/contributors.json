@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-02T01:28:50.149Z",
+  "generated": "2025-11-03T01:27:27.316Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 14719,
-      "deletions": 10044,
-      "commits": 324,
+      "additions": 14721,
+      "deletions": 10047,
+      "commits": 326,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -83,6 +83,14 @@
       "html_url": "https://github.com/Mervius"
     },
     {
+      "login": "spaghettube",
+      "additions": 202,
+      "deletions": 70,
+      "commits": 13,
+      "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
+      "html_url": "https://github.com/spaghettube"
+    },
+    {
       "login": "EnragedPotato",
       "additions": 14915,
       "deletions": 14321,
@@ -113,14 +121,6 @@
       "commits": 8,
       "avatar_url": "https://avatars.githubusercontent.com/u/52631424?v=4",
       "html_url": "https://github.com/kaporli"
-    },
-    {
-      "login": "spaghettube",
-      "additions": 158,
-      "deletions": 59,
-      "commits": 7,
-      "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
-      "html_url": "https://github.com/spaghettube"
     },
     {
       "login": "Milan4ikdudewtf",
@@ -267,14 +267,6 @@
       "html_url": "https://github.com/ThatJadenXgamer"
     },
     {
-      "login": "FelisMoon",
-      "additions": 219,
-      "deletions": 44,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
-      "html_url": "https://github.com/FelisMoon"
-    },
-    {
       "login": "mpustovoi",
       "additions": 15,
       "deletions": 0,
@@ -289,6 +281,14 @@
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
       "html_url": "https://github.com/digitalvagrant"
+    },
+    {
+      "login": "FelisMoon",
+      "additions": 219,
+      "deletions": 44,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/81988520?v=4",
+      "html_url": "https://github.com/FelisMoon"
     },
     {
       "login": "Agentley",
