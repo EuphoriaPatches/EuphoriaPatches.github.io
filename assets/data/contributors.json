@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-04T01:22:11.527Z",
+  "generated": "2025-11-06T01:22:13.019Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -51,6 +51,14 @@
       "html_url": "https://github.com/djmrFunnyMan"
     },
     {
+      "login": "spaghettube",
+      "additions": 446,
+      "deletions": 127,
+      "commits": 19,
+      "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
+      "html_url": "https://github.com/spaghettube"
+    },
+    {
       "login": "serenyadev",
       "additions": 939,
       "deletions": 2402,
@@ -65,14 +73,6 @@
       "commits": 17,
       "avatar_url": "https://avatars.githubusercontent.com/u/56577742?v=4",
       "html_url": "https://github.com/ADreadedKing"
-    },
-    {
-      "login": "spaghettube",
-      "additions": 336,
-      "deletions": 112,
-      "commits": 17,
-      "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
-      "html_url": "https://github.com/spaghettube"
     },
     {
       "login": "Priority-6",
