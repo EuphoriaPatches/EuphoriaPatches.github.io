@@ -1,4 +1,4 @@
-### Last updated: November 13, 2025, 23:09 UTC
+### Last updated: November 29, 2025, 21:41 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -402,7 +402,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Sushi Go Crafting](https://modrinth.com/mod/sushigocrafting) | | Foliage Only |
 | [T.O Magic 'n Extras - Iron's Spells Addon](https://www.curseforge.com/minecraft/mc-mods/to-tweaks-irons-spells) | 4.4.0 | All Melee |
 | [TechReborn](https://www.curseforge.com/minecraft/mc-mods/techreborn) | 5.8.7 | Fully Added | #basically added full support, only thing missing is items glowing and what not, but is not rly needed
-| [TerraFirmaCraft](https://modrinth.com/mod/terrafirmacraft) | | Foliage Only |
+| [TerraFirmaCraft](https://modrinth.com/mod/terrafirmacraft) | 4.0.11-beta | Fully Added | # The server day counter does not increment and thus, seasons and other related time features do not currently work properly. Neither does trims due to hardcoded code within Iris
 | [Terrestria](https://modrinth.com/mod/terrestria) | | Foliage Only |
 | [THE UNDEAD REVAMPED](https://www.curseforge.com/minecraft/mc-mods/theundead) | | Miniscule |
 | [Theabyss](https://www.curseforge.com/minecraft/mc-mods/the-abyss-chapter-ii) | | Partial Support |
