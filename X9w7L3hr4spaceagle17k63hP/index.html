@@ -52,7 +52,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                   
+
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
 
                 </div><!-- /.navbar-header -->
@@ -82,7 +82,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
@@ -92,8 +92,8 @@
                 <h1 id="title">◈ Artifact Node ◈</h1>
                 <div class="message" id="glitch-content">
                     &lt;div&gt;Deciphered Fragment:&lt;br&gt;<br>
-                    "A distortion lies within the framework of creation.&lt;br&gt;<br> 
-                    The *potato relic* must be excised to restore the renderflow.&lt;br&gt;<br> 
+                    "A distortion lies within the framework of creation.&lt;br&gt;<br>
+                    The *potato relic* must be excised to restore the renderflow.&lt;br&gt;<br>
                     Seek its presence in the depths of the compilation matrix."&lt;/div&gt;
                 </div>
                 <div class="hint" id="glitch-hint">
@@ -106,7 +106,7 @@
                 <div class="timestamp" id="timestamp"></div>
             </div>
         </div>
-    </main>    
+    </main>
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -154,7 +154,7 @@
         if (!originalText) return; // Safety check
 
         const possibleIndices = [];
-        
+
         // Find indices of actual characters (excluding HTML tags and spaces)
         let inTag = false;
         for (let i = 0; i < originalText.length; i++) {
@@ -172,20 +172,20 @@
         const numGlitches = Math.floor(Math.random() * 8) + 1;
         for (let i = 0; i < numGlitches; i++) {
             if (possibleIndices.length === 0) break;
-            
+
             const randomIndexPosition = Math.floor(Math.random() * possibleIndices.length);
             const charIndex = possibleIndices[randomIndexPosition];
             possibleIndices.splice(randomIndexPosition, 1);
 
             let glitchCount = 0;
-            
+
             const glitchInterval = setInterval(() => {
-                const newText = 
-                    originalText.substring(0, charIndex) + 
-                    getRandomChar() + 
+                const newText =
+                    originalText.substring(0, charIndex) +
+                    getRandomChar() +
                     originalText.substring(charIndex + 1);
                 element.innerHTML = newText;
-                
+
                 glitchCount++;
 
                 if (glitchCount > Math.floor(Math.random() * 8) + 4) {
@@ -212,9 +212,9 @@
 
         setInterval(() => {
             // Random burst mode: Sometimes glitch multiple elements
-            const numElementsToGlitch = Math.random() < 0.5 ? 
+            const numElementsToGlitch = Math.random() < 0.5 ?
                 Math.floor(Math.random() * elements.length) + 1 : 1; // Higher chance for multiple elements
-            
+
             for (let i = 0; i < numElementsToGlitch; i++) {
                 const randomElement = elements[Math.floor(Math.random() * elements.length)];
                 if (randomElement) glitchText(randomElement);
@@ -224,7 +224,7 @@
 
     // Update timestamp
     function updateTimestamp() {
-        document.getElementById('timestamp').textContent = 
+        document.getElementById('timestamp').textContent =
             `Event Timestamp: ${new Date().toISOString()}`;
     }
 

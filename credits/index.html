@@ -57,7 +57,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                   
+
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
 
                 </div><!-- /.navbar-header -->
@@ -87,12 +87,12 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
     <div id="hero" class="hero overlay credits-hero">
-        <img 
+        <img
             src="/assets/img/backgrounds/creditsBackground.webp"
             srcset="
                 /assets/img/backgrounds/creditsBackground-480w.webp 480w,
@@ -116,7 +116,7 @@
     <main id="main" class="site-main">
         <section class="site-section gray-bg">
             <div class="container section-indented-container-credits">
-                
+
                 <div class="credits-card">
                     <h2>Shaderpack</h2>
                     <ul class="credits-list">
@@ -139,7 +139,7 @@
                         <li><strong>dbrighthd</strong> - Fresnel Multiplier</li>
                     </ul>
                 </div>
-    
+
                 <div class="credits-card">
                     <h2>Properties Files</h2>
                     <p>People who helped create the community-made properties files can be found here:
@@ -148,7 +148,7 @@
                     </a>. Unfortunately, this only includes those who made pull requests; others are still very much appreciated! Data fetched from GitHub</p>
                     <ul id="contributors-list" class="credits-list contributors-grid"><code>Loading data from GitHub</code></ul>
                 </div>
-                
+
                 <div class="credits-card">
                     <h2>Translations</h2>
                     <div class="translations-container">
@@ -192,7 +192,7 @@
                         <p><i class="fa fa-info-circle"></i> Shaderpack translations might be outdated. Currency cannot be guaranteed.</p>
                     </div>
                 </div>
-    
+
                 <div class="credits-card">
                     <h2>Other Honorable Mentions:</h2>
                     <ul class="credits-list honrable-credits-list">
@@ -220,7 +220,7 @@
             </div>
         </section>
     </main>
-    
+
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -266,41 +266,41 @@
 
         async function fetchContributors() {
             const contributorsList = document.getElementById("contributors-list");
-            
+
             try {
                 console.log("Loading contributors data...");
                 // Show a loading indicator
                 contributorsList.innerHTML = "<li>Loading...</li>";
-                
+
                 const response = await fetch(cachedDataUrl + "?_=" + new Date().getTime());
-                
+
                 if (!response.ok) {
                     throw new Error(`Failed to load contributors data: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
-                
+
                 if (!data || !data.contributors || !Array.isArray(data.contributors)) {
                     throw new Error("Invalid data format in contributors.json");
                 }
-                
+
                 // Store the data but don't display anything yet
                 contributorsData = data.contributors;
-                
+
                 // Just hide the loading indicator, don't display content yet
                 contributorsList.innerHTML = "";
-                
+
                 // Set up intersection observer to trigger animation when scrolled into view
                 setupIntersectionObserver();
             } catch (error) {
                 console.error("Failed to load contributors:", error);
                 contributorsList.innerHTML = "<li>Unable to load contributors data. Please check the <a href='https://github.com/EuphoriaPatches/propertiesFiles/graphs/contributors' target='_blank' class='github-link'><i class='fa fa-github'></i> GitHub page</a> directly.</li>";
             }
-            
+
             function setupIntersectionObserver() {
                 // Target the actual contributors list element rather than the entire card
                 const contributorsList = document.getElementById("contributors-list");
-                
+
                 // Create the intersection observer
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -315,24 +315,24 @@
                     threshold: 0.1, // Trigger when 10% of the list element is visible
                     rootMargin: "-50px 0px" // Only trigger when element is 50px within the viewport
                 });
-                
+
                 // Start observing the contributors list itself
                 observer.observe(contributorsList);
             }
-            
+
             function displayContributors(animate) {
                 const contributorsList = document.getElementById("contributors-list");
                 contributorsList.innerHTML = "";
-                
+
                 if (contributorsData.length === 0) {
                     contributorsList.innerHTML = "<li>No contributors data available</li>";
                     return;
                 }
-                
+
                 contributorsData.forEach((contributor, index) => {
                     const li = document.createElement("li");
                     const username = contributor.login;
-                    
+
                     if (contributor.html_url) {
                         li.innerHTML = `
                             <a href="${contributor.html_url}" target="_blank" class="contributor-link">
@@ -341,7 +341,7 @@
                     } else {
                         li.innerHTML = `<strong>${username}</strong>`;
                     }
-                    
+
                     // Animation setup
                     if (animate) {
                         li.style.opacity = "0";
@@ -350,10 +350,10 @@
                         li.style.opacity = "1";
                         li.style.transform = "translateY(0)";
                     }
-                    
+
                     li.style.transition = "opacity 0.3s ease, transform 0.3s ease";
                     contributorsList.appendChild(li);
-                    
+
                     // Only run animation if requested
                     if (animate) {
                         setTimeout(() => {
@@ -368,6 +368,6 @@
         // Start the process when the page loads
         window.addEventListener('load', fetchContributors);
     </script>
-  
+
 </body>
 </html>

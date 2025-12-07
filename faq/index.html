@@ -57,7 +57,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                   
+
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
 
                 </div><!-- /.navbar-header -->
@@ -87,13 +87,13 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
     <div id="headerPart" class="headerPart">
         <div id="hero" class="hero overlay faq-hero">
-            <img 
+            <img
                 src="/assets/img/backgrounds/faqBackground.webp"
                 srcset="
                     /assets/img/backgrounds/faqBackground-480w.webp 480w,
@@ -129,7 +129,7 @@
         <div class="faq-index-toggle">
             <button id="toggle-faq-index" class="modern-button">Table of Contents</button>
         </div>
-    
+
         <div class="faq-index collapsible">
             <h3>Jump to a question:</h3>
             <ul>
@@ -151,7 +151,7 @@
                 <li><a href="#iris-exclusive">Iris Exclusive Features</a></li>
             </ul>
         </div>
-    
+
         <!-- <div id="faq-ad" class="faq-ad">
             <ins class="adsbygoogle"
                  style="display:inline-block;width:220px;height:145px"
@@ -191,22 +191,22 @@
 
                 <h2 id="contact">Contact</h2>
                 <p><a href="/contact">Click Here to go to the Contact Page</a></p>
-    
+
                 <h2 id="why-mod">Why does Euphoria Patches need a mod?</h2>
                 <p><a href="https://github.com/ComplementaryDevelopment/ComplementaryReimagined/blob/main/License.txt" target="_blank">Complementary's license</a> does not allow me to publish Euphoria Patches directly as it does not have a "noticeably differen[ce] from the Original Pack in multiple common gameplay scenarios that must include daytime overworld visuals, regardless of the setting or variable changes in the Modified Pack and/or the Original Pack". I simply add onto Complementary, this would not qualify as a viable edit. A mutual agreement with Emin was made to distribute Euphoria Patches through a patcher where none of Emin's code gets distributed (and by that not breaking the license) and the user has to have Complementary Shaders installed in order to get the add-on. All parties profit from this method.</p>
-    
+
                 <h2 id="contribute">Contribute</h2>
                 <p>Add <a href="/properties" target="_blank">Modded Blocks</a> or <a href="/lang" target="_blank">Translation Files</a> to Euphoria Patches!</p>
-                
+
                 <h2 id="settings">Euphoria Patches Settings</h2>
                 <p>All Euphoria options are disabled by default and the user can decide what to enable. Under the Popular Settings category, one can find the most popular Euphoria Patches features. Countless other settings exist and more get added with each update, have fun tinkering around!</p>
-    
+
                 <h2 id="credits">Credits</h2>
                 <p>The credits related to the shaderpack and everything around it can be found <a href="/credits">on to the Credits Page</a></p>
-    
+
                 <h2 id="support">How to support Euphoria Patches</h2>
                 <p>You can support Euphoria Patches by being curious about new updates and sharing it with people, but you can also directly support SpacEagle17 on <a href="/patreon" target="_blank">Patreon</a> or <a href="/kofi" target="_blank">Ko-Fi</a>.</p>
-    
+
                 <h2 id="mod-support">Mod Support</h2>
                 <ul>
                     <li>Euphoria Patches adds support to MANY blocks <code id="totalProperties">(over 30k modded blocks in total)</code>, entities and items though the properties files thanks to the community. Check the supportedMods.md file or the <a href="/properties" target="_blank">Properties Repo</a></li>
@@ -262,7 +262,7 @@
                         </ul>
                     </div>
                 </div>
-    
+
                 <h2 id="iris-exclusive">Iris Exclusive Features</h2>
                 <ul>
                     <li><strong>Things marked with (EP) are from Euphoria Patches</strong></li>
@@ -284,7 +284,7 @@
             </div>
         </section>
     </main>
-    
+
 
     <footer id="colophon" class="site-footer"></footer>
         <div class="copyright">
@@ -375,12 +375,12 @@
                 if (!response.ok) {
                     throw new Error('Failed to fetch stats data');
                 }
-                
+
                 const data = await response.json();
                 const count = data.matchesLength || 0;
-                
+
                 const totalPropertiesElement = document.getElementById('totalProperties');
-                if (totalPropertiesElement) {   
+                if (totalPropertiesElement) {
                     totalPropertiesElement.textContent = "(Around " + formatNumbers(count).toString() + " modded blocks in total)";
                     console.log("Total properties:", count);
                 }
@@ -407,61 +407,61 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Wrap each FAQ section in a modern container
             const faqItems = document.querySelectorAll('.section-indented-container > h2');
-            
+
             faqItems.forEach(heading => {
                 // Create wrapper for the FAQ item
                 const wrapper = document.createElement('div');
                 wrapper.className = 'faq-item';
                 wrapper.id = heading.id + '-container';
-                
+
                 // Get content until the next heading
                 const content = [];
                 let sibling = heading.nextElementSibling;
-                
+
                 while(sibling && sibling.tagName !== 'H2') {
                     content.push(sibling);
                     sibling = sibling.nextElementSibling;
                 }
-                
+
                 // Move the heading and content to the wrapper
                 heading.parentNode.insertBefore(wrapper, heading);
                 wrapper.appendChild(heading);
-                
+
                 // Move all related content
                 content.forEach(item => {
                     wrapper.appendChild(item);
                 });
             });
-            
+
             // Setup the mobile toggle button
             const indexToggle = document.getElementById('toggle-faq-index');
             const indexContainer = document.querySelector('.faq-index-container');
             const index = document.querySelector('.faq-index');
-            
+
             indexToggle.innerHTML = `Table of Contents`;
-            
+
             indexToggle.addEventListener('click', function() {
                 this.classList.toggle('open');
                 indexContainer.classList.toggle('active');
             });
-            
+
             // Highlight active section in table of contents
             const faqLinks = document.querySelectorAll('.faq-index a');
             const sections = document.querySelectorAll('.faq-item');
-            
+
             const highlightCurrentSection = () => {
                 let currentSectionId = null;
-                
+
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
-                    
-                    if (window.scrollY >= sectionTop - 100 && 
+
+                    if (window.scrollY >= sectionTop - 100 &&
                         window.scrollY < sectionTop + sectionHeight - 100) {
                         currentSectionId = section.querySelector('h2').id;
                     }
                 });
-                
+
                 faqLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${currentSectionId}`) {
@@ -469,12 +469,12 @@
                     }
                 });
             };
-            
+
             // Check current section on scroll
             window.addEventListener('scroll', highlightCurrentSection);
 
         });
     </script>
-  
+
 </body>
 </html>

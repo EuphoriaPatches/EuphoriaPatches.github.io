@@ -78,14 +78,14 @@
             position: absolute;
             z-index: -1;
         }
-        
+
         /* Hide content in first slide until JS loads */
         .js-not-loaded .carouselFeatures .list .item:first-child .content > * {
             opacity: 0;
             transform: translateY(50px);
             filter: blur(20px);
         }
-        
+
         /* Hide thumbnails and controls until JS loads */
         .js-not-loaded .thumbnail,
         .js-not-loaded .arrows,
@@ -223,7 +223,7 @@
 
             background-color: rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);            
+            -webkit-backdrop-filter: blur(5px);
         }
         .arrows button:hover{
             background-color: #fff;
@@ -247,14 +247,14 @@
             color: var(--ThemeColor);
             text-decoration: none;
         }
-        
+
         /* animation */
         .carouselFeatures .list .item:nth-child(1){
             z-index: 1;
         }
-        
+
         /* animation text in first item */
-        
+
         .carouselFeatures .list .item:nth-child(1) .content .author,
         .carouselFeatures .list .item:nth-child(1) .content .title,
         .carouselFeatures .list .item:nth-child(1) .content .topic,
@@ -304,7 +304,7 @@
                 border-radius: 0;
             }
         }
-        
+
         .carouselFeatures.next .thumbnail .item:nth-last-child(1){
             overflow: hidden;
             animation: showThumbnail .5s linear 1 forwards;
@@ -321,15 +321,15 @@
         .carouselFeatures.next .thumbnail{
             animation: effectNext .5s linear 1 forwards;
         }
-        
+
         @keyframes effectNext{
             from{
                 transform: translateX(150px);
             }
         }
-        
+
         /* running time */
-        
+
         .carouselFeatures .time{
             position: absolute;
             z-index: 21;
@@ -339,7 +339,7 @@
             left: 0;
             top: 99.6%;
         }
-        
+
         .carouselFeatures.next .time,
         .carouselFeatures.prev .time{
             animation: runningTime 3s linear 1 forwards;
@@ -348,14 +348,14 @@
             from{ width: 100%}
             to{width: 0}
         }
-        
-        
+
+
         /* prev click */
-        
+
         .carouselFeatures.prev .list .item:nth-child(2){
             z-index: 2;
         }
-        
+
         .carouselFeatures.prev .list .item:nth-child(2) img{
             animation: outFrame 0.5s linear 1 forwards;
             position: absolute;
@@ -371,7 +371,7 @@
                 border-radius: 20px;
             }
         }
-        
+
         .carouselFeatures.prev .thumbnail .item:nth-child(1){
             overflow: hidden;
             opacity: 0;
@@ -452,7 +452,7 @@
             opacity: 1;
             visibility: visible;
         }
-        
+
         @keyframes contentOut{
             to{
                 transform: translateY(-150px);
@@ -637,7 +637,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                   
+
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
 
                 </div><!-- /.navbar-header -->
@@ -667,7 +667,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
@@ -844,7 +844,7 @@
         function checkImagesReady() {
             const carouselImages = document.querySelectorAll('.carouselFeatures .list .item img');
             let loadedImages = 0;
-            
+
             function imageLoaded() {
                 loadedImages++;
                 if (loadedImages === carouselImages.length) {
@@ -852,7 +852,7 @@
                     document.body.classList.remove('js-not-loaded');
                 }
             }
-            
+
             carouselImages.forEach(img => {
                 if (img.complete) {
                     imageLoaded();
@@ -861,7 +861,7 @@
                     img.addEventListener('error', imageLoaded); // Count errors as loaded to avoid hanging
                 }
             });
-            
+
             // Fallback in case image loading detection fails
             setTimeout(() => {
                 document.body.classList.remove('js-not-loaded');
@@ -869,35 +869,35 @@
         }
 
         document.addEventListener('DOMContentLoaded', checkImagesReady);
-        
+
         //step 1: get DOM
         let nextDom = document.getElementById('next');
         let prevDom = document.getElementById('prev');
         let pausePlayDom = document.getElementById('pauseplay');
-        
+
         let carouselFeaturesDom = document.querySelector('.carouselFeatures');
         let SliderDom = carouselFeaturesDom.querySelector('.carouselFeatures .list');
         let thumbnailBorderDom = document.querySelector('.carouselFeatures .thumbnail');
         let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
         let timeDom = document.querySelector('.carouselFeatures .time');
-        
+
         thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
         let timeRunning = 3000;
         let timeAutoNext = 7000;
         let isPaused = false;
-        
+
         nextDom.onclick = function(){
-            showSlider('next');    
+            showSlider('next');
         }
-        
+
         prevDom.onclick = function(){
-            showSlider('prev');    
+            showSlider('prev');
         }
-    
+
         pausePlayDom.onclick = function(){
             isPaused = !isPaused;
             const pauseIndicator = document.getElementById('pause-indicator');
-            
+
             if (isPaused) {
                 // Pause auto-advance
                 clearTimeout(runNextAuto);
@@ -918,16 +918,16 @@
                 pauseIndicator.classList.remove('visible');
             }
         }
-        
+
         let runTimeOut;
         let runNextAuto = setTimeout(() => {
             next.click();
         }, timeAutoNext)
-        
+
         function showSlider(type){
             let SliderItemsDom = SliderDom.querySelectorAll('.carouselFeatures .list .item');
             let thumbnailItemsDom = document.querySelectorAll('.carouselFeatures .thumbnail .item');
-            
+
             if(type === 'next'){
                 SliderDom.appendChild(SliderItemsDom[0]);
                 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
@@ -937,13 +937,13 @@
                 thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
                 carouselFeaturesDom.classList.add('prev');
             }
-            
+
             clearTimeout(runTimeOut);
             runTimeOut = setTimeout(() => {
                 carouselFeaturesDom.classList.remove('next');
                 carouselFeaturesDom.classList.remove('prev');
             }, timeRunning);
-        
+
             clearTimeout(runNextAuto);
             if (!isPaused) {
                 runNextAuto = setTimeout(() => {
@@ -965,15 +965,15 @@
         async function fetchWithTimeout(url, options = {}, timeout = 5000, responseType = "json") {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), timeout);
-            
+
             try {
                 const response = await fetch(url, { ...options, signal: controller.signal });
                 clearTimeout(timeoutId);
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
+
                 return responseType === "json" ? response.json() : response.text();
             } catch (error) {
                 clearTimeout(timeoutId);
@@ -1004,12 +1004,12 @@
                 if (!response.ok) {
                     throw new Error('Failed to fetch stats data');
                 }
-                
+
                 const data = await response.json();
                 const count = data.matchesLength || 0;
-                
+
                 const totalPropertiesElement = document.getElementById('totalProperties');
-                if (totalPropertiesElement) {   
+                if (totalPropertiesElement) {
                     totalPropertiesElement.textContent = " " + formatNumbers(count).toString() + " ";
                     console.log("Total properties:", count);
                 }
@@ -1019,7 +1019,7 @@
                 try {
                     const count = await countRegexMatches(propertiesFileUrl, propertiesRegex);
                     const totalPropertiesElement = document.getElementById('totalProperties');
-                    if (totalPropertiesElement) {   
+                    if (totalPropertiesElement) {
                         totalPropertiesElement.textContent = " " + formatNumbers(count).toString() + " ";
                     }
                 } catch (e) {

@@ -57,7 +57,7 @@
             <div class="container">
 
                 <div class="navbar-header">
-                   
+
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
 
                 </div><!-- /.navbar-header -->
@@ -87,7 +87,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
@@ -153,14 +153,14 @@
             if (!response.ok) {
                 throw new Error('Failed to fetch download stats');
             }
-            
+
             const data = await response.json();
-            
+
             console.log('Stats data:', data);
-            
+
             // Calculate today's downloads (today so far)
             const todaySoFar = calculateTodayDownloads(data);
-            
+
             // Update DOM
             const downloadCounter = document.getElementById('download-counter');
             downloadCounter.innerText = data.totalDownloads.toLocaleString();
@@ -185,10 +185,10 @@
                     const updateDate = new Date(data.lastUpdated);
                     const day = updateDate.getDate();
                     const month = updateDate.toLocaleString('en-US', { month: 'short' });
-                    const time = updateDate.toLocaleString('en-US', { 
-                        hour: '2-digit', 
+                    const time = updateDate.toLocaleString('en-US', {
+                        hour: '2-digit',
                         minute: '2-digit',
-                        hour12: false 
+                        hour12: false
                     });
 
                     const compactDate = `${month} ${day}, ${time}`;
@@ -204,24 +204,24 @@
                     dailyAvgElement.style.opacity = "1"; // Fade back in
                 }, 200); // Match the transition duration
             });
-            
+
         } catch (error) {
             console.error('Error updating download counter:', error);
             document.getElementById('download-counter').innerText = 'Error';
         }
     }
-    
+
     // This is a simple estimation function - it uses the time of day to estimate today's downloads
     // This is just an approximation but gives users a sense of "live" data
     function calculateTodayDownloads(data) {
         const now = new Date();
         const yesterdayDownloads = data.yesterdayDownloads || 0;
-        
+
         // Calculate what percentage of the day has passed (0.0 to 1.0)
         const hourOfDay = now.getHours();
         const minuteOfHour = now.getMinutes();
         const percentOfDay = (hourOfDay * 60 + minuteOfHour) / (24 * 60);
-        
+
         // Estimate today's downloads based on what percentage of the day has passed
         // This assumes downloads occur evenly throughout the day
         return Math.round(yesterdayDownloads * percentOfDay);
@@ -249,7 +249,7 @@
             requestAnimationFrame(() => {
                 cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
             });
-            
+
             cursor.classList.remove('idle');
             if (!isMobile) {
                 navFooters.forEach(element => {
@@ -257,11 +257,11 @@
                     element.style.opacity = '1';
                 });
             }
-            
+
             if (timeoutId) {
                 clearTimeout(timeoutId);
             }
-            
+
             timeoutId = setTimeout(() => {
                 cursor.classList.add('idle');
                 if (!isMobile) {
@@ -316,29 +316,29 @@
 
 // Execute immediately without waiting for DOMContentLoaded
 (function() {
-        
+
         // Keep track of whether we've already patched things
         let functionPatched = false;
         let buttonFound = false;
-        
+
         // Function to patch the updateCursor function
         function patchUpdateCursor() {
             if (functionPatched) return;
-            
+
             const original = window.updateCursor;
             window.updateCursor = function(e) {
                 // Call the original first
                 original.call(this, e);
-                
+
                 // Find the cookie button
                 const cookieButton = document.getElementById('cookie-settings-btn');
                 if (!cookieButton) return;
-                
+
                 // Mark that we found the button
                 if (!buttonFound) {
                     buttonFound = true;
                 }
-                
+
                 // Apply the same behavior as navFooters
                 if (!isMobile) {
                     cookieButton.style.transition = 'opacity 0.5s';
@@ -347,7 +347,7 @@
                     cookieButton.style.visibility = 'visible';
                 }
             };
-            
+
             // Also patch setTimeout to catch the inactivity timer
             const originalSetTimeout = window.setTimeout;
             window.setTimeout = function(callback, delay) {
@@ -356,28 +356,28 @@
                     const newCallback = function() {
                         // Run original callback
                         callback();
-                        
+
                         // Also handle cookie button
                         const cookieButton = document.getElementById('cookie-settings-btn');
                         if (cookieButton && !isMobile) {
                             cookieButton.style.opacity = '0';
                         }
                     };
-                    
+
                     return originalSetTimeout(newCallback, delay);
                 }
-                
+
                 // For all other setTimeout calls, pass through unchanged
                 return originalSetTimeout(callback, delay);
             };
-            
+
             functionPatched = true;
         }
-        
+
         // 1. Check if updateCursor already exists and patch it
         if (typeof window.updateCursor === 'function') {
             patchUpdateCursor();
-        } 
+        }
         // 2. If not, set up a property descriptor to catch when it's defined
         else {
             let _updateCursor; // For storing the real function
@@ -391,7 +391,7 @@
                 }
             });
         }
-        
+
         // 3. Also set up a direct event listener for mouse movement in case our patching fails
         document.addEventListener('mousemove', function(e) {
             const cookieButton = document.getElementById('cookie-settings-btn');
@@ -402,25 +402,25 @@
                 cookieButton.style.visibility = 'visible';
             }
         });
-        
+
         // 4. Periodically check if the cookie button exists and apply styles
         const styleInterval = setInterval(() => {
             const cookieButton = document.getElementById('cookie-settings-btn');
             if (cookieButton) {
                 // Ensure transition is set
                 cookieButton.style.transition = 'opacity 0.5s';
-                
+
                 // Match opacity with navFooters
                 const navFooter = document.querySelector('.download-count-nav-footer');
                 if (navFooter) {
                     const computedOpacity = window.getComputedStyle(navFooter).opacity;
                     cookieButton.style.opacity = computedOpacity;
                 }
-                
+
                 buttonFound = true;
             }
         }, 500);
-        
+
         // Stop interval after 10 seconds
         setTimeout(() => {
             clearInterval(styleInterval);

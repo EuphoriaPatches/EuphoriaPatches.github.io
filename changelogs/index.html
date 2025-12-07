@@ -57,13 +57,13 @@
                 <div class="navbar-header">
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
                 </div><!-- /.navbar-header -->
-                
+
                 <div class="collapse navbar-collapse" id="agency-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a href="/">Home</a></li>
                         <li><a class="download-navigation-button" href="/download">Download</a></li>
-                        <li><a href="/support">Preview Versions</a></li>   
+                        <li><a href="/support">Preview Versions</a></li>
                         <li><a href="/features/">Features</a></li>
                         <li><a href="/how-to-install">How To Install</a></li>
 
@@ -82,12 +82,12 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
     <div id="hero" class="hero changelogs-hero">
-        <img 
+        <img
             src="/assets/img/backgrounds/changelogsBackground.webp"
             srcset="
                 /assets/img/backgrounds/changelogsBackground-480w.webp 480w,
@@ -229,12 +229,12 @@
         function generateVersionPanels(containerId, productType, prefix) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            
+
             // Filter versions based on product type
-            const filteredVersions = versions.filter(item => 
+            const filteredVersions = versions.filter(item =>
                 !item.products || item.products === productType
             );
-            
+
             let html = '';
             if (productType === 'shader') {
                 html += `
@@ -249,13 +249,13 @@
                     </div>
                 `;
             }
-            
+
             // Continue with version panels as before
             filteredVersions.forEach(item => {
                 const formattedVersion = item.version.replace(/\./g, '');
                 const elementId = `${prefix}${formattedVersion}`;
                 const displayText = item.displayName || `${item.version}`;
-                
+
                 html += `
                     <!-- ${prefix.charAt(0).toUpperCase() + prefix.slice(1)} Version ${item.version} -->
                     <button class="aaccordion aaversion">${displayText} - ${item.date}</button>
@@ -264,7 +264,7 @@
                     </div>
                 `;
             });
-            
+
             container.innerHTML = html;
         }
 
@@ -304,11 +304,11 @@
             // Generate version panels with the product type filter
             generateVersionPanels("shaderVersionsContainer", "shader", "shader");
             generateVersionPanels("modVersionsContainer", "mod", "mod");
-            
+
             // Call the function for shader and mod changelogs
             loadChangelogs('aaShaderBtn', 'cenShader', 'shader');
             loadChangelogs('aaModBtn', 'cenMod', 'mod');
-            
+
             // Accordion functionality (kept from your original code)
             var acc = document.getElementsByClassName("aaccordion");
             for (var i = 0; i < acc.length; i++) {
@@ -334,14 +334,14 @@
             }
         });
     </script>
-    
+
     <script>
         // Image overlay functionality
         document.addEventListener('DOMContentLoaded', function() {
             const overlay = document.getElementById('image-overlay');
             const overlayImage = document.getElementById('overlay-image');
             const overlayClose = document.querySelector('.gallery-images-overlay-close');
-            
+
             // Add click event to all changelog images
             document.addEventListener('click', function(e) {
                 if (e.target && e.target.classList.contains('changelog-image')) {
@@ -349,19 +349,19 @@
                     overlay.classList.add('show');
                 }
             });
-            
+
             // Close overlay when clicking the X button
             overlayClose.addEventListener('click', () => {
                 overlay.classList.remove('show');
             });
-            
+
             // Close overlay when clicking outside the image
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
                     overlay.classList.remove('show');
                 }
             });
-            
+
             // Close overlay when pressing Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && overlay.classList.contains('show')) {

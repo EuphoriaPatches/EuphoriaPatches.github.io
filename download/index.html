@@ -56,7 +56,7 @@
         gap: 30px;
         margin: 30px 0;
     }
-    
+
     /* Download card styling */
     .download-card {
         flex: 1;
@@ -79,29 +79,29 @@
         align-items: center;
         text-align: center;
     }
-    
+
     .download-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
-    
+
     .card-header {
         background: linear-gradient(135deg, rgba(255, 80, 223, 0.15) 0%, rgba(30, 32, 38, 0) 100%);
         padding: 20px 25px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .card-header h3 {
         margin: 0;
         color: var(--ThemeColor);
         font-size: 24px;
         font-weight: bold;
     }
-    
+
     .card-body {
         padding: 25px;
     }
-    
+
     /* Installer buttons container */
     .download-buttons-container {
         display: flex;
@@ -113,7 +113,7 @@
         margin: 20px 0;
         width: 100%;
     }
-    
+
     /* Note styling */
     .installer-note {
         background: rgba(0, 0, 0, 0.2);
@@ -122,7 +122,7 @@
         margin-top: 20px;
         border-left: 3px solid var(--ThemeColor);
     }
-    
+
     .note-badge {
         background: var(--ThemeColor);
         color: white;
@@ -132,13 +132,13 @@
         font-weight: bold;
         margin-right: 8px;
     }
-    
+
     /* Instructions link */
     .instructions-link-container {
         text-align: center;
         margin: 30px 0;
     }
-    
+
     .instructions-link {
         display: inline-flex;
         align-items: center;
@@ -152,25 +152,25 @@
         transition: all 0.3s ease;
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
+
     .instructions-link:hover {
         background-color: var(--ThemeColor);
         color: white;
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(255, 80, 223, 0.3);
     }
-    
+
     /* Responsive design */
     @media (max-width: 768px) {
         .download-methods-container {
             flex-direction: column;
             gap: 20px;
         }
-        
+
         .download-card {
             width: 100%;
         }
-        
+
         .download-buttons-container {
             flex-direction: column;
         }
@@ -287,7 +287,7 @@
 
 
     .instructions-text {
-        margin-right: 20px; 
+        margin-right: 20px;
         flex: 0 1 auto;
     }
 
@@ -331,11 +331,11 @@
             text-align: center;
             gap: 10px;
         }
-        
+
         .instructions-text {
             text-align: center;
         }
-        
+
         .instructions-link {
             width: 100%;
             justify-content: center;
@@ -361,13 +361,13 @@
                 <div class="navbar-header">
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
                 </div><!-- /.navbar-header -->
-                
+
                 <div class="collapse navbar-collapse" id="agency-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a href="/">Home</a></li>
                         <li><a class="download-navigation-button active" href="/download">Download</a></li>
-                        <li><a href="/support">Preview Versions</a></li>   
+                        <li><a href="/support">Preview Versions</a></li>
                         <li><a href="/features/">Features</a></li>
                         <li><a href="/how-to-install">How To Install</a></li>
 
@@ -386,12 +386,12 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
     <div id="hero" class="hero overlay download-hero">
-        <img 
+        <img
             src="/assets/img/backgrounds/downloadBackground.webp"
             srcset="
                 /assets/img/backgrounds/downloadBackground-480w.webp 480w,
@@ -429,7 +429,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div> -->
-        
+
         <section id="download-section" class="site-section section-downloads">
             <div class="container">
                 <div class="download-methods-container">
@@ -464,7 +464,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Card 2: Installer Method -->
                     <div class="download-card">
                         <div class="card-header">
@@ -473,13 +473,13 @@
                         <div class="card-body">
                             <p class="download-title">Complementary Installer</p>
                             <p>Use the Installer and select Euphoria Patches in Advanced Settings.</p>
-                            
+
                             <div id="installer-buttons" class="download-buttons-container">
                                 <button class="complementary-download-btn" disabled>
                                     <span class="download-text">Loading installers...</span>
                                 </button>
                             </div>
-                            
+
                             <div class="installer-note">
                                 <span class="note-badge">Note</span>
                                 Euphoria Patches is available under the "Advanced Settings" in the installer
@@ -491,7 +491,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Installation guide link -->
                 <div class="instructions-section">
                     <div class="instructions-content">
@@ -527,21 +527,21 @@
 
         <style>
             @keyframes rotateStar {
-                0%, 5% { transform: rotate(0deg); }  
+                0%, 5% { transform: rotate(0deg); }
                 25% { transform: rotate(360deg); } /* Initial rotation */
-                
+
                 /* First bounce - larger amplitude */
                 30% { transform: rotate(375deg); } /* Overshoot */
                 35% { transform: rotate(355deg); } /* Undershoot */
-                
+
                 /* Second bounce - medium amplitude, faster */
                 37% { transform: rotate(365deg); } /* Smaller overshoot */
                 39% { transform: rotate(357deg); } /* Smaller undershoot */
-                
+
                 /* Third bounce - small amplitude, even faster */
                 40% { transform: rotate(362deg); } /* Tiny overshoot */
                 41% { transform: rotate(359deg); } /* Tiny undershoot */
-                
+
                 /* Final settle */
                 42% { transform: rotate(360deg); } /* Perfect alignment */
                 100% { transform: rotate(360deg); } /* Hold position until next animation cycle */
@@ -627,7 +627,7 @@
             .btn-preview:hover .animation-layer {
                 animation: none;
             }
-            
+
             .btn-preview::after {
                 content: '';
                 position: absolute;
@@ -646,7 +646,7 @@
                 animation: shimmer 2.5s infinite;
                 pointer-events: none;
             }
-            
+
             @keyframes pulse-glow {
                 0% {
                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -658,7 +658,7 @@
                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
                 }
             }
-            
+
             @keyframes shimmer {
                 0% {
                     transform: translateX(-150%) rotate(30deg);
@@ -667,7 +667,7 @@
                     transform: translateX(150%) rotate(30deg);
                 }
             }
-            
+
             @keyframes float {
                 0% {
                     transform: translateY(0);
@@ -688,14 +688,14 @@
                     text-align: center;
                     padding: 0;
                 }
-                
+
                 .preview-text {
                     flex: 100%;
                     margin-right: 0; /* Remove the right margin that's causing asymmetry */
                     text-align: center; /* Center align the text instead of left */
                     margin-bottom: 10px;
                 }
-                
+
                 .btn-preview {
                     margin: 0 auto; /* Center the button */
                     display: inline-block; /* Better for centering */
@@ -706,15 +706,15 @@
                 .preview-banner {
                     padding: 1.5rem 0;
                 }
-                
+
                 .preview-text h2 {
                     font-size: 1.4rem;
                 }
-                
+
                 .preview-text p {
                     font-size: 0.95rem;
                 }
-                
+
                 .btn-preview {
                     width: auto;
                     padding: 0.6rem 1.2rem;
@@ -797,7 +797,7 @@
                             <a href="/faq/" target="_blank"></a>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="feature-card gallery-box" onclick="window.open('/gallery', '_blank');">
                             <h2 class="gallery-title">Gallery</h2>
@@ -869,23 +869,23 @@
         let currentImageIndex = 0;
         const images = document.querySelectorAll('.carousel-image');
         const dots = document.querySelectorAll('.indicator-dot');
-        
+
         function showImage(index) {
             // Hide current image and deactivate dot
             images[currentImageIndex].classList.remove('active');
             dots[currentImageIndex].classList.remove('active');
-            
+
             // Show new image and activate dot
             currentImageIndex = index;
             images[currentImageIndex].classList.add('active');
             dots[currentImageIndex].classList.add('active');
         }
-        
+
         function showNextImage() {
             let nextIndex = (currentImageIndex + 1) % images.length;
             showImage(nextIndex);
         }
-        
+
         // Add click handlers to dots
         dots.forEach((dot, index) => {
             dot.addEventListener('click', function(e) {
@@ -893,11 +893,11 @@
                 showImage(index);
             });
         });
-        
+
         // Auto-rotate images
         setInterval(showNextImage, 5000);
     });
-    
+
     </script>
     <script>
         function formatDownloads(num) {
@@ -915,7 +915,7 @@
 
         async function updateDownloadCounter() {
             const projectId = '4H6sumDB';
-            
+
             // Fetch project data for downloads
             const response = await fetch(`https://api.modrinth.com/v2/project/${projectId}`);
             const data = await response.json();
@@ -939,10 +939,10 @@
         async function setupInstallerButtons() {
             const installerData = await fetchInstallerData();
             const buttonsContainer = document.getElementById('installer-buttons');
-            
+
             if (!buttonsContainer) return;
             buttonsContainer.innerHTML = '';
-            
+
             if (installerData.error) {
                 // Show error state
                 buttonsContainer.innerHTML = `
@@ -952,9 +952,9 @@
                 `;
                 return;
             }
-            
+
             const { latestJarAsset, latestExeAsset, isWindows } = installerData;
-            
+
             if (isWindows && latestExeAsset) {
                 // Windows EXE button
                 const exeButton = document.createElement('button');
@@ -962,14 +962,14 @@
                 exeButton.onclick = () => downloadFile(latestExeAsset.browser_download_url);
                 exeButton.innerHTML = `<span class="download-text">Windows EXE</span>`;
                 buttonsContainer.appendChild(exeButton);
-                
+
                 // If JAR also available, add it as alternative
                 if (latestJarAsset) {
                     const divider = document.createElement('div');
                     divider.className = 'download-divider';
                     divider.textContent = '|';
                     buttonsContainer.appendChild(divider);
-                    
+
                     const jarButton = document.createElement('button');
                     jarButton.className = 'complementary-download-btn jar-button';
                     jarButton.onclick = () => downloadFile(latestJarAsset.browser_download_url);
@@ -1006,7 +1006,7 @@
             if (scrollTarget) {
                 // Clear the storage item
                 sessionStorage.removeItem('scrollTarget');
-                
+
                 // Find the target element
                 const targetElement = document.getElementById(scrollTarget);
                 if (targetElement) {
@@ -1016,7 +1016,7 @@
                         const elementRect = targetElement.getBoundingClientRect();
                         const absoluteElementTop = elementRect.top + window.pageYOffset;
                         const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
-                        
+
                         // Scroll to the centered position
                         window.scrollTo({
                             top: middle,
@@ -1027,6 +1027,6 @@
             }
         });
     </script>
-  
+
 </body>
 </html>

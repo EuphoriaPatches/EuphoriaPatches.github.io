@@ -1,8 +1,6 @@
 {
     "isRightToLeft": false,
-
     "pageTitle": "Hoe installeer je Euphoria Patches ",
-
     "modMethodTitle": "De Mod Methode",
     "step1": "Download de correcte versie van Complementary en plaats die in de shaderpacks folder",
     "step1After": "(pak hem niet uit en pas hem niet aan).",
@@ -12,11 +10,8 @@
     "step2After": "versie en plaats die in de mods folder .",
     "step3": "start de game met: Fabric | Quilt | Forge | NeoForge",
     "step4": "zal nu in je shaderpacks folder staan",
-
     "unsupportedVersions": "voor niet ondersteunde versies van minecraft, gebruik de patcher in een nieuwere versie van minecraft, maak Euphoria Patches aan en kopieer het gemaake shaderpack naar de niet ondersteunde versies.",
-
     "downloadPageButton": "Ga naar de Downloads pagina",
-
     "installerMethodTitle": "de Installer Methode",
     "installerStep1Before": "ga naar",
     "installerStep1After": "en download de installer.",

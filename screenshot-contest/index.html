@@ -55,13 +55,13 @@
                 <div class="navbar-header">
                     <a href="/" class="site-title"><span>Euphoria</span> Patches</a>
                 </div><!-- /.navbar-header -->
-                
+
                 <div class="collapse navbar-collapse" id="agency-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a href="/">Home</a></li>
                         <li><a class="download-navigation-button" href="/download">Download</a></li>
-                        <li><a href="/support">Preview Versions</a></li>   
+                        <li><a href="/support">Preview Versions</a></li>
                         <li><a href="/features/">Features</a></li>
                         <li><a href="/how-to-install">How To Install</a></li>
 
@@ -80,7 +80,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>   
+            </div>
         </nav><!-- /.site-navigation -->
     </header><!-- /#mastheaed -->
 
@@ -95,7 +95,7 @@
             </div>
             <div class="contest-section">
                 <h2 class="contest-title">First Contest</h2>
-                <div class="gallery-images-grid contest-grid">    
+                <div class="gallery-images-grid contest-grid">
                     <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/1-40xAuto.webp');">
                         <img src="/assets/img/Screenshots/contest/1.webp" data-description="Overworld Category: Acer (Alex)">
                         <div class="image-caption">Overworld Category: Acer (Alex)</div>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <h2 class="contest-title">Second Contest</h2>
-                <div class="gallery-images-grid contest-grid">    
+                <div class="gallery-images-grid contest-grid">
                     <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/4-40xAuto.webp');">
                         <img src="/assets/img/Screenshots/contest/4.webp" data-description="Night Category: Memento_Mori47">
                         <div class="image-caption">Night Category: Memento_Mori47</div>
@@ -126,7 +126,7 @@
                 </div>
             </div>
         </section>
-    
+
         <div id="gallery-images-overlay" class="gallery-images-overlay">
             <span class="gallery-images-overlay-close">&times;</span>
 
@@ -142,7 +142,7 @@
                 <img id="gallery-overlay-image" src="" alt="Overlay Image">
                 <div id="image-description" class="image-description"></div>
             </div>
-        </div>        
+        </div>
     </main>
 
     <footer id="colophon" class="site-footer"></footer>
@@ -193,7 +193,7 @@
                         div.classList.add("loaded");
                     }
                 }
-                
+
                 if (img.complete && img.naturalHeight !== 0) {
                     loaded();
                 } else {
@@ -311,14 +311,14 @@
             // Get references to the buttons
             const prevBtn = document.querySelector('.gallery-prev-btn');
             const nextBtn = document.querySelector('.gallery-next-btn');
-            
+
             // Add event listeners
             if (prevBtn) {
                 prevBtn.addEventListener('click', function() {
                     showImage(currentIndex - 1);
                 });
             }
-            
+
             if (nextBtn) {
                 nextBtn.addEventListener('click', function() {
                     showImage(currentIndex + 1);
@@ -333,12 +333,12 @@
             const overlay = document.getElementById('gallery-images-overlay');
             const overlayImage = document.getElementById('gallery-overlay-image');
             const imageDescription = document.getElementById('image-description');
-            
+
             // Get descriptions from data-description or from caption
             galleryItems.forEach((item, index) => {
                 const img = item.querySelector('img');
                 const caption = item.querySelector('.image-caption');
-                
+
                 // Set data-description attribute if not already set but caption exists
                 if (!img.hasAttribute('data-description') && caption) {
                     img.setAttribute('data-description', caption.textContent);
