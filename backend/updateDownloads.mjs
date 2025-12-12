@@ -253,6 +253,13 @@ async function updateDownloadStats() {
         const currentTimestamp = Date.now();
 
         // Create new stats object
+        const formattedTotalDownloads =
+          totalDownloads >= 1e6
+            ? (totalDownloads / 1e6).toFixed(2) + "M"
+            : totalDownloads >= 1e3
+              ? (totalDownloads / 1e3).toFixed(2) + "K"
+              : totalDownloads;
+
         const newStats = {
           timestamp: currentTimestamp,
           lastUpdated: new Date().toISOString(),
@@ -261,6 +268,7 @@ async function updateDownloadStats() {
           curseforgeDownloads,
           yesterdayDownloads: downloadDifference,
           matchesLength,
+          formattedTotalDownloads,
         };
 
         // Write to JSON file

@@ -268,11 +268,7 @@
 
                 const data = await response.json();
                 const counter = document.getElementById('download-counter');
-                counter.innerText = data.totalDownloads >= 1e6 ?
-                    (data.totalDownloads/1e6).toFixed(2)+'M' :
-                    data.totalDownloads >= 1e3 ?
-                        (data.totalDownloads/1e3).toFixed(2)+'K' :
-                        data.totalDownloads;
+                counter.innerText = data.formattedTotalDownloads || 'Millions of';
 
                 // Set tooltip data
                 counter.setAttribute('data-tooltip', `Modrinth: ${data.modrinthDownloads.toLocaleString()}\nCurseForge: ${data.curseforgeDownloads.toLocaleString()}\nTotal: ${data.totalDownloads.toLocaleString()}`);
