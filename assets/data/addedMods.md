@@ -1,4 +1,4 @@
-### Last updated: December 07, 2025, 14:20 UTC
+### Last updated: December 14, 2025, 08:24 UTC
 [# Copyright (c) 2025 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -222,7 +222,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Farming for Blockheads](https://modrinth.com/mod/farming-for-blockheads) | 3.1.28 | Fully Added |
 | [Fast Paintings](https://modrinth.com/mod/fast-paintings) | 1.2.15 | Fully Added |
 | [Fish's Undead Rising](https://www.curseforge.com/minecraft/mc-mods/fishs-undead-rising) | 1.4.0 | Blocks Only |
-| [Fixed](https://modrinth.com/mod/fixed) | 1.5.0 | Fully Added |
+| [Fixed](https://modrinth.com/mod/fixed) | 1.6.0 | Fully Added |
 | [Flower Patch](https://modrinth.com/mod/flower-patch) | | Foliage Only | # Someone should confirm if the flowers can be placed in flower pots
 | [Forbidden and Arcanus](https://modrinth.com/mod/forbidden-arcanus) | | Miniscule |
 | [Fossils and Archaeology: Legacy](https://modrinth.com/mod/fossils-and-archaeology-legacy) | 1.4.9 | Fully Added |
@@ -322,6 +322,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Naturalist](https://modrinth.com/mod/naturalist) | 4.0.3 | Fully Added |
 | [Nature's Spirit](https://modrinth.com/mod/natures-spirit) | 2.2.4 | Partial Support|
 | [Neapolitan](https://www.curseforge.com/minecraft/mc-mods/neapolitan) | 5.0.0 | Foliage Only |
+| [Nekomas Fixed](https://modrinth.com/mod/nekomas-fixed) | 0.2.0 | Fully Added |
 | [Neon Lamps](https://curseforge.com/minecraft/mc-mods/neon-lamps) | 1.0.0 | Fully Added |
 | [Nether Archives](https://modrinth.com/mod/nether-archives) | 0.3.6 | Fully Added |
 | [Nether's Delight](https://modrinth.com/mod/nethers-delight) | | In Testing | # Why is soil in the Deepslate Diamond Ore ID??
