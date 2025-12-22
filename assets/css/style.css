@@ -1208,6 +1208,24 @@ body {
     5px 5px 2px hsl(300, 60%, 10%);
 }
 
+.hero-gallery-text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-title-toggle {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.gallery-title-toggle:hover {
+  color: var(--ThemeColor) !important;
+  text-shadow: 0 0 10px rgba(255, 150, 0, 0.3);
+}
+
 .hero-text h1 {
   font-family: "graphicpixel";
   position: relative;

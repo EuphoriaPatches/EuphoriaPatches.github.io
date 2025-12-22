@@ -93,37 +93,8 @@
                     <i class="fa fa-arrow-left"></i> Back to Gallery
                 </a>
             </div>
-            <div class="contest-section">
-                <h2 class="contest-title">First Contest</h2>
-                <div class="gallery-images-grid contest-grid">
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/1-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/1.webp" data-description="Overworld Category: Acer (Alex)">
-                        <div class="image-caption">Overworld Category: Acer (Alex)</div>
-                    </div>
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/2-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/2.webp" data-description="Nether Category: Jeremy Elbertson">
-                        <div class="image-caption">Nether Category: Jeremy Elbertson</div>
-                    </div>
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/3-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/3.webp" data-description="End Category: arturd1090">
-                        <div class="image-caption">End Category: arturd1090</div>
-                    </div>
-                </div>
-                <h2 class="contest-title">Second Contest</h2>
-                <div class="gallery-images-grid contest-grid">
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/4-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/4.webp" data-description="Night Category: Memento_Mori47">
-                        <div class="image-caption">Night Category: Memento_Mori47</div>
-                    </div>
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/5-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/5.webp" data-description="Weather & Atmosphere Category: Candymanmax">
-                        <div class="image-caption">Weather & Atmosphere Category: Candymanmax</div>
-                    </div>
-                    <div class="gallery-images-item blur-load-img" style="background-image: url('/assets/img/Screenshots/contest/6-40xAuto.webp');">
-                        <img src="/assets/img/Screenshots/contest/6.webp" data-description="Anything Goes Category: Webr">
-                        <div class="image-caption">Anything Goes Category: Webr</div>
-                    </div>
-                </div>
+            <div class="contest-section" id="contest-container">
+                <!-- Contest sections will be dynamically generated here -->
             </div>
         </section>
 
@@ -180,171 +151,197 @@
     <script src="/assets/js/backToTop.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const galleryImageDivs = document.querySelectorAll(".gallery-images-item");
+        document.addEventListener('DOMContentLoaded', async () => {
+            const contestContainer = document.getElementById('contest-container');
 
-            galleryImageDivs.forEach(div => {
-                const img = div.querySelector("img");
+            try {
+                // Fetch image data
+                const response = await fetch('/gallery/imageData.json');
+                const imageData = await response.json();
 
-                function loaded() {
-                    div.classList.add("loaded");
+                // Calculate number of contests (3 images per contest)
+                const imagesPerContest = 3;
+                const numContests = Math.ceil(imageData.maxContestImages / imagesPerContest);
 
-                    if (div.classList.contains("blur-load-img")) {
-                        div.classList.add("loaded");
+                // Generate contest sections dynamically
+                for (let contestNum = 1; contestNum <= numContests; contestNum++) {
+                    // Create contest title
+                    const titleEl = document.createElement('h2');
+                    titleEl.className = 'contest-title';
+                    titleEl.textContent = `Contest ${contestNum}`;
+                    contestContainer.appendChild(titleEl);
+
+                    // Create grid for contest images
+                    const gridEl = document.createElement('div');
+                    gridEl.className = 'gallery-images-grid contest-grid';
+
+                    // Add 3 images for this contest
+                    const startImageNum = (contestNum - 1) * imagesPerContest + 1;
+                    for (let i = 0; i < imagesPerContest; i++) {
+                        const imageNum = startImageNum + i;
+                        if (imageNum > imageData.maxContestImages) break;
+
+                        // Create gallery item
+                        const div = document.createElement('div');
+                        div.className = 'gallery-images-item blur-load-img';
+                        div.style.backgroundImage = `url('/assets/img/Screenshots/contest/${imageNum}-40xAuto.webp')`;
+
+                        const img = document.createElement('img');
+                        img.src = `/assets/img/Screenshots/contest/${imageNum}.webp`;
+
+                        const description = imageData.descriptions[`contest${imageNum}`];
+                        if (description) {
+                            img.setAttribute('data-description', description);
+                        }
+
+                        div.appendChild(img);
+
+                        // Add caption div after image
+                        if (description) {
+                            const captionDiv = document.createElement('div');
+                            captionDiv.className = 'image-caption';
+                            captionDiv.textContent = description;
+                            div.appendChild(captionDiv);
+                        }
+                        gridEl.appendChild(div);
+                    }
+
+                    contestContainer.appendChild(gridEl);
+                }
+
+                // Initialize blur loading
+                const galleryImageDivs = document.querySelectorAll('.gallery-images-item');
+                galleryImageDivs.forEach(div => {
+                    const img = div.querySelector('img');
+                    function loaded() {
+                        div.classList.add('loaded');
+                    }
+                    if (img.complete && img.naturalHeight !== 0) {
+                        loaded();
+                    } else {
+                        img.addEventListener('load', loaded);
+                    }
+                });
+
+                // Initialize gallery overlay
+                initializeGalleryOverlay();
+
+            } catch (error) {
+                console.error('Error loading contest images:', error);
+            }
+        });
+
+        function initializeGalleryOverlay() {
+            const galleryItems = document.querySelectorAll('.gallery-images-item');
+            const overlay = document.getElementById('gallery-images-overlay');
+            const overlayImage = document.getElementById('gallery-overlay-image');
+            const overlayClose = document.querySelector('.gallery-images-overlay-close');
+            const imageDescription = document.getElementById('image-description');
+
+            let imageSources = [];
+            let imageDescriptions = [];
+            let currentIndex = 0;
+
+            galleryItems.forEach((item, index) => {
+                const img = item.querySelector('img');
+                const fullSrc = img.src;
+                const description = img.getAttribute('data-description');
+                imageSources.push(fullSrc);
+                imageDescriptions.push(description || null);
+
+                item.addEventListener('click', () => {
+                    currentIndex = index;
+                    overlayImage.src = fullSrc;
+                    updateDescription(currentIndex);
+                    overlay.classList.add('show');
+                });
+            });
+
+            function updateDescription(index) {
+                const description = imageDescriptions[index];
+                if (description) {
+                    imageDescription.textContent = description;
+                    imageDescription.style.opacity = '1';
+                } else {
+                    imageDescription.textContent = '';
+                    imageDescription.style.opacity = '0';
+                }
+            }
+
+            function showImage(index) {
+                if (index >= 0 && index < imageSources.length) {
+                    currentIndex = index;
+                    overlayImage.src = imageSources[currentIndex];
+                    updateDescription(currentIndex);
+                }
+            }
+
+            overlayClose.addEventListener('click', () => {
+                overlay.classList.remove('show');
+            });
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    overlay.classList.remove('show');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (overlay.classList.contains('show')) {
+                    if (e.key === 'ArrowLeft') {
+                        showImage(currentIndex - 1);
+                    } else if (e.key === 'ArrowRight') {
+                        showImage(currentIndex + 1);
                     }
                 }
-
-                if (img.complete && img.naturalHeight !== 0) {
-                    loaded();
-                } else {
-                    img.addEventListener("load", loaded);
-                }
             });
-        });
-    </script>
 
-    <script>
-        const galleryItems = document.querySelectorAll('.gallery-images-item');
-        const overlay = document.getElementById('gallery-images-overlay');
-        const overlayImage = document.getElementById('gallery-overlay-image');
-        const overlayClose = document.querySelector('.gallery-images-overlay-close');
-        const imageDescription = document.getElementById('image-description');
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-        // Store image sources and descriptions
-        let imageSources = [];
-        let imageDescriptions = [];
-        let currentIndex = 0;
-
-        galleryItems.forEach((item, index) => {
-            const img = item.querySelector('img');
-            const fullSrc = img.src;
-            const description = img.getAttribute('data-description');
-            imageSources.push(fullSrc);
-            imageDescriptions.push(description ? description : null);
-
-            item.addEventListener('click', () => {
-                currentIndex = index;
-                overlayImage.src = fullSrc;
-                updateDescription(currentIndex);
-                overlay.classList.add('show');
-            });
-        });
-
-        function updateDescription(index) {
-            const description = imageDescriptions[index];
-            if (description) {
-                imageDescription.textContent = description; // Set description
-                imageDescription.style.opacity = '1'; // Make visible
-            } else {
-                imageDescription.textContent = ''; // Clear description
-                imageDescription.style.opacity = '0'; // Make invisible
-            }
-        }
-
-        function showImage(index) {
-            if (index >= 0 && index < imageSources.length) {
-                currentIndex = index;
-                overlayImage.src = imageSources[currentIndex];
-                updateDescription(currentIndex); // Update description when changing image
-            }
-        }
-
-        overlayClose.addEventListener('click', () => {
-            overlay.classList.remove('show');
-        });
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('show');
-            }
-        });
-
-        // Handle escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                overlay.classList.remove('show');
-            }
-        });
-
-        // Handle arrow navigation
-        document.addEventListener('keydown', (e) => {
-            if (overlay.classList.contains('show')) {
-                if (e.key === 'ArrowLeft') {
-                    showImage(currentIndex - 1); // Previous image
-                } else if (e.key === 'ArrowRight') {
-                    showImage(currentIndex + 1); // Next image
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    showImage(currentIndex + 1);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    showImage(currentIndex - 1);
                 }
             }
-        });
 
-        // Swipe functionality for mobile devices
-        let touchStartX = 0;
-        let touchEndX = 0;
+            overlay.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
 
-        // Function to handle swipe detection
-        function handleSwipe() {
-            const swipeThreshold = 50; // Minimum swipe distance to trigger navigation
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // Swipe left (next image)
-                showImage(currentIndex + 1);
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                // Swipe right (previous image)
-                showImage(currentIndex - 1);
-            }
-        }
+            overlay.addEventListener('touchmove', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+            });
 
-        // Add touch event listeners to the overlay
-        overlay.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX; // Get the starting X position of the touch
-        });
+            overlay.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
 
-        overlay.addEventListener('touchmove', (e) => {
-            touchEndX = e.changedTouches[0].screenX; // Continuously update the ending X position
-        });
-
-        overlay.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX; // Get the final X position
-            handleSwipe(); // Check if a swipe was detected
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get references to the buttons
             const prevBtn = document.querySelector('.gallery-prev-btn');
             const nextBtn = document.querySelector('.gallery-next-btn');
 
-            // Add event listeners
             if (prevBtn) {
-                prevBtn.addEventListener('click', function() {
+                prevBtn.addEventListener('click', () => {
                     showImage(currentIndex - 1);
                 });
             }
 
             if (nextBtn) {
-                nextBtn.addEventListener('click', function() {
+                nextBtn.addEventListener('click', () => {
                     showImage(currentIndex + 1);
                 });
             }
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const galleryItems = document.querySelectorAll('.gallery-images-item');
-            const overlay = document.getElementById('gallery-images-overlay');
-            const overlayImage = document.getElementById('gallery-overlay-image');
-            const imageDescription = document.getElementById('image-description');
-
-            // Get descriptions from data-description or from caption
-            galleryItems.forEach((item, index) => {
-                const img = item.querySelector('img');
-                const caption = item.querySelector('.image-caption');
-
-                // Set data-description attribute if not already set but caption exists
-                if (!img.hasAttribute('data-description') && caption) {
-                    img.setAttribute('data-description', caption.textContent);
-                }
-            });
-        });
+        }
     </script>
 
 </body>

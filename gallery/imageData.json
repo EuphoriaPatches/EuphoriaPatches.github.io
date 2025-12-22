@@ -1,10 +1,17 @@
 {
-  "maxImages": 143,
+  "maxImages": 160,
+  "maxContestImages": 6,
   "descriptions": {
     "downloadBackground": "End Portal Rays Option",
     "faqBackground": "Screenshot by MoAoXnX",
     "policyBackground": "Procedural water effect with tilt shift Option",
     "creditsBackground": "Better End Support - Screenshot by Acer",
+    "contest1": "Overworld Category: Acer (Alex)",
+    "contest2": "Nether Category: Jeremy Elbertson",
+    "contest3": "End Category: arturd1090",
+    "contest4": "Night Category: Memento_Mori47",
+    "contest5": "Weather & Atmosphere Category: Candymanmax",
+    "contest6": "Anything Goes Category: Webr",
     "2": "A stone statue with our moss floor noise enabled - Screenshot by Slooshie",
     "3": "Lava noise enabled - Screenshot by Nomo",
     "4": "Nether Sky Noise Option",
@@ -72,6 +79,23 @@
     "135": "Screenshot by googley",
     "136": "Screenshot by 1090",
     "137": "Screenshot by !PETEandhisBEANS",
-    "138": "Screenshot by !PETEandhisBEANS"
+    "138": "Screenshot by !PETEandhisBEANS",
+    "144": "Screenshot by shableeper",
+    "145": "Screenshot by Memento Mori",
+    "146": "Screenshot by Ruri",
+    "147": "Screenshot by Webr",
+    "148": "Screenshot by Memento Mori",
+    "149": "Screenshot by Sheriph",
+    "150": "Screenshot by Serberus",
+    "151": "Screenshot by Serberus",
+    "152": "Screenshot by Cloudina",
+    "153": "Screenshot by Webr",
+    "154": "Screenshot by Webr",
+    "155": "Screenshot by Serberus",
+    "156": "Screenshot by Nomadvorga",
+    "157": "Screenshot by Serberus",
+    "158": "Screenshot by YarKan",
+    "159": "Screenshot by YarKan",
+    "160": "Screenshot by Serberus"
   }
 }

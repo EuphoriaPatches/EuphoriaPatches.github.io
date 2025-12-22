@@ -2,6 +2,28 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const galleryGrid = document.querySelector(".gallery-images-grid");
 
+  // Initialize shuffle state from localStorage (default: true)
+  let isShuffleEnabled =
+    localStorage.getItem("galleryShuffleEnabled") !== "false";
+
+  // Setup gallery title toggle
+  const galleryTitle = document.getElementById("gallery-title");
+  if (galleryTitle) {
+    // Set initial title text based on state
+    galleryTitle.textContent = isShuffleEnabled
+      ? "Shuffled Gallery"
+      : "Linear Gallery";
+
+    // Add click handler
+    galleryTitle.addEventListener("click", () => {
+      isShuffleEnabled = !isShuffleEnabled;
+      localStorage.setItem("galleryShuffleEnabled", isShuffleEnabled);
+
+      // Reload gallery with new setting
+      location.reload();
+    });
+  }
+
   try {
     // Fetch image data
     const response = await fetch("/gallery/imageData.json");
@@ -9,6 +31,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Collect all images into one array
     const allImages = [];
+
+    // Add contest images
+    for (let i = 1; i <= imageData.maxContestImages; i++) {
+      const description = imageData.descriptions[`contest${i}`];
+      allImages.push({
+        name: `${i}`,
+        folder: "Screenshots/contest",
+        description,
+      });
+    }
 
     // Add background images
     const backgroundImages = [
@@ -38,10 +70,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Shuffle the array randomly
-    shuffleArray(allImages);
+    // Shuffle the array randomly if enabled
+    if (isShuffleEnabled) {
+      shuffleArray(allImages);
+    }
 
-    // Add all shuffled images to the gallery
+    // Add all images to the gallery
     allImages.forEach((img) => {
       const item = createGalleryItem(img.name, img.folder, img.description);
       galleryGrid.appendChild(item);
