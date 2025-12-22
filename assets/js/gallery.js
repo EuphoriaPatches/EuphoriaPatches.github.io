@@ -144,6 +144,11 @@ function initializeGalleryOverlay() {
   const overlayClose = document.querySelector(".gallery-images-overlay-close");
   const imageDescription = document.getElementById("image-description");
 
+  // Create hover tooltip
+  const hoverTooltip = document.createElement("div");
+  hoverTooltip.className = "gallery-hover-tooltip";
+  document.body.appendChild(hoverTooltip);
+
   // Store image sources and descriptions
   let imageSources = [];
   let imageDescriptions = [];
@@ -161,7 +166,22 @@ function initializeGalleryOverlay() {
       overlayImage.src = fullSrc;
       updateDescription(currentIndex);
       overlay.classList.add("show");
+      hoverTooltip.classList.remove("show");
     });
+
+    // Add hover listeners for tooltip (only on non-mobile)
+    if (window.innerWidth > 768) {
+      item.addEventListener("mouseenter", () => {
+        if (!overlay.classList.contains("show") && description) {
+          hoverTooltip.textContent = description;
+          hoverTooltip.classList.add("show");
+        }
+      });
+
+      item.addEventListener("mouseleave", () => {
+        hoverTooltip.classList.remove("show");
+      });
+    }
   });
 
   function updateDescription(index) {
