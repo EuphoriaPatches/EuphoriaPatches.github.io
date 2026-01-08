@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-07T01:29:19.879Z",
+  "generated": "2026-01-08T01:40:07.310Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -51,20 +51,20 @@
       "html_url": "https://github.com/djmrFunnyMan"
     },
     {
-      "login": "invokekitty",
-      "additions": 939,
-      "deletions": 2402,
-      "commits": 19,
-      "avatar_url": "https://avatars.githubusercontent.com/u/166204436?v=4",
-      "html_url": "https://github.com/invokekitty"
-    },
-    {
       "login": "spaghettube",
       "additions": 446,
       "deletions": 127,
       "commits": 19,
       "avatar_url": "https://avatars.githubusercontent.com/u/101492556?v=4",
       "html_url": "https://github.com/spaghettube"
+    },
+    {
+      "login": "invokekitty",
+      "additions": 939,
+      "deletions": 2402,
+      "commits": 19,
+      "avatar_url": "https://avatars.githubusercontent.com/u/166204436?v=4",
+      "html_url": "https://github.com/invokekitty"
     },
     {
       "login": "ADreadedKing",
@@ -139,14 +139,6 @@
       "html_url": "https://github.com/Milan4ikdudewtf"
     },
     {
-      "login": "irisfofs",
-      "additions": 13,
-      "deletions": 5,
-      "commits": 5,
-      "avatar_url": "https://avatars.githubusercontent.com/u/4063719?v=4",
-      "html_url": "https://github.com/irisfofs"
-    },
-    {
       "login": "Alexthw46",
       "additions": 31,
       "deletions": 7,
@@ -155,28 +147,20 @@
       "html_url": "https://github.com/Alexthw46"
     },
     {
-      "login": "Flakxo",
-      "additions": 5,
-      "deletions": 3,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/135031240?v=4",
-      "html_url": "https://github.com/Flakxo"
+      "login": "irisfofs",
+      "additions": 13,
+      "deletions": 5,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/4063719?v=4",
+      "html_url": "https://github.com/irisfofs"
     },
     {
-      "login": "Niklars",
-      "additions": 89,
-      "deletions": 28,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
-      "html_url": "https://github.com/Niklars"
-    },
-    {
-      "login": "SCAFprivate",
-      "additions": 80,
-      "deletions": 43,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
-      "html_url": "https://github.com/SCAFprivate"
+      "login": "yakisobadayo",
+      "additions": 149,
+      "deletions": 6,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/136476033?v=4",
+      "html_url": "https://github.com/yakisobadayo"
     },
     {
       "login": "SheriphDroplet",
@@ -185,6 +169,14 @@
       "commits": 4,
       "avatar_url": "https://avatars.githubusercontent.com/u/168616329?v=4",
       "html_url": "https://github.com/SheriphDroplet"
+    },
+    {
+      "login": "SCAFprivate",
+      "additions": 80,
+      "deletions": 43,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
+      "html_url": "https://github.com/SCAFprivate"
     },
     {
       "login": "Simple205",
@@ -203,20 +195,28 @@
       "html_url": "https://github.com/Eclipse-Ilx"
     },
     {
+      "login": "Niklars",
+      "additions": 89,
+      "deletions": 28,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
+      "html_url": "https://github.com/Niklars"
+    },
+    {
+      "login": "Flakxo",
+      "additions": 5,
+      "deletions": 3,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/135031240?v=4",
+      "html_url": "https://github.com/Flakxo"
+    },
+    {
       "login": "mist475",
       "additions": 181,
       "deletions": 56,
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/70655895?v=4",
       "html_url": "https://github.com/mist475"
-    },
-    {
-      "login": "DadamaldaDad",
-      "additions": 60,
-      "deletions": 20,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/97605267?v=4",
-      "html_url": "https://github.com/DadamaldaDad"
     },
     {
       "login": "Cozary",
@@ -235,12 +235,28 @@
       "html_url": "https://github.com/GregS98"
     },
     {
+      "login": "PlayfulPiano",
+      "additions": 152,
+      "deletions": 50,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/3158887?v=4",
+      "html_url": "https://github.com/PlayfulPiano"
+    },
+    {
       "login": "Acidia5",
       "additions": 28,
       "deletions": 28,
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/89268011?v=4",
       "html_url": "https://github.com/Acidia5"
+    },
+    {
+      "login": "DadamaldaDad",
+      "additions": 60,
+      "deletions": 20,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/97605267?v=4",
+      "html_url": "https://github.com/DadamaldaDad"
     },
     {
       "login": "JrDemiurg",
@@ -257,14 +273,6 @@
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/44986488?v=4",
       "html_url": "https://github.com/haloTT100"
-    },
-    {
-      "login": "PlayfulPiano",
-      "additions": 152,
-      "deletions": 50,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/3158887?v=4",
-      "html_url": "https://github.com/PlayfulPiano"
     },
     {
       "login": "Ryyyyyylie",
@@ -411,12 +419,28 @@
       "html_url": "https://github.com/xiader-45"
     },
     {
+      "login": "N1ghtWare",
+      "additions": 40,
+      "deletions": 14,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/104259106?v=4",
+      "html_url": "https://github.com/N1ghtWare"
+    },
+    {
       "login": "CoderRuq",
       "additions": 113,
       "deletions": 37,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
       "html_url": "https://github.com/CoderRuq"
+    },
+    {
+      "login": "Dizzy-Eevee",
+      "additions": 10,
+      "deletions": 0,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/179107951?v=4",
+      "html_url": "https://github.com/Dizzy-Eevee"
     },
     {
       "login": "Lakuar",
@@ -427,12 +451,12 @@
       "html_url": "https://github.com/Lakuar"
     },
     {
-      "login": "Dizzy-Eevee",
-      "additions": 10,
+      "login": "hazzuk",
+      "additions": 3,
       "deletions": 0,
       "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/179107951?v=4",
-      "html_url": "https://github.com/Dizzy-Eevee"
+      "avatar_url": "https://avatars.githubusercontent.com/u/31993698?v=4",
+      "html_url": "https://github.com/hazzuk"
     },
     {
       "login": "Waulk",
@@ -451,28 +475,12 @@
       "html_url": "https://github.com/hessian-mat"
     },
     {
-      "login": "N1ghtWare",
-      "additions": 40,
-      "deletions": 14,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/104259106?v=4",
-      "html_url": "https://github.com/N1ghtWare"
-    },
-    {
       "login": "icha-senpai",
       "additions": 2,
       "deletions": 1,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/10746379?v=4",
       "html_url": "https://github.com/icha-senpai"
-    },
-    {
-      "login": "hazzuk",
-      "additions": 3,
-      "deletions": 0,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/31993698?v=4",
-      "html_url": "https://github.com/hazzuk"
     }
   ]
 }
