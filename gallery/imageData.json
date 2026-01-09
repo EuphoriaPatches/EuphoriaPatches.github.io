@@ -1,5 +1,5 @@
 {
-  "maxImages": 167,
+  "maxImages": 169,
   "maxContestImages": 6,
   "descriptions": {
     "downloadBackground": "End Portal Rays Option",
@@ -98,6 +98,8 @@
     "158": "Screenshot by YarKan",
     "159": "Screenshot by YarKan",
     "160": "Screenshot by Serberus",
-    "167": "Screenshot by Ruri"
+    "167": "Screenshot by Ruri",
+    "168": "Screenshot by Slooshie",
+    "169": "Screenshot by Slooshie"
   }
 }
