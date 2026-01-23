@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-22T01:42:06.721Z",
+  "generated": "2026-01-23T01:40:36.665Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -123,6 +123,14 @@
       "html_url": "https://github.com/RosaryMala"
     },
     {
+      "login": "mist475",
+      "additions": 563,
+      "deletions": 132,
+      "commits": 8,
+      "avatar_url": "https://avatars.githubusercontent.com/u/70655895?v=4",
+      "html_url": "https://github.com/mist475"
+    },
+    {
       "login": "kaporli",
       "additions": 57,
       "deletions": 19,
@@ -137,14 +145,6 @@
       "commits": 7,
       "avatar_url": "https://avatars.githubusercontent.com/u/25977836?v=4",
       "html_url": "https://github.com/Kazzaowo"
-    },
-    {
-      "login": "mist475",
-      "additions": 555,
-      "deletions": 126,
-      "commits": 6,
-      "avatar_url": "https://avatars.githubusercontent.com/u/70655895?v=4",
-      "html_url": "https://github.com/mist475"
     },
     {
       "login": "Milan4ikdudewtf",
