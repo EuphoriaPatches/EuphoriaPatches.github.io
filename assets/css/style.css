@@ -2490,7 +2490,7 @@ h4 {
 }
 
 .shader-loader-item:nth-child(4) {
-  border-left-color: #ffd700;
+  border-left-color: #32cd32;
 }
 
 .shader-loader-item h4 {
@@ -2538,7 +2538,7 @@ h4 {
 }
 
 .shader-loader-item:nth-child(4) li:nth-child(3) {
-  color: #ffd700; /* Gold for "More recommended than OptiFine" */
+  color: #32cd32; /* Gold for "More recommended than OptiFine" */
 }
 
 /* Style platform info */
