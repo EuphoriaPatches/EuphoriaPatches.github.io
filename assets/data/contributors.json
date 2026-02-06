@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-04T01:56:15.484Z",
+  "generated": "2026-02-06T01:55:54.306Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -291,6 +291,14 @@
       "html_url": "https://github.com/Acidia5"
     },
     {
+      "login": "chililisoup",
+      "additions": 137,
+      "deletions": 19,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/47825189?v=4",
+      "html_url": "https://github.com/chililisoup"
+    },
+    {
       "login": "NaKeRNarolino",
       "additions": 846,
       "deletions": 805,
@@ -305,14 +313,6 @@
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
       "html_url": "https://github.com/digitalvagrant"
-    },
-    {
-      "login": "chililisoup",
-      "additions": 137,
-      "deletions": 19,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/47825189?v=4",
-      "html_url": "https://github.com/chililisoup"
     },
     {
       "login": "mpustovoi",
@@ -489,6 +489,14 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
       "html_url": "https://github.com/Apothicon02"
+    },
+    {
+      "login": "Nivulpis",
+      "additions": 3,
+      "deletions": 1,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/180475876?v=4",
+      "html_url": "https://github.com/Nivulpis"
     },
     {
       "login": "embeddedt",
