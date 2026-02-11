@@ -94,27 +94,23 @@ async function parseModdedBlocksFromReadme(fileUrl) {
     // Fetch the README file content
     const fileContent = await fetchWithTimeout(fileUrl, {}, 10000, "text");
 
-    // Find the line with "Current Total Modded Blocks:"
+    // Find the line with pattern [NUMBER]: #
     const lines = fileContent.split("\n");
     for (const line of lines) {
-      if (line.includes("Current Total Modded Blocks:")) {
-        // Extract the number from between <ins> tags
-        const match = line.match(
-          /Current Total Modded Blocks:\s*<ins>([^<]+)<\/ins>/,
-        );
-        if (match && match[1]) {
-          const value = match[1].trim();
-          console.log(`Found modded blocks count in README: ${value}`);
-          return value;
-        }
+      // Match pattern like [54382]: #
+      const match = line.match(/\[(\d+)\]:\s*#/);
+      if (match && match[1]) {
+        const value = parseInt(match[1], 10);
+        console.log(`Found modded blocks count in README: ${value}`);
+        return value;
       }
     }
 
     console.warn("Could not find modded blocks count in README");
-    return "0";
+    return 0;
   } catch (error) {
     console.error("Error parsing modded blocks from README:", error);
-    return "0";
+    return 0;
   }
 }
 
