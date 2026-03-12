@@ -1,5 +1,3 @@
-X.Y.Z (X.Y.Z is the EP version)
-
 # New Feature Name
 
 Feature Description... Example: This long awaited feature has been added which is very customizable!
