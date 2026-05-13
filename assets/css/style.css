@@ -105,7 +105,7 @@ a:hover {
 p {
   margin-bottom: 0;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--VeryLightGray);
   line-height: 22px;
 }
@@ -150,7 +150,7 @@ p + p {
   padding-bottom: 13px;
   min-width: 200px;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   border: 0;
   border-radius: 50px;
   color: var(--VeryLightGray);
@@ -3761,7 +3761,7 @@ h4 {
 .counter {
   margin-bottom: 30px;
   font-size: 40px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -4494,7 +4494,7 @@ h4 {
 .list-unstyled li p {
   font-size: 16px;
   color: var(--VeryLightGray);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .list-unstyled li a:hover,
