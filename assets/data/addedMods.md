@@ -1,4 +1,4 @@
-### Last updated: April 25, 2026, 22:22 UTC
+### Last updated: May 12, 2026, 08:10 UTC
 [# Copyright (c) 2026 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -48,6 +48,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Aquamirae](https://www.curseforge.com/minecraft/mc-mods/aquamirae-fabric) | 6 API16 | Fully Added | # Added missing blocks and items and adjusted equipment materials. Also added Astral Dust from Obscure API
 | [Aquatic Torches](https://modrinth.com/mod/aquatic-torches) | 1.0.1 | Fully Added |
 | [Architect's Palette](https://modrinth.com/mod/architects-palette) | | Partial Support |
+| Archwood Good | | Partial Support | # Mod not on any public platform
 | [Ars Creo](https://www.curseforge.com/minecraft/mc-mods/ars-creo) | 5.1.0 | Fully Added |
 | [Ars Elemental](https://www.curseforge.com/minecraft/mc-mods/ars-elemental) | 0.7.6.2 | Fully Added | # Set LabPBR > Integrated for better emission on source vines.
 | [Ars Nouveau](https://www.curseforge.com/minecraft/mc-mods/ars-nouveau) | 5.10.2 | Fully Added |
@@ -262,6 +263,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Handcrafted](https://modrinth.com/mod/handcrafted) | 4.0.3 | Fully Added |
 | [Hardcore Ender Expansion](https://www.curseforge.com/minecraft/mc-mods/hardcore-ender-expansion) | 1.12.16-GTNH | Miniscule | # Various plants
 | [Haunted Harvest](https://modrinth.com/mod/haunted-harvest) | | Fully Added |
+| [Hbm's Nuclear Tech Mod](https://modrinth.com/mod/ntm) | | Partial Support |
 | [Healing Pretty Good](https://modrinth.com/mod/healing-pretty-good) | 1.5.3 | Fully Added | # Added both the old and new IDs for this mod.
 | [Hearth & Home](https://modrinth.com/mod/hearth-and-home) | 2.0.3 | Fully Added |
 | [Hephaestus](https://modrinth.com/mod/hephaestus) | 3.6.4.287 | Fully Added |
@@ -349,6 +351,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Netherending Ores](https://www.curseforge.com/minecraft/mc-mods/netherending-ores) | 1.4.2 | Fully Added |
 | [Nosiphus Custom Blocks](https://www.curseforge.com/minecraft/mc-mods/nosiphus-custom-blocks) | 2026.01.02 | Partial Support |
 | [Nosiphus Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/nosiphus-furniture-mod) | 2026.01.30 | Partial Support |
+| [NTM Space](https://modrinth.com/mod/ntmspace) | | Partial Support | # Fork of Hbm's Nuclear Tech Mod
 | [Nyx](https://www.curseforge.com/minecraft/mc-mods/nyx) | 1.4.2 | Fully Added |
 | [Occultism](https://modrinth.com/mod/occultism) | | Miniscule |
 | [Ocean's Delight](https://modrinth.com/mod/oceans-delight) | 1.0.2 | Miniscule |
