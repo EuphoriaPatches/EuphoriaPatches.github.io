@@ -1,4 +1,4 @@
-### Last updated: May 16, 2026, 22:31 UTC
+### Last updated: May 19, 2026, 20:02 UTC
 [# Copyright (c) 2026 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -265,6 +265,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Haunted Harvest](https://modrinth.com/mod/haunted-harvest) | | Fully Added |
 | [Hbm's Nuclear Tech Mod](https://modrinth.com/mod/ntm) | | Partial Support |
 | [Healing Pretty Good](https://modrinth.com/mod/healing-pretty-good) | 1.5.3 | Fully Added | # Added both the old and new IDs for this mod.
+| [Heart Crystals](https://www.curseforge.com/minecraft/mc-mods/heart-crystals) | 3.0.0 | Fully Added
 | [Hearth & Home](https://modrinth.com/mod/hearth-and-home) | 2.0.3 | Fully Added |
 | [Hephaestus](https://modrinth.com/mod/hephaestus) | 3.6.4.287 | Fully Added |
 | [Hexxit Gear](https://www.curseforge.com/minecraft/mc-mods/hexxit-gear) | 2.8.3 | Foliage Only |
