@@ -1,5 +1,5 @@
 {
-  "latest_screenshot_id": 4,
+  "latest_screenshot_id": 6,
   "screenshots": [
     {
       "screenshot_id": 1,
@@ -20,7 +20,17 @@
       "screenshot_id": 4,
       "username": "Ruri",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 5,
+      "username": "Turio",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 6,
+      "username": "Serberus",
+      "file_extension": "png"
     }
   ],
-  "last_recorded_id": 4
+  "last_recorded_id": 6
 }
