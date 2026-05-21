@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("/gallery/imageData.json");
     const imageData = await response.json();
 
+    const discordResponse = await fetch(
+      "/assets/img/Screenshots/discord/screenshots.json",
+    );
+    const discordData = await discordResponse.json();
+
     // Collect all images into one array
     const allImages = [];
 
@@ -67,6 +72,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         name: `${i}_euphoria_patches`,
         folder: "Screenshots",
         description,
+        extension: "webp",
+        previewSuffix: "-40xAuto.webp",
+      });
+    }
+
+    // Add Discord screenshot images
+    const discordScreenshotsById = new Map();
+
+    if (Array.isArray(discordData.screenshots)) {
+      discordData.screenshots.forEach((screenshot) => {
+        if (screenshot && screenshot.screenshot_id) {
+          discordScreenshotsById.set(screenshot.screenshot_id, screenshot);
+        }
+      });
+    }
+
+    for (
+      let screenshotId = 1;
+      screenshotId <= discordData.latest_screenshot_id;
+      screenshotId++
+    ) {
+      const screenshot = discordScreenshotsById.get(screenshotId);
+
+      if (!screenshot) {
+        continue;
+      }
+
+      allImages.push({
+        name: `${screenshotId}`,
+        folder: "Screenshots/discord",
+        description: `Screenshot by ${screenshot.username}`,
+        extension: screenshot.file_extension || "webp",
+        previewSuffix: null,
+        placeholderColor: "var(--Gray)",
       });
     }
 
@@ -77,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Add all images to the gallery
     allImages.forEach((img) => {
-      const item = createGalleryItem(img.name, img.folder, img.description);
+      const item = createGalleryItem(img);
       galleryGrid.appendChild(item);
     });
 
@@ -99,13 +138,27 @@ function shuffleArray(array) {
   }
 }
 
-function createGalleryItem(imageName, folder, description) {
+function createGalleryItem({
+  name: imageName,
+  folder,
+  description,
+  extension = "webp",
+  previewSuffix = "-40xAuto.webp",
+  placeholderColor,
+}) {
   const div = document.createElement("div");
   div.className = "gallery-images-item blur-load-img";
-  div.style.backgroundImage = `url('/assets/img/${folder}/${imageName}-40xAuto.webp')`;
+
+  if (placeholderColor) {
+    div.style.backgroundColor = placeholderColor;
+  }
+
+  if (previewSuffix) {
+    div.style.backgroundImage = `url('/assets/img/${folder}/${imageName}${previewSuffix}')`;
+  }
 
   const img = document.createElement("img");
-  img.src = `/assets/img/${folder}/${imageName}.webp`;
+  img.src = `/assets/img/${folder}/${imageName}.${extension}`;
 
   if (description) {
     img.setAttribute("data-description", description);
