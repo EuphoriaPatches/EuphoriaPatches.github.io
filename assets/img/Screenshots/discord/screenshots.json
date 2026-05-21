@@ -1,10 +1,26 @@
 {
-  "latest_screenshot_id": 1,
+  "latest_screenshot_id": 4,
   "screenshots": [
     {
       "screenshot_id": 1,
       "username": "SqueakyPScott",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 2,
+      "username": "Ruri",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 3,
+      "username": "YarKan",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 4,
+      "username": "Ruri",
+      "file_extension": "png"
     }
-  ]
+  ],
+  "last_recorded_id": 4
 }
