@@ -1,5 +1,5 @@
 {
-  "latest_screenshot_id": 10,
+  "latest_screenshot_id": 12,
   "screenshots": [
     {
       "screenshot_id": 1,
@@ -50,7 +50,17 @@
       "screenshot_id": 10,
       "username": "!PETEandhisBEANS",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 11,
+      "username": "!PETEandhisBEANS",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 12,
+      "username": "!PETEandhisBEANS",
+      "file_extension": "png"
     }
   ],
-  "last_recorded_id": 10
+  "last_recorded_id": 12
 }
