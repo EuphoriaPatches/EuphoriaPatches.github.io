@@ -1,20 +1,20 @@
 {
-  "generated": "2026-06-05T03:34:31.217Z",
+  "generated": "2026-06-06T02:55:08.098Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 106112,
+      "additions": 106241,
       "deletions": 100494,
-      "commits": 391,
+      "commits": 392,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
     {
       "login": "Eclipse-Sol",
-      "additions": 18420,
-      "deletions": 6959,
-      "commits": 159,
+      "additions": 18427,
+      "deletions": 6964,
+      "commits": 161,
       "avatar_url": "https://avatars.githubusercontent.com/u/35643551?v=4",
       "html_url": "https://github.com/Eclipse-Sol"
     },
@@ -67,20 +67,20 @@
       "html_url": "https://github.com/invokekitty"
     },
     {
-      "login": "ADreadedKing",
-      "additions": 408,
-      "deletions": 197,
-      "commits": 17,
-      "avatar_url": "https://avatars.githubusercontent.com/u/56577742?v=4",
-      "html_url": "https://github.com/ADreadedKing"
-    },
-    {
       "login": "Mervius",
       "additions": 119,
       "deletions": 109,
       "commits": 17,
       "avatar_url": "https://avatars.githubusercontent.com/u/11022926?v=4",
       "html_url": "https://github.com/Mervius"
+    },
+    {
+      "login": "ADreadedKing",
+      "additions": 408,
+      "deletions": 197,
+      "commits": 17,
+      "avatar_url": "https://avatars.githubusercontent.com/u/56577742?v=4",
+      "html_url": "https://github.com/ADreadedKing"
     },
     {
       "login": "Priority-6",
