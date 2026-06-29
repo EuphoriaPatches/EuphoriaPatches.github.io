@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-19T04:05:52.892Z",
+  "generated": "2026-06-29T03:41:07.528Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -91,6 +91,14 @@
       "html_url": "https://github.com/Priority-6"
     },
     {
+      "login": "Palm3-dev",
+      "additions": 22,
+      "deletions": 20,
+      "commits": 14,
+      "avatar_url": "https://avatars.githubusercontent.com/u/223030819?v=4",
+      "html_url": "https://github.com/Palm3-dev"
+    },
+    {
       "login": "EnragedPotato",
       "additions": 14915,
       "deletions": 14321,
@@ -113,14 +121,6 @@
       "commits": 10,
       "avatar_url": "https://avatars.githubusercontent.com/u/70655895?v=4",
       "html_url": "https://github.com/mist475"
-    },
-    {
-      "login": "Palm3-dev",
-      "additions": 16,
-      "deletions": 14,
-      "commits": 9,
-      "avatar_url": "https://avatars.githubusercontent.com/u/223030819?v=4",
-      "html_url": "https://github.com/Palm3-dev"
     },
     {
       "login": "Guy-that-exists",
@@ -275,20 +275,20 @@
       "html_url": "https://github.com/Acidia5"
     },
     {
-      "login": "JrDemiurg",
-      "additions": 8,
-      "deletions": 3,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
-      "html_url": "https://github.com/JrDemiurg"
-    },
-    {
       "login": "DadamaldaDad",
       "additions": 60,
       "deletions": 20,
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/97605267?v=4",
       "html_url": "https://github.com/DadamaldaDad"
+    },
+    {
+      "login": "JrDemiurg",
+      "additions": 8,
+      "deletions": 3,
+      "commits": 3,
+      "avatar_url": "https://avatars.githubusercontent.com/u/116432612?v=4",
+      "html_url": "https://github.com/JrDemiurg"
     },
     {
       "login": "Ryyyyyylie",
@@ -331,14 +331,6 @@
       "html_url": "https://github.com/PlayfulPiano"
     },
     {
-      "login": "mpustovoi",
-      "additions": 15,
-      "deletions": 0,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/92390626?v=4",
-      "html_url": "https://github.com/mpustovoi"
-    },
-    {
       "login": "Hippopipo",
       "additions": 3,
       "deletions": 1,
@@ -347,12 +339,28 @@
       "html_url": "https://github.com/Hippopipo"
     },
     {
+      "login": "mpustovoi",
+      "additions": 15,
+      "deletions": 0,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/92390626?v=4",
+      "html_url": "https://github.com/mpustovoi"
+    },
+    {
       "login": "FijiAura",
       "additions": 23,
       "deletions": 11,
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/177214233?v=4",
       "html_url": "https://github.com/FijiAura"
+    },
+    {
+      "login": "digitalvagrant",
+      "additions": 30,
+      "deletions": 2,
+      "commits": 2,
+      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
+      "html_url": "https://github.com/digitalvagrant"
     },
     {
       "login": "chililisoup",
@@ -377,14 +385,6 @@
       "commits": 2,
       "avatar_url": "https://avatars.githubusercontent.com/u/122722654?v=4",
       "html_url": "https://github.com/NaKeRNarolino"
-    },
-    {
-      "login": "digitalvagrant",
-      "additions": 30,
-      "deletions": 2,
-      "commits": 2,
-      "avatar_url": "https://avatars.githubusercontent.com/u/82162594?v=4",
-      "html_url": "https://github.com/digitalvagrant"
     },
     {
       "login": "ThatJadenXgamer",
@@ -515,20 +515,20 @@
       "html_url": "https://github.com/embeddedt"
     },
     {
-      "login": "FloorIsTired",
-      "additions": 5,
-      "deletions": 1,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/24590134?v=4",
-      "html_url": "https://github.com/FloorIsTired"
-    },
-    {
       "login": "TelepathicGrunt",
       "additions": 3,
       "deletions": 1,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/40846040?v=4",
       "html_url": "https://github.com/TelepathicGrunt"
+    },
+    {
+      "login": "Agent772",
+      "additions": 9,
+      "deletions": 1,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/9315914?v=4",
+      "html_url": "https://github.com/Agent772"
     },
     {
       "login": "milosworks",
@@ -587,12 +587,12 @@
       "html_url": "https://github.com/xiader-45"
     },
     {
-      "login": "Agent772",
-      "additions": 9,
+      "login": "FloorIsTired",
+      "additions": 5,
       "deletions": 1,
       "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/9315914?v=4",
-      "html_url": "https://github.com/Agent772"
+      "avatar_url": "https://avatars.githubusercontent.com/u/24590134?v=4",
+      "html_url": "https://github.com/FloorIsTired"
     }
   ]
 }
