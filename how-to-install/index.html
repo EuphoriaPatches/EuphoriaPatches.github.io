@@ -823,8 +823,11 @@ code:contains("Loading data") {
 
     <script>
 
+    const RTL_LOCALES = ['he', 'ar'];
+
     let complementaryDownloadUrl = null;
     let currentTranslation = {};
+    let currentTranslationLocale = '';
     let englishTranslation = {};
 
     async function fetchComplementaryInstaller() {
@@ -980,6 +983,7 @@ code:contains("Loading data") {
                     } else if (Object.keys(currentTranslation).length === 0) {
                         // This is the first successful non-English translation
                         currentTranslation = data;
+                        currentTranslationLocale = translationFiles[index].replace('.json', '').split('-')[0].toLowerCase();
                     }
                     loadTranslations(index + 1);
                 })
@@ -1019,7 +1023,7 @@ code:contains("Loading data") {
             }
 
             // Handle RTL
-            if (currentTranslation.isRightToLeft) {
+            if (RTL_LOCALES.includes(currentTranslationLocale)) {
                 document.getElementById('main').dir = 'rtl';
                 document.getElementById('main').classList.add('rtl');
             } else {
