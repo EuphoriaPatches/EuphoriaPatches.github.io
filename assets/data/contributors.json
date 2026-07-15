@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-07T02:55:23.408Z",
+  "generated": "2026-07-15T02:11:51.780Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -179,14 +179,6 @@
       "html_url": "https://github.com/seancrain"
     },
     {
-      "login": "Eclipse-Ilx",
-      "additions": 68,
-      "deletions": 28,
-      "commits": 5,
-      "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
-      "html_url": "https://github.com/Eclipse-Ilx"
-    },
-    {
       "login": "yakisobadayo",
       "additions": 149,
       "deletions": 6,
@@ -201,6 +193,14 @@
       "commits": 5,
       "avatar_url": "https://avatars.githubusercontent.com/u/4063719?v=4",
       "html_url": "https://github.com/irisfofs"
+    },
+    {
+      "login": "Eclipse-Ilx",
+      "additions": 68,
+      "deletions": 28,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/78683259?v=4",
+      "html_url": "https://github.com/Eclipse-Ilx"
     },
     {
       "login": "Alexthw46",
@@ -233,6 +233,14 @@
       "commits": 4,
       "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
       "html_url": "https://github.com/Simple205"
+    },
+    {
+      "login": "DavidklGames",
+      "additions": 18,
+      "deletions": 3,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/191793766?v=4",
+      "html_url": "https://github.com/DavidklGames"
     },
     {
       "login": "Niklars",
@@ -297,14 +305,6 @@
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/24559268?v=4",
       "html_url": "https://github.com/Ryyyyyylie"
-    },
-    {
-      "login": "DavidklGames",
-      "additions": 7,
-      "deletions": 2,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/191793766?v=4",
-      "html_url": "https://github.com/DavidklGames"
     },
     {
       "login": "Cozary",
