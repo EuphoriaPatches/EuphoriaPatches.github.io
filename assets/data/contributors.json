@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-20T02:59:48.470Z",
+  "generated": "2026-07-26T02:34:11.932Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -179,6 +179,14 @@
       "html_url": "https://github.com/seancrain"
     },
     {
+      "login": "DavidklGames",
+      "additions": 19,
+      "deletions": 4,
+      "commits": 5,
+      "avatar_url": "https://avatars.githubusercontent.com/u/191793766?v=4",
+      "html_url": "https://github.com/DavidklGames"
+    },
+    {
       "login": "yakisobadayo",
       "additions": 149,
       "deletions": 6,
@@ -233,14 +241,6 @@
       "commits": 4,
       "avatar_url": "https://avatars.githubusercontent.com/u/73256738?v=4",
       "html_url": "https://github.com/Simple205"
-    },
-    {
-      "login": "DavidklGames",
-      "additions": 18,
-      "deletions": 3,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/191793766?v=4",
-      "html_url": "https://github.com/DavidklGames"
     },
     {
       "login": "Niklars",
