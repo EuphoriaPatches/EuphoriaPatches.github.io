@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-06T02:22:51.975Z",
+  "generated": "2026-08-10T01:28:44.884Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -131,14 +131,6 @@
       "html_url": "https://github.com/mist475"
     },
     {
-      "login": "Guy-that-exists",
-      "additions": 545,
-      "deletions": 300,
-      "commits": 9,
-      "avatar_url": "https://avatars.githubusercontent.com/u/91489667?v=4",
-      "html_url": "https://github.com/Guy-that-exists"
-    },
-    {
       "login": "RosaryMala",
       "additions": 157,
       "deletions": 29,
@@ -155,12 +147,12 @@
       "html_url": "https://github.com/emshellabarger"
     },
     {
-      "login": "SheriphDroplet",
-      "additions": 106,
-      "deletions": 66,
-      "commits": 8,
-      "avatar_url": "https://avatars.githubusercontent.com/u/168616329?v=4",
-      "html_url": "https://github.com/SheriphDroplet"
+      "login": "Guy-that-exists",
+      "additions": 545,
+      "deletions": 300,
+      "commits": 9,
+      "avatar_url": "https://avatars.githubusercontent.com/u/91489667?v=4",
+      "html_url": "https://github.com/Guy-that-exists"
     },
     {
       "login": "kaporli",
@@ -169,6 +161,14 @@
       "commits": 8,
       "avatar_url": "https://avatars.githubusercontent.com/u/52631424?v=4",
       "html_url": "https://github.com/kaporli"
+    },
+    {
+      "login": "SheriphDroplet",
+      "additions": 106,
+      "deletions": 66,
+      "commits": 8,
+      "avatar_url": "https://avatars.githubusercontent.com/u/168616329?v=4",
+      "html_url": "https://github.com/SheriphDroplet"
     },
     {
       "login": "Kazzaowo",
@@ -275,6 +275,14 @@
       "html_url": "https://github.com/3ncanis"
     },
     {
+      "login": "Shindryrth",
+      "additions": 8,
+      "deletions": 3,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/208110419?v=4",
+      "html_url": "https://github.com/Shindryrth"
+    },
+    {
       "login": "GregS98",
       "additions": 149,
       "deletions": 32,
@@ -337,14 +345,6 @@
       "commits": 3,
       "avatar_url": "https://avatars.githubusercontent.com/u/97605267?v=4",
       "html_url": "https://github.com/DadamaldaDad"
-    },
-    {
-      "login": "Shindryrth",
-      "additions": 7,
-      "deletions": 2,
-      "commits": 3,
-      "avatar_url": "https://avatars.githubusercontent.com/u/208110419?v=4",
-      "html_url": "https://github.com/Shindryrth"
     },
     {
       "login": "FijiAura",
