@@ -1226,7 +1226,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     <div class="carousel-container">
                         <div class="carousel">
                             ${multipleImages.map((imgSrc, index) =>
-                                `<img src="${proxyImg(imgSrc, 800)}" data-full="${imgSrc}" onerror="this.onerror=null;this.src=this.dataset.full" loading="lazy" class="carousel-image ${index === 0 ? 'active' : ''}" alt="Feature image ${index+1}">`
+                                `<img src="${proxyImg(imgSrc, 700)}" data-full="${imgSrc}" onerror="this.onerror=null;this.src=this.dataset.full" loading="lazy" class="carousel-image ${index === 0 ? 'active' : ''}" alt="Feature image ${index+1}">`
                             ).join('')}
                         </div>
                         <div class="carousel-indicator">
@@ -1240,7 +1240,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         } else if (mediaSrc) {
             // Single image
             return `
-                <div class="feature-card-image" data-full="${mediaSrc}" style="background-image: url('${proxyImg(mediaSrc, 900)}')"></div>
+                <div class="feature-card-image" data-full="${mediaSrc}" style="background-image: url('${proxyImg(mediaSrc, 700)}')"></div>
             `;
         } else {
             // Fallback for no media (unchanged)
