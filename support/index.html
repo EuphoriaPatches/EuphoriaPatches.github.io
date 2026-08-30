@@ -840,6 +840,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/img-proxy.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1185,6 +1186,12 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         return description;
     }
 
+    // Route feature screenshots through the wsrv.nl edge resizer (no-op off
+    // production / for videos). Keeps the raw path available for the fullscreen view.
+    function proxyImg(src, width) {
+        return window.ImgProxy ? ImgProxy.optimize(src, { w: width, q: 78 }) : src;
+    }
+
     function createMediaContent(youtubeVideoId, isVideo, mediaSrc, multipleImages = []) {
         if (youtubeVideoId) {
             // YouTube embed code (unchanged)
@@ -1219,7 +1226,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     <div class="carousel-container">
                         <div class="carousel">
                             ${multipleImages.map((imgSrc, index) =>
-                                `<img src="${imgSrc}" loading="lazy" class="carousel-image ${index === 0 ? 'active' : ''}" alt="Feature image ${index+1}">`
+                                `<img src="${proxyImg(imgSrc, 800)}" data-full="${imgSrc}" onerror="this.onerror=null;this.src=this.dataset.full" loading="lazy" class="carousel-image ${index === 0 ? 'active' : ''}" alt="Feature image ${index+1}">`
                             ).join('')}
                         </div>
                         <div class="carousel-indicator">
@@ -1231,9 +1238,9 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                 </div>
             `;
         } else if (mediaSrc) {
-            // Single image (unchanged)
+            // Single image
             return `
-                <div class="feature-card-image" style="background-image: url('${mediaSrc}')"></div>
+                <div class="feature-card-image" data-full="${mediaSrc}" style="background-image: url('${proxyImg(mediaSrc, 900)}')"></div>
             `;
         } else {
             // Fallback for no media (unchanged)
@@ -1349,27 +1356,31 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
             const overlayImage = document.getElementById('overlay-image');
             const overlayClose = document.querySelector('.gallery-images-overlay-close');
 
+            // Fullscreen view: request a large edge-resized version, fall back to the raw file.
+            function openOverlay(rawSrc) {
+                if (!rawSrc) return;
+                const large = window.ImgProxy ? ImgProxy.optimize(rawSrc, { w: 2160, q: 82 }) : rawSrc;
+                overlayImage.onerror = function () {
+                    overlayImage.onerror = null;
+                    if (!overlayImage.src.endsWith(rawSrc)) overlayImage.src = rawSrc;
+                };
+                overlayImage.src = large;
+                overlay.classList.add('show');
+            }
+
             // Add click event to both feature card images and carousel images
             document.addEventListener('click', function(e) {
                 // Handle single images (feature-card-image)
                 if (e.target && e.target.classList.contains('feature-card-image')) {
-                    const bgUrl = window.getComputedStyle(e.target).backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
-
-                    if (bgUrl) {
-                        overlayImage.src = bgUrl;
-                        overlay.classList.add('show');
-                    }
+                    const raw = e.target.dataset.full
+                        || window.getComputedStyle(e.target).backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+                    openOverlay(raw);
                 }
                 // Handle carousel images
                 else if (e.target && e.target.classList.contains('carousel-image')) {
                     // Only respond to the active image in the carousel
                     if (e.target.classList.contains('active')) {
-                        const imgSrc = e.target.getAttribute('src');
-
-                        if (imgSrc) {
-                            overlayImage.src = imgSrc;
-                            overlay.classList.add('show');
-                        }
+                        openOverlay(e.target.dataset.full || e.target.getAttribute('src'));
                     }
                 }
             });

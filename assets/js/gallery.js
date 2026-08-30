@@ -158,7 +158,17 @@ function createGalleryItem({
   }
 
   const img = document.createElement("img");
-  img.src = `/assets/img/${folder}/${imageName}.${extension}`;
+  const originalSrc = `/assets/img/${folder}/${imageName}.${extension}`;
+  img.setAttribute("data-original-src", originalSrc);
+
+  // Grid thumbnails only need to be a few hundred px wide; route them through
+  // the wsrv.nl edge resizer (no-op off production). The overlay pulls a larger
+  // version from data-original-src.
+  if (window.ImgProxy) {
+    ImgProxy.apply(img, originalSrc, { w: 800, q: 78 });
+  } else {
+    img.src = originalSrc;
+  }
 
   if (description) {
     img.setAttribute("data-description", description);
@@ -204,14 +214,21 @@ function initializeGalleryOverlay() {
 
   // Store image sources and descriptions
   let imageSources = [];
+  let originalSources = [];
   let imageDescriptions = [];
   let currentIndex = 0;
 
   galleryItems.forEach((item, index) => {
     const img = item.querySelector("img");
-    const fullSrc = img.src;
+    const originalSrc = img.getAttribute("data-original-src") || img.src;
+    // Full-screen view: request a large edge-resized version, still far smaller
+    // than the untouched original (no-op off production).
+    const fullSrc = window.ImgProxy
+      ? ImgProxy.optimize(originalSrc, { w: 2160, q: 82 })
+      : originalSrc;
     const description = img.getAttribute("data-description");
     imageSources.push(fullSrc);
+    originalSources.push(originalSrc);
     imageDescriptions.push(description ? description : null);
 
     item.addEventListener("click", () => {
@@ -234,6 +251,14 @@ function initializeGalleryOverlay() {
       item.addEventListener("mouseleave", () => {
         hoverTooltip.classList.remove("show");
       });
+    }
+  });
+
+  // If the edge-resized version fails to load, fall back to the original file.
+  overlayImage.addEventListener("error", () => {
+    const orig = originalSources[currentIndex];
+    if (orig && !overlayImage.src.endsWith(orig)) {
+      overlayImage.src = orig;
     }
   });
 
