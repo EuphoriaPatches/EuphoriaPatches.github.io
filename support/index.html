@@ -133,6 +133,10 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         color: var(--VeryLightGray);
     }
 
+    .support-panel-secondary .support-panel-title {
+        font-size: 1.25rem;
+    }
+
     .support-panel-highlight .support-panel-title {
         display: flex;
         align-items: center;
@@ -284,6 +288,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         transform: scale(1.025);
     }
 
+    /* Whisper-light even dim so very bright images don't shout */
     .support-link::after {
         content: "";
         position: absolute;
@@ -292,34 +297,77 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         width: 100%;
         height: 100%;
         z-index: 1;
-        background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.78) 0%,
-            rgba(0, 0, 0, 0.45) 55%,
-            rgba(0, 0, 0, 0.15) 100%
-        );
+        background: rgba(0, 0, 0, 0.15);
     }
 
     .support-link-primary {
         border-color: var(--ThemeColor);
     }
 
-    .support-link-label {
+    .support-link-text {
         position: relative;
         z-index: 2;
+        align-self: flex-start;
+        max-width: 100%;
+    }
+
+    .support-link-text::before {
+        content: "";
+        position: absolute;
+        inset: -20px -100px -38px -180px;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(6, 7, 10, 0.67) 0%,
+            rgba(6, 7, 10, 0.52) 42%,
+            rgba(6, 7, 10, 0) 76%
+        );
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        -webkit-mask-image: radial-gradient(ellipse at center, #000 38%, transparent 82%);
+        mask-image: radial-gradient(ellipse at center, #000 38%, transparent 82%);
+    }
+
+    .support-link-label {
         display: block;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         color: var(--VeryLightGray);
-        margin-bottom: 3px;
+        margin-bottom: 2px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
     }
 
     .support-link-sub {
-        position: relative;
-        z-index: 2;
         display: block;
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.85);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+    }
+
+    .support-panel-secondary .support-link-bg {
+        background-position: left center !important;
+        filter: brightness(0.73) saturate(0.77);
+    }
+
+    .support-panel-secondary .support-link-text {
+        align-self: stretch;
+    }
+
+    .support-panel-secondary .support-link-label {
+        font-size: 18px;
+    }
+
+    .support-panel-secondary .support-link-text::before {
+        inset: -48px -20px -18px -20px;
+        background: linear-gradient(
+            to top,
+            rgba(8, 9, 12, 0.6) 0%,
+            rgba(8, 9, 12, 0.28) 55%,
+            rgba(8, 9, 12, 0) 100%
+        );
+        -webkit-mask-image: linear-gradient(to top, #000 36%, transparent 100%);
+        mask-image: linear-gradient(to top, #000 36%, transparent 100%);
     }
 
     @media (max-width: 768px) {
@@ -773,13 +821,17 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                         <div class="support-links">
                             <a href="/patreon" target="_blank" rel="noopener" class="support-link support-link-primary">
                                 <span class="support-link-bg section-patreon_img"></span>
-                                <span class="support-link-label">Support on Patreon</span>
-                                <span class="support-link-sub">Monthly support - preview access via Discord</span>
+                                <span class="support-link-text">
+                                    <span class="support-link-label">Support on Patreon</span>
+                                    <span class="support-link-sub">Monthly support - preview access via Discord</span>
+                                </span>
                             </a>
                             <a href="/kofi" target="_blank" rel="noopener" class="support-link support-link-primary">
                                 <span class="support-link-bg section-kofi_img"></span>
-                                <span class="support-link-label">Support on Ko-fi</span>
-                                <span class="support-link-sub">One-time or recurring - direct preview download</span>
+                                <span class="support-link-text">
+                                    <span class="support-link-label">Support on Ko-fi</span>
+                                    <span class="support-link-sub">One-time or recurring - direct preview download</span>
+                                </span>
                             </a>
                         </div>
                         <p class="access-note"><strong>Note:</strong> Patreon preview versions are delivered through Discord, so a Discord account is required. Ko-fi gives you a direct download. Each post explains the steps.</p>
@@ -791,8 +843,10 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                         <div class="support-links">
                             <a href="https://www.patreon.com/c/emingt" target="_blank" rel="noopener noreferrer nofollow" class="support-link">
                                 <span class="support-link-bg support-link-bg-emin"></span>
-                                <span class="support-link-label">Emin on Patreon</span>
-                                <span class="support-link-sub">Support Complementary Shaders development</span>
+                                <span class="support-link-text">
+                                    <span class="support-link-label">Emin on Patreon</span>
+                                    <span class="support-link-sub">Support Complementary Shaders development</span>
+                                </span>
                             </a>
                         </div>
                     </div>
