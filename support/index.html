@@ -128,8 +128,23 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .support-panel-secondary .support-panel-title {
+    .support-panel-secondary .support-panel-title,
+    .support-panel-highlight .support-panel-title {
         color: var(--VeryLightGray);
+    }
+
+    .support-panel-highlight .support-panel-title {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+    }
+
+    .panel-title-logo {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
     }
 
     .support-panel-lead {
@@ -750,7 +765,10 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     </div>
 
                     <div class="support-panel support-panel-highlight">
-                        <h4 class="support-panel-title">Support Euphoria Patches - SpacEagle17</h4>
+                        <h4 class="support-panel-title">
+                            <img src="/assets/img/EuphoriaPatchesLogo16x.png" alt="" class="panel-title-logo">
+                            <span>Support Euphoria Patches - SpacEagle17</span>
+                        </h4>
                         <p class="support-panel-lead">Your support covers running costs and lets me spend more time developing Euphoria Patches.</p>
                         <div class="support-links">
                             <a href="/patreon" target="_blank" rel="noopener" class="support-link support-link-primary">
