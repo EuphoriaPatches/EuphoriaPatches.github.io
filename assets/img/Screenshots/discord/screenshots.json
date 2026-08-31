@@ -1,5 +1,5 @@
 {
-  "latest_screenshot_id": 34,
+  "latest_screenshot_id": 37,
   "screenshots": [
     {
       "screenshot_id": 1,
@@ -170,7 +170,22 @@
       "screenshot_id": 34,
       "username": "SpacEagle17",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 35,
+      "username": "SpacEagle17",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 36,
+      "username": "SpacEagle17",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 37,
+      "username": "SpacEagle17",
+      "file_extension": "png"
     }
   ],
-  "last_recorded_id": 34
+  "last_recorded_id": 37
 }
