@@ -149,6 +149,7 @@
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/backToTop.js"></script>
+    <script src="/assets/js/img-proxy.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -187,7 +188,13 @@
                         div.style.backgroundImage = `url('/assets/img/Screenshots/contest/${imageNum}-40xAuto.webp')`;
 
                         const img = document.createElement('img');
-                        img.src = `/assets/img/Screenshots/contest/${imageNum}.webp`;
+                        const originalSrc = `/assets/img/Screenshots/contest/${imageNum}.webp`;
+                        img.setAttribute('data-original-src', originalSrc);
+                        if (window.ImgProxy) {
+                            ImgProxy.apply(img, originalSrc, { w: 800, q: 78 });
+                        } else {
+                            img.src = originalSrc;
+                        }
 
                         const description = imageData.descriptions[`contest${imageNum}`];
                         if (description) {
@@ -239,14 +246,19 @@
             const imageDescription = document.getElementById('image-description');
 
             let imageSources = [];
+            let originalSources = [];
             let imageDescriptions = [];
             let currentIndex = 0;
 
             galleryItems.forEach((item, index) => {
                 const img = item.querySelector('img');
-                const fullSrc = img.src;
+                const originalSrc = img.getAttribute('data-original-src') || img.src;
+                const fullSrc = window.ImgProxy
+                    ? ImgProxy.optimize(originalSrc, { w: 2160, q: 82 })
+                    : originalSrc;
                 const description = img.getAttribute('data-description');
                 imageSources.push(fullSrc);
+                originalSources.push(originalSrc);
                 imageDescriptions.push(description || null);
 
                 item.addEventListener('click', () => {
@@ -255,6 +267,12 @@
                     updateDescription(currentIndex);
                     overlay.classList.add('show');
                 });
+            });
+
+            // Fall back to the original file if the edge-resized version fails.
+            overlayImage.addEventListener('error', () => {
+                const orig = originalSources[currentIndex];
+                if (orig && !overlayImage.src.endsWith(orig)) overlayImage.src = orig;
             });
 
             function updateDescription(index) {

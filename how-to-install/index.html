@@ -819,6 +819,7 @@ code:contains("Loading data") {
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/img-proxy.js"></script>
     <script src="/assets/js/installer-utils.js"></script>
 
     <script>
@@ -1116,11 +1117,14 @@ code:contains("Loading data") {
             // Create carousel items
             for(let i = 1; i <= config.totalSlides; i++) {
                 const imgUrl = `${config.basePath}${i}.webp`;
+                // Route carousel art through the wsrv.nl edge resizer (no-op off production).
+                const slideSrc = window.ImgProxy ? ImgProxy.optimize(imgUrl, { w: 1100, q: 80 }) : imgUrl;
+                const thumbSrc = window.ImgProxy ? ImgProxy.optimize(imgUrl, { w: 120, q: 70 }) : imgUrl;
 
                 const carouselItem = document.createElement('div');
                 carouselItem.className = `carousel-item${i === 1 ? ' active' : ''}`;
                 carouselItem.innerHTML = `
-                    <img src="${imgUrl}" class="w-100">
+                    <img src="${slideSrc}" data-full="${imgUrl}" onerror="this.onerror=null;this.src=this.dataset.full" class="w-100">
                     <div class="carousel-caption">
                         <h5>${config.titles[i-1]}</h5>
                     </div>
@@ -1132,7 +1136,7 @@ code:contains("Loading data") {
                 indicator.className = i === 1 ? 'active' : '';
                 indicator.setAttribute('data-bs-target', `#${carouselId}`);
                 indicator.setAttribute('data-bs-slide-to', i-1);
-                indicator.innerHTML = `<img src="${imgUrl}">`;
+                indicator.innerHTML = `<img src="${thumbSrc}" data-full="${imgUrl}" onerror="this.onerror=null;this.src=this.dataset.full">`;
                 indicators.appendChild(indicator);
             }
         }

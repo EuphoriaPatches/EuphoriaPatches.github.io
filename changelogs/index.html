@@ -174,11 +174,13 @@
     <script src="/assets/js/jquery.countTo.min.js"></script>
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/img-proxy.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
         const versions = [
             // Both versions
+            { version: "1.10.0", date: "Sept 01, 2026" },
             { version: "1.9.3", date: "Jun 01, 2026" },
             { version: "1.9.2", date: "May 22, 2026" },
             { version: "1.9.1", date: "May 21, 2026" },
@@ -302,6 +304,19 @@
                                 a.setAttribute('rel', 'noopener noreferrer');
                             });
 
+                            // Route changelog images through the wsrv.nl edge resizer
+                            // (no-op off production); keep the raw path for the fullscreen view.
+                            tempDiv.querySelectorAll('img.changelog-image').forEach(img => {
+                                const raw = img.getAttribute('src');
+                                if (!raw || !window.ImgProxy) return;
+                                const opt = ImgProxy.optimize(raw, { w: 1200, q: 80 });
+                                img.setAttribute('data-full', raw);
+                                if (opt !== raw) {
+                                    img.setAttribute('src', opt);
+                                    img.setAttribute('onerror', "this.onerror=null;this.src=this.dataset.full");
+                                }
+                            });
+
                             document.getElementById(elementId).innerHTML = tempDiv.innerHTML;
                         })
                         .catch(error => {
@@ -356,7 +371,13 @@
             // Add click event to all changelog images
             document.addEventListener('click', function(e) {
                 if (e.target && e.target.classList.contains('changelog-image')) {
-                    overlayImage.src = e.target.src;
+                    const raw = e.target.dataset.full || e.target.src;
+                    const large = window.ImgProxy ? ImgProxy.optimize(raw, { w: 2160, q: 82 }) : raw;
+                    overlayImage.onerror = function () {
+                        overlayImage.onerror = null;
+                        if (!overlayImage.src.endsWith(raw)) overlayImage.src = raw;
+                    };
+                    overlayImage.src = large;
                     overlay.classList.add('show');
                 }
             });
