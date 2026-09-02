@@ -122,7 +122,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
     .support-panel-title {
         margin: 0 0 16px;
-        font-size: 1.35rem;
+        font-size: 1.5rem;
         font-weight: 700;
         color: var(--ThemeColor);
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -288,6 +288,33 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
         transform: scale(1.025);
     }
 
+    @keyframes support-card-ping {
+        0%   { box-shadow: 0 0 4px 0 rgba(226, 71, 198, 0.55); }
+        14%  { box-shadow: 0 0 4px 12px rgba(226, 71, 198, 0); }
+        100% { box-shadow: 0 0 4px 0 rgba(226, 71, 198, 0); }
+    }
+
+    @keyframes support-card-ping-loop {
+        0%   { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 4px 0 rgba(226, 71, 198, 0.55); }
+        100% { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 4px 15px rgba(226, 71, 198, 0); }
+    }
+
+    .support-panel-highlight .support-link {
+        animation: support-card-ping 4s ease-out infinite;
+    }
+
+    .support-panel-highlight .support-link:last-child {
+        animation-delay: -2s;
+    }
+
+    .support-panel-highlight .support-links:hover .support-link {
+        animation: none;
+    }
+
+    .support-panel-highlight .support-links:hover .support-link:hover {
+        animation: support-card-ping-loop 1.5s ease-out infinite;
+    }
+
     /* Whisper-light even dim so very bright images don't shout */
     .support-link::after {
         content: "";
@@ -347,7 +374,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
 
     .support-panel-secondary .support-link-bg {
         background-position: left center !important;
-        filter: brightness(0.73) saturate(0.77);
+        filter: brightness(0.6) saturate(0.73);
     }
 
     .support-panel-secondary .support-link-text {
