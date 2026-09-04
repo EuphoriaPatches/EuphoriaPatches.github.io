@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-25T01:06:08.192Z",
+  "generated": "2026-09-04T02:54:45.190Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -115,14 +115,6 @@
       "html_url": "https://github.com/EyaeM"
     },
     {
-      "login": "Milan4ikdudewtf",
-      "additions": 63,
-      "deletions": 20,
-      "commits": 10,
-      "avatar_url": "https://avatars.githubusercontent.com/u/157549423?v=4",
-      "html_url": "https://github.com/Milan4ikdudewtf"
-    },
-    {
       "login": "mist475",
       "additions": 1531,
       "deletions": 175,
@@ -131,12 +123,12 @@
       "html_url": "https://github.com/mist475"
     },
     {
-      "login": "Guy-that-exists",
-      "additions": 545,
-      "deletions": 300,
-      "commits": 9,
-      "avatar_url": "https://avatars.githubusercontent.com/u/91489667?v=4",
-      "html_url": "https://github.com/Guy-that-exists"
+      "login": "Milan4ikdudewtf",
+      "additions": 63,
+      "deletions": 20,
+      "commits": 10,
+      "avatar_url": "https://avatars.githubusercontent.com/u/157549423?v=4",
+      "html_url": "https://github.com/Milan4ikdudewtf"
     },
     {
       "login": "emshellabarger",
@@ -145,6 +137,14 @@
       "commits": 9,
       "avatar_url": "https://avatars.githubusercontent.com/u/51301871?v=4",
       "html_url": "https://github.com/emshellabarger"
+    },
+    {
+      "login": "Guy-that-exists",
+      "additions": 545,
+      "deletions": 300,
+      "commits": 9,
+      "avatar_url": "https://avatars.githubusercontent.com/u/91489667?v=4",
+      "html_url": "https://github.com/Guy-that-exists"
     },
     {
       "login": "RosaryMala",
@@ -188,9 +188,9 @@
     },
     {
       "login": "DavidklGames",
-      "additions": 19,
-      "deletions": 4,
-      "commits": 5,
+      "additions": 20,
+      "deletions": 6,
+      "commits": 6,
       "avatar_url": "https://avatars.githubusercontent.com/u/191793766?v=4",
       "html_url": "https://github.com/DavidklGames"
     },
@@ -235,28 +235,12 @@
       "html_url": "https://github.com/irisfofs"
     },
     {
-      "login": "Eternal130",
-      "additions": 211,
-      "deletions": 86,
+      "login": "Shindryrth",
+      "additions": 8,
+      "deletions": 3,
       "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/111716703?v=4",
-      "html_url": "https://github.com/Eternal130"
-    },
-    {
-      "login": "SCAFprivate",
-      "additions": 80,
-      "deletions": 43,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
-      "html_url": "https://github.com/SCAFprivate"
-    },
-    {
-      "login": "Niklars",
-      "additions": 89,
-      "deletions": 28,
-      "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
-      "html_url": "https://github.com/Niklars"
+      "avatar_url": "https://avatars.githubusercontent.com/u/208110419?v=4",
+      "html_url": "https://github.com/Shindryrth"
     },
     {
       "login": "Simple205",
@@ -267,6 +251,22 @@
       "html_url": "https://github.com/Simple205"
     },
     {
+      "login": "Niklars",
+      "additions": 89,
+      "deletions": 28,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/500308?v=4",
+      "html_url": "https://github.com/Niklars"
+    },
+    {
+      "login": "SCAFprivate",
+      "additions": 80,
+      "deletions": 43,
+      "commits": 4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/140879680?v=4",
+      "html_url": "https://github.com/SCAFprivate"
+    },
+    {
       "login": "3ncanis",
       "additions": 104,
       "deletions": 6,
@@ -275,12 +275,12 @@
       "html_url": "https://github.com/3ncanis"
     },
     {
-      "login": "Shindryrth",
-      "additions": 8,
-      "deletions": 3,
+      "login": "Eternal130",
+      "additions": 211,
+      "deletions": 86,
       "commits": 4,
-      "avatar_url": "https://avatars.githubusercontent.com/u/208110419?v=4",
-      "html_url": "https://github.com/Shindryrth"
+      "avatar_url": "https://avatars.githubusercontent.com/u/111716703?v=4",
+      "html_url": "https://github.com/Eternal130"
     },
     {
       "login": "Flakxo",
