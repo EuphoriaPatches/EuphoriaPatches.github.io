@@ -1,6 +1,6 @@
 {
   "maxImages": 185,
-  "maxContestImages": 6,
+  "maxContestImages": 9,
   "descriptions": {
     "downloadBackground": "End Portal Rays Option",
     "faqBackground": "Screenshot by MoAoXnX",
@@ -12,6 +12,9 @@
     "contest4": "Night Category: Memento_Mori47",
     "contest5": "Weather & Atmosphere Category: Candymanmax",
     "contest6": "Anything Goes Category: Webr",
+    "contest7": "Fantasy & Color Category: oldwu",
+    "contest8": "Modded Category: Serberus",
+    "contest9": "Photonics Category: Lego Omnom",
     "2": "A stone statue with our moss floor noise enabled - Screenshot by Slooshie",
     "3": "Lava noise enabled - Screenshot by Nomo",
     "4": "Nether Sky Noise Option",
