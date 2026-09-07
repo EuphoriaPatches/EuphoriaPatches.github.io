@@ -4012,7 +4012,7 @@ h4 {
 }
 
 .gallery-images-item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.025);
 }
 
 .gallery-ad-item {
@@ -4152,8 +4152,8 @@ h4 {
 .contest-card {
   box-sizing: border-box;
   width: 100%;
-  height: 100%; /* let the grid/row determine the final height */
-  min-height: 250px; /* match gallery's visual minimum */
+  aspect-ratio: 16 / 9; /* lock to the same ratio as the screenshot thumbnails */
+  min-height: 250px; /* floor for narrow single-column layouts */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4164,11 +4164,10 @@ h4 {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  flex: 1 1 auto; /* behave like a grid item (shrink/grow) */
 }
 
 .contest-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -5337,66 +5336,45 @@ a.contact-bg:before {
   }
 }
 
-/* Modern Back to Gallery Button */
+/* Back to Gallery link */
 
 .hero-gallery-text {
   text-align: center;
-  padding: 90px 0 50px;
+  padding: 70px 0 50px;
   position: relative;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .hero-gallery-text h1 {
-  padding-bottom: 30px;
+  padding-bottom: 0;
 }
 
 .back-to-gallery-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  padding: 10px 20px;
-  border: 1.5px solid var(--ThemeColor);
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 500;
+  align-self: flex-start;
+  gap: 8px;
+  color: var(--VeryLightGray);
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(218, 8, 208, 0.459);
+  letter-spacing: 2px;
+  opacity: 0.6;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+  transition: opacity 0.25s ease, color 0.25s ease;
 }
 
-.back-to-gallery-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: var(--ThemeColor);
-  transition: width 0.3s ease;
-  z-index: -1;
-}
-
-.back-to-gallery-btn:hover {
-  color: #fff;
+.back-to-gallery-btn:hover,
+.back-to-gallery-btn:focus {
+  opacity: 1;
+  color: var(--ThemeColor);
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.back-to-gallery-btn:hover::before {
-  width: 100%;
 }
 
 .back-to-gallery-btn .fa {
-  font-size: 12px;
-  transition: transform 0.3s ease;
+  font-size: 11px;
+  transition: transform 0.25s ease;
 }
 
 .back-to-gallery-btn:hover .fa {
@@ -5406,7 +5384,8 @@ a.contact-bg:before {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-gallery-text {
-    padding: 80px 0 20px;
+    padding: 55px 0 20px;
+    gap: 12px;
   }
 
   .hero-gallery-text h1 {
@@ -5414,7 +5393,6 @@ a.contact-bg:before {
   }
 
   .back-to-gallery-btn {
-    font-size: 13px;
-    padding: 8px 16px;
+    align-self: center;
   }
 }
