@@ -34,6 +34,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     const discordData = await discordResponse.json();
 
+    // Manual overrides (screenshots.json is overwritten by the external server,
+    // so exclusions of e.g. duplicate uploads live in a separate file).
+    let excludedDiscordIds = new Set();
+    try {
+      const overridesResponse = await fetch(
+        "/assets/img/Screenshots/discord/screenshots-overrides.json",
+      );
+      if (overridesResponse.ok) {
+        const overridesData = await overridesResponse.json();
+        if (Array.isArray(overridesData.excluded_ids)) {
+          excludedDiscordIds = new Set(overridesData.excluded_ids);
+        }
+      }
+    } catch (overridesError) {
+      console.warn("Could not load gallery overrides:", overridesError);
+    }
+
     // Collect all images into one array
     const allImages = [];
 
@@ -95,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ) {
       const screenshot = discordScreenshotsById.get(screenshotId);
 
-      if (!screenshot) {
+      if (!screenshot || excludedDiscordIds.has(screenshotId)) {
         continue;
       }
 
