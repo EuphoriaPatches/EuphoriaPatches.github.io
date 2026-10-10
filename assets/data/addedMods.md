@@ -1,4 +1,4 @@
-### Last updated: October 09, 2026, 00:28 UTC
+### Last updated: October 09, 2026, 23:53 UTC
 [# Copyright (c) 2026 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -127,6 +127,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Cooking For Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads) | 21.1.17 | Fully Added |
 | [Corn Delight](https://modrinth.com/mod/corn-delight) | | In Testing | # Corn plants are 2 blocks tall, current blocks.properties only has one entry!
 | [Countered's Terrain Slabs](https://modrinth.com/mod/countereds-terrain-slabs) | 1.3.0 | Fully Added |
+| [Cracker's Wither Storm Mod](https://www.curseforge.com/minecraft/mc-mods/crackers-wither-storm-mod) | 4.2.1 | Fully Added |
 | [Crate Delight](https://modrinth.com/mod/crate-delight/versions) | 24.11.22 | Fully Added |
 | [Create](https://modrinth.com/mod/create) | 6.0.10+mc1.21.1 | In Testing | # Moved brass and train stuff to copper for consistency and redstone IPBR support.
 | [Create Big Cannons](https://modrinth.com/mod/create-big-cannons) | 5.8.2 | Fully Added  |
@@ -430,6 +431,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Scorched Guns 2](https://www.curseforge.com/minecraft/mc-mods/scorched-guns) | 0.3.2.5 | Miniscule | #Only the Plasma lantern was added
 | [Scorchful](https://modrinth.com/mod/scorchful) | 0.6.5 | Fully Added |
 | [SCP: Overtime](https://modrinth.com/mod/scp-overtime) | | Miniscule |
+| [Sculk and Jaw](https://www.curseforge.com/minecraft/mc-mods/sculkandjaw) | 1.0.4 | Fully Added |
 | [Seafarer](https://www.curseforge.com/minecraft/mc-mods/seafarer-forge) | 1.0.1 | Partial Support |
 | [Searchlight (& Wall Lights)](https://www.curseforge.com/minecraft/mc-mods/searchlight-forge) | 1.1.11 | Fully Added |
 | [Seared Ladder \(Backport\)](https://www.curseforge.com/minecraft/mc-mods/seared-ladder-backport) | 1.1.2 | Fully Added |

@@ -1,12 +1,12 @@
 {
-  "generated": "2026-10-09T04:33:58.399Z",
+  "generated": "2026-10-10T04:20:42.073Z",
   "source": "stats_api",
   "contributors": [
     {
       "login": "SpacEagle17",
-      "additions": 122058,
+      "additions": 122150,
       "deletions": 115925,
-      "commits": 423,
+      "commits": 424,
       "avatar_url": "https://avatars.githubusercontent.com/u/46494907?v=4",
       "html_url": "https://github.com/SpacEagle17"
     },
@@ -27,6 +27,14 @@
       "html_url": "https://github.com/Pepelespooder"
     },
     {
+      "login": "xenomaster2005-dev",
+      "additions": 566,
+      "deletions": 251,
+      "commits": 47,
+      "avatar_url": "https://avatars.githubusercontent.com/u/328960055?v=4",
+      "html_url": "https://github.com/xenomaster2005-dev"
+    },
+    {
       "login": "DearreeD",
       "additions": 38015,
       "deletions": 37382,
@@ -41,14 +49,6 @@
       "commits": 25,
       "avatar_url": "https://avatars.githubusercontent.com/u/150310872?v=4",
       "html_url": "https://github.com/Jupitor87"
-    },
-    {
-      "login": "xenomaster2005-dev",
-      "additions": 396,
-      "deletions": 204,
-      "commits": 23,
-      "avatar_url": "https://avatars.githubusercontent.com/u/328960055?v=4",
-      "html_url": "https://github.com/xenomaster2005-dev"
     },
     {
       "login": "djmrFunnyMan",
