@@ -175,6 +175,7 @@
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/img-proxy.js"></script>
+    <script src="/assets/js/image-overlay.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
@@ -369,40 +370,15 @@
     <script>
         // Image overlay functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('image-overlay');
-            const overlayImage = document.getElementById('overlay-image');
-            const overlayClose = document.querySelector('.gallery-images-overlay-close');
+            const imageOverlay = ImageOverlay.create({
+                overlay: document.getElementById('image-overlay'),
+                image: document.getElementById('overlay-image'),
+            });
 
             // Add click event to all changelog images
             document.addEventListener('click', function(e) {
                 if (e.target && e.target.classList.contains('changelog-image')) {
-                    const raw = e.target.dataset.full || e.target.src;
-                    const large = window.ImgProxy ? ImgProxy.optimize(raw, { w: 2160, q: 82 }) : raw;
-                    overlayImage.onerror = function () {
-                        overlayImage.onerror = null;
-                        if (!overlayImage.src.endsWith(raw)) overlayImage.src = raw;
-                    };
-                    overlayImage.src = large;
-                    overlay.classList.add('show');
-                }
-            });
-
-            // Close overlay when clicking the X button
-            overlayClose.addEventListener('click', () => {
-                overlay.classList.remove('show');
-            });
-
-            // Close overlay when clicking outside the image
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('show');
-                }
-            });
-
-            // Close overlay when pressing Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && overlay.classList.contains('show')) {
-                    overlay.classList.remove('show');
+                    imageOverlay.open([{ src: e.target.dataset.full || e.target.src }]);
                 }
             });
         });

@@ -219,47 +219,37 @@ function initializeBlurLoading() {
 
 function initializeGalleryOverlay() {
   const galleryItems = document.querySelectorAll(".gallery-images-item");
-  const overlay = document.getElementById("gallery-images-overlay");
-  const overlayImage = document.getElementById("gallery-overlay-image");
-  const overlayClose = document.querySelector(".gallery-images-overlay-close");
-  const imageDescription = document.getElementById("image-description");
+  const imageOverlay = ImageOverlay.create({
+    overlay: document.getElementById("gallery-images-overlay"),
+    image: document.getElementById("gallery-overlay-image"),
+  });
 
   // Create hover tooltip
   const hoverTooltip = document.createElement("div");
   hoverTooltip.className = "gallery-hover-tooltip";
   document.body.appendChild(hoverTooltip);
 
-  // Store image sources and descriptions
-  let imageSources = [];
-  let originalSources = [];
-  let imageDescriptions = [];
-  let currentIndex = 0;
+  // The overlay requests the large edge-resized version itself; we only hand it
+  // the original paths and descriptions.
+  const items = [];
 
   galleryItems.forEach((item, index) => {
     const img = item.querySelector("img");
-    const originalSrc = img.getAttribute("data-original-src") || img.src;
-    // Full-screen view: request a large edge-resized version, still far smaller
-    // than the untouched original (no-op off production).
-    const fullSrc = window.ImgProxy
-      ? ImgProxy.optimize(originalSrc, { w: 2160, q: 82 })
-      : originalSrc;
     const description = img.getAttribute("data-description");
-    imageSources.push(fullSrc);
-    originalSources.push(originalSrc);
-    imageDescriptions.push(description ? description : null);
+    items.push({
+      src: img.getAttribute("data-original-src") || img.src,
+      description,
+    });
 
     item.addEventListener("click", () => {
-      currentIndex = index;
-      overlayImage.src = fullSrc;
-      updateDescription(currentIndex);
-      overlay.classList.add("show");
+      imageOverlay.open(items, index);
       hoverTooltip.classList.remove("show");
     });
 
     // Add hover listeners for tooltip (only on non-mobile)
     if (window.innerWidth > 768) {
       item.addEventListener("mouseenter", () => {
-        if (!overlay.classList.contains("show") && description) {
+        if (!imageOverlay.isOpen() && description) {
           hoverTooltip.textContent = description;
           hoverTooltip.classList.add("show");
         }
@@ -270,101 +260,4 @@ function initializeGalleryOverlay() {
       });
     }
   });
-
-  // If the edge-resized version fails to load, fall back to the original file.
-  overlayImage.addEventListener("error", () => {
-    const orig = originalSources[currentIndex];
-    if (orig && !overlayImage.src.endsWith(orig)) {
-      overlayImage.src = orig;
-    }
-  });
-
-  function updateDescription(index) {
-    const description = imageDescriptions[index];
-    if (description) {
-      imageDescription.textContent = description;
-      imageDescription.style.opacity = "1";
-    } else {
-      imageDescription.textContent = "";
-      imageDescription.style.opacity = "0";
-    }
-  }
-
-  function showImage(index) {
-    if (index >= 0 && index < imageSources.length) {
-      currentIndex = index;
-      overlayImage.src = imageSources[currentIndex];
-      updateDescription(currentIndex);
-    }
-  }
-
-  overlayClose.addEventListener("click", () => {
-    overlay.classList.remove("show");
-  });
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove("show");
-    }
-  });
-
-  // Handle escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      overlay.classList.remove("show");
-    }
-  });
-
-  // Handle arrow navigation
-  document.addEventListener("keydown", (e) => {
-    if (overlay.classList.contains("show")) {
-      if (e.key === "ArrowLeft") {
-        showImage(currentIndex - 1);
-      } else if (e.key === "ArrowRight") {
-        showImage(currentIndex + 1);
-      }
-    }
-  });
-
-  // Swipe functionality for mobile devices
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchEndX < touchStartX - swipeThreshold) {
-      showImage(currentIndex + 1);
-    } else if (touchEndX > touchStartX + swipeThreshold) {
-      showImage(currentIndex - 1);
-    }
-  }
-
-  overlay.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  overlay.addEventListener("touchmove", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-  });
-
-  overlay.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
-
-  // Navigation button handlers
-  const prevBtn = document.querySelector(".gallery-prev-btn");
-  const nextBtn = document.querySelector(".gallery-next-btn");
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", function () {
-      showImage(currentIndex - 1);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", function () {
-      showImage(currentIndex + 1);
-    });
-  }
 }

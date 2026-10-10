@@ -941,6 +941,7 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     <script src="/assets/js/jquery.shuffle.min.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/img-proxy.js"></script>
+    <script src="/assets/js/image-overlay.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1452,20 +1453,13 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
     <script>
         // Image overlay functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('image-overlay');
-            const overlayImage = document.getElementById('overlay-image');
-            const overlayClose = document.querySelector('.gallery-images-overlay-close');
+            const imageOverlay = ImageOverlay.create({
+                overlay: document.getElementById('image-overlay'),
+                image: document.getElementById('overlay-image'),
+            });
 
-            // Fullscreen view: request a large edge-resized version, fall back to the raw file.
             function openOverlay(rawSrc) {
-                if (!rawSrc) return;
-                const large = window.ImgProxy ? ImgProxy.optimize(rawSrc, { w: 2160, q: 82 }) : rawSrc;
-                overlayImage.onerror = function () {
-                    overlayImage.onerror = null;
-                    if (!overlayImage.src.endsWith(rawSrc)) overlayImage.src = rawSrc;
-                };
-                overlayImage.src = large;
-                overlay.classList.add('show');
+                if (rawSrc) imageOverlay.open([{ src: rawSrc }]);
             }
 
             // Add click event to both feature card images and carousel images
@@ -1482,25 +1476,6 @@ _iub.csConfiguration = {"siteId":3939191,"cookiePolicyId":69217758,"lang":"en","
                     if (e.target.classList.contains('active')) {
                         openOverlay(e.target.dataset.full || e.target.getAttribute('src'));
                     }
-                }
-            });
-
-            // Close overlay when clicking the X button
-            overlayClose.addEventListener('click', () => {
-                overlay.classList.remove('show');
-            });
-
-            // Close overlay when clicking outside the image
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('show');
-                }
-            });
-
-            // Close overlay when pressing Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && overlay.classList.contains('show')) {
-                    overlay.classList.remove('show');
                 }
             });
         });

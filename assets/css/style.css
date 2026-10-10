@@ -4042,6 +4042,7 @@ h4 {
 
 /* Overlay styles */
 .gallery-images-overlay {
+  --overlay-box-bottom: 90px; /* space reserved for the description pill */
   position: fixed;
   top: 0;
   left: 0;
@@ -4064,17 +4065,6 @@ h4 {
   visibility: visible;
 }
 
-.gallery-image-container {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.gallery-image-container img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-}
-
 .gallery-images-overlay-close {
   position: absolute;
   top: 20px;
@@ -4087,17 +4077,21 @@ h4 {
 
 .gallery-image-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 80%;
-  max-height: 80%;
+  top: calc(3% + 91px);
+  bottom: var(--overlay-box-bottom);
+  left: calc(3% + 74px);
+  right: calc(3% + 74px);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* This is to allow clicks to pass through to the overlay */
 }
 
 .gallery-image-container img {
+  pointer-events: auto;
   max-width: 100%;
   max-height: 100%;
+  object-fit: contain;
   border-radius: 30px;
   transition:
     opacity 0.5s ease,
@@ -4108,7 +4102,7 @@ h4 {
 
 .gallery-images-overlay.show .gallery-image-container img {
   opacity: 1;
-  transform: scale(1.5);
+  transform: scale(1);
 }
 
 .gallery-images-overlay-close {
@@ -4121,11 +4115,82 @@ h4 {
   z-index: 1010;
 }
 
+.gallery-images-overlay-fullres {
+  position: absolute;
+  top: calc(3% + 4px);
+  right: calc(7% + 70px);
+  height: 71px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-decoration: none;
+  z-index: 1010;
+  transition: opacity 0.2s ease;
+}
+
+.gallery-images-overlay-fullres:hover,
+.gallery-images-overlay-fullres:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.gallery-images-overlay-fullres > i,
+.gallery-images-overlay-fullres > span:not(.gallery-images-overlay-fullres-tip) {
+  transition: opacity 0.2s ease;
+}
+
+.gallery-images-overlay-fullres:hover > i,
+.gallery-images-overlay-fullres:hover
+  > span:not(.gallery-images-overlay-fullres-tip),
+.gallery-images-overlay-fullres:focus > i,
+.gallery-images-overlay-fullres:focus
+  > span:not(.gallery-images-overlay-fullres-tip) {
+  opacity: 0.75;
+}
+
+.gallery-images-overlay-fullres-tip {
+  position: absolute;
+  top: calc(100% - 8px);
+  right: 0;
+  width: 290px;
+  padding: 10px 14px;
+  background-color: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.4;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s;
+}
+
+.gallery-images-overlay-fullres:hover .gallery-images-overlay-fullres-tip,
+.gallery-images-overlay-fullres:focus .gallery-images-overlay-fullres-tip {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (hover: none) {
+  .gallery-images-overlay-fullres-tip {
+    display: none;
+  }
+}
+
 .image-description {
   position: fixed;
-  bottom: -200px;
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%) translateY(-80%);
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
   padding: 15px 15px;
@@ -4226,22 +4291,32 @@ h4 {
     border-radius: 20px; /* Slightly reduce border radius for mobile */
   }
   .gallery-image-container {
-    transform: translate(-50%, -50%) scale(1.25);
+    left: 45px;
+    right: 45px;
   }
   .image-description {
     transform: translateX(-50%) scale(0.7);
-    transform-origin: center;
-    bottom: -100px;
+    transform-origin: center bottom;
+    bottom: 250px;
   }
   .gallery-image-container img {
     border-radius: 12px;
+  }
+  .gallery-images-overlay-fullres {
+    right: calc(7% + 55px);
+    gap: 8px;
+    font-size: 16px;
+  }
+  .gallery-images-overlay-fullres-tip {
+    width: 230px;
+    font-size: 12px;
   }
 }
 
 /* Navigation Buttons for Gallery Overlay */
 .gallery-nav-btn {
   position: fixed;
-  top: 50%;
+  top: calc(51.5% + (91px - var(--overlay-box-bottom)) / 2);
   transform: translateY(-50%);
   width: 50px;
   height: 50px;

@@ -150,6 +150,7 @@
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/backToTop.js"></script>
     <script src="/assets/js/img-proxy.js"></script>
+    <script src="/assets/js/image-overlay.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -240,125 +241,22 @@
 
         function initializeGalleryOverlay() {
             const galleryItems = document.querySelectorAll('.gallery-images-item');
-            const overlay = document.getElementById('gallery-images-overlay');
-            const overlayImage = document.getElementById('gallery-overlay-image');
-            const overlayClose = document.querySelector('.gallery-images-overlay-close');
-            const imageDescription = document.getElementById('image-description');
+            const imageOverlay = ImageOverlay.create({
+                overlay: document.getElementById('gallery-images-overlay'),
+                image: document.getElementById('gallery-overlay-image'),
+            });
 
-            let imageSources = [];
-            let originalSources = [];
-            let imageDescriptions = [];
-            let currentIndex = 0;
+            const items = [];
 
             galleryItems.forEach((item, index) => {
                 const img = item.querySelector('img');
-                const originalSrc = img.getAttribute('data-original-src') || img.src;
-                const fullSrc = window.ImgProxy
-                    ? ImgProxy.optimize(originalSrc, { w: 2160, q: 82 })
-                    : originalSrc;
-                const description = img.getAttribute('data-description');
-                imageSources.push(fullSrc);
-                originalSources.push(originalSrc);
-                imageDescriptions.push(description || null);
-
-                item.addEventListener('click', () => {
-                    currentIndex = index;
-                    overlayImage.src = fullSrc;
-                    updateDescription(currentIndex);
-                    overlay.classList.add('show');
+                items.push({
+                    src: img.getAttribute('data-original-src') || img.src,
+                    description: img.getAttribute('data-description'),
                 });
+
+                item.addEventListener('click', () => imageOverlay.open(items, index));
             });
-
-            // Fall back to the original file if the edge-resized version fails.
-            overlayImage.addEventListener('error', () => {
-                const orig = originalSources[currentIndex];
-                if (orig && !overlayImage.src.endsWith(orig)) overlayImage.src = orig;
-            });
-
-            function updateDescription(index) {
-                const description = imageDescriptions[index];
-                if (description) {
-                    imageDescription.textContent = description;
-                    imageDescription.style.opacity = '1';
-                } else {
-                    imageDescription.textContent = '';
-                    imageDescription.style.opacity = '0';
-                }
-            }
-
-            function showImage(index) {
-                if (index >= 0 && index < imageSources.length) {
-                    currentIndex = index;
-                    overlayImage.src = imageSources[currentIndex];
-                    updateDescription(currentIndex);
-                }
-            }
-
-            overlayClose.addEventListener('click', () => {
-                overlay.classList.remove('show');
-            });
-
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('show');
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    overlay.classList.remove('show');
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (overlay.classList.contains('show')) {
-                    if (e.key === 'ArrowLeft') {
-                        showImage(currentIndex - 1);
-                    } else if (e.key === 'ArrowRight') {
-                        showImage(currentIndex + 1);
-                    }
-                }
-            });
-
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    showImage(currentIndex + 1);
-                } else if (touchEndX > touchStartX + swipeThreshold) {
-                    showImage(currentIndex - 1);
-                }
-            }
-
-            overlay.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            overlay.addEventListener('touchmove', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-            });
-
-            overlay.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            const prevBtn = document.querySelector('.gallery-prev-btn');
-            const nextBtn = document.querySelector('.gallery-next-btn');
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    showImage(currentIndex - 1);
-                });
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    showImage(currentIndex + 1);
-                });
-            }
         }
     </script>
 
