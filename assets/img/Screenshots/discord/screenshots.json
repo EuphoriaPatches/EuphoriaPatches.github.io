@@ -1,5 +1,5 @@
 {
-  "latest_screenshot_id": 86,
+  "latest_screenshot_id": 89,
   "screenshots": [
     {
       "screenshot_id": 1,
@@ -430,7 +430,22 @@
       "screenshot_id": 86,
       "username": "SpacEagle17",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 87,
+      "username": "SpacEagle17",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 88,
+      "username": "Lego Omnom",
+      "file_extension": "png"
+    },
+    {
+      "screenshot_id": 89,
+      "username": "Lego Omnom",
+      "file_extension": "png"
     }
   ],
-  "last_recorded_id": 86
+  "last_recorded_id": 89
 }
