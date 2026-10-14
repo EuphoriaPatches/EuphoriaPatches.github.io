@@ -1,4 +1,4 @@
-### Last updated: October 10, 2026, 09:57 UTC
+### Last updated: October 13, 2026, 18:36 UTC
 [# Copyright (c) 2026 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -49,6 +49,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Aquaculture Delight](https://www.curseforge.com/minecraft/mc-mods/aquaculture-delight) | 1.0.0 | Fully Added |
 | [Aquamirae](https://www.curseforge.com/minecraft/mc-mods/aquamirae-fabric) | 6 API16 | Fully Added | # Added missing blocks and items and adjusted equipment materials. Also added Astral Dust from Obscure API
 | [Aquatic Torches](https://modrinth.com/mod/aquatic-torches) | 1.0.1 | Fully Added |
+| [ArborFirmaCraft](https://www.curseforge.com/minecraft/mc-mods/arborfirmacraft) | 1.0.23 | Partial Support | # Remains only block entities
 | [Architect's Palette](https://modrinth.com/mod/architects-palette) | | Partial Support |
 | Archwood Good | | Partial Support | # Mod not on any public platform
 | [Ars Creo](https://www.curseforge.com/minecraft/mc-mods/ars-creo) | 5.1.0 | Fully Added |
@@ -267,7 +268,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Gravestones](https://modrinth.com/mod/gravestones) | v1.15 | Fully Added |
 | [Gravestones - Pneumono_](https://modrinth.com/mod/pneumono_gravestones) | 1.0.9 | Fully Added |
 | [GregTech CE Unofficial](https://www.curseforge.com/minecraft/mc-mods/gregtech-ce-unofficial) | | Miniscule / Unknown | # Mod ID is gtceu, Unknown if this mod was the one used.
-| [GregTechCEu Modern](https://www.curseforge.com/minecraft/mc-mods/gregtechceu-modern) | 1.6.3 | Partial support | # Add support for lamps and coil blocks
+| [GregTechCEu Modern](https://www.curseforge.com/minecraft/mc-mods/gregtechceu-modern) | 1.6.3 | Partial support | # Add support for lamps and coil blocks, fireboxes fixed
 | [Grounded](https://modrinth.com/mod/grounded) | 0.1.1 | Fully Added |
 | [Growthcraft Community Edition](https://www.curseforge.com/minecraft/mc-mods/growthcraft-community-edition) | 4.2.3 | Fully Added | # Seems like this is a collection of smaller Growthcraft mods, all mod namespace starts with "growthcraft"
 | GTOcore | 1.0.1 | Partial support | # Add support for coil blocks
