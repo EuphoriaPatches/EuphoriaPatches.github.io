@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T03:07:05.711Z",
+  "generated": "2026-10-18T03:00:49.219Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -28,9 +28,9 @@
     },
     {
       "login": "xenomaster2005-dev",
-      "additions": 566,
-      "deletions": 251,
-      "commits": 47,
+      "additions": 1078,
+      "deletions": 320,
+      "commits": 61,
       "avatar_url": "https://avatars.githubusercontent.com/u/328960055?v=4",
       "html_url": "https://github.com/xenomaster2005-dev"
     },
@@ -627,6 +627,14 @@
       "html_url": "https://github.com/xiader-45"
     },
     {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
+    },
+    {
       "login": "strelok-js",
       "additions": 1,
       "deletions": 1,
@@ -641,14 +649,6 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/247447270?v=4",
       "html_url": "https://github.com/Zaraney"
-    },
-    {
-      "login": "Apothicon02",
-      "additions": 24,
-      "deletions": 2,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
-      "html_url": "https://github.com/Apothicon02"
     },
     {
       "login": "Dizzy-Eevee",
