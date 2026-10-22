@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T03:24:12.144Z",
+  "generated": "2026-10-22T03:17:23.609Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -19,20 +19,20 @@
       "html_url": "https://github.com/Eclipse-Sol"
     },
     {
+      "login": "xenomaster2005-dev",
+      "additions": 1081,
+      "deletions": 320,
+      "commits": 62,
+      "avatar_url": "https://avatars.githubusercontent.com/u/328960055?v=4",
+      "html_url": "https://github.com/xenomaster2005-dev"
+    },
+    {
       "login": "Pepelespooder",
       "additions": 16647,
       "deletions": 15877,
       "commits": 61,
       "avatar_url": "https://avatars.githubusercontent.com/u/54486615?v=4",
       "html_url": "https://github.com/Pepelespooder"
-    },
-    {
-      "login": "xenomaster2005-dev",
-      "additions": 1078,
-      "deletions": 320,
-      "commits": 61,
-      "avatar_url": "https://avatars.githubusercontent.com/u/328960055?v=4",
-      "html_url": "https://github.com/xenomaster2005-dev"
     },
     {
       "login": "DearreeD",
