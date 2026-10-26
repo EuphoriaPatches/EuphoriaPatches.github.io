@@ -1,4 +1,4 @@
-### Last updated: October 21, 2026, 07:12 UTC
+### Last updated: October 25, 2026, 08:31 UTC
 [# Copyright (c) 2026 SpacEagle17 – Licensed under the MIT License: https://opensource.org/licenses/MIT]: #
 # CURRENTLY ADDED MODS
 ### WHERE TO CONTRIBUTE:
@@ -314,6 +314,7 @@ Here we can keep track of what mods have been added and what version a contribut
 | [Kaleidoscope Tavern](https://modrinth.com/mod/kaleidoscopetavern) | 1.1.2 | Fully Added |
 | [Kaleidoscope：Dimensions wine](https://modrinth.com/mod/kaleidoscopedimensions-wine) | 1.4.1 | Fully Added |
 | [L_Ender 's Cataclysm](https://www.curseforge.com/minecraft/mc-mods/lendercataclysm) | 3.31 | Fully Added | # Scylla may need a second pass
+| [Legendary Monsters](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters) | | Miniscule #Just Annihilation Lantern
 | [Legendary Survival Overhaul](https://www.curseforge.com/minecraft/mc-mods/legendary-survival-overhaul) | 2.3.11.3 | Foliage only |
 | [LevelZ](https://modrinth.com/mod/levelz) | 1.4.13 | Fully Added |
 | [Little Tiles](https://modrinth.com/mod/littletiles) | 1.6.0-pre159 | Fully Added | # Has issues with ACL
