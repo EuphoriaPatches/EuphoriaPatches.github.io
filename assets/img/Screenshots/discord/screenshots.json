@@ -1,5 +1,5 @@
 {
-  "latest_screenshot_id": 105,
+  "latest_screenshot_id": 106,
   "screenshots": [
     {
       "screenshot_id": 1,
@@ -525,7 +525,12 @@
       "screenshot_id": 105,
       "username": "!PETEandhisBEANS",
       "file_extension": "png"
+    },
+    {
+      "screenshot_id": 106,
+      "username": "Lego Omnom",
+      "file_extension": "png"
     }
   ],
-  "last_recorded_id": 105
+  "last_recorded_id": 106
 }
