@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T03:12:23.464Z",
+  "generated": "2026-10-29T04:22:25.961Z",
   "source": "stats_api",
   "contributors": [
     {
@@ -627,12 +627,12 @@
       "html_url": "https://github.com/xiader-45"
     },
     {
-      "login": "Apothicon02",
-      "additions": 24,
-      "deletions": 2,
+      "login": "semperliber",
+      "additions": 1,
+      "deletions": 1,
       "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
-      "html_url": "https://github.com/Apothicon02"
+      "avatar_url": "https://avatars.githubusercontent.com/u/114858979?v=4",
+      "html_url": "https://github.com/semperliber"
     },
     {
       "login": "Dizzy-Eevee",
@@ -641,6 +641,22 @@
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/179107951?v=4",
       "html_url": "https://github.com/Dizzy-Eevee"
+    },
+    {
+      "login": "CoderRuq",
+      "additions": 113,
+      "deletions": 37,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
+      "html_url": "https://github.com/CoderRuq"
+    },
+    {
+      "login": "Apothicon02",
+      "additions": 24,
+      "deletions": 2,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/79332745?v=4",
+      "html_url": "https://github.com/Apothicon02"
     },
     {
       "login": "gorbit99",
@@ -659,28 +675,20 @@
       "html_url": "https://github.com/strelok-js"
     },
     {
-      "login": "Zaraney",
-      "additions": 92,
-      "deletions": 1,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/247447270?v=4",
-      "html_url": "https://github.com/Zaraney"
-    },
-    {
-      "login": "CoderRuq",
-      "additions": 113,
-      "deletions": 37,
-      "commits": 1,
-      "avatar_url": "https://avatars.githubusercontent.com/u/85083982?v=4",
-      "html_url": "https://github.com/CoderRuq"
-    },
-    {
       "login": "CorneliusCornbread",
       "additions": 20,
       "deletions": 0,
       "commits": 1,
       "avatar_url": "https://avatars.githubusercontent.com/u/8294697?v=4",
       "html_url": "https://github.com/CorneliusCornbread"
+    },
+    {
+      "login": "Zaraney",
+      "additions": 92,
+      "deletions": 1,
+      "commits": 1,
+      "avatar_url": "https://avatars.githubusercontent.com/u/247447270?v=4",
+      "html_url": "https://github.com/Zaraney"
     },
     {
       "login": "milosworks",
