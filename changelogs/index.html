@@ -282,7 +282,7 @@
                     <!-- ${prefix.charAt(0).toUpperCase() + prefix.slice(1)} Version ${item.version} -->
                     <button class="aaccordion aaversion">${displayText} - ${item.date}</button>
                     <div class="apanel">
-                        <p id="${elementId}" class="cen${prefix.charAt(0).toUpperCase() + prefix.slice(1)}" data-version="${item.version}"></p>
+                        <p id="${elementId}" data-prefix="${prefix}" data-version="${item.version}"></p>
                     </div>
                 `;
             });
@@ -290,83 +290,83 @@
             container.innerHTML = html;
         }
 
-        function loadChangelogs(buttonId, panelClass, pathPrefix) {
-            document.getElementById(buttonId).addEventListener('click', function() {
-                const panels = document.querySelectorAll(`.${panelClass}`);
-                panels.forEach((panel) => {
-                    const version = panel.getAttribute('data-version');
-                    const formattedVersion = version.replace(/\./g, '');
-                    const elementId = `${pathPrefix}${formattedVersion}`;
+        // Fetch + render one version's markdown. Only runs when that version is
+        // opened, and only once.
+        async function loadVersion(btn) {
+            const target = btn.nextElementSibling.querySelector('[data-version]');
+            if (!target || target.dataset.state) return;
+            target.dataset.state = 'loading';
 
-                    fetch(`${pathPrefix}-ch/${version}.md`)
-                        .then(response => response.text())
-                        .then(data => {
-                            let formattedData = marked.parse(data);
-                            formattedData = formattedData.replace(/<img/g, '<img class="changelog-image"');
+            try {
+                const res = await fetch(`${target.dataset.prefix}-ch/${target.dataset.version}.md`);
+                if (!res.ok) throw new Error(res.status);
 
-                            const tempDiv = document.createElement('div');
-                            tempDiv.innerHTML = formattedData;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = marked.parse(await res.text());
 
-                            // Modify all <a> tags
-                            tempDiv.querySelectorAll('a').forEach(a => {
-                                a.setAttribute('target', '_blank');
-                                a.setAttribute('rel', 'noopener noreferrer');
-                            });
-
-                            // Route changelog images through the wsrv.nl edge resizer
-                            // (no-op off production); keep the raw path for the fullscreen view.
-                            tempDiv.querySelectorAll('img.changelog-image').forEach(img => {
-                                const raw = img.getAttribute('src');
-                                if (!raw || !window.ImgProxy) return;
-                                const opt = ImgProxy.optimize(raw, { w: 1200, q: 80 });
-                                img.setAttribute('data-full', raw);
-                                if (opt !== raw) {
-                                    img.setAttribute('src', opt);
-                                    img.setAttribute('onerror', "this.onerror=null;this.src=this.dataset.full");
-                                }
-                            });
-
-                            document.getElementById(elementId).innerHTML = tempDiv.innerHTML;
-                        })
-                        .catch(error => {
-                            document.getElementById(elementId).innerHTML = "Error loading changelog.";
-                        });
+                tempDiv.querySelectorAll('a').forEach(a => {
+                    a.setAttribute('target', '_blank');
+                    a.setAttribute('rel', 'noopener noreferrer');
                 });
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Generate version panels with the product type filter
-            generateVersionPanels("shaderVersionsContainer", "shader", "shader");
-            generateVersionPanels("modVersionsContainer", "mod", "mod");
+                tempDiv.querySelectorAll('img').forEach(img => {
+                    img.classList.add('changelog-image');
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
 
-            // Call the function for shader and mod changelogs
-            loadChangelogs('aaShaderBtn', 'cenShader', 'shader');
-            loadChangelogs('aaModBtn', 'cenMod', 'mod');
-
-            // Accordion functionality (kept from your original code)
-            var acc = document.getElementsByClassName("aaccordion");
-            for (var i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    this.classList.toggle("aactive");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    // Route changelog images through the wsrv.nl edge resizer
+                    // (no-op off production); keep the raw path for the fullscreen view.
+                    const raw = img.getAttribute('src');
+                    if (!raw || !window.ImgProxy) return;
+                    const opt = ImgProxy.optimize(raw, { w: 1200, q: 80 });
+                    img.setAttribute('data-full', raw);
+                    if (opt !== raw) {
+                        img.setAttribute('src', opt);
+                        img.setAttribute('onerror', "this.onerror=null;this.src=this.dataset.full");
                     }
                 });
 
-                // Adjust panel height after a brief delay
-                acc[i].addEventListener("click", function() {
-                    setTimeout(function() {
-                        for (var h = 0; h < acc.length; h++) {
-                            var panelO = acc[h].nextElementSibling;
-                            if (panelO.style.maxHeight) panelO.style.maxHeight = panelO.scrollHeight + "px";
-                        }
-                    }, 500);
-                });
+                target.innerHTML = tempDiv.innerHTML;
+                target.dataset.state = 'done';
+
+                // Panel was opened while empty; grow it to fit the new content.
+                if (btn.classList.contains('aactive')) setPanelOpen(btn, true);
+            } catch (error) {
+                target.textContent = 'Error loading changelog.';
+                delete target.dataset.state; // allow retry on next open
             }
+        }
+
+        // max-height is animated for the open/close effect, then released to
+        // "none" so late-loading images / nested panels never get clipped.
+        function setPanelOpen(btn, open) {
+            const panel = btn.nextElementSibling;
+            clearTimeout(panel._releaseTimer);
+            btn.classList.toggle('aactive', open);
+
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            if (open) {
+                panel._releaseTimer = setTimeout(() => {
+                    if (btn.classList.contains('aactive')) panel.style.maxHeight = 'none';
+                }, 550);
+            } else {
+                void panel.offsetHeight; // commit the numeric height so the collapse animates
+                panel.style.maxHeight = null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateVersionPanels("shaderVersionsContainer", "shader", "shader");
+            generateVersionPanels("modVersionsContainer", "mod", "mod");
+
+            // One delegated handler for every accordion button.
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.aaccordion');
+                if (!btn) return;
+                const open = !btn.classList.contains('aactive');
+                if (open && btn.classList.contains('aaversion')) loadVersion(btn);
+                setPanelOpen(btn, open);
+            });
         });
     </script>
 

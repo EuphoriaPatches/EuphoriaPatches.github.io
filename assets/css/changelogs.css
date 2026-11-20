@@ -15,7 +15,10 @@
   letter-spacing: -0.5px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
   z-index: 1;
 }
 
@@ -76,7 +79,9 @@
   border-radius: 12px;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   position: relative;
-  transition: all 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .aaversion:hover {
@@ -122,8 +127,6 @@
   transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   text-align: left;
   border-radius: 0 0 16px 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .panel-changelogs {
@@ -134,10 +137,8 @@
 }
 
 .panel-changelogs .apanel {
-  background: rgba(16, 16, 21, 0.85);
+  background: rgba(16, 16, 21, 0.94);
   border-radius: 0 0 16px 16px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .aactive + .apanel {
